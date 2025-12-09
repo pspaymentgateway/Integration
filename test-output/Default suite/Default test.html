@@ -1,0 +1,158 @@
+<html>
+<head>
+<title>TestNG:  Default test</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Default test</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Tue Dec 09 10:42:25 IST 2025</td>
+</tr>
+<tr><td>Total time:</td><td>86 seconds (86594 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='testcases.matrixEndToEndFlow.f()'><b>f</b><br>Test class: testcases.matrixEndToEndFlow<br>Parameters: Abraham Benjamin de Villiers, 5555555555554444, 12/27, 111<br/>
+<a href="#Output-522065374" onClick='toggleBox("Output-522065374", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-522065374" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-522065374">
+Generated Random Double: 23.39<br/>
+Generated First Name: johneaa<br/>
+Generated Email: tomjerry5ca46@gmail.com<br/>
+purchaseId is not null<br/>
+purchaseId is not empty<br/>
+purchaseId format is valid: 6937afc8325ff0a7717820c9<br/>
+purchaseId length is 24<br/>
+purchaseId validated successfully: 6937afc8325ff0a7717820c9<br/>
+Entered Card Holder Name: Abraham Benjamin de Villiers<br/>
+Entered Card Number: 5555555555554444<br/>
+Entered Card Expiry Date: 12/27<br/>
+Entered Card CVC: 111<br/>
+Moved to the Pay button<br/>
+Clicked on the Pay button to proceed with payment<br/>
+Payment Successful → URL shows issucces=true<br/>
+Proceeding with transaction verification flow.<br/>
+ Opened staging environment in a new browser tab<br/>
+User enter ID in Username field<br/>
+User Enter Password in password field<br/>
+Click on submit button in login page<br/>
+ Entered Transaction ID: 6937afc8325ff0a7717820c9<br/>
+ Clicked on Search button<br/>
+UI transaction ID: 6937afc8325ff0a7717820c9<br/>
+API transaction ID: 6937afc8325ff0a7717820c9<br/>
+Transaction ID verified successfully<br/>
+UI Merchant Name: suhasM<br/>
+API Merchant Name: suhasM<br/>
+Merchant name verified successfully<br/>
+UI Amount: 23.39<br/>
+API Amount: 23.39<br/>
+currency conversion not applied<br/>
+Amount verified successfully<br/>
+UI Currency: EUR<br/>
+API Currency: EUR<br/>
+Currency matched correctly<br/>
+Currency verified successfully<br/>
+Expected Masked Card: 55555555****4444<br/>
+UI Masked Card: 55555555****4444<br/>
+ Clicked on first Transaction ID from list<br/>
+Purchase Transaction ID is not empty or not null<br/>
+UI Currency: EUR<br/>
+Payment Info Currency: EUR<br/>
+Currency on Payment Info verified successfully<br/>
+UI Amount: 23.39<br/>
+Payment Info Amount: 23.39<br/>
+Amount on Payment Info verified successfully<br/>
+ Opened staging environment in a new browser tab<br/>
+Entering email on PSP side: rahul@paysecure.net<br/>
+Entering password on PSP side<br/>
+Clicking Sign In button on PSP side<br/>
+Login action performed successfully on PSP side<br/>
+Clicking on TX ID field to search latest transaction<br/>
+Entering Transaction ID for search: 100000035188<br/>
+Pressing ENTER to start transaction search<br/>
+Search action performed for Transaction ID: 100000035188<br/>
+Verifying Transaction ID in PSP UI for: 100000035188<br/>
+PSP displayed Transaction ID: 100000035188<br/>
+Transaction ID verification successful<br/>
+Fetching Amount and Currency text from PSP UI<br/>
+Raw Amount + Currency text received: 23.39 EUR<br/>
+Extracted Amount from PSP: 23.39<br/>
+Extracted Currency from PSP: EUR<br/>
+Comparing Amount with UI value: 23.39<br/>
+Comparing Currency with UI value: EUR<br/>
+Amount and Currency verification successful<br/>
+Expected Masked Card: 5555 55** **** 4444<br/>
+UI Masked Card: 5555 55** **** 4444<br/>
+</div>
+</td>
+<td></td>
+<td>71</td>
+<td>testcases.matrixEndToEndFlow@66629f63</td></tr>
+</table><p>
+</body>
+</html>
