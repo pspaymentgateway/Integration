@@ -10,6 +10,7 @@ import com.paysecure.utilities.DataProviders;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
+import com.paysecure.utilities.jsonProvider;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -44,7 +45,7 @@ public class stateCode extends baseClass{
 			tp = new transactionPage(getDriver());
 	  }
 	
-  @Test(dataProvider = "StateCodeData", dataProviderClass = DataProviders.class)
+  @Test(dataProvider = "StateCodeData", dataProviderClass = jsonProvider.class)
   public void f(String stateCode, String cardHolder, String cardNumber, String expiry,String cvv,String runFlag,String PSP) {
 		WebDriver driver = baseClass.getDriver();
 	       Reporter.log("StateCode test case will run for this PSP :- "+PSP, true);

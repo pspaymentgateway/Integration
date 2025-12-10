@@ -23,6 +23,7 @@ import com.paysecure.utilities.DataProviders;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
+import com.paysecure.utilities.jsonProvider;
 
 import io.restassured.response.Response;
 
@@ -45,7 +46,7 @@ public class email extends baseClass {
 		tp=new transactionPage(getDriver());
 	}
 
-	@Test(dataProvider ="email", dataProviderClass = DataProviders.class)
+	@Test(dataProvider ="email", dataProviderClass = jsonProvider.class)
 	public void matrixPurchase(String emailId,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String PSP) throws InterruptedException {
         WebDriver driver=baseClass.getDriver();
         Reporter.log("Email test case will run for this PSP :- "+PSP, true);

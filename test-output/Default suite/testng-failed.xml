@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testcases.matrixEndToEndFlow">
+      <class name="schemaValidation.city">
         <methods>
-          <include name="f"/>
           <include name="loadConfig"/>
-          <include name="beforeMethod"/>
           <include name="tearDown"/>
+          <include name="beforeMethod"/>
+          <include name="validationForCityField"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- testcases.matrixEndToEndFlow -->
+      </class> <!-- schemaValidation.city -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

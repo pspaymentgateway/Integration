@@ -1,9 +1,11 @@
 package com.paysecure.utilities;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.Date;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -11,39 +13,64 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class ExcelWriteUtility {
-	public static void writeResult(String sheetName, String value1, String value2,String value3,String purchaseID) {
-		String filePath = "C:\\Users\\LENOVO\\eclipse-workspace\\integrationApiUiTesting\\src\\test\\resource\\ExcelResultsFolder\\EmailData.xlsx";
-	    try {
-	        FileInputStream fis = new FileInputStream(filePath);
-	        Workbook workbook = WorkbookFactory.create(fis);
 
-	        Sheet sheet = workbook.getSheet(sheetName);
+    private static String getExcelPath(String fileName) {
+        // Build path dynamically relative to project root
+        String projectDir = System.getProperty("user.dir");
+        String excelFolder = "src/test/resources/ExcelResultsFolder";
+        File folder = new File(projectDir, excelFolder);
+        if (!folder.exists()) {
+            folder.mkdirs(); // create folder if it doesn't exist
+        }
+        return Paths.get(folder.getAbsolutePath(), fileName).toString();
+    }
 
-	        // If sheet doesn’t exist, create new sheet
-	        if (sheet == null) {
-	            sheet = workbook.createSheet(sheetName);
-	        }
+    public static void writeResult(String sheetName, String value1, String value2, String value3, String purchaseID) {
+        String filePath = getExcelPath("purchaseResults.xlsx");
+        writeExcel(sheetName, value1, value2, value3, purchaseID, filePath);
+    }
 
-	        int lastRowNum = sheet.getLastRowNum() + 1;
-	        Row row = sheet.createRow(lastRowNum);
+    public static void writeResults2s(String sheetName, String value1, String value2, String value3, String purchaseID) {
+        String filePath = getExcelPath("s2sResults.xlsx");
+        writeExcel(sheetName, value1, value2, value3, purchaseID, filePath);
+    }
 
-	        row.createCell(0).setCellValue(value1); // Email / City / Anything
-	        row.createCell(1).setCellValue(value2); // Status
-	        row.createCell(2).setCellValue(value3); // Comment
-	        row.createCell(3).setCellValue(purchaseID);
-	        String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-	        row.createCell(4).setCellValue(timeStamp);
-	        fis.close();
-	        FileOutputStream fos = new FileOutputStream(filePath);
-	        workbook.write(fos);
-	        fos.close();
-	        workbook.close();
+    private static void writeExcel(String sheetName, String value1, String value2, String value3, String purchaseID, String filePath) {
+        try {
+            File file = new File(filePath);
+            Workbook workbook;
 
-	        System.out.println("Excel Updated Successfully in Sheet: " + sheetName);
+            if (file.exists()) {
+                FileInputStream fis = new FileInputStream(file);
+                workbook = WorkbookFactory.create(fis);
+                fis.close();
+            } else {
+                workbook = WorkbookFactory.create(true); // create new workbook if not exists
+            }
 
-	    } catch (Exception e) {
-	        System.out.println("Error writing result to Excel: " + e.getMessage());
-	    }
-	}
+            Sheet sheet = workbook.getSheet(sheetName);
+            if (sheet == null) {
+                sheet = workbook.createSheet(sheetName);
+            }
 
+            int lastRowNum = sheet.getLastRowNum() + 1;
+            Row row = sheet.createRow(lastRowNum);
+
+            row.createCell(0).setCellValue(value1);
+            row.createCell(1).setCellValue(value2);
+            row.createCell(2).setCellValue(value3);
+            row.createCell(3).setCellValue(purchaseID);
+            String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            row.createCell(4).setCellValue(timeStamp);
+
+            FileOutputStream fos = new FileOutputStream(filePath);
+            workbook.write(fos);
+            fos.close();
+            workbook.close();
+
+            System.out.println("Excel Updated Successfully in Sheet: " + sheetName);
+        } catch (Exception e) {
+            System.out.println("Error writing result to Excel: " + e.getMessage());
+        }
+    }
 }

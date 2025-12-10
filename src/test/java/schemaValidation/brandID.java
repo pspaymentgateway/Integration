@@ -10,6 +10,7 @@ import com.paysecure.utilities.DataProviders;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
+import com.paysecure.utilities.jsonProvider;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -46,7 +47,7 @@ public class brandID extends baseClass{
 		 
 	  }
 	
-	@Test(dataProvider ="brandIDData", dataProviderClass = DataProviders.class)
+	@Test(dataProvider ="brandIDData", dataProviderClass = jsonProvider.class)
 	public void validationForBrandID(String BrandID, String cardHolder, String cardNumber, String expiry,String cvv,String runFlag,String PSP) {
 		WebDriver driver = baseClass.getDriver();
         Reporter.log("City test case will run for this PSP :- "+PSP, true);

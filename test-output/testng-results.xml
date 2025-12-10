@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="8" passed="8" failed="0" skipped="0">
   <reporter-output>
     <line>
       <![CDATA[User enter ID in Username field]]>
@@ -11,40 +11,164 @@
       <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[Generated Random Double: 23.39]]>
+      <![CDATA[streetAddres test case will run for this PSP :- Neogate]]>
     </line>
     <line>
-      <![CDATA[Generated First Name: johneaa]]>
+      <![CDATA[streetAddres test case will run for this runflag:- Visa4654]]>
     </line>
     <line>
-      <![CDATA[Generated Email: tomjerry5ca46@gmail.com]]>
+      <![CDATA[Generated Random Double: 98.91]]>
     </line>
     <line>
-      <![CDATA[purchaseId is not null]]>
+      <![CDATA[Generated First Name: johne38]]>
     </line>
     <line>
-      <![CDATA[purchaseId is not empty]]>
+      <![CDATA[Generated Email: tomjerry922bc@gmail.com]]>
     </line>
     <line>
-      <![CDATA[purchaseId format is valid: 6937afc8325ff0a7717820c9]]>
+      <![CDATA[zipcode: SW1A 1AA → Status: 202]]>
     </line>
     <line>
-      <![CDATA[purchaseId length is 24]]>
+      <![CDATA[Response Body: {
+    "purchaseId": "69390cf50977296c48490785",
+    "client": {
+        "customerId": "NA",
+        "email": "tomjerry922bc@gmail.com",
+        "phone": "+1111111111",
+        "full_name": "johne38",
+        "street_address": "Main gate",
+        "country": "DZ",
+        "city": "Paris",
+        "zip_code": "SW1A 1AA",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1765346549,
+    "type": "purchase",
+    "paymentMethod": "VISA",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "savedCardUsed": "NO",
+    "redirectType": "POST",
+    "force_recurring": false,
+    "created_on": 1765346549,
+    "merchantRef": "69390cf50977296c48490785",
+    "merchantName": "suhasM",
+    "merchantType": "MERCHANT",
+    "purchase": {
+        "currency": "EUR",
+        "products": [
+            {
+                "name": "New Ebook Gaming cards",
+                "quantity": 1.0,
+                "price": 98.91,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 98.91,
+        "requestAmount": 98.91,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1765346549
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5066",
+    "issued": "2025-12-10",
+    "due": 1765346549,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://staging.paysecure.net/payments/8c0a616ac9e810a07cb18f02d2d12106/",
+    "direct_post_url": "https://staging.paysecure.net/api/v1/p/69390cf50977296c48490785/",
+    "payoutProcess": false
+}]]>
     </line>
     <line>
-      <![CDATA[purchaseId validated successfully: 6937afc8325ff0a7717820c9]]>
+      <![CDATA[zipcode accepted by API: SW1A 1AA]]>
     </line>
     <line>
-      <![CDATA[Entered Card Holder Name: Abraham Benjamin de Villiers]]>
+      <![CDATA[API success -> proceeding with full flow]]>
     </line>
     <line>
-      <![CDATA[Entered Card Number: 5555555555554444]]>
+      <![CDATA[Entered Card Holder Name: AB de Villiers]]>
     </line>
     <line>
-      <![CDATA[Entered Card Expiry Date: 12/27]]>
+      <![CDATA[Entered Card Number: 4557392539764654]]>
     </line>
     <line>
-      <![CDATA[Entered Card CVC: 111]]>
+      <![CDATA[Entered Card Expiry Date: 04/28]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card CVC: 123]]>
     </line>
     <line>
       <![CDATA[Moved to the Pay button]]>
@@ -53,10 +177,10 @@
       <![CDATA[Clicked on the Pay button to proceed with payment]]>
     </line>
     <line>
-      <![CDATA[Payment Successful → URL shows issucces=true]]>
+      <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
     </line>
     <line>
-      <![CDATA[Proceeding with transaction verification flow.]]>
+      <![CDATA[Payment Successfully]]>
     </line>
     <line>
       <![CDATA[ Opened staging environment in a new browser tab]]>
@@ -71,58 +195,13 @@
       <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[ Entered Transaction ID: 6937afc8325ff0a7717820c9]]>
+      <![CDATA[ Entered Transaction ID: 69390cf50977296c48490785]]>
     </line>
     <line>
       <![CDATA[ Clicked on Search button]]>
     </line>
     <line>
-      <![CDATA[UI transaction ID: 6937afc8325ff0a7717820c9]]>
-    </line>
-    <line>
-      <![CDATA[API transaction ID: 6937afc8325ff0a7717820c9]]>
-    </line>
-    <line>
-      <![CDATA[Transaction ID verified successfully]]>
-    </line>
-    <line>
-      <![CDATA[UI Merchant Name: suhasM]]>
-    </line>
-    <line>
-      <![CDATA[API Merchant Name: suhasM]]>
-    </line>
-    <line>
-      <![CDATA[Merchant name verified successfully]]>
-    </line>
-    <line>
-      <![CDATA[UI Amount: 23.39]]>
-    </line>
-    <line>
-      <![CDATA[API Amount: 23.39]]>
-    </line>
-    <line>
-      <![CDATA[currency conversion not applied]]>
-    </line>
-    <line>
-      <![CDATA[Amount verified successfully]]>
-    </line>
-    <line>
-      <![CDATA[UI Currency: EUR]]>
-    </line>
-    <line>
-      <![CDATA[API Currency: EUR]]>
-    </line>
-    <line>
-      <![CDATA[Currency matched correctly]]>
-    </line>
-    <line>
-      <![CDATA[Currency verified successfully]]>
-    </line>
-    <line>
-      <![CDATA[Expected Masked Card: 55555555****4444]]>
-    </line>
-    <line>
-      <![CDATA[UI Masked Card: 55555555****4444]]>
+      <![CDATA[ Clicked on Search button]]>
     </line>
     <line>
       <![CDATA[ Clicked on first Transaction ID from list]]>
@@ -131,101 +210,1138 @@
       <![CDATA[Purchase Transaction ID is not empty or not null]]>
     </line>
     <line>
-      <![CDATA[UI Currency: EUR]]>
+      <![CDATA[User enter ID in Username field]]>
     </line>
     <line>
-      <![CDATA[Payment Info Currency: EUR]]>
+      <![CDATA[User Enter Password in password field]]>
     </line>
     <line>
-      <![CDATA[Currency on Payment Info verified successfully]]>
+      <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[UI Amount: 23.39]]>
+      <![CDATA[streetAddres test case will run for this PSP :- Neogate]]>
     </line>
     <line>
-      <![CDATA[Payment Info Amount: 23.39]]>
+      <![CDATA[streetAddres test case will run for this runflag:- Visa4654]]>
     </line>
     <line>
-      <![CDATA[Amount on Payment Info verified successfully]]>
+      <![CDATA[Generated Random Double: 4.05]]>
+    </line>
+    <line>
+      <![CDATA[Generated First Name: johnbeb]]>
+    </line>
+    <line>
+      <![CDATA[Generated Email: tomjerry97523@gmail.com]]>
+    </line>
+    <line>
+      <![CDATA[zipcode: 560001 → Status: 202]]>
+    </line>
+    <line>
+      <![CDATA[Response Body: {
+    "purchaseId": "69390d380977296c48490a0b",
+    "client": {
+        "customerId": "NA",
+        "email": "tomjerry97523@gmail.com",
+        "phone": "+1111111111",
+        "full_name": "johnbeb",
+        "street_address": "Main gate",
+        "country": "DZ",
+        "city": "Paris",
+        "zip_code": "560001",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1765346616,
+    "type": "purchase",
+    "paymentMethod": "VISA",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "savedCardUsed": "NO",
+    "redirectType": "POST",
+    "force_recurring": false,
+    "created_on": 1765346616,
+    "merchantRef": "69390d380977296c48490a0b",
+    "merchantName": "suhasM",
+    "merchantType": "MERCHANT",
+    "purchase": {
+        "currency": "EUR",
+        "products": [
+            {
+                "name": "New Ebook Gaming cards",
+                "quantity": 1.0,
+                "price": 4.05,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 4.05,
+        "requestAmount": 4.05,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1765346616
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5067",
+    "issued": "2025-12-10",
+    "due": 1765346616,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://staging.paysecure.net/payments/827896bad99f544e1b7e56c174e1c858/",
+    "direct_post_url": "https://staging.paysecure.net/api/v1/p/69390d380977296c48490a0b/",
+    "payoutProcess": false
+}]]>
+    </line>
+    <line>
+      <![CDATA[zipcode accepted by API: 560001]]>
+    </line>
+    <line>
+      <![CDATA[API success -> proceeding with full flow]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Holder Name: AB de Villiers]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Number: 4557392539764654]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Expiry Date: 04/28]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card CVC: 123]]>
+    </line>
+    <line>
+      <![CDATA[Moved to the Pay button]]>
+    </line>
+    <line>
+      <![CDATA[Clicked on the Pay button to proceed with payment]]>
+    </line>
+    <line>
+      <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
+    </line>
+    <line>
+      <![CDATA[Payment Successfully]]>
     </line>
     <line>
       <![CDATA[ Opened staging environment in a new browser tab]]>
     </line>
     <line>
-      <![CDATA[Entering email on PSP side: rahul@paysecure.net]]>
+      <![CDATA[User enter ID in Username field]]>
     </line>
     <line>
-      <![CDATA[Entering password on PSP side]]>
+      <![CDATA[User Enter Password in password field]]>
     </line>
     <line>
-      <![CDATA[Clicking Sign In button on PSP side]]>
+      <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[Login action performed successfully on PSP side]]>
+      <![CDATA[ Entered Transaction ID: 69390d380977296c48490a0b]]>
     </line>
     <line>
-      <![CDATA[Clicking on TX ID field to search latest transaction]]>
+      <![CDATA[ Clicked on Search button]]>
     </line>
     <line>
-      <![CDATA[Entering Transaction ID for search: 100000035188]]>
+      <![CDATA[ Clicked on Search button]]>
     </line>
     <line>
-      <![CDATA[Pressing ENTER to start transaction search]]>
+      <![CDATA[ Clicked on first Transaction ID from list]]>
     </line>
     <line>
-      <![CDATA[Search action performed for Transaction ID: 100000035188]]>
+      <![CDATA[Purchase Transaction ID is not empty or not null]]>
     </line>
     <line>
-      <![CDATA[Verifying Transaction ID in PSP UI for: 100000035188]]>
+      <![CDATA[User enter ID in Username field]]>
     </line>
     <line>
-      <![CDATA[PSP displayed Transaction ID: 100000035188]]>
+      <![CDATA[User Enter Password in password field]]>
     </line>
     <line>
-      <![CDATA[Transaction ID verification successful]]>
+      <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[Fetching Amount and Currency text from PSP UI]]>
+      <![CDATA[streetAddres test case will run for this PSP :- Neogate]]>
     </line>
     <line>
-      <![CDATA[Raw Amount + Currency text received: 23.39 EUR]]>
+      <![CDATA[streetAddres test case will run for this runflag:- Visa4654]]>
     </line>
     <line>
-      <![CDATA[Extracted Amount from PSP: 23.39]]>
+      <![CDATA[Generated Random Double: 94.51]]>
     </line>
     <line>
-      <![CDATA[Extracted Currency from PSP: EUR]]>
+      <![CDATA[Generated First Name: john01b]]>
     </line>
     <line>
-      <![CDATA[Comparing Amount with UI value: 23.39]]>
+      <![CDATA[Generated Email: tomjerryc08fb@gmail.com]]>
     </line>
     <line>
-      <![CDATA[Comparing Currency with UI value: EUR]]>
+      <![CDATA[zipcode: 10115 → Status: 202]]>
     </line>
     <line>
-      <![CDATA[Amount and Currency verification successful]]>
+      <![CDATA[Response Body: {
+    "purchaseId": "69390d750977296c48490c91",
+    "client": {
+        "customerId": "NA",
+        "email": "tomjerryc08fb@gmail.com",
+        "phone": "+1111111111",
+        "full_name": "john01b",
+        "street_address": "Main gate",
+        "country": "DZ",
+        "city": "Paris",
+        "zip_code": "10115",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1765346677,
+    "type": "purchase",
+    "paymentMethod": "VISA",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "savedCardUsed": "NO",
+    "redirectType": "POST",
+    "force_recurring": false,
+    "created_on": 1765346677,
+    "merchantRef": "69390d750977296c48490c91",
+    "merchantName": "suhasM",
+    "merchantType": "MERCHANT",
+    "purchase": {
+        "currency": "EUR",
+        "products": [
+            {
+                "name": "New Ebook Gaming cards",
+                "quantity": 1.0,
+                "price": 94.51,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 94.51,
+        "requestAmount": 94.51,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1765346677
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5068",
+    "issued": "2025-12-10",
+    "due": 1765346677,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://staging.paysecure.net/payments/15754bdc874e864aa6f863292f32628c/",
+    "direct_post_url": "https://staging.paysecure.net/api/v1/p/69390d750977296c48490c91/",
+    "payoutProcess": false
+}]]>
     </line>
     <line>
-      <![CDATA[Expected Masked Card: 5555 55** **** 4444]]>
+      <![CDATA[zipcode accepted by API: 10115]]>
     </line>
     <line>
-      <![CDATA[UI Masked Card: 5555 55** **** 4444]]>
+      <![CDATA[API success -> proceeding with full flow]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Holder Name: AB de Villiers]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Number: 4557392539764654]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Expiry Date: 04/28]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card CVC: 123]]>
+    </line>
+    <line>
+      <![CDATA[Moved to the Pay button]]>
+    </line>
+    <line>
+      <![CDATA[Clicked on the Pay button to proceed with payment]]>
+    </line>
+    <line>
+      <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
+    </line>
+    <line>
+      <![CDATA[Payment Successfully]]>
+    </line>
+    <line>
+      <![CDATA[ Opened staging environment in a new browser tab]]>
+    </line>
+    <line>
+      <![CDATA[User enter ID in Username field]]>
+    </line>
+    <line>
+      <![CDATA[User Enter Password in password field]]>
+    </line>
+    <line>
+      <![CDATA[Click on submit button in login page]]>
+    </line>
+    <line>
+      <![CDATA[ Entered Transaction ID: 69390d750977296c48490c91]]>
+    </line>
+    <line>
+      <![CDATA[ Clicked on Search button]]>
+    </line>
+    <line>
+      <![CDATA[ Clicked on Search button]]>
+    </line>
+    <line>
+      <![CDATA[ Clicked on first Transaction ID from list]]>
+    </line>
+    <line>
+      <![CDATA[Purchase Transaction ID is not empty or not null]]>
+    </line>
+    <line>
+      <![CDATA[User enter ID in Username field]]>
+    </line>
+    <line>
+      <![CDATA[User Enter Password in password field]]>
+    </line>
+    <line>
+      <![CDATA[Click on submit button in login page]]>
+    </line>
+    <line>
+      <![CDATA[streetAddres test case will run for this PSP :- Neogate]]>
+    </line>
+    <line>
+      <![CDATA[streetAddres test case will run for this runflag:- Visa4654]]>
+    </line>
+    <line>
+      <![CDATA[Generated Random Double: 18.03]]>
+    </line>
+    <line>
+      <![CDATA[Generated First Name: john352]]>
+    </line>
+    <line>
+      <![CDATA[Generated Email: tomjerry7d524@gmail.com]]>
+    </line>
+    <line>
+      <![CDATA[zipcode: 12 → Status: 202]]>
+    </line>
+    <line>
+      <![CDATA[Response Body: {
+    "purchaseId": "69390db50977296c48490f17",
+    "client": {
+        "customerId": "NA",
+        "email": "tomjerry7d524@gmail.com",
+        "phone": "+1111111111",
+        "full_name": "john352",
+        "street_address": "Main gate",
+        "country": "DZ",
+        "city": "Paris",
+        "zip_code": "12",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1765346741,
+    "type": "purchase",
+    "paymentMethod": "VISA",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "savedCardUsed": "NO",
+    "redirectType": "POST",
+    "force_recurring": false,
+    "created_on": 1765346741,
+    "merchantRef": "69390db50977296c48490f17",
+    "merchantName": "suhasM",
+    "merchantType": "MERCHANT",
+    "purchase": {
+        "currency": "EUR",
+        "products": [
+            {
+                "name": "New Ebook Gaming cards",
+                "quantity": 1.0,
+                "price": 18.03,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 18.03,
+        "requestAmount": 18.03,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1765346741
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5069",
+    "issued": "2025-12-10",
+    "due": 1765346741,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://staging.paysecure.net/payments/ed275a4ebb8767445e15b865111bff2e/",
+    "direct_post_url": "https://staging.paysecure.net/api/v1/p/69390db50977296c48490f17/",
+    "payoutProcess": false
+}]]>
+    </line>
+    <line>
+      <![CDATA[zipcode accepted by API: 12]]>
+    </line>
+    <line>
+      <![CDATA[API success -> proceeding with full flow]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Holder Name: AB de Villiers]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Number: 4557392539764654]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Expiry Date: 04/28]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card CVC: 123]]>
+    </line>
+    <line>
+      <![CDATA[Moved to the Pay button]]>
+    </line>
+    <line>
+      <![CDATA[Clicked on the Pay button to proceed with payment]]>
+    </line>
+    <line>
+      <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
+    </line>
+    <line>
+      <![CDATA[Payment Successfully]]>
+    </line>
+    <line>
+      <![CDATA[ Opened staging environment in a new browser tab]]>
+    </line>
+    <line>
+      <![CDATA[User enter ID in Username field]]>
+    </line>
+    <line>
+      <![CDATA[User Enter Password in password field]]>
+    </line>
+    <line>
+      <![CDATA[Click on submit button in login page]]>
+    </line>
+    <line>
+      <![CDATA[ Entered Transaction ID: 69390db50977296c48490f17]]>
+    </line>
+    <line>
+      <![CDATA[ Clicked on Search button]]>
+    </line>
+    <line>
+      <![CDATA[ Clicked on Search button]]>
+    </line>
+    <line>
+      <![CDATA[ Clicked on first Transaction ID from list]]>
+    </line>
+    <line>
+      <![CDATA[Purchase Transaction ID is not empty or not null]]>
+    </line>
+    <line>
+      <![CDATA[User enter ID in Username field]]>
+    </line>
+    <line>
+      <![CDATA[User Enter Password in password field]]>
+    </line>
+    <line>
+      <![CDATA[Click on submit button in login page]]>
+    </line>
+    <line>
+      <![CDATA[streetAddres test case will run for this PSP :- Neogate]]>
+    </line>
+    <line>
+      <![CDATA[streetAddres test case will run for this runflag:- Visa4654]]>
+    </line>
+    <line>
+      <![CDATA[Generated Random Double: 62.40]]>
+    </line>
+    <line>
+      <![CDATA[Generated First Name: john160]]>
+    </line>
+    <line>
+      <![CDATA[Generated Email: tomjerryaff51@gmail.com]]>
+    </line>
+    <line>
+      <![CDATA[zipcode: 12345678901 → Status: 202]]>
+    </line>
+    <line>
+      <![CDATA[Response Body: {
+    "purchaseId": "69390dfa0977296c4849119d",
+    "client": {
+        "customerId": "NA",
+        "email": "tomjerryaff51@gmail.com",
+        "phone": "+1111111111",
+        "full_name": "john160",
+        "street_address": "Main gate",
+        "country": "DZ",
+        "city": "Paris",
+        "zip_code": "12345678901",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1765346810,
+    "type": "purchase",
+    "paymentMethod": "VISA",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "savedCardUsed": "NO",
+    "redirectType": "POST",
+    "force_recurring": false,
+    "created_on": 1765346810,
+    "merchantRef": "69390dfa0977296c4849119d",
+    "merchantName": "suhasM",
+    "merchantType": "MERCHANT",
+    "purchase": {
+        "currency": "EUR",
+        "products": [
+            {
+                "name": "New Ebook Gaming cards",
+                "quantity": 1.0,
+                "price": 62.4,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 62.4,
+        "requestAmount": 62.4,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1765346810
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5070",
+    "issued": "2025-12-10",
+    "due": 1765346810,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://staging.paysecure.net/payments/c88eeb9a064ecf72e1bab13736c21e8b/",
+    "direct_post_url": "https://staging.paysecure.net/api/v1/p/69390dfa0977296c4849119d/",
+    "payoutProcess": false
+}]]>
+    </line>
+    <line>
+      <![CDATA[zipcode accepted by API: 12345678901]]>
+    </line>
+    <line>
+      <![CDATA[API success -> proceeding with full flow]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Holder Name: AB de Villiers]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Number: 4557392539764654]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Expiry Date: 04/28]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card CVC: 123]]>
+    </line>
+    <line>
+      <![CDATA[Moved to the Pay button]]>
+    </line>
+    <line>
+      <![CDATA[Clicked on the Pay button to proceed with payment]]>
+    </line>
+    <line>
+      <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
+    </line>
+    <line>
+      <![CDATA[Payment Successfully]]>
+    </line>
+    <line>
+      <![CDATA[ Opened staging environment in a new browser tab]]>
+    </line>
+    <line>
+      <![CDATA[User enter ID in Username field]]>
+    </line>
+    <line>
+      <![CDATA[User Enter Password in password field]]>
+    </line>
+    <line>
+      <![CDATA[Click on submit button in login page]]>
+    </line>
+    <line>
+      <![CDATA[ Entered Transaction ID: 69390dfa0977296c4849119d]]>
+    </line>
+    <line>
+      <![CDATA[ Clicked on Search button]]>
+    </line>
+    <line>
+      <![CDATA[ Clicked on Search button]]>
+    </line>
+    <line>
+      <![CDATA[ Clicked on first Transaction ID from list]]>
+    </line>
+    <line>
+      <![CDATA[Purchase Transaction ID is not empty or not null]]>
+    </line>
+    <line>
+      <![CDATA[User enter ID in Username field]]>
+    </line>
+    <line>
+      <![CDATA[User Enter Password in password field]]>
+    </line>
+    <line>
+      <![CDATA[Click on submit button in login page]]>
+    </line>
+    <line>
+      <![CDATA[streetAddres test case will run for this PSP :- Neogate]]>
+    </line>
+    <line>
+      <![CDATA[streetAddres test case will run for this runflag:- Visa4654]]>
+    </line>
+    <line>
+      <![CDATA[Generated Random Double: 71.12]]>
+    </line>
+    <line>
+      <![CDATA[Generated First Name: johne7c]]>
+    </line>
+    <line>
+      <![CDATA[Generated Email: tomjerryde71f@gmail.com]]>
+    </line>
+    <line>
+      <![CDATA[zipcode: 123@# → Status: 202]]>
+    </line>
+    <line>
+      <![CDATA[Response Body: {
+    "purchaseId": "69390e380977296c48491424",
+    "client": {
+        "customerId": "NA",
+        "email": "tomjerryde71f@gmail.com",
+        "phone": "+1111111111",
+        "full_name": "johne7c",
+        "street_address": "Main gate",
+        "country": "DZ",
+        "city": "Paris",
+        "zip_code": "123@#",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1765346873,
+    "type": "purchase",
+    "paymentMethod": "VISA",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "savedCardUsed": "NO",
+    "redirectType": "POST",
+    "force_recurring": false,
+    "created_on": 1765346873,
+    "merchantRef": "69390e380977296c48491424",
+    "merchantName": "suhasM",
+    "merchantType": "MERCHANT",
+    "purchase": {
+        "currency": "EUR",
+        "products": [
+            {
+                "name": "New Ebook Gaming cards",
+                "quantity": 1.0,
+                "price": 71.12,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 71.12,
+        "requestAmount": 71.12,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1765346873
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5071",
+    "issued": "2025-12-10",
+    "due": 1765346873,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://staging.paysecure.net/payments/1a5030788fdc1e386284709a07b92998/",
+    "direct_post_url": "https://staging.paysecure.net/api/v1/p/69390e380977296c48491424/",
+    "payoutProcess": false
+}]]>
+    </line>
+    <line>
+      <![CDATA[zipcode accepted by API: 123@#]]>
+    </line>
+    <line>
+      <![CDATA[API success -> proceeding with full flow]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Holder Name: AB de Villiers]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Number: 4557392539764654]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Expiry Date: 04/28]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card CVC: 123]]>
+    </line>
+    <line>
+      <![CDATA[Moved to the Pay button]]>
+    </line>
+    <line>
+      <![CDATA[Clicked on the Pay button to proceed with payment]]>
+    </line>
+    <line>
+      <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
+    </line>
+    <line>
+      <![CDATA[Payment Successfully]]>
+    </line>
+    <line>
+      <![CDATA[ Opened staging environment in a new browser tab]]>
+    </line>
+    <line>
+      <![CDATA[User enter ID in Username field]]>
+    </line>
+    <line>
+      <![CDATA[User Enter Password in password field]]>
+    </line>
+    <line>
+      <![CDATA[Click on submit button in login page]]>
+    </line>
+    <line>
+      <![CDATA[ Entered Transaction ID: 69390e380977296c48491424]]>
+    </line>
+    <line>
+      <![CDATA[ Clicked on Search button]]>
+    </line>
+    <line>
+      <![CDATA[ Clicked on Search button]]>
+    </line>
+    <line>
+      <![CDATA[ Clicked on first Transaction ID from list]]>
+    </line>
+    <line>
+      <![CDATA[Purchase Transaction ID is not empty or not null]]>
+    </line>
+    <line>
+      <![CDATA[User enter ID in Username field]]>
+    </line>
+    <line>
+      <![CDATA[User Enter Password in password field]]>
+    </line>
+    <line>
+      <![CDATA[Click on submit button in login page]]>
+    </line>
+    <line>
+      <![CDATA[streetAddres test case will run for this PSP :- Neogate]]>
+    </line>
+    <line>
+      <![CDATA[streetAddres test case will run for this runflag:- Visa4654]]>
+    </line>
+    <line>
+      <![CDATA[Generated Random Double: 13.67]]>
+    </line>
+    <line>
+      <![CDATA[Generated First Name: john733]]>
+    </line>
+    <line>
+      <![CDATA[Generated Email: tomjerry7d65c@gmail.com]]>
+    </line>
+    <line>
+      <![CDATA[zipcode:  → Status: 400]]>
+    </line>
+    <line>
+      <![CDATA[Response Body: {
+    "message": "Please pass valid postal Code name in \"zip_code\" paramater",
+    "code": "transaction_error"
+}]]>
+    </line>
+    <line>
+      <![CDATA[zipcode rejected by API: ]]>
+    </line>
+    <line>
+      <![CDATA[PASS → zipcode rejected correctly   ]]>
+    </line>
+    <line>
+      <![CDATA[User enter ID in Username field]]>
+    </line>
+    <line>
+      <![CDATA[User Enter Password in password field]]>
+    </line>
+    <line>
+      <![CDATA[Click on submit button in login page]]>
+    </line>
+    <line>
+      <![CDATA[streetAddres test case will run for this PSP :- Neogate]]>
+    </line>
+    <line>
+      <![CDATA[streetAddres test case will run for this runflag:- Visa4654]]>
+    </line>
+    <line>
+      <![CDATA[Generated Random Double: 71.70]]>
+    </line>
+    <line>
+      <![CDATA[Generated First Name: john3ec]]>
+    </line>
+    <line>
+      <![CDATA[Generated Email: tomjerrye742e@gmail.com]]>
+    </line>
+    <line>
+      <![CDATA[zipcode: null → Status: 400]]>
+    </line>
+    <line>
+      <![CDATA[Response Body: {
+    "message": "Please pass valid postal Code name in \"zip_code\" paramater",
+    "code": "transaction_error"
+}]]>
+    </line>
+    <line>
+      <![CDATA[zipcode rejected by API: null]]>
+    </line>
+    <line>
+      <![CDATA[PASS → zipcode rejected correctly   null]]>
     </line>
   </reporter-output>
-  <suite started-at="2025-12-09T10:42:25 IST" name="Default suite" finished-at="2025-12-09T10:43:52 IST" duration-ms="86594">
+  <suite started-at="2025-12-10T11:32:17 IST" name="Default suite" finished-at="2025-12-10T11:39:11 IST" duration-ms="414763">
     <groups>
     </groups>
-    <test started-at="2025-12-09T10:42:25 IST" name="Default test" finished-at="2025-12-09T10:43:52 IST" duration-ms="86594">
-      <class name="testcases.matrixEndToEndFlow">
-        <test-method is-config="true" signature="loadConfig()[pri:0, instance:testcases.matrixEndToEndFlow@66629f63]" started-at="2025-12-09T10:42:25 IST" name="loadConfig" finished-at="2025-12-09T10:42:25 IST" duration-ms="25" status="PASS">
+    <test started-at="2025-12-10T11:32:17 IST" name="Default test" finished-at="2025-12-10T11:39:11 IST" duration-ms="414763">
+      <class name="schemaValidation.zipcode">
+        <test-method is-config="true" signature="loadConfig()[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:32:17 IST" name="loadConfig" finished-at="2025-12-10T11:32:17 IST" duration-ms="24" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loadConfig -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:testcases.matrixEndToEndFlow@66629f63]" started-at="2025-12-09T10:42:25 IST" name="setup" finished-at="2025-12-09T10:42:34 IST" duration-ms="8730" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:32:17 IST" name="setup" finished-at="2025-12-10T11:32:23 IST" duration-ms="5926" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:testcases.matrixEndToEndFlow@66629f63]" started-at="2025-12-09T10:42:34 IST" name="beforeMethod" finished-at="2025-12-09T10:42:37 IST" duration-ms="3116" status="PASS">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:32:23 IST" name="beforeMethod" finished-at="2025-12-10T11:32:26 IST" duration-ms="2990" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[User enter ID in Username field]]>
@@ -238,65 +1354,204 @@
             </line>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="f(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testcases.matrixEndToEndFlow@66629f63]" started-at="2025-12-09T10:42:37 IST" name="f" data-provider="cardData" finished-at="2025-12-09T10:43:49 IST" duration-ms="71543" status="PASS">
+        <test-method signature="validationForZipcodeField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:32:26 IST" name="validationForZipcodeField" data-provider="zipCodeData" finished-at="2025-12-10T11:33:25 IST" duration-ms="58736" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Abraham Benjamin de Villiers]]>
+                <![CDATA[SW1A 1AA]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[5555555555554444]]>
+                <![CDATA[AB de Villiers]]>
               </value>
             </param>
             <param index="2">
               <value>
-                <![CDATA[12/27]]>
+                <![CDATA[4557392539764654]]>
               </value>
             </param>
             <param index="3">
               <value>
-                <![CDATA[111]]>
+                <![CDATA[04/28]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[123]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[Visa4654]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[Neogate]]>
               </value>
             </param>
           </params>
           <reporter-output>
             <line>
-              <![CDATA[Generated Random Double: 23.39]]>
+              <![CDATA[streetAddres test case will run for this PSP :- Neogate]]>
             </line>
             <line>
-              <![CDATA[Generated First Name: johneaa]]>
+              <![CDATA[streetAddres test case will run for this runflag:- Visa4654]]>
             </line>
             <line>
-              <![CDATA[Generated Email: tomjerry5ca46@gmail.com]]>
+              <![CDATA[Generated Random Double: 98.91]]>
             </line>
             <line>
-              <![CDATA[purchaseId is not null]]>
+              <![CDATA[Generated First Name: johne38]]>
             </line>
             <line>
-              <![CDATA[purchaseId is not empty]]>
+              <![CDATA[Generated Email: tomjerry922bc@gmail.com]]>
             </line>
             <line>
-              <![CDATA[purchaseId format is valid: 6937afc8325ff0a7717820c9]]>
+              <![CDATA[zipcode: SW1A 1AA → Status: 202]]>
             </line>
             <line>
-              <![CDATA[purchaseId length is 24]]>
+              <![CDATA[Response Body: {
+    "purchaseId": "69390cf50977296c48490785",
+    "client": {
+        "customerId": "NA",
+        "email": "tomjerry922bc@gmail.com",
+        "phone": "+1111111111",
+        "full_name": "johne38",
+        "street_address": "Main gate",
+        "country": "DZ",
+        "city": "Paris",
+        "zip_code": "SW1A 1AA",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1765346549,
+    "type": "purchase",
+    "paymentMethod": "VISA",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "savedCardUsed": "NO",
+    "redirectType": "POST",
+    "force_recurring": false,
+    "created_on": 1765346549,
+    "merchantRef": "69390cf50977296c48490785",
+    "merchantName": "suhasM",
+    "merchantType": "MERCHANT",
+    "purchase": {
+        "currency": "EUR",
+        "products": [
+            {
+                "name": "New Ebook Gaming cards",
+                "quantity": 1.0,
+                "price": 98.91,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 98.91,
+        "requestAmount": 98.91,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1765346549
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5066",
+    "issued": "2025-12-10",
+    "due": 1765346549,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://staging.paysecure.net/payments/8c0a616ac9e810a07cb18f02d2d12106/",
+    "direct_post_url": "https://staging.paysecure.net/api/v1/p/69390cf50977296c48490785/",
+    "payoutProcess": false
+}]]>
             </line>
             <line>
-              <![CDATA[purchaseId validated successfully: 6937afc8325ff0a7717820c9]]>
+              <![CDATA[zipcode accepted by API: SW1A 1AA]]>
             </line>
             <line>
-              <![CDATA[Entered Card Holder Name: Abraham Benjamin de Villiers]]>
+              <![CDATA[API success -> proceeding with full flow]]>
             </line>
             <line>
-              <![CDATA[Entered Card Number: 5555555555554444]]>
+              <![CDATA[Entered Card Holder Name: AB de Villiers]]>
             </line>
             <line>
-              <![CDATA[Entered Card Expiry Date: 12/27]]>
+              <![CDATA[Entered Card Number: 4557392539764654]]>
             </line>
             <line>
-              <![CDATA[Entered Card CVC: 111]]>
+              <![CDATA[Entered Card Expiry Date: 04/28]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card CVC: 123]]>
             </line>
             <line>
               <![CDATA[Moved to the Pay button]]>
@@ -305,10 +1560,10 @@
               <![CDATA[Clicked on the Pay button to proceed with payment]]>
             </line>
             <line>
-              <![CDATA[Payment Successful → URL shows issucces=true]]>
+              <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
             </line>
             <line>
-              <![CDATA[Proceeding with transaction verification flow.]]>
+              <![CDATA[Payment Successfully]]>
             </line>
             <line>
               <![CDATA[ Opened staging environment in a new browser tab]]>
@@ -323,58 +1578,13 @@
               <![CDATA[Click on submit button in login page]]>
             </line>
             <line>
-              <![CDATA[ Entered Transaction ID: 6937afc8325ff0a7717820c9]]>
+              <![CDATA[ Entered Transaction ID: 69390cf50977296c48490785]]>
             </line>
             <line>
               <![CDATA[ Clicked on Search button]]>
             </line>
             <line>
-              <![CDATA[UI transaction ID: 6937afc8325ff0a7717820c9]]>
-            </line>
-            <line>
-              <![CDATA[API transaction ID: 6937afc8325ff0a7717820c9]]>
-            </line>
-            <line>
-              <![CDATA[Transaction ID verified successfully]]>
-            </line>
-            <line>
-              <![CDATA[UI Merchant Name: suhasM]]>
-            </line>
-            <line>
-              <![CDATA[API Merchant Name: suhasM]]>
-            </line>
-            <line>
-              <![CDATA[Merchant name verified successfully]]>
-            </line>
-            <line>
-              <![CDATA[UI Amount: 23.39]]>
-            </line>
-            <line>
-              <![CDATA[API Amount: 23.39]]>
-            </line>
-            <line>
-              <![CDATA[currency conversion not applied]]>
-            </line>
-            <line>
-              <![CDATA[Amount verified successfully]]>
-            </line>
-            <line>
-              <![CDATA[UI Currency: EUR]]>
-            </line>
-            <line>
-              <![CDATA[API Currency: EUR]]>
-            </line>
-            <line>
-              <![CDATA[Currency matched correctly]]>
-            </line>
-            <line>
-              <![CDATA[Currency verified successfully]]>
-            </line>
-            <line>
-              <![CDATA[Expected Masked Card: 55555555****4444]]>
-            </line>
-            <line>
-              <![CDATA[UI Masked Card: 55555555****4444]]>
+              <![CDATA[ Clicked on Search button]]>
             </line>
             <line>
               <![CDATA[ Clicked on first Transaction ID from list]]>
@@ -382,101 +1592,1556 @@
             <line>
               <![CDATA[Purchase Transaction ID is not empty or not null]]>
             </line>
-            <line>
-              <![CDATA[UI Currency: EUR]]>
-            </line>
-            <line>
-              <![CDATA[Payment Info Currency: EUR]]>
-            </line>
-            <line>
-              <![CDATA[Currency on Payment Info verified successfully]]>
-            </line>
-            <line>
-              <![CDATA[UI Amount: 23.39]]>
-            </line>
-            <line>
-              <![CDATA[Payment Info Amount: 23.39]]>
-            </line>
-            <line>
-              <![CDATA[Amount on Payment Info verified successfully]]>
-            </line>
-            <line>
-              <![CDATA[ Opened staging environment in a new browser tab]]>
-            </line>
-            <line>
-              <![CDATA[Entering email on PSP side: rahul@paysecure.net]]>
-            </line>
-            <line>
-              <![CDATA[Entering password on PSP side]]>
-            </line>
-            <line>
-              <![CDATA[Clicking Sign In button on PSP side]]>
-            </line>
-            <line>
-              <![CDATA[Login action performed successfully on PSP side]]>
-            </line>
-            <line>
-              <![CDATA[Clicking on TX ID field to search latest transaction]]>
-            </line>
-            <line>
-              <![CDATA[Entering Transaction ID for search: 100000035188]]>
-            </line>
-            <line>
-              <![CDATA[Pressing ENTER to start transaction search]]>
-            </line>
-            <line>
-              <![CDATA[Search action performed for Transaction ID: 100000035188]]>
-            </line>
-            <line>
-              <![CDATA[Verifying Transaction ID in PSP UI for: 100000035188]]>
-            </line>
-            <line>
-              <![CDATA[PSP displayed Transaction ID: 100000035188]]>
-            </line>
-            <line>
-              <![CDATA[Transaction ID verification successful]]>
-            </line>
-            <line>
-              <![CDATA[Fetching Amount and Currency text from PSP UI]]>
-            </line>
-            <line>
-              <![CDATA[Raw Amount + Currency text received: 23.39 EUR]]>
-            </line>
-            <line>
-              <![CDATA[Extracted Amount from PSP: 23.39]]>
-            </line>
-            <line>
-              <![CDATA[Extracted Currency from PSP: EUR]]>
-            </line>
-            <line>
-              <![CDATA[Comparing Amount with UI value: 23.39]]>
-            </line>
-            <line>
-              <![CDATA[Comparing Currency with UI value: EUR]]>
-            </line>
-            <line>
-              <![CDATA[Amount and Currency verification successful]]>
-            </line>
-            <line>
-              <![CDATA[Expected Masked Card: 5555 55** **** 4444]]>
-            </line>
-            <line>
-              <![CDATA[UI Masked Card: 5555 55** **** 4444]]>
-            </line>
           </reporter-output>
-        </test-method> <!-- f -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:testcases.matrixEndToEndFlow@66629f63]" started-at="2025-12-09T10:43:49 IST" name="tearDown" finished-at="2025-12-09T10:43:52 IST" duration-ms="3012" status="PASS">
+        </test-method> <!-- validationForZipcodeField -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:33:25 IST" name="tearDown" finished-at="2025-12-10T11:33:28 IST" duration-ms="3015" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=f status=SUCCESS method=matrixEndToEndFlow.f(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testcases.matrixEndToEndFlow@66629f63] output=Generated Random Double: 23.39]]]>
+                <![CDATA[[TestResult name=validationForZipcodeField status=SUCCESS method=zipcode.validationForZipcodeField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:schemaValidation.zipcode@66629f63] output=streetAddres test case will run for this PSP :- Neogate]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- testcases.matrixEndToEndFlow -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:33:28 IST" name="setup" finished-at="2025-12-10T11:33:33 IST" duration-ms="4989" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:33:33 IST" name="beforeMethod" finished-at="2025-12-10T11:33:36 IST" duration-ms="2952" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[User enter ID in Username field]]>
+            </line>
+            <line>
+              <![CDATA[User Enter Password in password field]]>
+            </line>
+            <line>
+              <![CDATA[Click on submit button in login page]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="validationForZipcodeField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:33:36 IST" name="validationForZipcodeField" data-provider="zipCodeData" finished-at="2025-12-10T11:34:26 IST" duration-ms="50336" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[560001]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[AB de Villiers]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[4557392539764654]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[04/28]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[123]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[Visa4654]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[Neogate]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[streetAddres test case will run for this PSP :- Neogate]]>
+            </line>
+            <line>
+              <![CDATA[streetAddres test case will run for this runflag:- Visa4654]]>
+            </line>
+            <line>
+              <![CDATA[Generated Random Double: 4.05]]>
+            </line>
+            <line>
+              <![CDATA[Generated First Name: johnbeb]]>
+            </line>
+            <line>
+              <![CDATA[Generated Email: tomjerry97523@gmail.com]]>
+            </line>
+            <line>
+              <![CDATA[zipcode: 560001 → Status: 202]]>
+            </line>
+            <line>
+              <![CDATA[Response Body: {
+    "purchaseId": "69390d380977296c48490a0b",
+    "client": {
+        "customerId": "NA",
+        "email": "tomjerry97523@gmail.com",
+        "phone": "+1111111111",
+        "full_name": "johnbeb",
+        "street_address": "Main gate",
+        "country": "DZ",
+        "city": "Paris",
+        "zip_code": "560001",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1765346616,
+    "type": "purchase",
+    "paymentMethod": "VISA",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "savedCardUsed": "NO",
+    "redirectType": "POST",
+    "force_recurring": false,
+    "created_on": 1765346616,
+    "merchantRef": "69390d380977296c48490a0b",
+    "merchantName": "suhasM",
+    "merchantType": "MERCHANT",
+    "purchase": {
+        "currency": "EUR",
+        "products": [
+            {
+                "name": "New Ebook Gaming cards",
+                "quantity": 1.0,
+                "price": 4.05,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 4.05,
+        "requestAmount": 4.05,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1765346616
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5067",
+    "issued": "2025-12-10",
+    "due": 1765346616,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://staging.paysecure.net/payments/827896bad99f544e1b7e56c174e1c858/",
+    "direct_post_url": "https://staging.paysecure.net/api/v1/p/69390d380977296c48490a0b/",
+    "payoutProcess": false
+}]]>
+            </line>
+            <line>
+              <![CDATA[zipcode accepted by API: 560001]]>
+            </line>
+            <line>
+              <![CDATA[API success -> proceeding with full flow]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Holder Name: AB de Villiers]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Number: 4557392539764654]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Expiry Date: 04/28]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card CVC: 123]]>
+            </line>
+            <line>
+              <![CDATA[Moved to the Pay button]]>
+            </line>
+            <line>
+              <![CDATA[Clicked on the Pay button to proceed with payment]]>
+            </line>
+            <line>
+              <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
+            </line>
+            <line>
+              <![CDATA[Payment Successfully]]>
+            </line>
+            <line>
+              <![CDATA[ Opened staging environment in a new browser tab]]>
+            </line>
+            <line>
+              <![CDATA[User enter ID in Username field]]>
+            </line>
+            <line>
+              <![CDATA[User Enter Password in password field]]>
+            </line>
+            <line>
+              <![CDATA[Click on submit button in login page]]>
+            </line>
+            <line>
+              <![CDATA[ Entered Transaction ID: 69390d380977296c48490a0b]]>
+            </line>
+            <line>
+              <![CDATA[ Clicked on Search button]]>
+            </line>
+            <line>
+              <![CDATA[ Clicked on Search button]]>
+            </line>
+            <line>
+              <![CDATA[ Clicked on first Transaction ID from list]]>
+            </line>
+            <line>
+              <![CDATA[Purchase Transaction ID is not empty or not null]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- validationForZipcodeField -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:34:26 IST" name="tearDown" finished-at="2025-12-10T11:34:29 IST" duration-ms="3016" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=validationForZipcodeField status=SUCCESS method=zipcode.validationForZipcodeField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:schemaValidation.zipcode@66629f63] output=streetAddres test case will run for this PSP :- Neogate]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:34:29 IST" name="setup" finished-at="2025-12-10T11:34:34 IST" duration-ms="5120" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:34:34 IST" name="beforeMethod" finished-at="2025-12-10T11:34:37 IST" duration-ms="2749" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[User enter ID in Username field]]>
+            </line>
+            <line>
+              <![CDATA[User Enter Password in password field]]>
+            </line>
+            <line>
+              <![CDATA[Click on submit button in login page]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="validationForZipcodeField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:34:37 IST" name="validationForZipcodeField" data-provider="zipCodeData" finished-at="2025-12-10T11:35:30 IST" duration-ms="52669" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[10115]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[AB de Villiers]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[4557392539764654]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[04/28]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[123]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[Visa4654]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[Neogate]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[streetAddres test case will run for this PSP :- Neogate]]>
+            </line>
+            <line>
+              <![CDATA[streetAddres test case will run for this runflag:- Visa4654]]>
+            </line>
+            <line>
+              <![CDATA[Generated Random Double: 94.51]]>
+            </line>
+            <line>
+              <![CDATA[Generated First Name: john01b]]>
+            </line>
+            <line>
+              <![CDATA[Generated Email: tomjerryc08fb@gmail.com]]>
+            </line>
+            <line>
+              <![CDATA[zipcode: 10115 → Status: 202]]>
+            </line>
+            <line>
+              <![CDATA[Response Body: {
+    "purchaseId": "69390d750977296c48490c91",
+    "client": {
+        "customerId": "NA",
+        "email": "tomjerryc08fb@gmail.com",
+        "phone": "+1111111111",
+        "full_name": "john01b",
+        "street_address": "Main gate",
+        "country": "DZ",
+        "city": "Paris",
+        "zip_code": "10115",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1765346677,
+    "type": "purchase",
+    "paymentMethod": "VISA",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "savedCardUsed": "NO",
+    "redirectType": "POST",
+    "force_recurring": false,
+    "created_on": 1765346677,
+    "merchantRef": "69390d750977296c48490c91",
+    "merchantName": "suhasM",
+    "merchantType": "MERCHANT",
+    "purchase": {
+        "currency": "EUR",
+        "products": [
+            {
+                "name": "New Ebook Gaming cards",
+                "quantity": 1.0,
+                "price": 94.51,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 94.51,
+        "requestAmount": 94.51,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1765346677
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5068",
+    "issued": "2025-12-10",
+    "due": 1765346677,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://staging.paysecure.net/payments/15754bdc874e864aa6f863292f32628c/",
+    "direct_post_url": "https://staging.paysecure.net/api/v1/p/69390d750977296c48490c91/",
+    "payoutProcess": false
+}]]>
+            </line>
+            <line>
+              <![CDATA[zipcode accepted by API: 10115]]>
+            </line>
+            <line>
+              <![CDATA[API success -> proceeding with full flow]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Holder Name: AB de Villiers]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Number: 4557392539764654]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Expiry Date: 04/28]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card CVC: 123]]>
+            </line>
+            <line>
+              <![CDATA[Moved to the Pay button]]>
+            </line>
+            <line>
+              <![CDATA[Clicked on the Pay button to proceed with payment]]>
+            </line>
+            <line>
+              <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
+            </line>
+            <line>
+              <![CDATA[Payment Successfully]]>
+            </line>
+            <line>
+              <![CDATA[ Opened staging environment in a new browser tab]]>
+            </line>
+            <line>
+              <![CDATA[User enter ID in Username field]]>
+            </line>
+            <line>
+              <![CDATA[User Enter Password in password field]]>
+            </line>
+            <line>
+              <![CDATA[Click on submit button in login page]]>
+            </line>
+            <line>
+              <![CDATA[ Entered Transaction ID: 69390d750977296c48490c91]]>
+            </line>
+            <line>
+              <![CDATA[ Clicked on Search button]]>
+            </line>
+            <line>
+              <![CDATA[ Clicked on Search button]]>
+            </line>
+            <line>
+              <![CDATA[ Clicked on first Transaction ID from list]]>
+            </line>
+            <line>
+              <![CDATA[Purchase Transaction ID is not empty or not null]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- validationForZipcodeField -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:35:30 IST" name="tearDown" finished-at="2025-12-10T11:35:33 IST" duration-ms="3003" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=validationForZipcodeField status=SUCCESS method=zipcode.validationForZipcodeField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:schemaValidation.zipcode@66629f63] output=streetAddres test case will run for this PSP :- Neogate]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:35:33 IST" name="setup" finished-at="2025-12-10T11:35:38 IST" duration-ms="5049" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:35:38 IST" name="beforeMethod" finished-at="2025-12-10T11:35:41 IST" duration-ms="2979" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[User enter ID in Username field]]>
+            </line>
+            <line>
+              <![CDATA[User Enter Password in password field]]>
+            </line>
+            <line>
+              <![CDATA[Click on submit button in login page]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="validationForZipcodeField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:35:41 IST" name="validationForZipcodeField" data-provider="zipCodeData" finished-at="2025-12-10T11:36:39 IST" duration-ms="58053" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[12]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[AB de Villiers]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[4557392539764654]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[04/28]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[123]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[Visa4654]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[Neogate]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[streetAddres test case will run for this PSP :- Neogate]]>
+            </line>
+            <line>
+              <![CDATA[streetAddres test case will run for this runflag:- Visa4654]]>
+            </line>
+            <line>
+              <![CDATA[Generated Random Double: 18.03]]>
+            </line>
+            <line>
+              <![CDATA[Generated First Name: john352]]>
+            </line>
+            <line>
+              <![CDATA[Generated Email: tomjerry7d524@gmail.com]]>
+            </line>
+            <line>
+              <![CDATA[zipcode: 12 → Status: 202]]>
+            </line>
+            <line>
+              <![CDATA[Response Body: {
+    "purchaseId": "69390db50977296c48490f17",
+    "client": {
+        "customerId": "NA",
+        "email": "tomjerry7d524@gmail.com",
+        "phone": "+1111111111",
+        "full_name": "john352",
+        "street_address": "Main gate",
+        "country": "DZ",
+        "city": "Paris",
+        "zip_code": "12",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1765346741,
+    "type": "purchase",
+    "paymentMethod": "VISA",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "savedCardUsed": "NO",
+    "redirectType": "POST",
+    "force_recurring": false,
+    "created_on": 1765346741,
+    "merchantRef": "69390db50977296c48490f17",
+    "merchantName": "suhasM",
+    "merchantType": "MERCHANT",
+    "purchase": {
+        "currency": "EUR",
+        "products": [
+            {
+                "name": "New Ebook Gaming cards",
+                "quantity": 1.0,
+                "price": 18.03,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 18.03,
+        "requestAmount": 18.03,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1765346741
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5069",
+    "issued": "2025-12-10",
+    "due": 1765346741,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://staging.paysecure.net/payments/ed275a4ebb8767445e15b865111bff2e/",
+    "direct_post_url": "https://staging.paysecure.net/api/v1/p/69390db50977296c48490f17/",
+    "payoutProcess": false
+}]]>
+            </line>
+            <line>
+              <![CDATA[zipcode accepted by API: 12]]>
+            </line>
+            <line>
+              <![CDATA[API success -> proceeding with full flow]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Holder Name: AB de Villiers]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Number: 4557392539764654]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Expiry Date: 04/28]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card CVC: 123]]>
+            </line>
+            <line>
+              <![CDATA[Moved to the Pay button]]>
+            </line>
+            <line>
+              <![CDATA[Clicked on the Pay button to proceed with payment]]>
+            </line>
+            <line>
+              <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
+            </line>
+            <line>
+              <![CDATA[Payment Successfully]]>
+            </line>
+            <line>
+              <![CDATA[ Opened staging environment in a new browser tab]]>
+            </line>
+            <line>
+              <![CDATA[User enter ID in Username field]]>
+            </line>
+            <line>
+              <![CDATA[User Enter Password in password field]]>
+            </line>
+            <line>
+              <![CDATA[Click on submit button in login page]]>
+            </line>
+            <line>
+              <![CDATA[ Entered Transaction ID: 69390db50977296c48490f17]]>
+            </line>
+            <line>
+              <![CDATA[ Clicked on Search button]]>
+            </line>
+            <line>
+              <![CDATA[ Clicked on Search button]]>
+            </line>
+            <line>
+              <![CDATA[ Clicked on first Transaction ID from list]]>
+            </line>
+            <line>
+              <![CDATA[Purchase Transaction ID is not empty or not null]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- validationForZipcodeField -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:36:39 IST" name="tearDown" finished-at="2025-12-10T11:36:42 IST" duration-ms="3003" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=validationForZipcodeField status=SUCCESS method=zipcode.validationForZipcodeField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:schemaValidation.zipcode@66629f63] output=streetAddres test case will run for this PSP :- Neogate]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:36:42 IST" name="setup" finished-at="2025-12-10T11:36:47 IST" duration-ms="5486" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:36:47 IST" name="beforeMethod" finished-at="2025-12-10T11:36:50 IST" duration-ms="2857" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[User enter ID in Username field]]>
+            </line>
+            <line>
+              <![CDATA[User Enter Password in password field]]>
+            </line>
+            <line>
+              <![CDATA[Click on submit button in login page]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="validationForZipcodeField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:36:50 IST" name="validationForZipcodeField" data-provider="zipCodeData" finished-at="2025-12-10T11:37:41 IST" duration-ms="51361" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[12345678901]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[AB de Villiers]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[4557392539764654]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[04/28]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[123]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[Visa4654]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[Neogate]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[streetAddres test case will run for this PSP :- Neogate]]>
+            </line>
+            <line>
+              <![CDATA[streetAddres test case will run for this runflag:- Visa4654]]>
+            </line>
+            <line>
+              <![CDATA[Generated Random Double: 62.40]]>
+            </line>
+            <line>
+              <![CDATA[Generated First Name: john160]]>
+            </line>
+            <line>
+              <![CDATA[Generated Email: tomjerryaff51@gmail.com]]>
+            </line>
+            <line>
+              <![CDATA[zipcode: 12345678901 → Status: 202]]>
+            </line>
+            <line>
+              <![CDATA[Response Body: {
+    "purchaseId": "69390dfa0977296c4849119d",
+    "client": {
+        "customerId": "NA",
+        "email": "tomjerryaff51@gmail.com",
+        "phone": "+1111111111",
+        "full_name": "john160",
+        "street_address": "Main gate",
+        "country": "DZ",
+        "city": "Paris",
+        "zip_code": "12345678901",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1765346810,
+    "type": "purchase",
+    "paymentMethod": "VISA",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "savedCardUsed": "NO",
+    "redirectType": "POST",
+    "force_recurring": false,
+    "created_on": 1765346810,
+    "merchantRef": "69390dfa0977296c4849119d",
+    "merchantName": "suhasM",
+    "merchantType": "MERCHANT",
+    "purchase": {
+        "currency": "EUR",
+        "products": [
+            {
+                "name": "New Ebook Gaming cards",
+                "quantity": 1.0,
+                "price": 62.4,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 62.4,
+        "requestAmount": 62.4,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1765346810
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5070",
+    "issued": "2025-12-10",
+    "due": 1765346810,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://staging.paysecure.net/payments/c88eeb9a064ecf72e1bab13736c21e8b/",
+    "direct_post_url": "https://staging.paysecure.net/api/v1/p/69390dfa0977296c4849119d/",
+    "payoutProcess": false
+}]]>
+            </line>
+            <line>
+              <![CDATA[zipcode accepted by API: 12345678901]]>
+            </line>
+            <line>
+              <![CDATA[API success -> proceeding with full flow]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Holder Name: AB de Villiers]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Number: 4557392539764654]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Expiry Date: 04/28]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card CVC: 123]]>
+            </line>
+            <line>
+              <![CDATA[Moved to the Pay button]]>
+            </line>
+            <line>
+              <![CDATA[Clicked on the Pay button to proceed with payment]]>
+            </line>
+            <line>
+              <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
+            </line>
+            <line>
+              <![CDATA[Payment Successfully]]>
+            </line>
+            <line>
+              <![CDATA[ Opened staging environment in a new browser tab]]>
+            </line>
+            <line>
+              <![CDATA[User enter ID in Username field]]>
+            </line>
+            <line>
+              <![CDATA[User Enter Password in password field]]>
+            </line>
+            <line>
+              <![CDATA[Click on submit button in login page]]>
+            </line>
+            <line>
+              <![CDATA[ Entered Transaction ID: 69390dfa0977296c4849119d]]>
+            </line>
+            <line>
+              <![CDATA[ Clicked on Search button]]>
+            </line>
+            <line>
+              <![CDATA[ Clicked on Search button]]>
+            </line>
+            <line>
+              <![CDATA[ Clicked on first Transaction ID from list]]>
+            </line>
+            <line>
+              <![CDATA[Purchase Transaction ID is not empty or not null]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- validationForZipcodeField -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:37:41 IST" name="tearDown" finished-at="2025-12-10T11:37:44 IST" duration-ms="3015" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=validationForZipcodeField status=SUCCESS method=zipcode.validationForZipcodeField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:schemaValidation.zipcode@66629f63] output=streetAddres test case will run for this PSP :- Neogate]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:37:44 IST" name="setup" finished-at="2025-12-10T11:37:49 IST" duration-ms="4933" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:37:49 IST" name="beforeMethod" finished-at="2025-12-10T11:37:52 IST" duration-ms="2846" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[User enter ID in Username field]]>
+            </line>
+            <line>
+              <![CDATA[User Enter Password in password field]]>
+            </line>
+            <line>
+              <![CDATA[Click on submit button in login page]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="validationForZipcodeField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:37:52 IST" name="validationForZipcodeField" data-provider="zipCodeData" finished-at="2025-12-10T11:38:45 IST" duration-ms="52458" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[123@#]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[AB de Villiers]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[4557392539764654]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[04/28]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[123]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[Visa4654]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[Neogate]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[streetAddres test case will run for this PSP :- Neogate]]>
+            </line>
+            <line>
+              <![CDATA[streetAddres test case will run for this runflag:- Visa4654]]>
+            </line>
+            <line>
+              <![CDATA[Generated Random Double: 71.12]]>
+            </line>
+            <line>
+              <![CDATA[Generated First Name: johne7c]]>
+            </line>
+            <line>
+              <![CDATA[Generated Email: tomjerryde71f@gmail.com]]>
+            </line>
+            <line>
+              <![CDATA[zipcode: 123@# → Status: 202]]>
+            </line>
+            <line>
+              <![CDATA[Response Body: {
+    "purchaseId": "69390e380977296c48491424",
+    "client": {
+        "customerId": "NA",
+        "email": "tomjerryde71f@gmail.com",
+        "phone": "+1111111111",
+        "full_name": "johne7c",
+        "street_address": "Main gate",
+        "country": "DZ",
+        "city": "Paris",
+        "zip_code": "123@#",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1765346873,
+    "type": "purchase",
+    "paymentMethod": "VISA",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "savedCardUsed": "NO",
+    "redirectType": "POST",
+    "force_recurring": false,
+    "created_on": 1765346873,
+    "merchantRef": "69390e380977296c48491424",
+    "merchantName": "suhasM",
+    "merchantType": "MERCHANT",
+    "purchase": {
+        "currency": "EUR",
+        "products": [
+            {
+                "name": "New Ebook Gaming cards",
+                "quantity": 1.0,
+                "price": 71.12,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 71.12,
+        "requestAmount": 71.12,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1765346873
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5071",
+    "issued": "2025-12-10",
+    "due": 1765346873,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://staging.paysecure.net/payments/1a5030788fdc1e386284709a07b92998/",
+    "direct_post_url": "https://staging.paysecure.net/api/v1/p/69390e380977296c48491424/",
+    "payoutProcess": false
+}]]>
+            </line>
+            <line>
+              <![CDATA[zipcode accepted by API: 123@#]]>
+            </line>
+            <line>
+              <![CDATA[API success -> proceeding with full flow]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Holder Name: AB de Villiers]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Number: 4557392539764654]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Expiry Date: 04/28]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card CVC: 123]]>
+            </line>
+            <line>
+              <![CDATA[Moved to the Pay button]]>
+            </line>
+            <line>
+              <![CDATA[Clicked on the Pay button to proceed with payment]]>
+            </line>
+            <line>
+              <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
+            </line>
+            <line>
+              <![CDATA[Payment Successfully]]>
+            </line>
+            <line>
+              <![CDATA[ Opened staging environment in a new browser tab]]>
+            </line>
+            <line>
+              <![CDATA[User enter ID in Username field]]>
+            </line>
+            <line>
+              <![CDATA[User Enter Password in password field]]>
+            </line>
+            <line>
+              <![CDATA[Click on submit button in login page]]>
+            </line>
+            <line>
+              <![CDATA[ Entered Transaction ID: 69390e380977296c48491424]]>
+            </line>
+            <line>
+              <![CDATA[ Clicked on Search button]]>
+            </line>
+            <line>
+              <![CDATA[ Clicked on Search button]]>
+            </line>
+            <line>
+              <![CDATA[ Clicked on first Transaction ID from list]]>
+            </line>
+            <line>
+              <![CDATA[Purchase Transaction ID is not empty or not null]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- validationForZipcodeField -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:38:45 IST" name="tearDown" finished-at="2025-12-10T11:38:48 IST" duration-ms="3008" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=validationForZipcodeField status=SUCCESS method=zipcode.validationForZipcodeField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:schemaValidation.zipcode@66629f63] output=streetAddres test case will run for this PSP :- Neogate]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:38:48 IST" name="setup" finished-at="2025-12-10T11:38:53 IST" duration-ms="5143" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:38:53 IST" name="beforeMethod" finished-at="2025-12-10T11:38:56 IST" duration-ms="2904" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[User enter ID in Username field]]>
+            </line>
+            <line>
+              <![CDATA[User Enter Password in password field]]>
+            </line>
+            <line>
+              <![CDATA[Click on submit button in login page]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="validationForZipcodeField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:38:56 IST" name="validationForZipcodeField" data-provider="zipCodeData" finished-at="2025-12-10T11:38:57 IST" duration-ms="993" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[AB de Villiers]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[4557392539764654]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[04/28]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[123]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[Visa4654]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[Neogate]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[streetAddres test case will run for this PSP :- Neogate]]>
+            </line>
+            <line>
+              <![CDATA[streetAddres test case will run for this runflag:- Visa4654]]>
+            </line>
+            <line>
+              <![CDATA[Generated Random Double: 13.67]]>
+            </line>
+            <line>
+              <![CDATA[Generated First Name: john733]]>
+            </line>
+            <line>
+              <![CDATA[Generated Email: tomjerry7d65c@gmail.com]]>
+            </line>
+            <line>
+              <![CDATA[zipcode:  → Status: 400]]>
+            </line>
+            <line>
+              <![CDATA[Response Body: {
+    "message": "Please pass valid postal Code name in \"zip_code\" paramater",
+    "code": "transaction_error"
+}]]>
+            </line>
+            <line>
+              <![CDATA[zipcode rejected by API: ]]>
+            </line>
+            <line>
+              <![CDATA[PASS → zipcode rejected correctly   ]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- validationForZipcodeField -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:38:57 IST" name="tearDown" finished-at="2025-12-10T11:39:00 IST" duration-ms="3004" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=validationForZipcodeField status=SUCCESS method=zipcode.validationForZipcodeField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:schemaValidation.zipcode@66629f63] output=streetAddres test case will run for this PSP :- Neogate]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:39:00 IST" name="setup" finished-at="2025-12-10T11:39:05 IST" duration-ms="5018" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:39:05 IST" name="beforeMethod" finished-at="2025-12-10T11:39:08 IST" duration-ms="2843" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[User enter ID in Username field]]>
+            </line>
+            <line>
+              <![CDATA[User Enter Password in password field]]>
+            </line>
+            <line>
+              <![CDATA[Click on submit button in login page]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="validationForZipcodeField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:39:08 IST" name="validationForZipcodeField" data-provider="zipCodeData" finished-at="2025-12-10T11:39:08 IST" duration-ms="835" status="PASS">
+          <params>
+            <param index="0">
+              <value is-null="true"/>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[AB de Villiers]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[4557392539764654]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[04/28]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[123]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[Visa4654]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[Neogate]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[streetAddres test case will run for this PSP :- Neogate]]>
+            </line>
+            <line>
+              <![CDATA[streetAddres test case will run for this runflag:- Visa4654]]>
+            </line>
+            <line>
+              <![CDATA[Generated Random Double: 71.70]]>
+            </line>
+            <line>
+              <![CDATA[Generated First Name: john3ec]]>
+            </line>
+            <line>
+              <![CDATA[Generated Email: tomjerrye742e@gmail.com]]>
+            </line>
+            <line>
+              <![CDATA[zipcode: null → Status: 400]]>
+            </line>
+            <line>
+              <![CDATA[Response Body: {
+    "message": "Please pass valid postal Code name in \"zip_code\" paramater",
+    "code": "transaction_error"
+}]]>
+            </line>
+            <line>
+              <![CDATA[zipcode rejected by API: null]]>
+            </line>
+            <line>
+              <![CDATA[PASS → zipcode rejected correctly   null]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- validationForZipcodeField -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:schemaValidation.zipcode@66629f63]" started-at="2025-12-10T11:39:08 IST" name="tearDown" finished-at="2025-12-10T11:39:11 IST" duration-ms="3016" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=validationForZipcodeField status=SUCCESS method=zipcode.validationForZipcodeField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:schemaValidation.zipcode@66629f63] output=streetAddres test case will run for this PSP :- Neogate]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- schemaValidation.zipcode -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
