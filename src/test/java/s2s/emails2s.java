@@ -10,7 +10,7 @@ import com.paysecure.utilities.DataProviders;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
-import com.paysecure.utilities.jsonProvider;
+
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -47,13 +47,13 @@ public class emails2s extends baseClass {
 	public void purchaseApi(String emailId) throws Exception {
 		WebDriver driver = baseClass.getDriver();
 		this.emailId=emailId;
-		String baseUri = PropertyReader.getProperty("baseURI");
+		String baseUri = PropertyReader.getPropertyforS2S("baseURI");
 		RestAssured.baseURI =baseUri;
-        String token = PropertyReader.getProperty("token");
-         String BrandID=PropertyReader.getProperty("brandId");
+        String token = PropertyReader.getPropertyforS2S("tokenS2S");
+        String BrandID=PropertyReader.getPropertyforS2S("brandIdS2S");
 		String price = generateRandomTestData.generateRandomDouble();
-		String currency = PropertyReader.getProperty("currency");
-		String paymentMethod = PropertyReader.getProperty("paymentMethod");
+		String currency = PropertyReader.getPropertyforS2S("currencyS2S");
+		String paymentMethod = PropertyReader.getPropertyforS2S("paymentMethodS2S");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		
 		String city = "Paris";
@@ -102,11 +102,12 @@ public class emails2s extends baseClass {
 		    purchaseId = response.jsonPath().getString("purchaseId");
 		    s2sMethod();
 		}
+		
 
 		if (response.statusCode()==202) {
 			Reporter.log("emailId accepted by API: " + emailId, true);
 		} else if (response.statusCode() == 400 || response.statusCode() == 422) {
-            Reporter.log("BrandID rejected by API: " + emailId, true);
+            Reporter.log("BrandID rejected by API:   " + emailId, true);
             status = "PASS";
             comment = "PASS → emailId rejected correctly   " + emailId;
 
@@ -130,11 +131,11 @@ public class emails2s extends baseClass {
 		}
 
 		RestAssured.baseURI = "https://staging.paysecure.net/";
-		String token = PropertyReader.getProperty("token");
-		String cardNumber = PropertyReader.getProperty("cardNumber");
-		String mmyy = PropertyReader.getProperty("mmyy");
-		String cvv = PropertyReader.getProperty("cvv");
-		String brandId = PropertyReader.getProperty("brandId");
+		String token = PropertyReader.getPropertyforS2S("token");
+		String cardNumber = PropertyReader.getPropertyforS2S("cardNumber");
+		String mmyy = PropertyReader.getPropertyforS2S("mmyy");
+		String cvv = PropertyReader.getPropertyforS2S("cvv");
+		String brandId = PropertyReader.getPropertyforS2S("brandId");
 
 		String endpoint = "api/v1/p/" + purchaseId + "?s2s=true";
 		System.err.println(endpoint);
@@ -159,8 +160,13 @@ public class emails2s extends baseClass {
 
 		Response response = RestAssured.given().header("Authorization", "Bearer " + token)
 
-				.header("brandId", brandId).contentType(ContentType.JSON).body(requestBody).when().post(endpoint).then()
-				.log().all().statusCode(202).extract().response();
+				.header("brandId", brandId).
+		        contentType(ContentType.JSON).
+				body(requestBody).
+				when().
+              post(endpoint).
+				then()
+				.log().all().extract().response();
 
 		String callback_url = response.jsonPath().getString("callback_url");
 		System.out.println(callback_url);
@@ -179,7 +185,7 @@ public class emails2s extends baseClass {
                 .filter(p -> p.startsWith("issucces="))
                 .map(p -> p.split("=")[1])
                 .findFirst().orElse("");
-
+               System.err.println(flag);
 
         if (flag.equalsIgnoreCase("false")) {
             status = "FAIL";

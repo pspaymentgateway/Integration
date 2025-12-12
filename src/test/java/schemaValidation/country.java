@@ -53,7 +53,7 @@ public class country extends baseClass {
       WebDriver driver=baseClass.getDriver();
       Reporter.log("Email test case will run for this PSP :- "+PSP, true);
       Reporter.log("Email test case will run for this runflag:- "+runFlag, true);
-		 String baseUri = PropertyReader.getProperty("baseURI");
+		String baseUri = PropertyReader.getProperty("baseURI");
 		RestAssured.baseURI =baseUri;
 			String brandId = PropertyReader.getProperty("brandId");
 			String token = PropertyReader.getProperty("token");
@@ -62,9 +62,11 @@ public class country extends baseClass {
 			String paymentMethod=PropertyReader.getProperty("paymentMethod");
 			String firstName = generateRandomTestData.generateRandomFirstName();
 			String emailId = generateRandomTestData.generateRandomEmail();
+			String master=PropertyReader.getProperty("Master");
+			String visa=PropertyReader.getProperty("Visa");
 			String city="Paris";
-	       
-			String requestBody = "{\n" +
+			String requestBody =
+					"{\n" +
 			        "  \"client\": {\n" +
 			        "    \"full_name\": \""+firstName+"\",\n" +
 			        "    \"email\": \""+emailId+"\",\n" +
@@ -80,7 +82,7 @@ public class country extends baseClass {
 			        "    \"products\": [\n" +
 			        "      {\n" +
 			        "        \"name\": \"New Ebook Gaming cards\",\n" +
-			        "        \"price\":"+ price + "\n" +  // "        \"price\": " + price + "\n" +
+			        "        \"price\":"+ price + "\n" +
 			        "      }\n" +
 			        "    ]\n" +
 			        "  },\n" +
@@ -137,7 +139,16 @@ public class country extends baseClass {
 
 	                // Payment
 	                driver.get(checkoutUrl);
-	                mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+	                if(master.equalsIgnoreCase("master")){
+			        	mcp.clickONMaster();
+			        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+			        }
+			        
+			        if(visa.equalsIgnoreCase("visa")) {
+			        	mcp.clickONVisa();
+			        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+			        }
+	                //mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
 	                mcp.clickOnPay();
 	                
 	                if (mcp.isCardNumberInvalid()) {

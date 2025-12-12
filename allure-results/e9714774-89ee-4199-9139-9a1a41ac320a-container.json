@@ -1,0 +1,1 @@
+{"uuid":"e9714774-89ee-4199-9139-9a1a41ac320a","name":"s2s.city.beforeMethod","children":["66044b9a-9e9f-47da-a814-0439b2772ddb"],"description":"","befores":[{"name":"beforeMethod","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1765454178600,"stop":1765454178602}],"afters":[],"start":1765454178600,"stop":1765454178602}

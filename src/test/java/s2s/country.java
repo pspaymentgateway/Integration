@@ -43,13 +43,13 @@ public class country extends baseClass{
   public void purchase(String country) throws Exception {
 		WebDriver driver = baseClass.getDriver();
 		this.country=country;
-		String baseUri = PropertyReader.getProperty("baseURI");
+		String baseUri = PropertyReader.getPropertyforS2S("baseURI");
 		RestAssured.baseURI =baseUri;
-        String token = PropertyReader.getProperty("token");
-        String brandId = PropertyReader.getProperty("brandId");
+        String token = PropertyReader.getPropertyforS2S("tokenS2S");
+        String brandId = PropertyReader.getPropertyforS2S("brandIdS2S");
 		String price = generateRandomTestData.generateRandomDouble();
-		String currency = PropertyReader.getProperty("currency");
-		String paymentMethod = PropertyReader.getProperty("paymentMethod");
+		String currency = PropertyReader.getPropertyforS2S("currencyS2S");
+		String paymentMethod = PropertyReader.getPropertyforS2S("paymentMethodS2S");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
 		String city = "Paris";
@@ -109,7 +109,7 @@ public class country extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("Country_Result", country, status, comment,purchaseId);
+            ExcelWriteUtility.writeResults2s("Countries_Result", country, status, comment,purchaseId);
             driver.quit();
             return; 
         }else {
@@ -135,13 +135,25 @@ public class country extends baseClass{
 
 		String endpoint = "api/v1/p/" + purchaseId + "?s2s=true";
 		System.err.println(endpoint);
-		String requestBody = "{\n" + "  \"cardholder_name\": \"Rahul Agarwal\",\n" + " \"card_number\": \"" + cardNumber
-				+ "\"," + "\n" + " \"expires\": \"" + mmyy + "\"," + "\n" + " \"cvc\": \"" + cvv + "\",\n"
-				+ "  \"remember_card\": \"on\",\n" + "  \"remote_ip\": \"157.38.242.7\",\n"
-				+ "  \"user_agent\": \"Mozilla/5.0\",\n" + "  \"accept_header\": \"text/html\",\n"
-				+ "  \"language\": \"en-US\",\n" + "  \"java_enabled\": false,\n" + "  \"javascript_enabled\": true,\n"
-				+ "  \"color_depth\": 24,\n" + "  \"utc_offset\": 0,\n" + "  \"screen_width\": 1920,\n"
-				+ "  \"screen_height\": 1080\n" + "}";
+		String requestBody =
+				"{\n" +
+				"  \"cardholder_name\": \"Rahul Agarwal\",\n" +
+				"  \"card_number\": \"" + cardNumber + "\",\n" +
+				"  \"expires\": \"" + mmyy + "\",\n" +
+				"  \"cvc\": \"" + cvv + "\",\n" +
+				"  \"remember_card\": \"on\",\n" +
+				"  \"remote_ip\": \"157.38.242.7\",\n" +
+				"  \"user_agent\": \"Mozilla/5.0\",\n" +
+				"  \"accept_header\": \"text/html\",\n" +
+				"  \"language\": \"en-US\",\n" +
+				"  \"java_enabled\": false,\n" +
+				"  \"javascript_enabled\": true,\n" +
+				"  \"color_depth\": 24,\n" +
+				"  \"utc_offset\": 0,\n" +
+				"  \"screen_width\": 1920,\n" +
+				"  \"screen_height\": 1080\n" +
+				"}";
+
 
 		Response response = RestAssured.given().header("Authorization", "Bearer " + token)
 
@@ -176,7 +188,7 @@ public class country extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("Country_Result", country, status, comment,purchaseId);
+            ExcelWriteUtility.writeResults2s("Countries_Result", country, status, comment,purchaseId);
             driver.quit();
             return;
         }
@@ -186,7 +198,7 @@ public class country extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("Country_Result", country, status, comment,purchaseId);
+            ExcelWriteUtility.writeResults2s("Countries_Result", country, status, comment,purchaseId);
 
         }
         else {
@@ -195,7 +207,7 @@ public class country extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("Country_Result", country, status, comment,purchaseId);
+            ExcelWriteUtility.writeResults2s("Countries_Result", country, status, comment,purchaseId);
 
 
         }

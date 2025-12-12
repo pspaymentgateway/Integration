@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="schemaValidation.city">
+      <class name="s2s.streetAddress">
         <methods>
           <include name="loadConfig"/>
+          <include name="purchaseApi" invocation-numbers="0"/>
           <include name="tearDown"/>
           <include name="beforeMethod"/>
-          <include name="validationForCityField"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- schemaValidation.city -->
+      </class> <!-- s2s.streetAddress -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

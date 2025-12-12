@@ -24,4 +24,23 @@ public class PropertyReader {
     public static String getProperty(String key) {
         return properties.getProperty(key);
     }
+    
+    /*--------------------- Property file for S2S ------------------------------*/
+    
+    static {
+        try {
+            String projectPath = System.getProperty("user.dir");
+            String configPath = projectPath + "/src/test/resources/propertiesFolder/s2s.properties";
+
+            FileInputStream fis = new FileInputStream(configPath);
+            properties.load(fis);
+
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load config.properties file", e);
+        }
+    }
+
+    public static String getPropertyforS2S(String key) {
+        return properties.getProperty(key);
+    }
 }

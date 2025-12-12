@@ -47,13 +47,13 @@ public class city extends baseClass{
   public void purchase(String city) throws Exception {
 		WebDriver driver = baseClass.getDriver();
 		this.city=city;
-		 String baseUri = PropertyReader.getProperty("baseURI");
+		 String baseUri = PropertyReader.getPropertyforS2S("baseURI");
 		RestAssured.baseURI =baseUri;
-        String token = PropertyReader.getProperty("token");
-        String brandId = PropertyReader.getProperty("brandId");
+        String token = PropertyReader.getPropertyforS2S("tokenS2S");
+        String brandId = PropertyReader.getPropertyforS2S("brandIdS2S");
 		String price = generateRandomTestData.generateRandomDouble();
-		String currency = PropertyReader.getProperty("currency");
-		String paymentMethod = PropertyReader.getProperty("paymentMethod");
+		String currency = PropertyReader.getPropertyforS2S("currencyS2S");
+		String paymentMethod = PropertyReader.getPropertyforS2S("paymentMethodS2S");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
 		String streetAddress = "Main gate";
@@ -95,8 +95,8 @@ public class city extends baseClass{
 		System.out.println(response.asPrettyString());
 		checkoutUrl = response.jsonPath().getString("checkout_url");
 		purchaseId = response.jsonPath().getString("purchaseId");  
-		System.out.println(response.asPrettyString());
-		purchaseId = response.jsonPath().getString("purchaseId");
+//		System.out.println(response.asPrettyString());
+//		purchaseId = response.jsonPath().getString("purchaseId");
 		
 		
 		if (response.statusCode() == 202) {
@@ -121,7 +121,6 @@ public class city extends baseClass{
 		}
   }
   
-	@Test
 	public void s2sMethod() throws Exception {
 		WebDriver driver = baseClass.getDriver();
 		lp = new loginPage(getDriver());

@@ -61,6 +61,8 @@ public class productName extends baseClass {
 		String paymentMethod = PropertyReader.getProperty("paymentMethod");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
+		String master=PropertyReader.getProperty("Master");
+		String visa=PropertyReader.getProperty("Visa");
 		String city = "Paris";
 		
 		String streetAddress = "Main gate";
@@ -130,7 +132,16 @@ public class productName extends baseClass {
 
 				// Payment
 				driver.get(checkoutUrl);
-				mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+			      if(master.equalsIgnoreCase("master")){
+			        	mcp.clickONMaster();
+			        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+			        }
+			        
+			        if(visa.equalsIgnoreCase("visa")) {
+			        	mcp.clickONVisa();
+			        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+			        }
+				//mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
 				 mcp.clickOnPay();
 				if (mcp.isCardNumberInvalid()) {
 					Reporter.log("Invalid card number → Luhn check failed", true);

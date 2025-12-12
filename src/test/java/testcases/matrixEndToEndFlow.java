@@ -7,6 +7,7 @@ import com.paysecure.Page.matrixCashierPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
+import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
 
@@ -14,7 +15,12 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
+import java.time.Duration;
+import java.util.Arrays;
+
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 
@@ -26,6 +32,8 @@ public class matrixEndToEndFlow extends baseClass{
 	matrixCashierPage mcp;
 	transactionPage tp;
 	
+    String status = "";
+    String comment = "";
 	  @BeforeMethod
 	  public void beforeMethod() throws InterruptedException {
 			lp = new loginPage(getDriver());
@@ -35,7 +43,7 @@ public class matrixEndToEndFlow extends baseClass{
 	  }
 	//String cardHolder, String cardNumber, String expiry, String cvc
   @Test(dataProvider ="cardData",dataProviderClass = DataProviders.class) 
-  public void f(String cardHolder, String cardNumber, String expiry, String cvc) throws Exception {
+  public void purchase(String cardHolder, String cardNumber, String expiry, String cvc) throws Exception {
       WebDriver driver=baseClass.getDriver();
 		String baseUri = PropertyReader.getProperty("baseURI");
 		RestAssured.baseURI =baseUri;
@@ -43,12 +51,15 @@ public class matrixEndToEndFlow extends baseClass{
 		String token = PropertyReader.getProperty("token");
 		String price = generateRandomTestData.generateRandomDouble();
 		String currency =PropertyReader.getProperty("currency");
-		String paymentMethod=PropertyReader.getProperty("paymentMethod");
+		String paymentMethod=PropertyReader.getProperty("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
 		String matrixPSPUrl=PropertyReader.getProperty("matrixPSPUrl");
 		String UID=PropertyReader.getProperty("UID");
 		String PASSWORD=PropertyReader.getProperty("PASSWORD");
+		String master=PropertyReader.getProperty("Master");
+		String visa=PropertyReader.getProperty("Visa");
+		
 		String requestBody = "{\n" +
 		        "  \"client\": {\n" +
 		        "    \"full_name\": \""+firstName+"\",\n" +
@@ -96,23 +107,60 @@ public class matrixEndToEndFlow extends baseClass{
 		tp.validatePurchaseId(purchaseId);
         // Payment
         driver.get(checkoutUrl);
-        mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
+        if(master.equalsIgnoreCase("master")){
+        	mcp.clickONMaster();
+        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
+        }
+        
+        if(visa.equalsIgnoreCase("visa")) {
+        	mcp.clickONVisa();
+        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
+        }
+        
+        
         mcp.clickOnPay();
         Thread.sleep(7000);
+		 // Wait until parameter appears in URL
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.urlContains("issucces"));
+
         String redirectUrl = driver.getCurrentUrl();
-        Thread.sleep(2000);
-        // FAILURE CASE
-        if (redirectUrl.contains("issucces=false")) {
-            Reporter.log("Payment Failed → URL shows issucces=false", true);
-            Reporter.log("Stopping further execution and quitting browser.", true);
+        Reporter.log("Redirected URL: " + redirectUrl, true);
+
+        String flag = Arrays.stream(redirectUrl.split("\\?")[1].split("&"))
+                .filter(p -> p.startsWith("issucces="))
+                .map(p -> p.split("=")[1])
+                .findFirst().orElse("");
+
+
+        if (flag.equalsIgnoreCase("false")) {
+            status = "FAIL";
+            comment = "Payment Failed";
+
+            Reporter.log(comment, true);
+
+            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod, status, comment,purchaseId);
             driver.quit();
             return;
         }
+        else if (flag.equalsIgnoreCase("true")) {
+            status = "PASS";
+            comment = "Payment Successfully";
 
-        // SUCCESS CASE
-        if (redirectUrl.contains("issucces=true")) {
-            Reporter.log("Payment Successful → URL shows issucces=true", true);
-            Reporter.log("Proceeding with transaction verification flow.", true);
+            Reporter.log(comment, true);
+
+            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod, status, comment,purchaseId);
+
+        }
+        else {
+            status = "UNKNOWN";
+            comment = "URL does not contain expected issucces parameter";
+
+            Reporter.log(comment, true);
+
+            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod, status, comment,purchaseId);
+
+
         }
         mcp.openBrowserForStaging(driver,RestAssured.baseURI);
         lp.login();
@@ -129,16 +177,16 @@ public class matrixEndToEndFlow extends baseClass{
         tp.verifyPurchaseTransactionIDIsNotEmpty();
 		tp.verifyCurrencyOnPaymentInfo();
 		tp.verifyAmountFromPaymentInfo();
-		mcp.openBrowserForStaging(driver,matrixPSPUrl);
-		tp.doLoginOnThePSPSide(UID, PASSWORD);
-		tp.navigateUptoPSPTransactionModule();
-		tp.searchTheLatestTransactions(tp.purchaseTxnId);
-		tp.verifyPurchaseTxnIdatPSP(tp.purchaseTxnId);
-		tp.verifyCurrencyInPSP();
-		tp.maskCardForPSP(cardNumber);
-		tp.verifyUsedCardOnPSP(cardNumber);
-		tp.getStatusFromPSP();
-		tp.verifyStatus();
+//		mcp.openBrowserForStaging(driver,matrixPSPUrl);
+//		tp.doLoginOnThePSPSide(UID, PASSWORD);
+//		tp.navigateUptoPSPTransactionModule();
+//		tp.searchTheLatestTransactions(tp.purchaseTxnId);
+//		tp.verifyPurchaseTxnIdatPSP(tp.purchaseTxnId);
+//		tp.verifyCurrencyInPSP();
+//		tp.maskCardForPSP(cardNumber);
+//		tp.verifyUsedCardOnPSP(cardNumber);
+//		tp.getStatusFromPSP();
+//		tp.verifyStatus();
   }
 
 

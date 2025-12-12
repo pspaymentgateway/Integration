@@ -11,19 +11,23 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelWriteUtility {
 
     private static String getExcelPath(String fileName) {
-        // Build path dynamically relative to project root
         String projectDir = System.getProperty("user.dir");
         String excelFolder = "src/test/resources/ExcelResultsFolder";
+
         File folder = new File(projectDir, excelFolder);
         if (!folder.exists()) {
-            folder.mkdirs(); // create folder if it doesn't exist
+            folder.mkdirs();
         }
         return Paths.get(folder.getAbsolutePath(), fileName).toString();
     }
+    
+
 
     public static void writeResult(String sheetName, String value1, String value2, String value3, String purchaseID) {
         String filePath = getExcelPath("purchaseResults.xlsx");
@@ -35,26 +39,38 @@ public class ExcelWriteUtility {
         writeExcel(sheetName, value1, value2, value3, purchaseID, filePath);
     }
 
-    private static void writeExcel(String sheetName, String value1, String value2, String value3, String purchaseID, String filePath) {
-        try {
-            File file = new File(filePath);
-            Workbook workbook;
+    public static void writeExcel(String sheetName, String value1, String value2, String value3, String purchaseID, String filePath) {
+        File file = new File(filePath);
+        FileInputStream fis = null;
+        FileOutputStream fos = null;
+        XSSFWorkbook workbook = null;
 
-            if (file.exists()) {
-                FileInputStream fis = new FileInputStream(file);
-                workbook = WorkbookFactory.create(fis);
-                fis.close();
-            } else {
-                workbook = WorkbookFactory.create(true); // create new workbook if not exists
+        try {
+            // Create workbook if not exists
+            if (!file.exists()) {
+                workbook = new XSSFWorkbook();
+                fos = new FileOutputStream(file);
+                workbook.write(fos);
+                fos.close();
             }
 
-            Sheet sheet = workbook.getSheet(sheetName);
+            fis = new FileInputStream(file);
+            workbook = new XSSFWorkbook(fis);
+
+            XSSFSheet sheet = workbook.getSheet(sheetName);
             if (sheet == null) {
                 sheet = workbook.createSheet(sheetName);
+
+                Row header = sheet.createRow(0);
+                header.createCell(0).setCellValue("Test Data");
+                header.createCell(1).setCellValue("Result");
+                header.createCell(2).setCellValue("Status");
+                header.createCell(3).setCellValue("Transaction ID");
+                header.createCell(4).setCellValue("Timestamp");
             }
 
-            int lastRowNum = sheet.getLastRowNum() + 1;
-            Row row = sheet.createRow(lastRowNum);
+            int lastRow = sheet.getLastRowNum() + 1;
+            Row row = sheet.createRow(lastRow);
 
             row.createCell(0).setCellValue(value1);
             row.createCell(1).setCellValue(value2);
@@ -63,14 +79,18 @@ public class ExcelWriteUtility {
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
             row.createCell(4).setCellValue(timeStamp);
 
-            FileOutputStream fos = new FileOutputStream(filePath);
+            fis.close(); // Very important
+            fos = new FileOutputStream(file);
             workbook.write(fos);
-            fos.close();
-            workbook.close();
 
-            System.out.println("Excel Updated Successfully in Sheet: " + sheetName);
         } catch (Exception e) {
             System.out.println("Error writing result to Excel: " + e.getMessage());
+        } finally {
+            try { if (fis != null) fis.close(); } catch (Exception ignore) {}
+            try { if (fos != null) fos.close(); } catch (Exception ignore) {}
+            try { if (workbook != null) workbook.close(); } catch (Exception ignore) {}
         }
     }
+
 }
+
