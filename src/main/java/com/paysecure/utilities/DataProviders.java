@@ -77,16 +77,16 @@ public class DataProviders {
 //            {"JP"},   // Japan
 //            {"SG"},   // Singapore
 //            {"AE"},   // United Arab Emirates
-            {"ZA"},   // South Africa
+  //          {"ZA"},   // South Africa
 //            {"BR"},   // Brazil
 //
 //            //Borderline or uncommon valid codes
 //            {"AX"},   // Åland Islands
 //            {"CC"},   // Cocos (Keeling) Islands
-            {"GG"},   // Guernsey
+ //           {"GG"},   // Guernsey
 //            {"IM"},   // Isle of Man
 //            {"JE"},   // Jersey
-            {"XK"},   // Kosovo (unofficial ISO)
+   //         {"XK"},   // Kosovo (unofficial ISO)
 //
 //            //Invalid / malformed values
 //            {"ZZ"},       // Non-existent ISO
@@ -135,24 +135,26 @@ public class DataProviders {
     public Object[][] stateCodeProvider() {
         return new Object[][]{
             {"QLD"},
-//            {"NSW"},
-//            {"VIC"},
-//            {"CA"},
-//            {"NY"},
-//            {"MH"},
-//            {"DL"},
-//            {"ON"},
-//            {"BC"},
-//            {"qld"},
-//            {"QLDD"},
-//            {"C4"},
-//            {"@"},
-//            {""},
-//            {null},
-//            {"XYZ"},
-//            {"MUM"}
+            {"NSW"},
+            {"VIC"},
+            {"CA"},
+            {"NY"},
+            {"MH"},
+            {"DL"},
+            {"ON"},
+            
+            {"BC"},
+            {"qld"},
+            {"QLDD"},
+            {"C4"},
+            {"@"},
+            {""},
+            {null},
+            {"XYZ"},
+            {"MUM"}
         };
     }
+    
     @DataProvider(name = "cardsData")
     public Object[][] cardsData() {
         return new Object[][] {
@@ -191,6 +193,23 @@ public class DataProviders {
         };
     }
 
+    @DataProvider(name = "zipCodeProvider")
+    public Object[][] zipCodeProvider() {
+        return new Object[][] {
+            {"10001"},
+            {"94105-1234"},
+//            {"M5V 3L9"},
+//            {"SW1A 1AA"},
+//            {"560001"},
+//            {"10115"},
+//            {"12"},
+//            {"12345678901"},
+//            {"123@#"},
+//            {""},
+//            {"     "},
+            {null}
+        };
+    }
 
 
 

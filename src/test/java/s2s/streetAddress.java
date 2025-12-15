@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
@@ -32,7 +33,7 @@ public class streetAddress extends baseClass {
 	String purchaseId;
 	matrixCashierPage mcp;
 	transactionPage tp;
-
+	payu3dPage pay;
     String status = "";
     String comment = "";
     String streetAddress;
@@ -44,6 +45,7 @@ public class streetAddress extends baseClass {
 	public void beforeMethod() throws InterruptedException {
 		mcp = new matrixCashierPage(getDriver());
 		tp = new transactionPage(getDriver());
+		pay=new payu3dPage(getDriver());
 	}
 
 	
@@ -160,7 +162,7 @@ public class streetAddress extends baseClass {
 		// OPTION 1: Use same token as purchase creation (RECOMMENDED)
 	    String token = PropertyReader.getPropertyforS2S("tokenS2S");
 	    String brandId = PropertyReader.getPropertyforS2S("brandIdS2S");
-
+	    String payu = PropertyReader.getPropertyforS2S("payu");
 	    
 	    String cardNumber = PropertyReader.getProperty("cardNumber");
 	    String mmyy = PropertyReader.getProperty("mmyy");
@@ -255,6 +257,9 @@ public class streetAddress extends baseClass {
 	    }
 
 	    driver.get(callback_url);
+	    if(payu.equalsIgnoreCase("payu")) {
+	    	pay.payForPayu();
+	    }
 	    Thread.sleep(7000);
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.urlContains("issucces"));
