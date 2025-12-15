@@ -23,6 +23,7 @@ import com.paysecure.utilities.DataProviders;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
+import com.paysecure.utilities.jsonProvider;
 
 import io.restassured.response.Response;
 
@@ -45,7 +46,7 @@ public class email extends baseClass {
 		tp=new transactionPage(getDriver());
 	}
 
-	@Test(dataProvider ="email", dataProviderClass = DataProviders.class)
+	@Test(dataProvider ="email", dataProviderClass = jsonProvider.class)
 	public void matrixPurchase(String emailId,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String PSP) throws InterruptedException {
         WebDriver driver=baseClass.getDriver();
         Reporter.log("Email test case will run for this PSP :- "+PSP, true);
@@ -59,11 +60,13 @@ public class email extends baseClass {
 		currency =PropertyReader.getProperty("currency");
 		String paymentMethod=PropertyReader.getProperty("paymentMethod");
 		String firstName = generateRandomTestData.generateRandomFirstName();
-
+		String master=PropertyReader.getProperty("Master");
+		String visa=PropertyReader.getProperty("Visa");
 		
        
 		String requestBody = "{\n" +
-		        "  \"client\": {\n" +
+		        "  \"client\": {"
+		        + "\n" +
 		        "    \"full_name\": \""+firstName+"\",\n" +
 		        "    \"email\": \""+emailId+"\",\n" +
 		        "    \"country\": \"DZ\",\n" +
@@ -136,7 +139,16 @@ public class email extends baseClass {
 
                 // Payment
                 driver.get(checkoutUrl);
-                mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
+                if(master.equalsIgnoreCase("master")){
+		        	mcp.clickONMaster();
+		        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+		        }
+		        
+		        if(visa.equalsIgnoreCase("visa")) {
+		        	mcp.clickONVisa();
+		        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+		        }
+               // mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
                 mcp.clickOnPay();
                 
                 if (mcp.isCardNumberInvalid()) {
@@ -183,7 +195,6 @@ public class email extends baseClass {
                     Reporter.log(comment, true);
 
                     ExcelWriteUtility.writeResult("Email_Result", emailId, status, comment,purchaseId);
-
 
                 }
 

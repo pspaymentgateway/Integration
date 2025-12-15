@@ -7,6 +7,7 @@ import com.paysecure.Page.matrixCashierPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
+import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
 
@@ -14,7 +15,12 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
+import java.time.Duration;
+import java.util.Arrays;
+
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 
@@ -25,6 +31,9 @@ public class country extends baseClass{
 	 String purchaseId;
 	matrixCashierPage mcp;
 	transactionPage tp;	
+    String status = "";
+    String comment = "";
+    String country;
 	@BeforeMethod
 	public void beforeMethod() throws InterruptedException {
 		mcp = new matrixCashierPage(getDriver());
@@ -33,20 +42,20 @@ public class country extends baseClass{
   @Test(dataProvider ="countryProvider", dataProviderClass = DataProviders.class)
   public void purchase(String country) throws Exception {
 		WebDriver driver = baseClass.getDriver();
-		String baseUri = PropertyReader.getProperty("baseURI");
+		this.country=country;
+		String baseUri = PropertyReader.getPropertyforS2S("baseURI");
 		RestAssured.baseURI =baseUri;
-        String token = PropertyReader.getProperty("token");
-        String brandId = PropertyReader.getProperty("brandId");
+        String token = PropertyReader.getPropertyforS2S("tokenS2S");
+        String brandId = PropertyReader.getPropertyforS2S("brandIdS2S");
 		String price = generateRandomTestData.generateRandomDouble();
-		String currency = PropertyReader.getProperty("currency");
-		String paymentMethod = PropertyReader.getProperty("paymentMethod");
+		String currency = PropertyReader.getPropertyforS2S("currencyS2S");
+		String paymentMethod = PropertyReader.getPropertyforS2S("paymentMethodS2S");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
 		String city = "Paris";
 		String streetAddress = "Main gate";
 		String zipcode = "20001";
-		String productname="Cricket b"
-				+ "at";
+		String productname="Cricket bat";
 
 		String requestBody = "{\n" +
 		        "  \"client\": {\n" +
@@ -84,7 +93,7 @@ public class country extends baseClass{
 		purchaseId = response.jsonPath().getString("purchaseId");  
 		System.out.println(response.asPrettyString());
 		purchaseId = response.jsonPath().getString("purchaseId");
-		int status = response.getStatusCode();
+		
 		
 		if (response.statusCode() == 202) {
 		    purchaseId = response.jsonPath().getString("purchaseId");
@@ -93,14 +102,21 @@ public class country extends baseClass{
 
 		if (response.statusCode()==202) {
 			Reporter.log("country accepted by API: " + country, true);
-		} else if (response.statusCode() == 400 || response.statusCode() == 422) {
-			Reporter.log("country rejected by API: " + country, true);
-		} else {
+		}else if (response.statusCode() == 400 || response.statusCode() == 422) {
+            Reporter.log("Country rejected by API: " + country, true);
+            status = "PASS";
+            comment = "PASS → Country rejected correctly   " + country;
+
+            Reporter.log(comment, true);
+
+            ExcelWriteUtility.writeResults2s("Countries_Result", country, status, comment,purchaseId);
+            driver.quit();
+            return; 
+        }else {
 			Reporter.log("Unexpected response for country: " + country + " -> " + response.statusCode(), true);
 		}
   }
   
-	@Test
 	public void s2sMethod() throws Exception {
 		WebDriver driver = baseClass.getDriver();
 		lp = new loginPage(getDriver());
@@ -119,13 +135,25 @@ public class country extends baseClass{
 
 		String endpoint = "api/v1/p/" + purchaseId + "?s2s=true";
 		System.err.println(endpoint);
-		String requestBody = "{\n" + "  \"cardholder_name\": \"Rahul Agarwal\",\n" + " \"card_number\": \"" + cardNumber
-				+ "\"," + "\n" + " \"expires\": \"" + mmyy + "\"," + "\n" + " \"cvc\": \"" + cvv + "\",\n"
-				+ "  \"remember_card\": \"on\",\n" + "  \"remote_ip\": \"157.38.242.7\",\n"
-				+ "  \"user_agent\": \"Mozilla/5.0\",\n" + "  \"accept_header\": \"text/html\",\n"
-				+ "  \"language\": \"en-US\",\n" + "  \"java_enabled\": false,\n" + "  \"javascript_enabled\": true,\n"
-				+ "  \"color_depth\": 24,\n" + "  \"utc_offset\": 0,\n" + "  \"screen_width\": 1920,\n"
-				+ "  \"screen_height\": 1080\n" + "}";
+		String requestBody =
+				"{\n" +
+				"  \"cardholder_name\": \"Rahul Agarwal\",\n" +
+				"  \"card_number\": \"" + cardNumber + "\",\n" +
+				"  \"expires\": \"" + mmyy + "\",\n" +
+				"  \"cvc\": \"" + cvv + "\",\n" +
+				"  \"remember_card\": \"on\",\n" +
+				"  \"remote_ip\": \"157.38.242.7\",\n" +
+				"  \"user_agent\": \"Mozilla/5.0\",\n" +
+				"  \"accept_header\": \"text/html\",\n" +
+				"  \"language\": \"en-US\",\n" +
+				"  \"java_enabled\": false,\n" +
+				"  \"javascript_enabled\": true,\n" +
+				"  \"color_depth\": 24,\n" +
+				"  \"utc_offset\": 0,\n" +
+				"  \"screen_width\": 1920,\n" +
+				"  \"screen_height\": 1080\n" +
+				"}";
+
 
 		Response response = RestAssured.given().header("Authorization", "Bearer " + token)
 
@@ -140,6 +168,49 @@ public class country extends baseClass{
 		String callback_url = response.jsonPath().getString("callback_url");
 		System.out.println(callback_url);
 		driver.get(callback_url);
+		
+		 // Wait until parameter appears in URL
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.urlContains("issucces"));
+
+        String redirectUrl = driver.getCurrentUrl();
+        Reporter.log("Redirected URL: " + redirectUrl, true);
+
+        String flag = Arrays.stream(redirectUrl.split("\\?")[1].split("&"))
+                .filter(p -> p.startsWith("issucces="))
+                .map(p -> p.split("=")[1])
+                .findFirst().orElse("");
+
+
+        if (flag.equalsIgnoreCase("false")) {
+            status = "FAIL";
+            comment = "Payment Failed";
+
+            Reporter.log(comment, true);
+
+            ExcelWriteUtility.writeResults2s("Countries_Result", country, status, comment,purchaseId);
+            driver.quit();
+            return;
+        }
+        else if (flag.equalsIgnoreCase("true")) {
+            status = "PASS";
+            comment = "Payment Successfully";
+
+            Reporter.log(comment, true);
+
+            ExcelWriteUtility.writeResults2s("Countries_Result", country, status, comment,purchaseId);
+
+        }
+        else {
+            status = "UNKNOWN";
+            comment = "URL does not contain expected issucces parameter";
+
+            Reporter.log(comment, true);
+
+            ExcelWriteUtility.writeResults2s("Countries_Result", country, status, comment,purchaseId);
+
+
+        }
 
 			mcp.openBrowserForStaging(driver,"http://staging.choicepay.ca/");
 			lp.login();

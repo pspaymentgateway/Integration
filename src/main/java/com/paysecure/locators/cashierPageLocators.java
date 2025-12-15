@@ -14,4 +14,9 @@ public class cashierPageLocators {
 	public static final String  city= "//input[@id='emails2s']";
 	public static final String zipcode ="//input[@id='zip_code']";
 	public static final String total="//span[@id='totalLabel']";
+	
+	
+	//Payment Method  
+	public static final String Visa="//ul[@id='payMethodList']/li/p[text()='Visa']";
+	public static final String Master="//ul[@id='payMethodList']/li/p[text()='Master']";
 }

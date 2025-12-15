@@ -10,6 +10,7 @@ import com.paysecure.utilities.DataProviders;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
+import com.paysecure.utilities.jsonProvider;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -44,7 +45,7 @@ public class streetAddress extends baseClass{
 			tp=new transactionPage(getDriver());
 	  }
 	
-  @Test(dataProvider ="StreetAddressData", dataProviderClass = DataProviders.class)
+  @Test(dataProvider ="StreetAddressData", dataProviderClass = jsonProvider.class)
   public void validationForStreetAddresseField(String streetAddress,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String PSP) {
 		WebDriver driver=baseClass.getDriver();
         Reporter.log("streetAddres test case will run for this PSP :- "+PSP, true);
@@ -58,6 +59,8 @@ public class streetAddress extends baseClass{
 		String paymentMethod=PropertyReader.getProperty("paymentMethod");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
+		String master=PropertyReader.getProperty("Master");
+		String visa=PropertyReader.getProperty("Visa");
 		String city="Paris";
 		
        
@@ -135,7 +138,16 @@ public class streetAddress extends baseClass{
 
                 // Payment
                 driver.get(checkoutUrl);
-                mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
+                if(master.equalsIgnoreCase("master")){
+		        	mcp.clickONMaster();
+		        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+		        }
+		        
+		        if(visa.equalsIgnoreCase("visa")) {
+		        	mcp.clickONVisa();
+		        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+		        }
+             //   mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
                 mcp.clickOnPay();
                 
                 if (mcp.isCardNumberInvalid()) {

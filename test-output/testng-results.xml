@@ -2,6 +2,15 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
+      <![CDATA[Generated Random Double: 37.21]]>
+    </line>
+    <line>
+      <![CDATA[Generated First Name: john2dc]]>
+    </line>
+    <line>
+      <![CDATA[Purchase created successfully with ID: 693c0d117773652fbd05bc10]]>
+    </line>
+    <line>
       <![CDATA[User enter ID in Username field]]>
     </line>
     <line>
@@ -11,52 +20,13 @@
       <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[Generated Random Double: 23.39]]>
+      <![CDATA[S2S call successful on attempt 1]]>
     </line>
     <line>
-      <![CDATA[Generated First Name: johneaa]]>
+      <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
     </line>
     <line>
-      <![CDATA[Generated Email: tomjerry5ca46@gmail.com]]>
-    </line>
-    <line>
-      <![CDATA[purchaseId is not null]]>
-    </line>
-    <line>
-      <![CDATA[purchaseId is not empty]]>
-    </line>
-    <line>
-      <![CDATA[purchaseId format is valid: 6937afc8325ff0a7717820c9]]>
-    </line>
-    <line>
-      <![CDATA[purchaseId length is 24]]>
-    </line>
-    <line>
-      <![CDATA[purchaseId validated successfully: 6937afc8325ff0a7717820c9]]>
-    </line>
-    <line>
-      <![CDATA[Entered Card Holder Name: Abraham Benjamin de Villiers]]>
-    </line>
-    <line>
-      <![CDATA[Entered Card Number: 5555555555554444]]>
-    </line>
-    <line>
-      <![CDATA[Entered Card Expiry Date: 12/27]]>
-    </line>
-    <line>
-      <![CDATA[Entered Card CVC: 111]]>
-    </line>
-    <line>
-      <![CDATA[Moved to the Pay button]]>
-    </line>
-    <line>
-      <![CDATA[Clicked on the Pay button to proceed with payment]]>
-    </line>
-    <line>
-      <![CDATA[Payment Successful → URL shows issucces=true]]>
-    </line>
-    <line>
-      <![CDATA[Proceeding with transaction verification flow.]]>
+      <![CDATA[Payment Successfully]]>
     </line>
     <line>
       <![CDATA[ Opened staging environment in a new browser tab]]>
@@ -71,58 +41,13 @@
       <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[ Entered Transaction ID: 6937afc8325ff0a7717820c9]]>
+      <![CDATA[ Entered Transaction ID: 693c0d117773652fbd05bc10]]>
     </line>
     <line>
       <![CDATA[ Clicked on Search button]]>
     </line>
     <line>
-      <![CDATA[UI transaction ID: 6937afc8325ff0a7717820c9]]>
-    </line>
-    <line>
-      <![CDATA[API transaction ID: 6937afc8325ff0a7717820c9]]>
-    </line>
-    <line>
-      <![CDATA[Transaction ID verified successfully]]>
-    </line>
-    <line>
-      <![CDATA[UI Merchant Name: suhasM]]>
-    </line>
-    <line>
-      <![CDATA[API Merchant Name: suhasM]]>
-    </line>
-    <line>
-      <![CDATA[Merchant name verified successfully]]>
-    </line>
-    <line>
-      <![CDATA[UI Amount: 23.39]]>
-    </line>
-    <line>
-      <![CDATA[API Amount: 23.39]]>
-    </line>
-    <line>
-      <![CDATA[currency conversion not applied]]>
-    </line>
-    <line>
-      <![CDATA[Amount verified successfully]]>
-    </line>
-    <line>
-      <![CDATA[UI Currency: EUR]]>
-    </line>
-    <line>
-      <![CDATA[API Currency: EUR]]>
-    </line>
-    <line>
-      <![CDATA[Currency matched correctly]]>
-    </line>
-    <line>
-      <![CDATA[Currency verified successfully]]>
-    </line>
-    <line>
-      <![CDATA[Expected Masked Card: 55555555****4444]]>
-    </line>
-    <line>
-      <![CDATA[UI Masked Card: 55555555****4444]]>
+      <![CDATA[ Clicked on Search button]]>
     </line>
     <line>
       <![CDATA[ Clicked on first Transaction ID from list]]>
@@ -131,102 +56,44 @@
       <![CDATA[Purchase Transaction ID is not empty or not null]]>
     </line>
     <line>
-      <![CDATA[UI Currency: EUR]]>
-    </line>
-    <line>
-      <![CDATA[Payment Info Currency: EUR]]>
-    </line>
-    <line>
-      <![CDATA[Currency on Payment Info verified successfully]]>
-    </line>
-    <line>
-      <![CDATA[UI Amount: 23.39]]>
-    </line>
-    <line>
-      <![CDATA[Payment Info Amount: 23.39]]>
-    </line>
-    <line>
-      <![CDATA[Amount on Payment Info verified successfully]]>
-    </line>
-    <line>
-      <![CDATA[ Opened staging environment in a new browser tab]]>
-    </line>
-    <line>
-      <![CDATA[Entering email on PSP side: rahul@paysecure.net]]>
-    </line>
-    <line>
-      <![CDATA[Entering password on PSP side]]>
-    </line>
-    <line>
-      <![CDATA[Clicking Sign In button on PSP side]]>
-    </line>
-    <line>
-      <![CDATA[Login action performed successfully on PSP side]]>
-    </line>
-    <line>
-      <![CDATA[Clicking on TX ID field to search latest transaction]]>
-    </line>
-    <line>
-      <![CDATA[Entering Transaction ID for search: 100000035188]]>
-    </line>
-    <line>
-      <![CDATA[Pressing ENTER to start transaction search]]>
-    </line>
-    <line>
-      <![CDATA[Search action performed for Transaction ID: 100000035188]]>
-    </line>
-    <line>
-      <![CDATA[Verifying Transaction ID in PSP UI for: 100000035188]]>
-    </line>
-    <line>
-      <![CDATA[PSP displayed Transaction ID: 100000035188]]>
-    </line>
-    <line>
-      <![CDATA[Transaction ID verification successful]]>
-    </line>
-    <line>
-      <![CDATA[Fetching Amount and Currency text from PSP UI]]>
-    </line>
-    <line>
-      <![CDATA[Raw Amount + Currency text received: 23.39 EUR]]>
-    </line>
-    <line>
-      <![CDATA[Extracted Amount from PSP: 23.39]]>
-    </line>
-    <line>
-      <![CDATA[Extracted Currency from PSP: EUR]]>
-    </line>
-    <line>
-      <![CDATA[Comparing Amount with UI value: 23.39]]>
-    </line>
-    <line>
-      <![CDATA[Comparing Currency with UI value: EUR]]>
-    </line>
-    <line>
-      <![CDATA[Amount and Currency verification successful]]>
-    </line>
-    <line>
-      <![CDATA[Expected Masked Card: 5555 55** **** 4444]]>
-    </line>
-    <line>
-      <![CDATA[UI Masked Card: 5555 55** **** 4444]]>
+      <![CDATA[streetAddress accepted by API: 123 Main St]]>
     </line>
   </reporter-output>
-  <suite started-at="2025-12-09T10:42:25 IST" name="Default suite" finished-at="2025-12-09T10:43:52 IST" duration-ms="86594">
+  <suite started-at="2025-12-12T18:09:25 IST" name="Default suite" finished-at="2025-12-12T18:10:40 IST" duration-ms="74579">
     <groups>
     </groups>
-    <test started-at="2025-12-09T10:42:25 IST" name="Default test" finished-at="2025-12-09T10:43:52 IST" duration-ms="86594">
-      <class name="testcases.matrixEndToEndFlow">
-        <test-method is-config="true" signature="loadConfig()[pri:0, instance:testcases.matrixEndToEndFlow@66629f63]" started-at="2025-12-09T10:42:25 IST" name="loadConfig" finished-at="2025-12-09T10:42:25 IST" duration-ms="25" status="PASS">
+    <test started-at="2025-12-12T18:09:25 IST" name="Default test" finished-at="2025-12-12T18:10:40 IST" duration-ms="74579">
+      <class name="s2s.streetAddress">
+        <test-method is-config="true" signature="loadConfig()[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-12T18:09:25 IST" name="loadConfig" finished-at="2025-12-12T18:09:25 IST" duration-ms="32" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loadConfig -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:testcases.matrixEndToEndFlow@66629f63]" started-at="2025-12-09T10:42:25 IST" name="setup" finished-at="2025-12-09T10:42:34 IST" duration-ms="8730" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-12T18:09:26 IST" name="setup" finished-at="2025-12-12T18:09:40 IST" duration-ms="14023" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:testcases.matrixEndToEndFlow@66629f63]" started-at="2025-12-09T10:42:34 IST" name="beforeMethod" finished-at="2025-12-09T10:42:37 IST" duration-ms="3116" status="PASS">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-12T18:09:40 IST" name="beforeMethod" finished-at="2025-12-12T18:09:40 IST" duration-ms="16" status="PASS">
           <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="purchaseApi(java.lang.String)[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-12T18:09:40 IST" name="purchaseApi" data-provider="streetAddressProvider" finished-at="2025-12-12T18:10:37 IST" duration-ms="57266" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[123 Main St]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Generated Random Double: 37.21]]>
+            </line>
+            <line>
+              <![CDATA[Generated First Name: john2dc]]>
+            </line>
+            <line>
+              <![CDATA[Purchase created successfully with ID: 693c0d117773652fbd05bc10]]>
+            </line>
             <line>
               <![CDATA[User enter ID in Username field]]>
             </line>
@@ -236,79 +103,14 @@
             <line>
               <![CDATA[Click on submit button in login page]]>
             </line>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method signature="f(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testcases.matrixEndToEndFlow@66629f63]" started-at="2025-12-09T10:42:37 IST" name="f" data-provider="cardData" finished-at="2025-12-09T10:43:49 IST" duration-ms="71543" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Abraham Benjamin de Villiers]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[5555555555554444]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[12/27]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[111]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
             <line>
-              <![CDATA[Generated Random Double: 23.39]]>
+              <![CDATA[S2S call successful on attempt 1]]>
             </line>
             <line>
-              <![CDATA[Generated First Name: johneaa]]>
+              <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
             </line>
             <line>
-              <![CDATA[Generated Email: tomjerry5ca46@gmail.com]]>
-            </line>
-            <line>
-              <![CDATA[purchaseId is not null]]>
-            </line>
-            <line>
-              <![CDATA[purchaseId is not empty]]>
-            </line>
-            <line>
-              <![CDATA[purchaseId format is valid: 6937afc8325ff0a7717820c9]]>
-            </line>
-            <line>
-              <![CDATA[purchaseId length is 24]]>
-            </line>
-            <line>
-              <![CDATA[purchaseId validated successfully: 6937afc8325ff0a7717820c9]]>
-            </line>
-            <line>
-              <![CDATA[Entered Card Holder Name: Abraham Benjamin de Villiers]]>
-            </line>
-            <line>
-              <![CDATA[Entered Card Number: 5555555555554444]]>
-            </line>
-            <line>
-              <![CDATA[Entered Card Expiry Date: 12/27]]>
-            </line>
-            <line>
-              <![CDATA[Entered Card CVC: 111]]>
-            </line>
-            <line>
-              <![CDATA[Moved to the Pay button]]>
-            </line>
-            <line>
-              <![CDATA[Clicked on the Pay button to proceed with payment]]>
-            </line>
-            <line>
-              <![CDATA[Payment Successful → URL shows issucces=true]]>
-            </line>
-            <line>
-              <![CDATA[Proceeding with transaction verification flow.]]>
+              <![CDATA[Payment Successfully]]>
             </line>
             <line>
               <![CDATA[ Opened staging environment in a new browser tab]]>
@@ -323,58 +125,13 @@
               <![CDATA[Click on submit button in login page]]>
             </line>
             <line>
-              <![CDATA[ Entered Transaction ID: 6937afc8325ff0a7717820c9]]>
+              <![CDATA[ Entered Transaction ID: 693c0d117773652fbd05bc10]]>
             </line>
             <line>
               <![CDATA[ Clicked on Search button]]>
             </line>
             <line>
-              <![CDATA[UI transaction ID: 6937afc8325ff0a7717820c9]]>
-            </line>
-            <line>
-              <![CDATA[API transaction ID: 6937afc8325ff0a7717820c9]]>
-            </line>
-            <line>
-              <![CDATA[Transaction ID verified successfully]]>
-            </line>
-            <line>
-              <![CDATA[UI Merchant Name: suhasM]]>
-            </line>
-            <line>
-              <![CDATA[API Merchant Name: suhasM]]>
-            </line>
-            <line>
-              <![CDATA[Merchant name verified successfully]]>
-            </line>
-            <line>
-              <![CDATA[UI Amount: 23.39]]>
-            </line>
-            <line>
-              <![CDATA[API Amount: 23.39]]>
-            </line>
-            <line>
-              <![CDATA[currency conversion not applied]]>
-            </line>
-            <line>
-              <![CDATA[Amount verified successfully]]>
-            </line>
-            <line>
-              <![CDATA[UI Currency: EUR]]>
-            </line>
-            <line>
-              <![CDATA[API Currency: EUR]]>
-            </line>
-            <line>
-              <![CDATA[Currency matched correctly]]>
-            </line>
-            <line>
-              <![CDATA[Currency verified successfully]]>
-            </line>
-            <line>
-              <![CDATA[Expected Masked Card: 55555555****4444]]>
-            </line>
-            <line>
-              <![CDATA[UI Masked Card: 55555555****4444]]>
+              <![CDATA[ Clicked on Search button]]>
             </line>
             <line>
               <![CDATA[ Clicked on first Transaction ID from list]]>
@@ -383,100 +140,22 @@
               <![CDATA[Purchase Transaction ID is not empty or not null]]>
             </line>
             <line>
-              <![CDATA[UI Currency: EUR]]>
-            </line>
-            <line>
-              <![CDATA[Payment Info Currency: EUR]]>
-            </line>
-            <line>
-              <![CDATA[Currency on Payment Info verified successfully]]>
-            </line>
-            <line>
-              <![CDATA[UI Amount: 23.39]]>
-            </line>
-            <line>
-              <![CDATA[Payment Info Amount: 23.39]]>
-            </line>
-            <line>
-              <![CDATA[Amount on Payment Info verified successfully]]>
-            </line>
-            <line>
-              <![CDATA[ Opened staging environment in a new browser tab]]>
-            </line>
-            <line>
-              <![CDATA[Entering email on PSP side: rahul@paysecure.net]]>
-            </line>
-            <line>
-              <![CDATA[Entering password on PSP side]]>
-            </line>
-            <line>
-              <![CDATA[Clicking Sign In button on PSP side]]>
-            </line>
-            <line>
-              <![CDATA[Login action performed successfully on PSP side]]>
-            </line>
-            <line>
-              <![CDATA[Clicking on TX ID field to search latest transaction]]>
-            </line>
-            <line>
-              <![CDATA[Entering Transaction ID for search: 100000035188]]>
-            </line>
-            <line>
-              <![CDATA[Pressing ENTER to start transaction search]]>
-            </line>
-            <line>
-              <![CDATA[Search action performed for Transaction ID: 100000035188]]>
-            </line>
-            <line>
-              <![CDATA[Verifying Transaction ID in PSP UI for: 100000035188]]>
-            </line>
-            <line>
-              <![CDATA[PSP displayed Transaction ID: 100000035188]]>
-            </line>
-            <line>
-              <![CDATA[Transaction ID verification successful]]>
-            </line>
-            <line>
-              <![CDATA[Fetching Amount and Currency text from PSP UI]]>
-            </line>
-            <line>
-              <![CDATA[Raw Amount + Currency text received: 23.39 EUR]]>
-            </line>
-            <line>
-              <![CDATA[Extracted Amount from PSP: 23.39]]>
-            </line>
-            <line>
-              <![CDATA[Extracted Currency from PSP: EUR]]>
-            </line>
-            <line>
-              <![CDATA[Comparing Amount with UI value: 23.39]]>
-            </line>
-            <line>
-              <![CDATA[Comparing Currency with UI value: EUR]]>
-            </line>
-            <line>
-              <![CDATA[Amount and Currency verification successful]]>
-            </line>
-            <line>
-              <![CDATA[Expected Masked Card: 5555 55** **** 4444]]>
-            </line>
-            <line>
-              <![CDATA[UI Masked Card: 5555 55** **** 4444]]>
+              <![CDATA[streetAddress accepted by API: 123 Main St]]>
             </line>
           </reporter-output>
-        </test-method> <!-- f -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:testcases.matrixEndToEndFlow@66629f63]" started-at="2025-12-09T10:43:49 IST" name="tearDown" finished-at="2025-12-09T10:43:52 IST" duration-ms="3012" status="PASS">
+        </test-method> <!-- purchaseApi -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-12T18:10:37 IST" name="tearDown" finished-at="2025-12-12T18:10:40 IST" duration-ms="3006" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=f status=SUCCESS method=matrixEndToEndFlow.f(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:testcases.matrixEndToEndFlow@66629f63] output=Generated Random Double: 23.39]]]>
+                <![CDATA[[TestResult name=purchaseApi status=SUCCESS method=streetAddress.purchaseApi(java.lang.String)[pri:0, instance:s2s.streetAddress@841e575] output=Generated Random Double: 37.21]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- testcases.matrixEndToEndFlow -->
+      </class> <!-- s2s.streetAddress -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

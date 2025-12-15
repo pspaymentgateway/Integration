@@ -36,6 +36,10 @@ public class matrixCashierPage {
 	private By zipcode=By.xpath(cashierPageLocators.zipcode);
 	private By total=By.xpath(cashierPageLocators.total);
 	private By swalError=By.xpath("//div[@id='swal2-html-container']");
+	
+	//Payment Method
+	private By Visa=By.xpath(cashierPageLocators.Visa);
+	private By Master=By.xpath(cashierPageLocators.Master);
 
 	private ActionDriver actionDriver;
 	// page factory constructor
@@ -51,7 +55,8 @@ public class matrixCashierPage {
 //		Thread.sleep(500);
 //		driver.manage().window().setSize(new Dimension(1280, 720));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("document.body.style.zoom='80%';");
+		
+		js.executeScript("document.body.style.zoom='65%';");
 		actionDriver.enterText(cardHolderName, cardHolder);
 		Reporter.log("Entered Card Holder Name: " + cardHolder, true);
 
@@ -183,6 +188,14 @@ public class matrixCashierPage {
 	    } catch (Exception e) {
 	        return "NO_ERROR_FOUND";
 	    }
+	}
+	
+	public void clickONVisa() {
+		actionDriver.clickUsingJS(Visa);
+	}
+	
+	public void clickONMaster() {
+		actionDriver.clickUsingJS(Master);
 	}
 
 

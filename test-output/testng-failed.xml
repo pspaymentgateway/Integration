@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testcases.matrixEndToEndFlow">
+      <class name="s2s.streetAddress">
         <methods>
-          <include name="f"/>
           <include name="loadConfig"/>
-          <include name="beforeMethod"/>
+          <include name="purchaseApi" invocation-numbers="0"/>
           <include name="tearDown"/>
+          <include name="beforeMethod"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- testcases.matrixEndToEndFlow -->
+      </class> <!-- s2s.streetAddress -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

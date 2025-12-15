@@ -1,20 +1,23 @@
 package com.paysecure.utilities;
 
-
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
 public class PropertyReader {
+
     private static Properties properties = new Properties();
 
     static {
         try {
-            FileInputStream fis = new FileInputStream("C:\\Users\\LENOVO\\eclipse-workspace\\integrationApiUiTesting\\src\\test\\resource\\propertiesFolder\\config.properties");
+            String projectPath = System.getProperty("user.dir");
+            String configPath = projectPath + "/src/test/resources/propertiesFolder/config.properties";
+
+            FileInputStream fis = new FileInputStream(configPath);
             properties.load(fis);
+
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to load config.properties file", e);
         }
     }
 
@@ -22,9 +25,22 @@ public class PropertyReader {
         return properties.getProperty(key);
     }
     
+    /*--------------------- Property file for S2S ------------------------------*/
     
-  
-    
-    
-    
+    static {
+        try {
+            String projectPath = System.getProperty("user.dir");
+            String configPath = projectPath + "/src/test/resources/propertiesFolder/s2s.properties";
+
+            FileInputStream fis = new FileInputStream(configPath);
+            properties.load(fis);
+
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load config.properties file", e);
+        }
+    }
+
+    public static String getPropertyforS2S(String key) {
+        return properties.getProperty(key);
+    }
 }

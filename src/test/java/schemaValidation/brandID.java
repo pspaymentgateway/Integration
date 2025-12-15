@@ -10,6 +10,7 @@ import com.paysecure.utilities.DataProviders;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
+import com.paysecure.utilities.jsonProvider;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -46,7 +47,7 @@ public class brandID extends baseClass{
 		 
 	  }
 	
-	@Test(dataProvider ="brandIDData", dataProviderClass = DataProviders.class)
+	@Test(dataProvider ="brandIDData", dataProviderClass = jsonProvider.class)
 	public void validationForBrandID(String BrandID, String cardHolder, String cardNumber, String expiry,String cvv,String runFlag,String PSP) {
 		WebDriver driver = baseClass.getDriver();
         Reporter.log("City test case will run for this PSP :- "+PSP, true);
@@ -59,13 +60,13 @@ public class brandID extends baseClass{
 		String paymentMethod = PropertyReader.getProperty("paymentMethod");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
+		String master=PropertyReader.getProperty("Master");
+		String visa=PropertyReader.getProperty("Visa");
 		String city = "Paris";
 		String stateCode="QLD";
 		String streetAddress = "Main gate";
 		String zipcode = "20001";
-		String productname="Cricket b"
-				+ "at";
-
+		String productname="Cricket bat";
 		String requestBody = "{\n" +
 		        "  \"client\": {\n" +
 		        "    \"full_name\": \""+firstName+"\",\n" +
@@ -108,7 +109,7 @@ public class brandID extends baseClass{
 		if (response.statusCode()==202) {
 			Reporter.log("brandId accepted by API: " + BrandID, true);
 		} else if (response.statusCode() == 400 || response.statusCode() == 422) {
-            Reporter.log("BrandID rejected by API: " + BrandID, true);
+            Reporter.log("BrandID rejected by API:   " + BrandID, true);
             status = "PASS";
             comment = "PASS → BrandID rejected correctly   " + BrandID;
 
@@ -130,7 +131,16 @@ public class brandID extends baseClass{
 
 				// Payment
 				driver.get(checkoutUrl);
-				mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+		        if(master.equalsIgnoreCase("master")){
+		        	mcp.clickONMaster();
+		        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+		        }
+		        
+		        if(visa.equalsIgnoreCase("visa")) {
+		        	mcp.clickONVisa();
+		        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+		        }
+			//	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
 				 mcp.clickOnPay();
 				if (mcp.isCardNumberInvalid()) {
 					Reporter.log("Invalid card number → Luhn check failed", true);
