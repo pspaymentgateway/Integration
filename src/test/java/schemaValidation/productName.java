@@ -132,16 +132,8 @@ public class productName extends baseClass {
 
 				// Payment
 				driver.get(checkoutUrl);
-			      if(master.equalsIgnoreCase("master")){
-			        	mcp.clickONMaster();
-			        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
-			        }
-			        
-			        if(visa.equalsIgnoreCase("visa")) {
-			        	mcp.clickONVisa();
-			        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
-			        }
-				//mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+		
+				mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
 				 mcp.clickOnPay();
 				if (mcp.isCardNumberInvalid()) {
 					Reporter.log("Invalid card number → Luhn check failed", true);

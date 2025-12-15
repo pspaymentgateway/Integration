@@ -2,13 +2,13 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Generated Random Double: 37.21]]>
+      <![CDATA[Generated Random Double: 29.14]]>
     </line>
     <line>
-      <![CDATA[Generated First Name: john2dc]]>
+      <![CDATA[Generated First Name: john49f]]>
     </line>
     <line>
-      <![CDATA[Purchase created successfully with ID: 693c0d117773652fbd05bc10]]>
+      <![CDATA[Purchase created successfully with ID: 693fe9452a49368b7dd95076]]>
     </line>
     <line>
       <![CDATA[User enter ID in Username field]]>
@@ -41,7 +41,7 @@
       <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[ Entered Transaction ID: 693c0d117773652fbd05bc10]]>
+      <![CDATA[ Entered Transaction ID: 693fe9452a49368b7dd95076]]>
     </line>
     <line>
       <![CDATA[ Clicked on Search button]]>
@@ -59,24 +59,24 @@
       <![CDATA[streetAddress accepted by API: 123 Main St]]>
     </line>
   </reporter-output>
-  <suite started-at="2025-12-12T18:09:25 IST" name="Default suite" finished-at="2025-12-12T18:10:40 IST" duration-ms="74579">
+  <suite started-at="2025-12-15T16:25:44 IST" name="Default suite" finished-at="2025-12-15T16:27:13 IST" duration-ms="88641">
     <groups>
     </groups>
-    <test started-at="2025-12-12T18:09:25 IST" name="Default test" finished-at="2025-12-12T18:10:40 IST" duration-ms="74579">
+    <test started-at="2025-12-15T16:25:44 IST" name="Default test" finished-at="2025-12-15T16:27:13 IST" duration-ms="88641">
       <class name="s2s.streetAddress">
-        <test-method is-config="true" signature="loadConfig()[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-12T18:09:25 IST" name="loadConfig" finished-at="2025-12-12T18:09:25 IST" duration-ms="32" status="PASS">
+        <test-method is-config="true" signature="loadConfig()[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-15T16:25:44 IST" name="loadConfig" finished-at="2025-12-15T16:25:44 IST" duration-ms="28" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loadConfig -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-12T18:09:26 IST" name="setup" finished-at="2025-12-12T18:09:40 IST" duration-ms="14023" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-15T16:25:45 IST" name="setup" finished-at="2025-12-15T16:26:02 IST" duration-ms="17137" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-12T18:09:40 IST" name="beforeMethod" finished-at="2025-12-12T18:09:40 IST" duration-ms="16" status="PASS">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-15T16:26:02 IST" name="beforeMethod" finished-at="2025-12-15T16:26:02 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="purchaseApi(java.lang.String)[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-12T18:09:40 IST" name="purchaseApi" data-provider="streetAddressProvider" finished-at="2025-12-12T18:10:37 IST" duration-ms="57266" status="PASS">
+        <test-method signature="purchaseApi(java.lang.String)[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-15T16:26:02 IST" name="purchaseApi" data-provider="streetAddressProvider" finished-at="2025-12-15T16:27:10 IST" duration-ms="68219" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -86,13 +86,13 @@
           </params>
           <reporter-output>
             <line>
-              <![CDATA[Generated Random Double: 37.21]]>
+              <![CDATA[Generated Random Double: 29.14]]>
             </line>
             <line>
-              <![CDATA[Generated First Name: john2dc]]>
+              <![CDATA[Generated First Name: john49f]]>
             </line>
             <line>
-              <![CDATA[Purchase created successfully with ID: 693c0d117773652fbd05bc10]]>
+              <![CDATA[Purchase created successfully with ID: 693fe9452a49368b7dd95076]]>
             </line>
             <line>
               <![CDATA[User enter ID in Username field]]>
@@ -125,7 +125,7 @@
               <![CDATA[Click on submit button in login page]]>
             </line>
             <line>
-              <![CDATA[ Entered Transaction ID: 693c0d117773652fbd05bc10]]>
+              <![CDATA[ Entered Transaction ID: 693fe9452a49368b7dd95076]]>
             </line>
             <line>
               <![CDATA[ Clicked on Search button]]>
@@ -144,11 +144,11 @@
             </line>
           </reporter-output>
         </test-method> <!-- purchaseApi -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-12T18:10:37 IST" name="tearDown" finished-at="2025-12-12T18:10:40 IST" duration-ms="3006" status="PASS">
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-15T16:27:10 IST" name="tearDown" finished-at="2025-12-15T16:27:13 IST" duration-ms="3010" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=purchaseApi status=SUCCESS method=streetAddress.purchaseApi(java.lang.String)[pri:0, instance:s2s.streetAddress@841e575] output=Generated Random Double: 37.21]]]>
+                <![CDATA[[TestResult name=purchaseApi status=SUCCESS method=streetAddress.purchaseApi(java.lang.String)[pri:0, instance:s2s.streetAddress@841e575] output=Generated Random Double: 29.14]]]>
               </value>
             </param>
           </params>
