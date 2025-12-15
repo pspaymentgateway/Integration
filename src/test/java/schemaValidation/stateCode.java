@@ -48,8 +48,8 @@ public class stateCode extends baseClass{
   @Test(dataProvider = "StateCodeData", dataProviderClass = jsonProvider.class)
   public void f(String stateCode, String cardHolder, String cardNumber, String expiry,String cvv,String runFlag,String PSP) {
 		WebDriver driver = baseClass.getDriver();
-	       Reporter.log("StateCode test case will run for this PSP :- "+PSP, true);
-	       Reporter.log("StateCode test case will run for this runflag:- "+runFlag, true);
+	    Reporter.log("StateCode test case will run for this PSP :- "+PSP, true);
+	    Reporter.log("StateCode test case will run for this runflag:- "+runFlag, true);
 		String baseUri = PropertyReader.getProperty("baseURI");
 		RestAssured.baseURI =baseUri;
         String token = PropertyReader.getProperty("token");
@@ -131,16 +131,8 @@ public class stateCode extends baseClass{
 
 		 				// Payment
 		 				driver.get(checkoutUrl);
-		 			      if(master.equalsIgnoreCase("master")){
-		 			        	mcp.clickONMaster();
-		 			        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
-		 			        }
-		 			        
-		 			        if(visa.equalsIgnoreCase("visa")) {
-		 			        	mcp.clickONVisa();
-		 			        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
-		 			        }
-		 				//mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+
+		 				mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
 		 				 mcp.clickOnPay();
 		 				if (mcp.isCardNumberInvalid()) {
 		 					Reporter.log("Invalid card number → Luhn check failed", true);

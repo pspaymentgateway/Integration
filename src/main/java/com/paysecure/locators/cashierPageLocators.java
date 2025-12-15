@@ -19,4 +19,9 @@ public class cashierPageLocators {
 	//Payment Method  
 	public static final String Visa="//ul[@id='payMethodList']/li/p[text()='Visa']";
 	public static final String Master="//ul[@id='payMethodList']/li/p[text()='Master']";
+	
+	//for pay u integration 
+	public static final String password="//input[@id='password']";
+	public static final String payPayu="//input[@id='submitBtn']";
+	
 }
