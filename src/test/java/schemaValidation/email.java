@@ -56,8 +56,8 @@ public class email extends baseClass {
 		String brandId = PropertyReader.getProperty("brandId");
 		String token = PropertyReader.getProperty("token");
 		String price = generateRandomTestData.generateRandomDouble();
-		String 
-		currency =PropertyReader.getProperty("currency");
+	
+		String currency =PropertyReader.getProperty("currency");
 		String paymentMethod=PropertyReader.getProperty("paymentMethod");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String master=PropertyReader.getProperty("Master");
@@ -139,16 +139,8 @@ public class email extends baseClass {
 
                 // Payment
                 driver.get(checkoutUrl);
-                if(master.equalsIgnoreCase("master")){
-		        	mcp.clickONMaster();
-		        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
-		        }
-		        
-		        if(visa.equalsIgnoreCase("visa")) {
-		        	mcp.clickONVisa();
-		        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
-		        }
-               // mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
+
+                mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
                 mcp.clickOnPay();
                 
                 if (mcp.isCardNumberInvalid()) {
