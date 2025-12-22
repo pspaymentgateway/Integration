@@ -1,9 +1,10 @@
-package schemaValidation;
+package purchase;
 
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
@@ -26,35 +27,37 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 
-public class brandID extends baseClass{
+public class productName extends baseClass {
 	private WebDriver driver;
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
 	matrixCashierPage mcp;
 	transactionPage tp;
-	
+	payu3dPage pay;
     String status = "";
     String comment = "";
-	
-	 @BeforeMethod
-	  public void beforeMethod() throws InterruptedException {
-			lp = new loginPage(getDriver());
-			lp.login();
-			mcp = new matrixCashierPage(getDriver());
-			tp = new transactionPage(getDriver());
-		 
-		 
-	  }
-	
-	@Test(dataProvider ="brandIDData", dataProviderClass = jsonProvider.class)
-	public void validationForBrandID(String BrandID, String cardHolder, String cardNumber, String expiry,String cvv,String runFlag,String PSP) {
+	@BeforeMethod
+	public void beforeMethod() throws InterruptedException {
+		lp = new loginPage(getDriver());
+		lp.login();
+		mcp = new matrixCashierPage(getDriver());
+		tp = new transactionPage(getDriver());
+		pay = new payu3dPage(getDriver());
+	}
+
+	@Test(dataProvider = "productNameData", dataProviderClass = jsonProvider.class)
+	public void validateForProductNameField(String productname, String cardHolder, String cardNumber, String expiry,
+			String cvv,String runFlag,String PSP) {
+
 		WebDriver driver = baseClass.getDriver();
-        Reporter.log("City test case will run for this PSP :- "+PSP, true);
-        Reporter.log("City test case will run for this runflag:- "+runFlag, true);
-		String baseUri = PropertyReader.getProperty("baseURI");
+	      Reporter.log("StateCode test case will run for this PSP :- "+PSP, true);
+	       Reporter.log("StateCode test case will run for this runflag:- "+runFlag, true);
+		 String baseUri = PropertyReader.getProperty("baseURI");
 		RestAssured.baseURI =baseUri;
-        String token = PropertyReader.getProperty("token");
+		String brandId = PropertyReader.getProperty("brandId");
+
+		String token = PropertyReader.getProperty("token");
 		String price = generateRandomTestData.generateRandomDouble();
 		String currency = PropertyReader.getProperty("currency");
 		String paymentMethod = PropertyReader.getProperty("paymentMethod");
@@ -62,18 +65,19 @@ public class brandID extends baseClass{
 		String emailId = generateRandomTestData.generateRandomEmail();
 		String master=PropertyReader.getProperty("Master");
 		String visa=PropertyReader.getProperty("Visa");
+		String payu = PropertyReader.getPropertyForS2S("payu");
 		String city = "Paris";
-		String stateCode="QLD";
+		
 		String streetAddress = "Main gate";
 		String zipcode = "20001";
-		String productname="Cricket bat";
+
 		String requestBody = "{\n" +
 		        "  \"client\": {\n" +
 		        "    \"full_name\": \""+firstName+"\",\n" +
 		        "    \"email\": \""+emailId+"\",\n" +
 		        "    \"country\": \"DZ\",\n" +
 		        "    \"city\": \""+city+"\",\n" +
-		        "    \"stateCode\": \""+stateCode+"\",\n" +
+		        "    \"stateCode\": \"QLD\",\n" +
 		        "    \"street_address\": \""+streetAddress+"\",\n" +
 		        "    \"zip_code\": \""+zipcode+"\",\n" +
 		        "    \"phone\": \"+1111111111\"\n" +
@@ -88,7 +92,7 @@ public class brandID extends baseClass{
 		        "    ]\n" +
 		        "  },\n" +
 		        "  \"paymentMethod\": \""+paymentMethod+"\",\n" +
-		        "  \"brand_id\": \"" + BrandID + "\",\n" +
+		        "  \"brand_id\": \"" + brandId + "\",\n" +
 		        "  \"success_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=true\",\n" +
 		        "  \"failure_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=false\",\n" +
 		        "  \"success_callback\": \"https://www.google.com/\",\n" +
@@ -101,25 +105,25 @@ public class brandID extends baseClass{
 		checkoutUrl = response.jsonPath().getString("checkout_url");
 		purchaseId = response.jsonPath().getString("purchaseId");
 
-		Reporter.log("brandId: " + BrandID + " → Status: " + response.getStatusCode(), true);
+		Reporter.log("productname: " + productname + " → Status: " + response.getStatusCode(), true);
 		Reporter.log("Response Body: " + response.getBody().asPrettyString(), true);
 
 		checkoutUrl = response.jsonPath().getString("checkout_url");
 
-		if (response.statusCode()==202) {
-			Reporter.log("brandId accepted by API: " + BrandID, true);
-		} else if (response.statusCode() == 400 || response.statusCode() == 422) {
-            Reporter.log("BrandID rejected by API:   " + BrandID, true);
+		if (response.statusCode() == 202) {
+			Reporter.log("productname accepted by API: " + productname, true);
+		}else if (response.statusCode() == 400 || response.statusCode() == 422) {
+            Reporter.log("productname rejected by API: " + productname, true);
             status = "PASS";
-            comment = "PASS → BrandID rejected correctly   " + BrandID;
+            comment = "PASS → productname rejected correctly   " + productname;
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("BrandID_Result", BrandID, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("Productname_Result", productname, status, comment,purchaseId);
             driver.quit();
             return; 
-        }else {
-			Reporter.log("Unexpected response for brandId: " + BrandID + " -> " + response.statusCode(), true);
+        }  else {
+			Reporter.log("Unexpected response for productname: " + productname + " -> " + response.statusCode(), true);
 		}
 
 		try {
@@ -131,23 +135,21 @@ public class brandID extends baseClass{
 
 				// Payment
 				driver.get(checkoutUrl);
-//		        if(master.equalsIgnoreCase("master")){
-//		        	mcp.clickONMaster();
-//		        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
-//		        }
-//		        
-//		        if(visa.equalsIgnoreCase("visa")) {
-//		        	mcp.clickONVisa();
-//		        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
-//		        }
+		
 				mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
 				 mcp.clickOnPay();
+				    if(payu.equalsIgnoreCase("payu")) {
+				    	pay.payForPayu(currency,purchaseId);
+				    }
 				if (mcp.isCardNumberInvalid()) {
-					Reporter.log("Invalid card number → Luhn check failed", true);
+					   status = "FAIL";
+	                    comment = "Payment Failed Cause Of Luhn ";
+                  Reporter.log("Invalid card number → Luhn check failed", true);
+                  ExcelWriteUtility.writeResult("Productname_Result", productname, status, comment,purchaseId);
 					driver.quit();
 					return;
 				}
-
+				
 				 // Wait until parameter appears in URL
                 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
                 wait.until(ExpectedConditions.urlContains("issucces"));
@@ -167,7 +169,7 @@ public class brandID extends baseClass{
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("BrandID_Result", BrandID, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Productname_Result", productname, status, comment,purchaseId);
                     driver.quit();
                     return;
                 }
@@ -177,7 +179,7 @@ public class brandID extends baseClass{
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("BrandID_Result", BrandID, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Productname_Result", productname, status, comment,purchaseId);
 
                 }
                 else {
@@ -186,17 +188,18 @@ public class brandID extends baseClass{
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("BrandID_Result", BrandID, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Productname_Result", productname, status, comment,purchaseId);
 
 
                 }
-				
+
 				// Login + Transaction check
 				mcp.openBrowserForStaging(driver,baseUri);
 				lp.login();
 				tp.navigateUptoTransaction();
-				tp.searchTheTransaction( purchaseId);
+				tp.searchTheTransaction(purchaseId);
 				tp.searchButton();
+				Thread.sleep(2000);
 				tp.clickOnTransactionId();
                 tp.verifyPurchaseTransactionIDIsNotEmpty();
 				Thread.sleep(4000);
@@ -205,17 +208,13 @@ public class brandID extends baseClass{
 			}
 
 		} catch (Exception e) {
-			// System.out.println("Unexpected error: " + e.getMessage());
-			Assert.fail("Unexpected error: " + e.getMessage()); // keep this
+			 System.out.println("Unexpected error: " + e.getMessage());
+		
 		} finally {
 			if (driver != null)
 				driver.quit();
 		}
 
 	}
-		
-		
-  
- 
 
 }

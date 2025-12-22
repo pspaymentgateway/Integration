@@ -1,9 +1,10 @@
-package schemaValidation;
+package purchase;
 
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
@@ -26,127 +27,134 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 
-public class streetAddress extends baseClass{
+public class brandID extends baseClass{
 	private WebDriver driver;
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
 	matrixCashierPage mcp;
 	transactionPage tp;
-		
+	payu3dPage pay;
     String status = "";
     String comment = "";
 	
-	  @BeforeMethod
+	 @BeforeMethod
 	  public void beforeMethod() throws InterruptedException {
 			lp = new loginPage(getDriver());
 			lp.login();
-			mcp=new matrixCashierPage(getDriver());
-			tp=new transactionPage(getDriver());
+			mcp = new matrixCashierPage(getDriver());
+			tp = new transactionPage(getDriver());
+		 
+			pay = new payu3dPage(getDriver());
 	  }
 	
-  @Test(dataProvider ="StreetAddressData", dataProviderClass = jsonProvider.class)
-  public void validationForStreetAddresseField(String streetAddress,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String PSP) {
-		WebDriver driver=baseClass.getDriver();
-        Reporter.log("streetAddres test case will run for this PSP :- "+PSP, true);
-        Reporter.log("streetAddres test case will run for this runflag:- "+runFlag, true);
-		 String baseUri = PropertyReader.getProperty("baseURI");
+	@Test(dataProvider ="brandIDData", dataProviderClass = jsonProvider.class)
+	public void validationForBrandID(String BrandID, String cardHolder, String cardNumber, String expiry,String cvv,String runFlag,String PSP) {
+		WebDriver driver = baseClass.getDriver();
+        Reporter.log("City test case will run for this PSP :- "+PSP, true);
+        Reporter.log("City test case will run for this runflag:- "+runFlag, true);
+		String baseUri = PropertyReader.getProperty("baseURI");
 		RestAssured.baseURI =baseUri;
-		String brandId = PropertyReader.getProperty("brandId");
-		String token = PropertyReader.getProperty("token");
+        String token = PropertyReader.getProperty("token");
 		String price = generateRandomTestData.generateRandomDouble();
-		String currency =PropertyReader.getProperty("currency");
-		String paymentMethod=PropertyReader.getProperty("paymentMethod");
+		String currency = PropertyReader.getProperty("currency");
+		String paymentMethod = PropertyReader.getProperty("paymentMethod");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
 		String master=PropertyReader.getProperty("Master");
 		String visa=PropertyReader.getProperty("Visa");
-		String city="Paris";
-		
-       
+		String payu = PropertyReader.getPropertyForS2S("payu");
+		String city = "Paris";
+		String stateCode="QLD";
+		String streetAddress = "Main gate";
+		String zipcode = "20001";
+		String productname="Cricket bat";
 		String requestBody = "{\n" +
 		        "  \"client\": {\n" +
 		        "    \"full_name\": \""+firstName+"\",\n" +
 		        "    \"email\": \""+emailId+"\",\n" +
 		        "    \"country\": \"DZ\",\n" +
 		        "    \"city\": \""+city+"\",\n" +
-		        "    \"stateCode\": \"QLD\",\n" +
+		        "    \"stateCode\": \""+stateCode+"\",\n" +
 		        "    \"street_address\": \""+streetAddress+"\",\n" +
-		        "    \"zip_code\": \"W1S 3BE\",\n" +
+		        "    \"zip_code\": \""+zipcode+"\",\n" +
 		        "    \"phone\": \"+1111111111\"\n" +
 		        "  },\n" +
 		        "  \"purchase\": {\n" +
 		        "    \"currency\": \""+currency+"\",\n" +
 		        "    \"products\": [\n" +
 		        "      {\n" +
-		        "        \"name\": \"New Ebook Gaming cards\",\n" +
+		        "        \"name\": \""+productname+"\",\n" +
 		        "        \"price\":"+ price + "\n" +  // "        \"price\": " + price + "\n" +
 		        "      }\n" +
 		        "    ]\n" +
 		        "  },\n" +
 		        "  \"paymentMethod\": \""+paymentMethod+"\",\n" +
-		        "  \"brand_id\": \"" + brandId + "\",\n" +
+		        "  \"brand_id\": \"" + BrandID + "\",\n" +
 		        "  \"success_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=true\",\n" +
 		        "  \"failure_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=false\",\n" +
 		        "  \"success_callback\": \"https://www.google.com/\",\n" +
 		        "  \"failure_callback\": \"https://staging.paysecure.net/merchant\"\n" +
 		        "}";
 
-	    Response  response = RestAssured.given()
-                .header("Authorization", "Bearer " + token)
-                .contentType(ContentType.JSON)
-                .body(requestBody)
-                .when()
-                .post("api/v1/purchases")
-                .then()
-                .extract()
-                .response();
+		Response response = RestAssured.given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
+				.body(requestBody).when().post("api/v1/purchases").then().extract().response();
 
 		checkoutUrl = response.jsonPath().getString("checkout_url");
 		purchaseId = response.jsonPath().getString("purchaseId");
 
-		Reporter.log("streetAddres: " + streetAddress + " → Status: " + response.getStatusCode(), true);
+		Reporter.log("brandId: " + BrandID + " → Status: " + response.getStatusCode(), true);
 		Reporter.log("Response Body: " + response.getBody().asPrettyString(), true);
-        
-        
-        checkoutUrl = response.jsonPath().getString("checkout_url");
-        
-        
-        if (response.statusCode() == 202) {
-            Reporter.log("streetAddress accepted by API: " + streetAddress, true);
-        }else if (response.statusCode() == 400 || response.statusCode() == 422) {
-            Reporter.log("streetAddress rejected by API: " + streetAddress, true);
+
+		checkoutUrl = response.jsonPath().getString("checkout_url");
+
+		if (response.statusCode()==202) {
+			Reporter.log("brandId accepted by API: " + BrandID, true);
+		} else if (response.statusCode() == 400 || response.statusCode() == 422) {
+            Reporter.log("BrandID rejected by API:   " + BrandID, true);
             status = "PASS";
-            comment = "PASS → streetAddress rejected correctly   " + streetAddress;
+            comment = "PASS → BrandID rejected correctly   " + BrandID;
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("BrandID_Result", BrandID, status, comment,purchaseId);
             driver.quit();
             return; 
-        }  else {
-            Reporter.log("Unexpected response for streetAddress: " + streetAddress + " -> " + response.statusCode(), true);
-        }
-    
-        try {
+        }else {
+			Reporter.log("Unexpected response for brandId: " + BrandID + " -> " + response.statusCode(), true);
+		}
 
+		try {
 
-            //SUCCESS CASE (202 + checkout_url exists)
-            if (response.statusCode()  == 202 && checkoutUrl != null && !checkoutUrl.isEmpty()) {
+			// SUCCESS CASE (202 + checkout_url exists)
+			if (response.statusCode() == 202 && checkoutUrl != null && !checkoutUrl.isEmpty()) {
 
-                Reporter.log("API success → proceeding with full flow", true);
+				Reporter.log("API success -> proceeding with full flow", true);
 
-                // Payment
-                driver.get(checkoutUrl);
-
-             //   mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
-                mcp.clickOnPay();
-                
-                if (mcp.isCardNumberInvalid()) {
-                    Reporter.log("Invalid card number → Luhn check failed", true);
-                    driver.quit();
-                    return;
-                }
+				// Payment
+				driver.get(checkoutUrl);
+//		        if(master.equalsIgnoreCase("master")){
+//		        	mcp.clickONMaster();
+//		        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+//		        }
+//		        
+//		        if(visa.equalsIgnoreCase("visa")) {
+//		        	mcp.clickONVisa();
+//		        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+//		        }
+				mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+				 mcp.clickOnPay();
+				    if(payu.equalsIgnoreCase("payu")) {
+				    	pay.payForPayu(currency,purchaseId);
+				    }
+				if (mcp.isCardNumberInvalid()) {
+					   status = "FAIL";
+	                    comment = "Payment Failed Cause Of Luhn ";
+                  Reporter.log("Invalid card number → Luhn check failed", true);
+                  ExcelWriteUtility.writeResult("BrandID_Result", BrandID, status, comment,purchaseId);
+					driver.quit();
+					return;
+				}
 
 				 // Wait until parameter appears in URL
                 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
@@ -167,7 +175,7 @@ public class streetAddress extends baseClass{
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("BrandID_Result", BrandID, status, comment,purchaseId);
                     driver.quit();
                     return;
                 }
@@ -177,7 +185,7 @@ public class streetAddress extends baseClass{
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("BrandID_Result", BrandID, status, comment,purchaseId);
 
                 }
                 else {
@@ -186,32 +194,36 @@ public class streetAddress extends baseClass{
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("BrandID_Result", BrandID, status, comment,purchaseId);
 
 
                 }
-                // Login + Transaction check
-                mcp.openBrowserForStaging(driver,baseUri);
-                lp.login();
-                tp.navigateUptoTransaction();
-                tp.searchTheTransaction(purchaseId);
-                tp.searchButton();
-                tp.clickOnTransactionId();
+				
+				// Login + Transaction check
+				mcp.openBrowserForStaging(driver,baseUri);
+				lp.login();
+				tp.navigateUptoTransaction();
+				tp.searchTheTransaction( purchaseId);
+				tp.searchButton();
+				tp.clickOnTransactionId();
                 tp.verifyPurchaseTransactionIDIsNotEmpty();
-                Thread.sleep(4000);
+				Thread.sleep(4000);
 
-                return; // PASS
-            }
+				return; // PASS
+			}
 
+		} catch (Exception e) {
+			// System.out.println("Unexpected error: " + e.getMessage());
+			Assert.fail("Unexpected error: " + e.getMessage()); // keep this
+		} finally {
+			if (driver != null)
+				driver.quit();
+		}
 
-        } catch (Exception e) {
-          // System.out.println("Unexpected error: " + e.getMessage());
-        	  Assert.fail("Unexpected error: " + e.getMessage()); // keep this
-        } 
-        finally {
-            if (driver != null) driver.quit();
-        }
-  }
-
+	}
+		
+		
+  
+ 
 
 }
