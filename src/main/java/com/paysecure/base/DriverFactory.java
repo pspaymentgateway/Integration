@@ -53,8 +53,7 @@ public class DriverFactory {
 
     	        WebDriver driver = new ChromeDriver(options);
 
-    	        // Add Robot code here AFTER driver is initialized
-    	       // driver.switchTo().alert().accept(); 
+    
     	        try {
     	            Robot robot = new Robot();
     	            robot.keyPress(KeyEvent.VK_ENTER);

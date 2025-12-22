@@ -69,9 +69,9 @@ public class DataProviders {
            
            
            
-//            {"DE"},   // Germany
-//            {"FR"},   // France
-//            {"CA"},   // Canada
+            {"DE"},   // Germany
+            {"FR"},   // France
+            {"CA"},   // Canada
 //            {"AU"},   // Australia
 //            {"NZ"},   // New Zealand
 //            {"JP"},   // Japan
@@ -89,17 +89,17 @@ public class DataProviders {
    //         {"XK"},   // Kosovo (unofficial ISO)
 //
 //            //Invalid / malformed values
-//            {"ZZ"},       // Non-existent ISO
-//            {"XYZ"},      // Too long
-//            {"IND"},      // 3-letter form
-//            {"India"},    // Full name instead of code
+            {"ZZ"},       // Non-existent ISO
+            {"XYZ"},      // Too long
+            {"IND"},      // 3-letter form
+            {"India"},    // Full name instead of code
            {"U S"},      // Contains space
- //           {"IN "},      // Trailing space
-//            {" IN"},      // Leading space
- //          {"IN 1"},      // Contains number
-//            {"@N"},       // Special character
-//            {"123"},      // Numeric value
-//            {""},         // Empty string
+            {"IN "},      // Trailing space
+            {" IN"},      // Leading space
+           {"IN 1"},      // Contains number
+            {"@N"},       // Special character
+            {"123"},      // Numeric value
+            {""},         // Empty string
            {null}        // Null value
         };
     }
@@ -112,7 +112,8 @@ public class DataProviders {
         return new Object[][] {
             //Valid city names
             {"London"},
-//            {"New York"},
+
+            {"New York"},
 //            {"Paris"},
 //            {"San Francisco"},
 //            {"Bengaluru"},
@@ -165,8 +166,10 @@ public class DataProviders {
     @DataProvider(name = "cardData")
     public Object[][] cardData() {
         return new Object[][] {
-        	// {"Abraham Benjamin de Villiers", "5555555555554444", "12/27", "111"},
-        	 {"Abraham Benjamin de Villiers", "4012000300001003", "01/29", "030"},
+        //	 {"Abraham Benjamin de Villiers", "5555555555554444", "12/27", "111"},
+        	// {"Abraham Benjamin de Villiers", "4012000300001003", "01/29", "030"},
+        //	{"Virat Kohli","5123456789012346","05/30","123"}, 
+        	{"Virat Kohli","4051885600446623","05/30","123"}  // monet chile
         };
     }
     
@@ -211,6 +214,54 @@ public class DataProviders {
         };
     }
 
+    @DataProvider(name = "currencyProvider")
+    public static Object[][] currencyProvider() {
+        return new Object[][]{
+            {"USD"},
+            {"INR"},
+            {"inr"},
+            {"JPY"},
+            {"XYZ"},
+            {"ABC"},
+            {"usd"},
+            {" US D "},
+            {"US1"},
+            {"EU@"},
+            {"123"},
+            {"@#$"},
+            {""},
+            {null},
+            {"USDIND"},
+        };
+    }
+    
+    @DataProvider(name = "productNameProvider")
+    public static Object[][] productNameProvider() {
+        return new Object[][]{
+            {"Book"},
+//            {"Laptop"},
+//            {"New Ebook Gaming cards"},
+//            {"X"},
+//            {""},
+//            {null}
+        };
+    }
 
-
+    @DataProvider(name = "brandIdProvider")
+    public static Object[][] brandIdProvider() {
+        return new Object[][]{
+            {"858d754d-106a-4c1d-b36a-820d82c84b8b"},
+           {"858D754D-106A-4C1D-B36A-820D82C84B8B"},
+             {"858D754D-106A-4C1D-B36A-820D82C84B8B"},
+            {"858d754d-106a-41-b36a-82082c84b8b"},
+            {"858d754d-106a4c1db36a820d82c84b8b"},
+            {"858d754d-106a-4c1d-b36a-820d82c84b8b123"},
+            {"858d754d-106a-4c1d-b36a-820d82c84b8bz"},
+            {"@@@d858d754d-106a-4c1d-b36a-820d82c84b8b"},
+            {"huagsuyush"},
+            {""},
+            {null},
+            {"aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"}
+        };
+    }
 }

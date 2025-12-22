@@ -2,15 +2,6 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Generated Random Double: 29.14]]>
-    </line>
-    <line>
-      <![CDATA[Generated First Name: john49f]]>
-    </line>
-    <line>
-      <![CDATA[Purchase created successfully with ID: 693fe9452a49368b7dd95076]]>
-    </line>
-    <line>
       <![CDATA[User enter ID in Username field]]>
     </line>
     <line>
@@ -20,7 +11,173 @@
       <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[S2S call successful on attempt 1]]>
+      <![CDATA[City test case will run for this PSP :- Matrix]]>
+    </line>
+    <line>
+      <![CDATA[City test case will run for this runflag:- Master2346]]>
+    </line>
+    <line>
+      <![CDATA[Generated Random Double: 0.23]]>
+    </line>
+    <line>
+      <![CDATA[Generated First Name: john3de]]>
+    </line>
+    <line>
+      <![CDATA[Generated Email: nairobiPalermobad52@gmail.com]]>
+    </line>
+    <line>
+      <![CDATA[City: Bengaluru → Status: 202]]>
+    </line>
+    <line>
+      <![CDATA[Response Body: {
+    "purchaseId": "6948e7a3311f13a333ea8130",
+    "client": {
+        "customerId": "NA",
+        "email": "nairobipalermobad52@gmail.com",
+        "phone": "+1111111111",
+        "full_name": "john3de",
+        "street_address": "GGNH JAIPUR",
+        "country": "DZ",
+        "city": "Bengaluru",
+        "zip_code": "W1S 3BE",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1766385571,
+    "type": "purchase",
+    "paymentMethod": "VISA,MASTER",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "savedCardUsed": "NO",
+    "redirectType": "POST",
+    "force_recurring": false,
+    "created_on": 1766385571,
+    "merchantRef": "6948e7a3311f13a333ea8130",
+    "merchantName": "suhasM",
+    "merchantType": "MERCHANT",
+    "purchase": {
+        "currency": "INR",
+        "products": [
+            {
+                "name": "New Ebook Gaming cards",
+                "quantity": 1.0,
+                "price": 0.23,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 0.23,
+        "requestAmount": 0.23,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1766385571
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5368",
+    "issued": "2025-12-22",
+    "due": 1766385571,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "110.235.229.35",
+    "checkout_url": "https://staging.paysecure.net/payments/e566ac41619d52a017a3c12adccd1e6b/",
+    "direct_post_url": "https://staging.paysecure.net/api/v1/p/6948e7a3311f13a333ea8130/",
+    "payoutProcess": false
+}]]>
+    </line>
+    <line>
+      <![CDATA[City accepted by API: Bengaluru]]>
+    </line>
+    <line>
+      <![CDATA[API success → proceeding with full flow]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Holder Name: AB de Villiers]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Number: 5123456789012346]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Expiry Date: 05/30]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card CVC: 123]]>
+    </line>
+    <line>
+      <![CDATA[Moved to the Pay button]]>
+    </line>
+    <line>
+      <![CDATA[Clicked on the Pay button to proceed with payment]]>
+    </line>
+    <line>
+      <![CDATA[Payment Success]]>
     </line>
     <line>
       <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
@@ -41,7 +198,7 @@
       <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[ Entered Transaction ID: 693fe9452a49368b7dd95076]]>
+      <![CDATA[ Entered Transaction ID: 6948e7a3311f13a333ea8130]]>
     </line>
     <line>
       <![CDATA[ Clicked on Search button]]>
@@ -55,45 +212,22 @@
     <line>
       <![CDATA[Purchase Transaction ID is not empty or not null]]>
     </line>
-    <line>
-      <![CDATA[streetAddress accepted by API: 123 Main St]]>
-    </line>
   </reporter-output>
-  <suite started-at="2025-12-15T16:25:44 IST" name="Default suite" finished-at="2025-12-15T16:27:13 IST" duration-ms="88641">
+  <suite started-at="2025-12-22T12:09:12 IST" name="Default suite" finished-at="2025-12-22T12:10:56 IST" duration-ms="103492">
     <groups>
     </groups>
-    <test started-at="2025-12-15T16:25:44 IST" name="Default test" finished-at="2025-12-15T16:27:13 IST" duration-ms="88641">
-      <class name="s2s.streetAddress">
-        <test-method is-config="true" signature="loadConfig()[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-15T16:25:44 IST" name="loadConfig" finished-at="2025-12-15T16:25:44 IST" duration-ms="28" status="PASS">
+    <test started-at="2025-12-22T12:09:12 IST" name="Default test" finished-at="2025-12-22T12:10:56 IST" duration-ms="103492">
+      <class name="purchase.city">
+        <test-method is-config="true" signature="loadConfig()[pri:0, instance:purchase.city@66629f63]" started-at="2025-12-22T12:09:12 IST" name="loadConfig" finished-at="2025-12-22T12:09:12 IST" duration-ms="29" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loadConfig -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-15T16:25:45 IST" name="setup" finished-at="2025-12-15T16:26:02 IST" duration-ms="17137" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:purchase.city@66629f63]" started-at="2025-12-22T12:09:13 IST" name="setup" finished-at="2025-12-22T12:09:24 IST" duration-ms="10921" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-15T16:26:02 IST" name="beforeMethod" finished-at="2025-12-15T16:26:02 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:purchase.city@66629f63]" started-at="2025-12-22T12:09:24 IST" name="beforeMethod" finished-at="2025-12-22T12:09:28 IST" duration-ms="3882" status="PASS">
           <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method signature="purchaseApi(java.lang.String)[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-15T16:26:02 IST" name="purchaseApi" data-provider="streetAddressProvider" finished-at="2025-12-15T16:27:10 IST" duration-ms="68219" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[123 Main St]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-            <line>
-              <![CDATA[Generated Random Double: 29.14]]>
-            </line>
-            <line>
-              <![CDATA[Generated First Name: john49f]]>
-            </line>
-            <line>
-              <![CDATA[Purchase created successfully with ID: 693fe9452a49368b7dd95076]]>
-            </line>
             <line>
               <![CDATA[User enter ID in Username field]]>
             </line>
@@ -103,8 +237,215 @@
             <line>
               <![CDATA[Click on submit button in login page]]>
             </line>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="validationForCityField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:purchase.city@66629f63]" started-at="2025-12-22T12:09:28 IST" name="validationForCityField" data-provider="cityData" finished-at="2025-12-22T12:10:53 IST" duration-ms="85047" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Bengaluru]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[AB de Villiers]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[5123456789012346]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[05/30]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[123]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[Master2346]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[Matrix]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
             <line>
-              <![CDATA[S2S call successful on attempt 1]]>
+              <![CDATA[City test case will run for this PSP :- Matrix]]>
+            </line>
+            <line>
+              <![CDATA[City test case will run for this runflag:- Master2346]]>
+            </line>
+            <line>
+              <![CDATA[Generated Random Double: 0.23]]>
+            </line>
+            <line>
+              <![CDATA[Generated First Name: john3de]]>
+            </line>
+            <line>
+              <![CDATA[Generated Email: nairobiPalermobad52@gmail.com]]>
+            </line>
+            <line>
+              <![CDATA[City: Bengaluru → Status: 202]]>
+            </line>
+            <line>
+              <![CDATA[Response Body: {
+    "purchaseId": "6948e7a3311f13a333ea8130",
+    "client": {
+        "customerId": "NA",
+        "email": "nairobipalermobad52@gmail.com",
+        "phone": "+1111111111",
+        "full_name": "john3de",
+        "street_address": "GGNH JAIPUR",
+        "country": "DZ",
+        "city": "Bengaluru",
+        "zip_code": "W1S 3BE",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1766385571,
+    "type": "purchase",
+    "paymentMethod": "VISA,MASTER",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "savedCardUsed": "NO",
+    "redirectType": "POST",
+    "force_recurring": false,
+    "created_on": 1766385571,
+    "merchantRef": "6948e7a3311f13a333ea8130",
+    "merchantName": "suhasM",
+    "merchantType": "MERCHANT",
+    "purchase": {
+        "currency": "INR",
+        "products": [
+            {
+                "name": "New Ebook Gaming cards",
+                "quantity": 1.0,
+                "price": 0.23,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 0.23,
+        "requestAmount": 0.23,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1766385571
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5368",
+    "issued": "2025-12-22",
+    "due": 1766385571,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "110.235.229.35",
+    "checkout_url": "https://staging.paysecure.net/payments/e566ac41619d52a017a3c12adccd1e6b/",
+    "direct_post_url": "https://staging.paysecure.net/api/v1/p/6948e7a3311f13a333ea8130/",
+    "payoutProcess": false
+}]]>
+            </line>
+            <line>
+              <![CDATA[City accepted by API: Bengaluru]]>
+            </line>
+            <line>
+              <![CDATA[API success → proceeding with full flow]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Holder Name: AB de Villiers]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Number: 5123456789012346]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Expiry Date: 05/30]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card CVC: 123]]>
+            </line>
+            <line>
+              <![CDATA[Moved to the Pay button]]>
+            </line>
+            <line>
+              <![CDATA[Clicked on the Pay button to proceed with payment]]>
+            </line>
+            <line>
+              <![CDATA[Payment Success]]>
             </line>
             <line>
               <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
@@ -125,7 +466,7 @@
               <![CDATA[Click on submit button in login page]]>
             </line>
             <line>
-              <![CDATA[ Entered Transaction ID: 693fe9452a49368b7dd95076]]>
+              <![CDATA[ Entered Transaction ID: 6948e7a3311f13a333ea8130]]>
             </line>
             <line>
               <![CDATA[ Clicked on Search button]]>
@@ -139,23 +480,20 @@
             <line>
               <![CDATA[Purchase Transaction ID is not empty or not null]]>
             </line>
-            <line>
-              <![CDATA[streetAddress accepted by API: 123 Main St]]>
-            </line>
           </reporter-output>
-        </test-method> <!-- purchaseApi -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:s2s.streetAddress@841e575]" started-at="2025-12-15T16:27:10 IST" name="tearDown" finished-at="2025-12-15T16:27:13 IST" duration-ms="3010" status="PASS">
+        </test-method> <!-- validationForCityField -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:purchase.city@66629f63]" started-at="2025-12-22T12:10:53 IST" name="tearDown" finished-at="2025-12-22T12:10:56 IST" duration-ms="3008" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=purchaseApi status=SUCCESS method=streetAddress.purchaseApi(java.lang.String)[pri:0, instance:s2s.streetAddress@841e575] output=Generated Random Double: 29.14]]]>
+                <![CDATA[[TestResult name=validationForCityField status=SUCCESS method=city.validationForCityField(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:purchase.city@66629f63] output=City test case will run for this PSP :- Matrix]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- s2s.streetAddress -->
+      </class> <!-- purchase.city -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
