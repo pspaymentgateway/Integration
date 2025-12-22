@@ -1,9 +1,10 @@
-package schemaValidation;
+package purchase;
 
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
@@ -26,48 +27,47 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 
-public class productName extends baseClass {
+public class zipcode extends baseClass{
 	private WebDriver driver;
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
 	matrixCashierPage mcp;
 	transactionPage tp;
-
+	payu3dPage pay;
     String status = "";
     String comment = "";
-	@BeforeMethod
-	public void beforeMethod() throws InterruptedException {
-		lp = new loginPage(getDriver());
-		lp.login();
-		mcp = new matrixCashierPage(getDriver());
-		tp = new transactionPage(getDriver());
-	}
-
-	@Test(dataProvider = "productNameData", dataProviderClass = jsonProvider.class)
-	public void validateForProductNameField(String productname, String cardHolder, String cardNumber, String expiry,
-			String cvv,String runFlag,String PSP) {
-
-		WebDriver driver = baseClass.getDriver();
-	      Reporter.log("StateCode test case will run for this PSP :- "+PSP, true);
-	       Reporter.log("StateCode test case will run for this runflag:- "+runFlag, true);
+	
+	  @BeforeMethod
+	  public void beforeMethod() throws InterruptedException {
+			lp = new loginPage(getDriver());
+			lp.login();
+			mcp=new matrixCashierPage(getDriver());
+			tp=new transactionPage(getDriver()); 
+			pay = new payu3dPage(getDriver());
+	  }
+	  
+  @Test(dataProvider ="zipCodeData", dataProviderClass = jsonProvider.class)
+  public void validationForZipcodeField(String zipcode,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String PSP) {
+		WebDriver driver=baseClass.getDriver();
+        Reporter.log("streetAddres test case will run for this PSP :- "+PSP, true);
+        Reporter.log("streetAddres test case will run for this runflag:- "+runFlag, true);
 		 String baseUri = PropertyReader.getProperty("baseURI");
 		RestAssured.baseURI =baseUri;
 		String brandId = PropertyReader.getProperty("brandId");
-
+	
 		String token = PropertyReader.getProperty("token");
 		String price = generateRandomTestData.generateRandomDouble();
-		String currency = PropertyReader.getProperty("currency");
-		String paymentMethod = PropertyReader.getProperty("paymentMethod");
+		String currency =PropertyReader.getProperty("currency");
+		String paymentMethod=PropertyReader.getProperty("paymentMethod");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
 		String master=PropertyReader.getProperty("Master");
 		String visa=PropertyReader.getProperty("Visa");
-		String city = "Paris";
-		
-		String streetAddress = "Main gate";
-		String zipcode = "20001";
-
+		String payu = PropertyReader.getPropertyForS2S("payu");
+		String city="Paris";
+		String streetAddress="Main gate";
+       
 		String requestBody = "{\n" +
 		        "  \"client\": {\n" +
 		        "    \"full_name\": \""+firstName+"\",\n" +
@@ -83,7 +83,7 @@ public class productName extends baseClass {
 		        "    \"currency\": \""+currency+"\",\n" +
 		        "    \"products\": [\n" +
 		        "      {\n" +
-		        "        \"name\": \""+productname+"\",\n" +
+		        "        \"name\": \"New Ebook Gaming cards\",\n" +
 		        "        \"price\":"+ price + "\n" +  // "        \"price\": " + price + "\n" +
 		        "      }\n" +
 		        "    ]\n" +
@@ -96,51 +96,70 @@ public class productName extends baseClass {
 		        "  \"failure_callback\": \"https://staging.paysecure.net/merchant\"\n" +
 		        "}";
 
-		Response response = RestAssured.given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
-				.body(requestBody).when().post("api/v1/purchases").then().extract().response();
+	    Response  response = RestAssured.given()
+                .header("Authorization", "Bearer " + token)
+                .contentType(ContentType.JSON)
+                .body(requestBody)
+                .when()
+                .post("api/v1/purchases")
+                .then()
+                .extract()
+                .response();
 
 		checkoutUrl = response.jsonPath().getString("checkout_url");
 		purchaseId = response.jsonPath().getString("purchaseId");
 
-		Reporter.log("productname: " + productname + " → Status: " + response.getStatusCode(), true);
+		Reporter.log("zipcode: " + zipcode + " → Status: " + response.getStatusCode(), true);
 		Reporter.log("Response Body: " + response.getBody().asPrettyString(), true);
-
-		checkoutUrl = response.jsonPath().getString("checkout_url");
-
-		if (response.statusCode() == 202) {
-			Reporter.log("productname accepted by API: " + productname, true);
-		}else if (response.statusCode() == 400 || response.statusCode() == 422) {
-            Reporter.log("productname rejected by API: " + productname, true);
+        
+        
+        checkoutUrl = response.jsonPath().getString("checkout_url");
+        
+        
+        if (response.statusCode() == 202) {
+            Reporter.log("zipcode accepted by API: " + zipcode, true);
+        }else if (response.statusCode() == 400 || response.statusCode() == 422) {
+            Reporter.log("zipcode rejected by API: " + zipcode, true);
             status = "PASS";
-            comment = "PASS → productname rejected correctly   " + productname;
+            comment = "PASS → zipcode rejected correctly   " + zipcode;
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("Productname_Result", productname, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("zipcode_Result", zipcode, status, comment,purchaseId);
             driver.quit();
             return; 
         }  else {
-			Reporter.log("Unexpected response for productname: " + productname + " -> " + response.statusCode(), true);
-		}
+            Reporter.log("Unexpected response for zipcode: " + zipcode + " -> " + response.statusCode(), true);
+        }
+    
+        try {
 
-		try {
 
-			// SUCCESS CASE (202 + checkout_url exists)
-			if (response.statusCode() == 202 && checkoutUrl != null && !checkoutUrl.isEmpty()) {
+            //SUCCESS CASE (202 + checkout_url exists)
+            if (response.statusCode()  == 202 && checkoutUrl != null && !checkoutUrl.isEmpty()) {
 
-				Reporter.log("API success -> proceeding with full flow", true);
+                Reporter.log("API success -> proceeding with full flow", true);
 
-				// Payment
-				driver.get(checkoutUrl);
-		
-				mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
-				 mcp.clickOnPay();
-				if (mcp.isCardNumberInvalid()) {
-					Reporter.log("Invalid card number → Luhn check failed", true);
-					driver.quit();
-					return;
-				}
-				
+                // Payment
+                driver.get(checkoutUrl);
+
+                mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+                mcp.clickOnPay();
+                
+                if(payu.equalsIgnoreCase("payu")) {
+        	    	pay.payForPayu(currency,purchaseId);
+        	    }
+                
+                
+                if (mcp.isCardNumberInvalid()) {
+             	   status = "FAIL";
+                   comment = "Payment Failed Cause Of Luhn ";
+              Reporter.log("Invalid card number → Luhn check failed", true);
+              ExcelWriteUtility.writeResult("Zipcode_Result", zipcode, status, comment,purchaseId);
+                    driver.quit();
+                    return;
+                }
+                
 				 // Wait until parameter appears in URL
                 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
                 wait.until(ExpectedConditions.urlContains("issucces"));
@@ -160,7 +179,7 @@ public class productName extends baseClass {
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Productname_Result", productname, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Zipcode_Result", zipcode, status, comment,purchaseId);
                     driver.quit();
                     return;
                 }
@@ -170,7 +189,7 @@ public class productName extends baseClass {
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Productname_Result", productname, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Zipcode_Result", zipcode, status, comment,purchaseId);
 
                 }
                 else {
@@ -179,33 +198,31 @@ public class productName extends baseClass {
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Productname_Result", productname, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Zipcode_Result", zipcode, status, comment,purchaseId);
 
 
                 }
 
-				// Login + Transaction check
-				mcp.openBrowserForStaging(driver,baseUri);
-				lp.login();
-				tp.navigateUptoTransaction();
-				tp.searchTheTransaction(purchaseId);
-				tp.searchButton();
-				Thread.sleep(2000);
-				tp.clickOnTransactionId();
+                // Login + Transaction check
+                mcp.openBrowserForStaging(driver,baseUri);
+                lp.login();
+                tp.navigateUptoTransaction();
+                tp.searchTheTransaction(purchaseId);
+                tp.searchButton();
+                tp.clickOnTransactionId();
                 tp.verifyPurchaseTransactionIDIsNotEmpty();
-				Thread.sleep(4000);
+                Thread.sleep(4000);
 
-				return; // PASS
-			}
+                return; // PASS
+            }
 
-		} catch (Exception e) {
-			 System.out.println("Unexpected error: " + e.getMessage());
-		
-		} finally {
-			if (driver != null)
-				driver.quit();
-		}
 
+        } catch (Exception e) {
+          // System.out.println("Unexpected error: " + e.getMessage());
+        	  Assert.fail("Unexpected error: " + e.getMessage()); // keep this
+        } 
+        finally {
+            if (driver != null) driver.quit();
+        }
 	}
-
 }

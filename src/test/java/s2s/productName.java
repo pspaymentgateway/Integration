@@ -25,7 +25,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 
-public class stateCode extends baseClass {
+public class productName extends baseClass {
 
 	private WebDriver driver;
 	loginPage lp;
@@ -36,7 +36,7 @@ public class stateCode extends baseClass {
 	payu3dPage pay;
     String status = "";
     String comment = "";
-    String stateCode;
+    String productname;
     
     // Store base URI to reuse in S2S call
     String baseUri;
@@ -49,10 +49,10 @@ public class stateCode extends baseClass {
 	}
 
 	
-	@Test(dataProvider ="stateCodeProvider", dataProviderClass = DataProviders.class)
-	public void purchaseApi(String stateCode) throws Exception {
+	@Test(dataProvider ="productNameProvider", dataProviderClass = DataProviders.class)
+	public void purchaseApi(String productname) throws Exception {
 		WebDriver driver = baseClass.getDriver();
-		this.stateCode = stateCode;
+		this.productname = productname;
 		
 		// Store baseUri for later use
 		baseUri = PropertyReader.getPropertyForS2S("baseURI");
@@ -64,13 +64,13 @@ public class stateCode extends baseClass {
 		String currency = PropertyReader.getPropertyForS2S("currencyS2S");
 		String paymentMethod = PropertyReader.getPropertyForS2S("paymentMethodS2S");
 		String firstName = generateRandomTestData.generateRandomFirstName();
-		String emailId = generateRandomTestData.generateRandomEmail();
+		String emailId=generateRandomTestData.generateRandomEmail();
 		String country = "US";
 		String city = "Paris";
-		
+		String stateCode = "QLD";
 		
 		String zipcode="10001";
-		String productname = "Cricket bat";
+		
 		String streetAddress="Lal kothi";
 
 		String requestBody = "{\n" +
@@ -113,7 +113,7 @@ public class stateCode extends baseClass {
 
 		System.out.println(response.asPrettyString());
 		purchaseId = response.jsonPath().getString("purchaseId");
-		int status1 = response.getStatusCode();
+		
 
 		if (response.statusCode() == 202) {
 		    purchaseId = response.jsonPath().getString("purchaseId");
@@ -126,19 +126,19 @@ public class stateCode extends baseClass {
 		}
 
 		if (response.statusCode() == 202) {
-			Reporter.log("stateCode accepted by API: " + stateCode, true);
+			Reporter.log("productname accepted by API: " + productname, true);
 		} else if (response.statusCode() == 400 || response.statusCode() == 422) {
-            Reporter.log("stateCode rejected by API: " + stateCode, true);
+            Reporter.log("productname rejected by API: " + productname, true);
             status = "PASS";
-            comment = "PASS → stateCode rejected correctly " + stateCode;
+            comment = "PASS → productname rejected correctly " + productname;
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("Statecode_Result", stateCode, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("Productname_Result", productname, status, comment, purchaseId);
             driver.quit();
             return; 
         } else {
-			Reporter.log("Unexpected response for stateCode: " + stateCode + " -> " + response.statusCode(), true);
+			Reporter.log("Unexpected response for productname: " + productname + " -> " + response.statusCode(), true);
 		}
 	}
 
@@ -166,7 +166,7 @@ public class stateCode extends baseClass {
 	    String token = PropertyReader.getPropertyForS2S("tokenS2S");
 	    String brandId = PropertyReader.getPropertyForS2S("brandIdS2S");
 	    String payu = PropertyReader.getPropertyForS2S("payu");
-	    
+	    String currency = PropertyReader.getPropertyForS2S("currency");
 	    String cardNumber = PropertyReader.getPropertyForS2S("cardNumber");
 	    String mmyy = PropertyReader.getPropertyForS2S("mmyy");
 	    String cvv = PropertyReader.getPropertyForS2S("cvv");
@@ -241,7 +241,7 @@ public class stateCode extends baseClass {
 	        status = "FAIL";
 	        comment = "S2S call failed with status: " + (response != null ? response.statusCode() : "NULL");
 	        Reporter.log(comment, true);
-	        ExcelWriteUtility.writeResults2s("Statecode_Result", stateCode, status, comment, purchaseId);
+	        ExcelWriteUtility.writeResults2s("Productname_Result", productname, status, comment, purchaseId);
 	        driver.quit();
 	        return;
 	    }
@@ -253,16 +253,17 @@ public class stateCode extends baseClass {
 	        Reporter.log("callback_url is NULL → Payment failed due to S2S error", true);
 
 	        status = "FAIL";
-	        comment = "callback_url null for purchaseId " + purchaseId;
-	        ExcelWriteUtility.writeResults2s("Statecode_Result", stateCode, status, comment, purchaseId);
+	        comment = "callback_url null for currency " + purchaseId;
+	        ExcelWriteUtility.writeResults2s("Productname_Result", productname, status, comment, purchaseId);
 	        driver.quit();
 	        return;
 	    }
 
 	    driver.get(callback_url);
 	    if(payu.equalsIgnoreCase("payu")) {
-	    	pay.payForPayu(stateCode,purchaseId);
+	    	pay.payForPayu(currency,purchaseId);
 	    }
+	    
 	    Thread.sleep(7000);
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.urlContains("issucces"));
@@ -282,17 +283,18 @@ public class stateCode extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("Statecode_Result", stateCode, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("Productname_Result", productname, status, comment, purchaseId);
             driver.quit();
             return;
         }
         else if (flag.equalsIgnoreCase("true")) {
             status = "PASS";
             comment = "Payment Successfully";
+            
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("Statecode_Result", stateCode, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("Productname_Result", productname, status, comment, purchaseId);
 
         }
         else {
@@ -301,7 +303,7 @@ public class stateCode extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("Statecode_Result", stateCode, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("Productname_Result", productname, status, comment, purchaseId);
         }
         
 		mcp.openBrowserForStaging(driver,url);

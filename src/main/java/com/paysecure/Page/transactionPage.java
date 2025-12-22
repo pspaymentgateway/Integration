@@ -3,12 +3,15 @@ package com.paysecure.Page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.Reporter;
 
 import com.paysecure.actiondriver.ActionDriver;
 import com.paysecure.base.baseClass;
+import com.paysecure.locators.payUPSP;
 import com.paysecure.locators.transactionPageLocators;
 
 
@@ -29,7 +32,9 @@ public class transactionPage {
 	private By transactionTableAmount = By.xpath(transactionPageLocators.transactionTableAmount);
 	private By transactionTableCurrency = By.xpath(transactionPageLocators.transactionTableCurrency);
 	private By currencyFrompaymentInfo = By.xpath(transactionPageLocators.currencyFrompaymentInfo);
+	private By currnecyPayUPaymentInfo = By.xpath(transactionPageLocators.currnecyPayUPaymentInfo);
 	private By amountFrompaymentInfo = By.xpath(transactionPageLocators.amountFrompaymentInfo);
+	private By amountForPayUPaymentInfo = By.xpath(transactionPageLocators.amountForPayUPaymentInfo);
 	private By maskedCardOnUI = By.xpath(transactionPageLocators.maskedCardOnUI);
 	
 	// matrix psp login
@@ -46,9 +51,18 @@ public class transactionPage {
 	private By successStatusFromPSP=By.xpath(transactionPageLocators.successStatusFromPSP);
 	private By lastStatusFromTxnPage=By.xpath(transactionPageLocators.lastStatusFromTxnPage);
 	
+	//Pay U
+	private By loginPayUButton=By.xpath(transactionPageLocators.loginPayUButton);
+	private By skipFlowPayU=By.xpath(transactionPageLocators.skipFlowPayU);
+	private By transactionPayU=By.xpath(transactionPageLocators.transactionPayU);
+
+	
+	@FindBy(xpath="//p[text()='Transactions']") private WebElement transactionPAyu;
+	@FindBy(xpath="//p[text()='Search']") private WebElement searchTransactionPAyu;
+	@FindBy(xpath="//p[text()='Search']") private WebElement SearchButtontransactionPAyu;
+	//pay u psp 
 	
 	private ActionDriver actionDriver;
-
 	// page factory constructor
 	public transactionPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -229,10 +243,35 @@ public class transactionPage {
 
 	    Reporter.log("Currency on Payment Info verified successfully", true);
 	}
+	
+	public void verifyCurrencyOnPaymentInfoPayU() {
+
+	    String curPaymentInfo = actionDriver.getText(currnecyPayUPaymentInfo);
+
+	    Reporter.log("UI Currency: " + uiCurrency, true);
+	    Reporter.log("Payment Info Currency: " + curPaymentInfo, true);
+
+	    Assert.assertEquals(curPaymentInfo, uiCurrency, "Currency mismatch on Payment Info");
+
+	    Reporter.log("Currency on Payment Info verified successfully", true);
+	}
 
 	public void verifyAmountFromPaymentInfo() {
 
 	    String amtPaymentInfo = actionDriver.getText(amountFrompaymentInfo);
+	    double paymentInfoAmount = Double.parseDouble(amtPaymentInfo.trim());
+
+	    Reporter.log("UI Amount: " + uiAmount, true);
+	    Reporter.log("Payment Info Amount: " + paymentInfoAmount, true);
+
+	    Assert.assertEquals(paymentInfoAmount, uiAmount, "Amount mismatch on Payment Info");
+
+	    Reporter.log("Amount on Payment Info verified successfully", true);
+	}
+	
+	public void verifyAmountFromPaymentInfoPayU() {
+
+	    String amtPaymentInfo = actionDriver.getText(amountForPayUPaymentInfo);
 	    double paymentInfoAmount = Double.parseDouble(amtPaymentInfo.trim());
 
 	    Reporter.log("UI Amount: " + uiAmount, true);
@@ -277,6 +316,23 @@ public class transactionPage {
 	    Reporter.log("Clicking Sign In button on PSP side", true);
 	    actionDriver.clickUsingJS(signinButtonPSP);
 
+	    Reporter.log("Login action performed successfully on PSP side", true);
+	}
+	
+	public void doLoginOnThePSPSideForPayU(String emailID, String password) {
+		WebDriver driver=baseClass.getDriver();
+		WebElement signInBtn = driver.findElement(By.xpath("//button[@type='submit']"));
+	    Reporter.log("Entering email on PSP side: " + emailID, true);
+	    actionDriver.enterText(emailPSP, emailID);
+
+	    
+	    actionDriver.enterText(passwordPSP, password);
+	    Reporter.log("Entering password on PSP side", true);
+	    
+	   
+	    signInBtn.click();
+	    Reporter.log("Clicking Sign In button on PSP side", true);
+	    
 	    Reporter.log("Login action performed successfully on PSP side", true);
 	}
 
@@ -409,6 +465,23 @@ public void searchButton() {
     Reporter.log(" Clicked on Search button", true);
 }
 	
+public void skipFlowForPayU() throws InterruptedException {
+	Thread.sleep(6000);
+	if(actionDriver.isDisplayed(skipFlowPayU)) {
+		actionDriver.clickUsingJS(skipFlowPayU);
+	}
+}
 	
+public void TransactionPayu() {
+	//transactionPAyu.click();
+	//actionDriver.clickUsingJS(transactionPayU);
+	actionDriver.click(transactionPayU);
+}
+
+
+public void checkTransactionPayuIndian(String paymentTxnID) {
+	searchTransactionPAyu.sendKeys(paymentTxnID);
+	SearchButtontransactionPAyu.click();
+}
 
 }
