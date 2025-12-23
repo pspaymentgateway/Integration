@@ -1,6 +1,21 @@
-package schemaValidation;
+package purchase;
 
+import org.testng.annotations.Test;
+
+import com.paysecure.Page.loginPage;
+import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.payu3dPage;
+import com.paysecure.Page.transactionPage;
+import com.paysecure.base.baseClass;
+import com.paysecure.utilities.DataProviders;
+import com.paysecure.utilities.ExcelWriteUtility;
+import com.paysecure.utilities.PropertyReader;
+import com.paysecure.utilities.generateRandomTestData;
+import com.paysecure.utilities.jsonProvider;
+
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -10,69 +25,56 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
-import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
-import com.paysecure.Page.loginPage;
-import com.paysecure.Page.matrixCashierPage;
-import com.paysecure.Page.transactionPage;
-import com.paysecure.base.baseClass;
-import com.paysecure.utilities.DataProviders;
-import com.paysecure.utilities.ExcelWriteUtility;
-import com.paysecure.utilities.PropertyReader;
-import com.paysecure.utilities.generateRandomTestData;
-import com.paysecure.utilities.jsonProvider;
-
-import io.restassured.response.Response;
-
-import io.restassured.RestAssured;
-
-public class email extends baseClass {
+public class streetAddress extends baseClass{
 	private WebDriver driver;
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
 	matrixCashierPage mcp;
 	transactionPage tp;
+	payu3dPage pay;
     String status = "";
     String comment = "";
-	@BeforeMethod
-	public void beforeMethod() throws InterruptedException {
-		lp = new loginPage(getDriver());
-		lp.login();
-		mcp=new matrixCashierPage(getDriver());
-		tp=new transactionPage(getDriver());
-	}
-
-	@Test(dataProvider ="email", dataProviderClass = jsonProvider.class)
-	public void matrixPurchase(String emailId,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String PSP) throws InterruptedException {
-        WebDriver driver=baseClass.getDriver();
-        Reporter.log("Email test case will run for this PSP :- "+PSP, true);
-        Reporter.log("Email test case will run for this runflag:- "+runFlag, true);
-		String baseUri = PropertyReader.getProperty("baseURI");
+	
+	  @BeforeMethod
+	  public void beforeMethod() throws InterruptedException {
+			lp = new loginPage(getDriver());
+			lp.login();
+			mcp=new matrixCashierPage(getDriver());
+			tp=new transactionPage(getDriver());
+			pay = new payu3dPage(getDriver());
+	  }
+	
+  @Test(dataProvider ="StreetAddressData", dataProviderClass = jsonProvider.class)
+  public void validationForStreetAddresseField(String streetAddress,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String PSP) {
+		WebDriver driver=baseClass.getDriver();
+        Reporter.log("streetAddres test case will run for this PSP :- "+PSP, true);
+        Reporter.log("streetAddres test case will run for this runflag:- "+runFlag, true);
+		 String baseUri = PropertyReader.getProperty("baseURI");
 		RestAssured.baseURI =baseUri;
 		String brandId = PropertyReader.getProperty("brandId");
 		String token = PropertyReader.getProperty("token");
 		String price = generateRandomTestData.generateRandomDouble();
-	
 		String currency =PropertyReader.getProperty("currency");
 		String paymentMethod=PropertyReader.getProperty("paymentMethod");
 		String firstName = generateRandomTestData.generateRandomFirstName();
+		String emailId = generateRandomTestData.generateRandomEmail();
 		String master=PropertyReader.getProperty("Master");
 		String visa=PropertyReader.getProperty("Visa");
+		String payu = PropertyReader.getPropertyForS2S("payu");
+		String city="Paris";
 		
        
 		String requestBody = "{\n" +
-		        "  \"client\": {"
-		        + "\n" +
+		        "  \"client\": {\n" +
 		        "    \"full_name\": \""+firstName+"\",\n" +
 		        "    \"email\": \""+emailId+"\",\n" +
 		        "    \"country\": \"DZ\",\n" +
-		        "    \"city\": \"London\",\n" +
+		        "    \"city\": \""+city+"\",\n" +
 		        "    \"stateCode\": \"QLD\",\n" +
-		        "    \"street_address\": \"GGNH JAIPUR\",\n" +
+		        "    \"street_address\": \""+streetAddress+"\",\n" +
 		        "    \"zip_code\": \"W1S 3BE\",\n" +
 		        "    \"phone\": \"+1111111111\"\n" +
 		        "  },\n" +
@@ -106,31 +108,31 @@ public class email extends baseClass {
 		checkoutUrl = response.jsonPath().getString("checkout_url");
 		purchaseId = response.jsonPath().getString("purchaseId");
 
-		Reporter.log("emailId: " + emailId + " → Status: " + response.getStatusCode(), true);
+		Reporter.log("streetAddres: " + streetAddress + " → Status: " + response.getStatusCode(), true);
 		Reporter.log("Response Body: " + response.getBody().asPrettyString(), true);
         
         
         checkoutUrl = response.jsonPath().getString("checkout_url");
-
-
+        
         
         if (response.statusCode() == 202) {
-            Reporter.log("Email accepted by API: " + emailId, true);
-        } else if (response.statusCode() == 400 || response.statusCode() == 422) {
-            Reporter.log("Email rejected by API: " + emailId, true);
+            Reporter.log("streetAddress accepted by API: " + streetAddress, true);
+        }else if (response.statusCode() == 400 || response.statusCode() == 422) {
+            Reporter.log("streetAddress rejected by API: " + streetAddress, true);
             status = "PASS";
-            comment = "PASS → Email rejected correctly" + emailId;
+            comment = "PASS → streetAddress rejected correctly   " + streetAddress;
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("Email_Result", emailId, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress, status, comment,purchaseId);
+            driver.quit();
             return; 
-        }
-        else {
-            Reporter.log("Unexpected response for email: " + emailId + " -> " + response.statusCode(), true);
+        }  else {
+            Reporter.log("Unexpected response for streetAddress: " + streetAddress + " -> " + response.statusCode(), true);
         }
     
         try {
+
 
             //SUCCESS CASE (202 + checkout_url exists)
             if (response.statusCode()  == 202 && checkoutUrl != null && !checkoutUrl.isEmpty()) {
@@ -140,16 +142,23 @@ public class email extends baseClass {
                 // Payment
                 driver.get(checkoutUrl);
 
-                mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
+             //   mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
                 mcp.clickOnPay();
                 
+                if(payu.equalsIgnoreCase("payu")) {
+        	    	pay.payForPayu(currency,purchaseId);
+        	    }
+                
                 if (mcp.isCardNumberInvalid()) {
-                    Reporter.log("Invalid card number → Luhn check failed", true);
+             	   status = "FAIL";
+                   comment = "Payment Failed Cause Of Luhn ";
+              Reporter.log("Invalid card number → Luhn check failed", true);
+              ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress, status, comment,purchaseId);
                     driver.quit();
                     return;
                 }
-                
-             // Wait until parameter appears in URL
+
+				 // Wait until parameter appears in URL
                 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
                 wait.until(ExpectedConditions.urlContains("issucces"));
 
@@ -168,7 +177,8 @@ public class email extends baseClass {
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Email_Result", emailId, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress, status, comment,purchaseId);
+                    driver.quit();
                     return;
                 }
                 else if (flag.equalsIgnoreCase("true")) {
@@ -177,7 +187,7 @@ public class email extends baseClass {
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Email_Result", emailId, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress, status, comment,purchaseId);
 
                 }
                 else {
@@ -186,10 +196,10 @@ public class email extends baseClass {
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Email_Result", emailId, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress, status, comment,purchaseId);
+
 
                 }
-
                 // Login + Transaction check
                 mcp.openBrowserForStaging(driver,baseUri);
                 lp.login();
@@ -211,5 +221,7 @@ public class email extends baseClass {
         finally {
             if (driver != null) driver.quit();
         }
-	}
+  }
+
+
 }

@@ -1,9 +1,10 @@
-package schemaValidation;
+package purchase;
 
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
@@ -33,7 +34,7 @@ public class stateCode extends baseClass{
 	String purchaseId;
 	matrixCashierPage mcp;
 	transactionPage tp;
-	
+	payu3dPage pay;
     String status = "";
     String comment = "";
 	
@@ -43,6 +44,7 @@ public class stateCode extends baseClass{
 			lp.login();
 			mcp = new matrixCashierPage(getDriver());
 			tp = new transactionPage(getDriver());
+			pay = new payu3dPage(getDriver());
 	  }
 	
   @Test(dataProvider = "StateCodeData", dataProviderClass = jsonProvider.class)
@@ -61,6 +63,7 @@ public class stateCode extends baseClass{
 		String emailId = generateRandomTestData.generateRandomEmail();
 		String master=PropertyReader.getProperty("Master");
 		String visa=PropertyReader.getProperty("Visa");
+		String payu = PropertyReader.getPropertyForS2S("payu");
 		String city = "Paris";
 		String streetAddress = "Main gate";
 		String zipcode = "20001";
@@ -134,8 +137,15 @@ public class stateCode extends baseClass{
 
 		 				mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
 		 				 mcp.clickOnPay();
+		 				 
+		 			    if(payu.equalsIgnoreCase("payu")) {
+		 			    	pay.payForPayu(currency,purchaseId);
+		 			    }
 		 				if (mcp.isCardNumberInvalid()) {
-		 					Reporter.log("Invalid card number → Luhn check failed", true);
+		 				   status = "FAIL";
+		                    comment = "Payment Failed Cause Of Luhn ";
+	                   Reporter.log("Invalid card number → Luhn check failed", true);
+	                   ExcelWriteUtility.writeResult("StateCode_Result", stateCode, status, comment,purchaseId);
 		 					driver.quit();
 		 					return;
 		 				}

@@ -23,7 +23,7 @@ public class generateRandomTestData {
 
 	    // Generates a random email like "johnDoeab@mail.com"
 	    public static String generateRandomEmail() {
-	        String email = "tomjerry" + UUID.randomUUID().toString().substring(0, 5) + "@gmail.com";
+	        String email = "nairobiPalermo" + UUID.randomUUID().toString().substring(0, 5) + "@gmail.com";
 	        Reporter.log("Generated Email: " +email, true);
 	        return email;
 	    }
