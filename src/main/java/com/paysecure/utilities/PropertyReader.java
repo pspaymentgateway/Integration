@@ -6,41 +6,34 @@ import java.util.Properties;
 
 public class PropertyReader {
 
-    private static Properties properties = new Properties();
 
-    static {
-        try {
-            String projectPath = System.getProperty("user.dir");
-            String configPath = projectPath + "/src/test/resources/propertiesFolder/config.properties";
+	    private static Properties configProps = new Properties();
+	    private static Properties s2sProps = new Properties();
 
-            FileInputStream fis = new FileInputStream(configPath);
-            properties.load(fis);
+	    static {
+	        try {
+	            String projectPath = System.getProperty("user.dir");
 
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to load config.properties file", e);
-        }
-    }
+	            FileInputStream configFis =
+	                    new FileInputStream(projectPath + "/src/test/resources/propertiesFolder/config.properties");
+	            configProps.load(configFis);
 
-    public static String getProperty(String key) {
-        return properties.getProperty(key);
-    }
-    
-    /*--------------------- Property file for S2S ------------------------------*/
-    
-    static {
-        try {
-            String projectPath = System.getProperty("user.dir");
-            String configPath = projectPath + "/src/test/resources/propertiesFolder/s2s.properties";
+	            FileInputStream s2sFis =
+	                    new FileInputStream(projectPath + "/src/test/resources/propertiesFolder/s2s.properties");
+	            s2sProps.load(s2sFis);
 
-            FileInputStream fis = new FileInputStream(configPath);
-            properties.load(fis);
+	        } catch (IOException e) {
+	            throw new RuntimeException("Failed to load property files", e);
+	        }
+	    }
 
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to load config.properties file", e);
-        }
-    }
+	    public static String getProperty(String key) {
+	        return configProps.getProperty(key);
+	    }
 
-    public static String getPropertyforS2S(String key) {
-        return properties.getProperty(key);
-    }
-}
+	    public static String getPropertyForS2S(String key) {
+	        return s2sProps.getProperty(key);
+	    }
+	}
+
+

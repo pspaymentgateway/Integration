@@ -55,14 +55,14 @@ public class streetAddress extends baseClass {
 		this.streetAddress = streetAddress;
 		
 		// Store baseUri for later use
-		baseUri = PropertyReader.getPropertyforS2S("baseURI");
+		baseUri = PropertyReader.getPropertyForS2S("baseURI");
 		RestAssured.baseURI = baseUri;
 		
-        String token = PropertyReader.getPropertyforS2S("tokenS2S");
-        String BrandID = PropertyReader.getPropertyforS2S("brandIdS2S");
+        String token = PropertyReader.getPropertyForS2S("tokenS2S");
+        String BrandID = PropertyReader.getPropertyForS2S("brandIdS2S");
 		String price = generateRandomTestData.generateRandomDouble();
-		String currency = PropertyReader.getPropertyforS2S("currencyS2S");
-		String paymentMethod = PropertyReader.getPropertyforS2S("paymentMethodS2S");
+		String currency = PropertyReader.getPropertyForS2S("currencyS2S");
+		String paymentMethod = PropertyReader.getPropertyForS2S("paymentMethodS2S");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String country = "US";
 		String city = "Paris";
@@ -160,13 +160,13 @@ public class streetAddress extends baseClass {
 		System.err.println("Full URL: " + baseUri + endpoint);
 
 		// OPTION 1: Use same token as purchase creation (RECOMMENDED)
-	    String token = PropertyReader.getPropertyforS2S("tokenS2S");
-	    String brandId = PropertyReader.getPropertyforS2S("brandIdS2S");
-	    String payu = PropertyReader.getPropertyforS2S("payu");
+	    String token = PropertyReader.getPropertyForS2S("tokenS2S");
+	    String brandId = PropertyReader.getPropertyForS2S("brandIdS2S");
+	    String payu = PropertyReader.getPropertyForS2S("payu");
 	    
-	    String cardNumber = PropertyReader.getProperty("cardNumber");
-	    String mmyy = PropertyReader.getProperty("mmyy");
-	    String cvv = PropertyReader.getProperty("cvv");
+	    String cardNumber = PropertyReader.getPropertyForS2S("cardNumber");
+	    String mmyy = PropertyReader.getPropertyForS2S("mmyy");
+	    String cvv = PropertyReader.getPropertyForS2S("cvv");
 
 	    String requestBody =
 	    		"{\n" +
@@ -258,7 +258,7 @@ public class streetAddress extends baseClass {
 
 	    driver.get(callback_url);
 	    if(payu.equalsIgnoreCase("payu")) {
-	    	pay.payForPayu();
+	    	pay.payForPayu(streetAddress,purchaseId);
 	    }
 	    Thread.sleep(7000);
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));

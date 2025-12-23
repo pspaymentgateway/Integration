@@ -1,9 +1,10 @@
-package schemaValidation;
+package purchase;
 
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
@@ -26,44 +27,46 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 
-public class zipcode extends baseClass{
+public class currency extends baseClass {
 	private WebDriver driver;
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
 	matrixCashierPage mcp;
 	transactionPage tp;
-	
+	payu3dPage pay;
     String status = "";
     String comment = "";
-	
-	  @BeforeMethod
-	  public void beforeMethod() throws InterruptedException {
-			lp = new loginPage(getDriver());
-			lp.login();
-			mcp=new matrixCashierPage(getDriver());
-			tp=new transactionPage(getDriver()); 
-	  }
-	  
-  @Test(dataProvider ="zipCodeData", dataProviderClass = jsonProvider.class)
-  public void validationForZipcodeField(String zipcode,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String PSP) {
+	@BeforeMethod
+	public void beforeMethod() throws InterruptedException {
+		lp = new loginPage(getDriver());
+		lp.login();
+		mcp = new matrixCashierPage(getDriver());
+		tp = new transactionPage(getDriver());
+		pay = new payu3dPage(getDriver());
+	}
+
+	@Test(dataProvider ="currencyData", dataProviderClass = jsonProvider.class)
+	public void validationForCurrencyField(String Currency,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String PSP) {
 		WebDriver driver=baseClass.getDriver();
-        Reporter.log("streetAddres test case will run for this PSP :- "+PSP, true);
-        Reporter.log("streetAddres test case will run for this runflag:- "+runFlag, true);
+        Reporter.log("City test case will run for this PSP :- "+PSP, true);
+        Reporter.log("City test case will run for this runflag:- "+runFlag, true);
 		 String baseUri = PropertyReader.getProperty("baseURI");
 		RestAssured.baseURI =baseUri;
 		String brandId = PropertyReader.getProperty("brandId");
 	
 		String token = PropertyReader.getProperty("token");
 		String price = generateRandomTestData.generateRandomDouble();
-		String currency =PropertyReader.getProperty("currency");
+	
 		String paymentMethod=PropertyReader.getProperty("paymentMethod");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
 		String master=PropertyReader.getProperty("Master");
 		String visa=PropertyReader.getProperty("Visa");
+		String payu = PropertyReader.getPropertyForS2S("payu");
 		String city="Paris";
 		String streetAddress="Main gate";
+		String zipcode="20001";
        
 		String requestBody = "{\n" +
 		        "  \"client\": {\n" +
@@ -77,7 +80,7 @@ public class zipcode extends baseClass{
 		        "    \"phone\": \"+1111111111\"\n" +
 		        "  },\n" +
 		        "  \"purchase\": {\n" +
-		        "    \"currency\": \""+currency+"\",\n" +
+		        "    \"currency\": \""+Currency+"\",\n" +
 		        "    \"products\": [\n" +
 		        "      {\n" +
 		        "        \"name\": \"New Ebook Gaming cards\",\n" +
@@ -106,7 +109,7 @@ public class zipcode extends baseClass{
 		checkoutUrl = response.jsonPath().getString("checkout_url");
 		purchaseId = response.jsonPath().getString("purchaseId");
 
-		Reporter.log("zipcode: " + zipcode + " → Status: " + response.getStatusCode(), true);
+		Reporter.log("Currency: " + Currency + " → Status: " + response.getStatusCode(), true);
 		Reporter.log("Response Body: " + response.getBody().asPrettyString(), true);
         
         
@@ -114,19 +117,19 @@ public class zipcode extends baseClass{
         
         
         if (response.statusCode() == 202) {
-            Reporter.log("zipcode accepted by API: " + zipcode, true);
+            Reporter.log("Currency accepted by API: " + Currency, true);
         }else if (response.statusCode() == 400 || response.statusCode() == 422) {
-            Reporter.log("zipcode rejected by API: " + zipcode, true);
+            Reporter.log("Currency rejected by API: " + Currency, true);
             status = "PASS";
-            comment = "PASS → zipcode rejected correctly   " + zipcode;
+            comment = "PASS → Currency rejected correctly   " + Currency;
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("zipcode_Result", zipcode, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("Currency_Result", Currency, status, comment,purchaseId);
             driver.quit();
             return; 
         }  else {
-            Reporter.log("Unexpected response for zipcode: " + zipcode + " -> " + response.statusCode(), true);
+            Reporter.log("Unexpected response for Currency: " + Currency + " -> " + response.statusCode(), true);
         }
     
         try {
@@ -139,16 +142,21 @@ public class zipcode extends baseClass{
 
                 // Payment
                 driver.get(checkoutUrl);
-
-                mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+          
+                mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
                 mcp.clickOnPay();
-                
+                if(payu.equalsIgnoreCase("payu")) {
+        	    	pay.payForPayu(Currency,purchaseId);
+        	    }
                 if (mcp.isCardNumberInvalid()) {
-                    Reporter.log("Invalid card number → Luhn check failed", true);
+             	   status = "FAIL";
+                   comment = "Payment Failed Cause Of Luhn ";
+              Reporter.log("Invalid card number → Luhn check failed", true);
+              ExcelWriteUtility.writeResult("Currency_Result", Currency, status, comment,purchaseId);
                     driver.quit();
                     return;
                 }
-                
+
 				 // Wait until parameter appears in URL
                 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
                 wait.until(ExpectedConditions.urlContains("issucces"));
@@ -168,7 +176,7 @@ public class zipcode extends baseClass{
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Zipcode_Result", zipcode, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Currency_Result", Currency, status, comment,purchaseId);
                     driver.quit();
                     return;
                 }
@@ -178,7 +186,7 @@ public class zipcode extends baseClass{
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Zipcode_Result", zipcode, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Currency_Result", Currency, status, comment,purchaseId);
 
                 }
                 else {
@@ -187,11 +195,10 @@ public class zipcode extends baseClass{
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Zipcode_Result", zipcode, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Currency_Result", Currency, status, comment,purchaseId);
 
 
                 }
-
                 // Login + Transaction check
                 mcp.openBrowserForStaging(driver,baseUri);
                 lp.login();
@@ -214,4 +221,5 @@ public class zipcode extends baseClass{
             if (driver != null) driver.quit();
         }
 	}
+
 }
