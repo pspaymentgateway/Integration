@@ -164,7 +164,7 @@ public class city extends baseClass {
 		System.err.println("Full URL: " + baseUri + endpoint);
 
 		// OPTION 1: Use same token as purchase creation (RECOMMENDED)
-		String url=PropertyReader.getProperty("url");
+		String url=PropertyReader.getPropertyForS2S("url");
 	    String token = PropertyReader.getPropertyForS2S("tokenS2S");
 	    String brandId = PropertyReader.getPropertyForS2S("brandIdS2S");
 	    String payu = PropertyReader.getPropertyForS2S("payu");
@@ -265,6 +265,7 @@ public class city extends baseClass {
 	    if(payu.equalsIgnoreCase("payu")) {
 	    	pay.payForPayu(city,purchaseId);
 	    }
+	    
 	    Thread.sleep(7000);
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.urlContains("issucces"));

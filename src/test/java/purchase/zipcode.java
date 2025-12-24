@@ -52,29 +52,32 @@ public class zipcode extends baseClass{
 		WebDriver driver=baseClass.getDriver();
         Reporter.log("streetAddres test case will run for this PSP :- "+PSP, true);
         Reporter.log("streetAddres test case will run for this runflag:- "+runFlag, true);
-		 String baseUri = PropertyReader.getProperty("baseURI");
+		 String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
-		String brandId = PropertyReader.getProperty("brandId");
+		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 	
-		String token = PropertyReader.getProperty("token");
+		String token = PropertyReader.getPropertyForPurchase("token");
 		String price = generateRandomTestData.generateRandomDouble();
-		String currency =PropertyReader.getProperty("currency");
-		String paymentMethod=PropertyReader.getProperty("paymentMethod");
+		String currency =PropertyReader.getPropertyForPurchase("currency");
+		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
-		String master=PropertyReader.getProperty("Master");
-		String visa=PropertyReader.getProperty("Visa");
+		String master=PropertyReader.getPropertyForPurchase("Master");
+		String visa=PropertyReader.getPropertyForPurchase("Visa");
 		String payu = PropertyReader.getPropertyForS2S("payu");
-		String city="Paris";
-		String streetAddress="Main gate";
-       
+		String country="IN";
+		String city = "Paris";
+		String stateCode="QLD";
+		String streetAddress = "Main gate";
+		
+		String productname="Cricket bat";
 		String requestBody = "{\n" +
 		        "  \"client\": {\n" +
 		        "    \"full_name\": \""+firstName+"\",\n" +
 		        "    \"email\": \""+emailId+"\",\n" +
-		        "    \"country\": \"DZ\",\n" +
+		        "    \"country\": \""+country+"\",\n" +
 		        "    \"city\": \""+city+"\",\n" +
-		        "    \"stateCode\": \"QLD\",\n" +
+		        "    \"stateCode\": \""+stateCode+"\",\n" +
 		        "    \"street_address\": \""+streetAddress+"\",\n" +
 		        "    \"zip_code\": \""+zipcode+"\",\n" +
 		        "    \"phone\": \"+1111111111\"\n" +
@@ -83,7 +86,7 @@ public class zipcode extends baseClass{
 		        "    \"currency\": \""+currency+"\",\n" +
 		        "    \"products\": [\n" +
 		        "      {\n" +
-		        "        \"name\": \"New Ebook Gaming cards\",\n" +
+		        "        \"name\": \""+productname+"\",\n" +
 		        "        \"price\":"+ price + "\n" +  // "        \"price\": " + price + "\n" +
 		        "      }\n" +
 		        "    ]\n" +

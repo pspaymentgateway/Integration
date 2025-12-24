@@ -50,21 +50,21 @@ public class payuEndToEndFlow extends baseClass{
   @Test(dataProvider ="cardData",dataProviderClass = DataProviders.class) 
   public void purchase(String cardHolder, String cardNumber, String expiry, String cvc) throws Exception {
       WebDriver driver=baseClass.getDriver();
-		String baseUri = PropertyReader.getProperty("baseURI");
+		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
-		String brandId = PropertyReader.getProperty("brandId");
-		String token = PropertyReader.getProperty("token");
+		String brandId = PropertyReader.getPropertyForPurchase("brandId");
+		String token = PropertyReader.getPropertyForPurchase("token");
 		String price = generateRandomTestData.generateRandomDouble();
-		String currency =PropertyReader.getProperty("currency");
-		String paymentMethod=PropertyReader.getProperty("paymentMethods");
+		String currency =PropertyReader.getPropertyForPurchase("currency");
+		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
-        String master=PropertyReader.getProperty("Master");
-		String visa=PropertyReader.getProperty("Visa");
+        String master=PropertyReader.getPropertyForPurchase("Master");
+		String visa=PropertyReader.getPropertyForPurchase("Visa");
 		String payu = PropertyReader.getPropertyForS2S("payu");
-		String payUURL=PropertyReader.getProperty("payUURL");
-		String EmailPayu=PropertyReader.getProperty("EmailPayu");
-		String PassPayU=PropertyReader.getProperty("PassPayU");
+		String payUURL=PropertyReader.getPropertyForPurchase("payUURL");
+		String EmailPayu=PropertyReader.getPropertyForPurchase("EmailPayu");
+		String PassPayU=PropertyReader.getPropertyForPurchase("PassPayU");
 		
 		String requestBody = "{\n" +
 		        "  \"client\": {\n" +

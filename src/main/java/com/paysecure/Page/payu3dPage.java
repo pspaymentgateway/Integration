@@ -70,12 +70,14 @@ public class payu3dPage {
 	                "Currency_Result", currency, status, comment, purchaseId
 	        );
 
-	        driver.quit();
+	      //  driver.quit();
 	        return;
 	    }
 
 	    Reporter.log("Payment Success", true);
 	}
+	
+
 
 	
 }

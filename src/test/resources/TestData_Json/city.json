@@ -106,6 +106,15 @@
 	    "CardNumber": "4051885600446623",
 	    "Expiry": "12/27",
 	    "CVC": "123",
+	    "RunFlag": "Visa66234",
+		"PSP" :"Monnet"
+	},
+	{
+	    "City": "Jaipur",
+	    "CardHolder": "Virat Kohli",
+	    "CardNumber": "4051885600446623",
+	    "Expiry": "12/27",
+	    "CVC": "123",
 	    "RunFlag": "Visa6623",
 		"PSP" :"Monnet"
 	}

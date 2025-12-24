@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="purchase.city">
+      <class name="testcases.monnetPeru">
         <methods>
+          <include name="beforeMethod"/>
           <include name="loadConfig"/>
           <include name="tearDown"/>
-          <include name="beforeMethod"/>
-          <include name="validationForCityField" invocation-numbers="0"/>
+          <include name="purchase" invocation-numbers="0"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- purchase.city -->
+      </class> <!-- testcases.monnetPeru -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
