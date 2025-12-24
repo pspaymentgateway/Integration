@@ -161,7 +161,7 @@ public class email extends baseClass {
 		System.err.println("Full URL: " + baseUri + endpoint);
 
 		// OPTION 1: Use same token as purchase creation (RECOMMENDED)
-		String url=PropertyReader.getProperty("url");
+		String url=PropertyReader.getPropertyForS2S("url");
 	    String token = PropertyReader.getPropertyForS2S("tokenS2S");
 	    String brandId = PropertyReader.getPropertyForS2S("brandIdS2S");
 	    String payu = PropertyReader.getPropertyForS2S("payu");

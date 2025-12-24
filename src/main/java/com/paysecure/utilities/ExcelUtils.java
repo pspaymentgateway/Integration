@@ -13,7 +13,7 @@ import java.util.List;
 public class ExcelUtils {
 
 	 public static Object[][] readExcel(String filePath, String sheetName) {
-		 String runFlagColumnName = PropertyReader.getProperty("runFlagColumnName");
+		 String runFlagColumnName = PropertyReader.getPropertyForPurchase("runFlagColumnName");
 	        try {
 	            FileInputStream fis = new FileInputStream(new File(filePath));
 	            Workbook workbook = WorkbookFactory.create(fis);

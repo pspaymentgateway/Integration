@@ -49,41 +49,50 @@ public class email extends baseClass {
 		pay = new payu3dPage(getDriver());
 	}
 
+	
 	@Test(dataProvider ="email", dataProviderClass = jsonProvider.class)
-	public void matrixPurchase(String emailId,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String PSP) throws InterruptedException {
+	public void Purchase(String emailId,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String PSP) throws InterruptedException {
         WebDriver driver=baseClass.getDriver();
         Reporter.log("Email test case will run for this PSP :- "+PSP, true);
         Reporter.log("Email test case will run for this runflag:- "+runFlag, true);
-		String baseUri = PropertyReader.getProperty("baseURI");
+		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
-		String brandId = PropertyReader.getProperty("brandId");
-		String token = PropertyReader.getProperty("token");
+		String brandId = PropertyReader.getPropertyForPurchase("brandId");
+		String token = PropertyReader.getPropertyForPurchase("token");
 		String price = generateRandomTestData.generateRandomDouble();
 	
-		String currency =PropertyReader.getProperty("currency");
-		String paymentMethod=PropertyReader.getProperty("paymentMethod");
+		String currency =PropertyReader.getPropertyForPurchase("currency");
+		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();
-		String master=PropertyReader.getProperty("Master");
-		String visa=PropertyReader.getProperty("Visa");
+		String master=PropertyReader.getPropertyForPurchase("Master");
+		String visa=PropertyReader.getPropertyForPurchase("Visa");
 		String payu = PropertyReader.getPropertyForS2S("payu");
-       
-		String requestBody = "{\n" +
-		        "  \"client\": {"
-		        + "\n" +
+		
+		String country="IN";
+		String city = "Paris";
+		String stateCode="QLD";
+		String streetAddress = "Main gate";
+		String zipcode = "20001";
+		String productname="Cricket bat";
+		
+		
+        System.err.println(baseUri);
+        String requestBody = "{\n" +
+		        "  \"client\": {\n" +
 		        "    \"full_name\": \""+firstName+"\",\n" +
 		        "    \"email\": \""+emailId+"\",\n" +
-		        "    \"country\": \"DZ\",\n" +
-		        "    \"city\": \"London\",\n" +
-		        "    \"stateCode\": \"QLD\",\n" +
-		        "    \"street_address\": \"GGNH JAIPUR\",\n" +
-		        "    \"zip_code\": \"W1S 3BE\",\n" +
+		        "    \"country\": \""+country+"\",\n" +
+		        "    \"city\": \""+city+"\",\n" +
+		        "    \"stateCode\": \""+stateCode+"\",\n" +
+		        "    \"street_address\": \""+streetAddress+"\",\n" +
+		        "    \"zip_code\": \""+zipcode+"\",\n" +
 		        "    \"phone\": \"+1111111111\"\n" +
 		        "  },\n" +
 		        "  \"purchase\": {\n" +
 		        "    \"currency\": \""+currency+"\",\n" +
 		        "    \"products\": [\n" +
 		        "      {\n" +
-		        "        \"name\": \"New Ebook Gaming cards\",\n" +
+		        "        \"name\": \""+productname+"\",\n" +
 		        "        \"price\":"+ price + "\n" +  // "        \"price\": " + price + "\n" +
 		        "      }\n" +
 		        "    ]\n" +
@@ -114,7 +123,7 @@ public class email extends baseClass {
         
         
         checkoutUrl = response.jsonPath().getString("checkout_url");
-
+        System.err.println(checkoutUrl);
 
         
         if (response.statusCode() == 202) {
@@ -139,7 +148,7 @@ public class email extends baseClass {
             if (response.statusCode()  == 202 && checkoutUrl != null && !checkoutUrl.isEmpty()) {
 
                 Reporter.log("API success → proceeding with full flow", true);
-
+                System.err.println(checkoutUrl);
                 // Payment
                 driver.get(checkoutUrl);
 

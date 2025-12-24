@@ -37,6 +37,21 @@ public class generateRandomTestData {
 	        return formattedValue;
 	    }
 	    
+	    public static String generateRandomDoublePrice() {
+	        Random random = new Random();
+
+	        double min = 1.00;
+	        double max = 49999.00;
+
+	        double value = min + (random.nextDouble() * (max - min));
+	        String formattedValue = String.format("%.2f", value);
+
+	        Reporter.log("Generated Random Double: " + formattedValue, true);
+	        return formattedValue;
+	    }
+
+
+	    
 	 // Generates a random Indian mobile number like "9876543210"
 	    public static String generateRandomIndianMobileNumber() {
 	        // Indian mobile numbers start with 6, 7, 8, or 9
@@ -56,11 +71,11 @@ public class generateRandomTestData {
 	        return mobileNumber.toString();
 	    }
 	    
-	 // 🏷️ Generates a random Merchant Customer ID like "D229"
+	 //  Generates a random Merchant Customer ID like "D229"
 	    public static String generateRandomMerchantCustomerId() {
 	        Random random = new Random();
 	        int number = 100 + random.nextInt(900); // Generates a number between 100–999
-	        String merchantCustomerId = "D" + number;
+	        String merchantCustomerId = "Z" + number;
 	        
 	        Reporter.log("Generated Merchant Customer ID: " + merchantCustomerId, true);
 	        return merchantCustomerId;
