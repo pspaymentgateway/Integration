@@ -3,15 +3,16 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testcases.monnetPeru">
+      <class name="CreateCustomerAndSession.createCustomerAndCreateSession">
         <methods>
-          <include name="beforeMethod"/>
           <include name="loadConfig"/>
+          <include name="beforeMethod"/>
+          <include name="createSession" invocation-numbers="0"/>
           <include name="tearDown"/>
-          <include name="purchase" invocation-numbers="0"/>
           <include name="setup"/>
+          <include name="createCustomer"/>
         </methods>
-      </class> <!-- testcases.monnetPeru -->
+      </class> <!-- CreateCustomerAndSession.createCustomerAndCreateSession -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -60,12 +60,13 @@ public class createCustomerAndCreateSession extends baseClass{
 		String brandId =PropertyReader.getPropertyForCreateCustomerSession("BrandIDCC");
 		String token =PropertyReader.getPropertyForCreateCustomerSession("TokenCC");
 		String firstName = generateRandomTestData.generateRandomFirstName();
-		String lastName = generateRandomTestData.generateRandomFirstName();
+		
 		String emailId = generateRandomTestData.generateRandomEmail();
 		String mobileNumber=generateRandomTestData.generateRandomIndianMobileNumber();
 		String merchantCSID=generateRandomTestData.generateRandomMerchantCustomerId();
 		
 		baseUri = PropertyReader.getPropertyForCreateCustomerSession("baseURICC");
+		String country="IN";
 		RestAssured.baseURI = baseUri;
 		String requestBody = "{\n" +
 				"  \"merchantCustomerId\": \""+merchantCSID+"\",\n" +
@@ -73,9 +74,9 @@ public class createCustomerAndCreateSession extends baseClass{
 				"  \"emailId\": \""+emailId+"\",\n" +
 				"  \"phoneNo\": \""+mobileNumber+"\",\n" +
 				"  \"city\": \"juneau\",\n" +
-				"  \"stateCode\": \"CT\",\n" +
+				"  \"stateCode\": \"MH\",\n" +
 				"  \"zipCode\": \"99812\",\n" +
-				"  \"country\": \"CA\",\n" +
+				"  \"country\": \""+country+"\",\n" +
 				"  \"custRegDate\": \"2024-11-23\",\n" +
 				"  \"successTrans\": \"23\",\n" +
 				"  \"extraParam\": {}\n" +
@@ -96,7 +97,7 @@ public class createCustomerAndCreateSession extends baseClass{
 		String brandId =PropertyReader.getPropertyForCreateCustomerSession("BrandIDCC");
 		String currency =PropertyReader.getPropertyForCreateCustomerSession("currencyCC");
 		String token =PropertyReader.getPropertyForCreateCustomerSession("TokenCC");
-		baseUri = PropertyReader.getPropertyForCreateCustomerSession("baseURICC");
+		String baseUri = PropertyReader.getPropertyForCreateCustomerSession("baseURICC");
 		String paymentMethod=PropertyReader.getPropertyForCreateCustomerSession("paymentMethod");
 		String price = generateRandomTestData.generateRandomDoublePrice();
 		String payu = PropertyReader.getPropertyForCreateCustomerSession("payu");
@@ -209,11 +210,12 @@ public class createCustomerAndCreateSession extends baseClass{
            mcp.openBrowserForStaging(driver,baseUri);
            lp.login();
            tp.navigateUptoTransaction();
+           tp.searchTheTransaction(sessionId);
            tp.searchTheTransaction( sessionId);
            tp.searchButton();
            tp.clickOnTransactionId();
            tp.verifyPurchaseTransactionIDIsNotEmpty();
-           Thread.sleep(4000); 
+           Thread.sleep(4000);
            
 
            

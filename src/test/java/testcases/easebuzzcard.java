@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
@@ -18,20 +19,22 @@ import io.restassured.response.Response;
 import java.time.Duration;
 import java.util.Arrays;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 
-public class matrixEndToEndFlow extends baseClass{
+public class easebuzzcard extends baseClass{
 	private WebDriver driver;
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
 	matrixCashierPage mcp;
 	transactionPage tp;
-	
+	payu3dPage pay;
     String status = "";
     String comment = "";
 	  @BeforeMethod
@@ -40,7 +43,9 @@ public class matrixEndToEndFlow extends baseClass{
 			lp.login();
 			mcp=new matrixCashierPage(getDriver());
 			tp=new transactionPage(getDriver());
+			pay = new payu3dPage(getDriver());
 	  }
+	  
 	//String cardHolder, String cardNumber, String expiry, String cvc
   @Test(dataProvider ="cardData",dataProviderClass = DataProviders.class) 
   public void purchase(String cardHolder, String cardNumber, String expiry, String cvc) throws Exception {
@@ -54,11 +59,12 @@ public class matrixEndToEndFlow extends baseClass{
 		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
-		String matrixPSPUrl=PropertyReader.getPropertyForPurchase("matrixPSPUrl");
-		String UID=PropertyReader.getPropertyForPurchase("UID");
-		String PASSWORD=PropertyReader.getPropertyForPurchase("PASSWORD");
-		String master=PropertyReader.getPropertyForPurchase("Master");
+        String master=PropertyReader.getPropertyForPurchase("Master");
 		String visa=PropertyReader.getPropertyForPurchase("Visa");
+		String payu = PropertyReader.getPropertyForS2S("payu");
+		String payUURL=PropertyReader.getPropertyForPurchase("payUURL");
+		String EmailPayu=PropertyReader.getPropertyForPurchase("EmailPayu");
+		String PassPayU=PropertyReader.getPropertyForPurchase("PassPayU");
 		
 		String country="IN";
 		String city = "Paris";
@@ -116,19 +122,24 @@ public class matrixEndToEndFlow extends baseClass{
 		tp.validatePurchaseId(purchaseId);
         // Payment
         driver.get(checkoutUrl);
-        if(master.equalsIgnoreCase("master")){
-        	mcp.clickONMaster();
-        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
-        }
-        
-        if(visa.equalsIgnoreCase("visa")) {
-        	mcp.clickONVisa();
-        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
-        }
-        
+//        if(master.equalsIgnoreCase("master")){
+//        	mcp.clickONMaster();
+//        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
+//        }
+//        
+//        if(visa.equalsIgnoreCase("visa")) {
+//        	mcp.clickONVisa();
+//        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
+//        }
+        mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
         
         mcp.clickOnPay();
-        Thread.sleep(7000);
+        
+	    if(payu.equalsIgnoreCase("payu")) {
+	    	pay.payForPayu(currency,purchaseId);
+	    }
+        
+        Thread.sleep(4000);
 		 // Wait until parameter appears in URL
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.urlContains("issucces"));
@@ -171,6 +182,7 @@ public class matrixEndToEndFlow extends baseClass{
 
 
         }
+        
         mcp.openBrowserForStaging(driver,RestAssured.baseURI);
         lp.login();
         tp.navigateUptoTransaction();
