@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>11/0/0</td>
 </tr><tr>
-<td>Started on:</td><td>Mon Dec 22 12:09:12 IST 2025</td>
+<td>Started on:</td><td>Wed Dec 24 14:51:51 IST 2025</td>
 </tr>
-<tr><td>Total time:</td><td>103 seconds (103492 ms)</td>
+<tr><td>Total time:</td><td>574 seconds (574439 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,28 +76,49 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='purchase.city.validationForCityField()'><b>validationForCityField</b><br>Test class: purchase.city<br>Parameters: Bengaluru, AB de Villiers, 5123456789012346, 05/30, 123, Master2346, Matrix<br/>
-<a href="#Output-1185530728" onClick='toggleBox("Output-1185530728", this, "Show output", "Hide output");'>Show output</a>
+<td title='purchase.email.Purchase()'><b>Purchase</b><br>Test class: purchase.email<br>Parameters: suhas@.com, Virat Kohli, 5553042241984105, 07/28, 123, Master4105, Matrix<br/>
+<a href="#Output-449668621" onClick='toggleBox("Output-449668621", this, "Show output", "Hide output");'>Show output</a>
 
-<a href="#Output-1185530728" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-1185530728">
-City test case will run for this PSP :- Matrix<br/>
-City test case will run for this runflag:- Master2346<br/>
-Generated Random Double: 0.23<br/>
-Generated First Name: john3de<br/>
-Generated Email: nairobiPalermobad52@gmail.com<br/>
-City: Bengaluru → Status: 202<br/>
+<a href="#Output-449668621" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-449668621">
+Email test case will run for this PSP :- Matrix<br/>
+Email test case will run for this runflag:- Master4105<br/>
+Generated Random Double: 13.80<br/>
+Generated First Name: john47b<br/>
+emailId: suhas@.com → Status: 400<br/>
 Response Body: {
-    "purchaseId": "6948e7a3311f13a333ea8130",
+    "message": "Invalid Email Format",
+    "code": "transaction_error"
+}<br/>
+Email rejected by API: suhas@.com<br/>
+PASS → Email rejected correctlysuhas@.com<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>purchase.email@2cf92cc7</td></tr>
+<tr>
+<td title='purchase.email.Purchase()'><b>Purchase</b><br>Test class: purchase.email<br>Parameters: gaurav.singh@paysecure.dev, Virat Kohli, 5553042241984105, 07/28, 123, Master4105, Matrix<br/>
+<a href="#Output-1283267007" onClick='toggleBox("Output-1283267007", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1283267007" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1283267007">
+Email test case will run for this PSP :- Matrix<br/>
+Email test case will run for this runflag:- Master4105<br/>
+Generated Random Double: 1.04<br/>
+Generated First Name: john8df<br/>
+emailId: gaurav.singh@paysecure.dev → Status: 202<br/>
+Response Body: {
+    "purchaseId": "694bb143197becacc1a08309",
     "client": {
         "customerId": "NA",
-        "email": "nairobipalermobad52@gmail.com",
+        "email": "gaurav.singh@paysecure.dev",
         "phone": "+1111111111",
-        "full_name": "john3de",
-        "street_address": "GGNH JAIPUR",
-        "country": "DZ",
-        "city": "Bengaluru",
-        "zip_code": "W1S 3BE",
+        "full_name": "john8df",
+        "street_address": "Main gate",
+        "country": "IN",
+        "city": "Paris",
+        "zip_code": "20001",
         "cc": [
             
         ],
@@ -106,32 +127,32 @@ Response Body: {
         ],
         "stateCode": "QLD"
     },
-    "updated_on": 1766385571,
+    "updated_on": 1766568259,
     "type": "purchase",
-    "paymentMethod": "VISA,MASTER",
+    "paymentMethod": "MASTER",
     "amountUnit": "MAJOR",
     "errorMsg": "",
     "errorCode": "NA",
     "savedCardUsed": "NO",
     "redirectType": "POST",
     "force_recurring": false,
-    "created_on": 1766385571,
-    "merchantRef": "6948e7a3311f13a333ea8130",
+    "created_on": 1766568259,
+    "merchantRef": "694bb143197becacc1a08309",
     "merchantName": "suhasM",
     "merchantType": "MERCHANT",
     "purchase": {
         "currency": "INR",
         "products": [
             {
-                "name": "New Ebook Gaming cards",
+                "name": "Cricket bat",
                 "quantity": 1.0,
-                "price": 0.23,
+                "price": 1.04,
                 "discount": 0,
                 "tax_percent": "0.00"
             }
         ],
-        "total": 0.23,
-        "requestAmount": 0.23,
+        "total": 1.04,
+        "requestAmount": 1.04,
         "language": "en",
         "notes": "",
         "debt": 0,
@@ -174,7 +195,7 @@ Response Body: {
     "status_history": [
         {
             "status": "created",
-            "timestamp": 1766385571
+            "timestamp": 1766568259
         }
     ],
     "is_test": false,
@@ -182,9 +203,9 @@ Response Body: {
     "send_receipt": false,
     "is_recurring_token": false,
     "skip_capture": false,
-    "reference_generated": "PS5368",
-    "issued": "2025-12-22",
-    "due": 1766385571,
+    "reference_generated": "PS5423",
+    "issued": "2025-12-24",
+    "due": 1766568259,
     "refund_upto": 0,
     "cc_descriptor": "",
     "fraudScore": "NA",
@@ -204,27 +225,26 @@ Response Body: {
     "success_callback": "https://www.google.com/",
     "failure_callback": "https://staging.paysecure.net/merchant",
     "platform": "API",
-    "created_from_ip": "110.235.229.35",
-    "checkout_url": "https://staging.paysecure.net/payments/e566ac41619d52a017a3c12adccd1e6b/",
-    "direct_post_url": "https://staging.paysecure.net/api/v1/p/6948e7a3311f13a333ea8130/",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://test4.paymentsclub.net/payments/533756c21edaae782722c25be550222d/",
+    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/694bb143197becacc1a08309/",
     "payoutProcess": false
 }<br/>
-City accepted by API: Bengaluru<br/>
+Email accepted by API: gaurav.singh@paysecure.dev<br/>
 API success → proceeding with full flow<br/>
-Entered Card Holder Name: AB de Villiers<br/>
-Entered Card Number: 5123456789012346<br/>
-Entered Card Expiry Date: 05/30<br/>
+Entered Card Holder Name: Virat Kohli<br/>
+Entered Card Number: 5553042241984105<br/>
+Entered Card Expiry Date: 07/28<br/>
 Entered Card CVC: 123<br/>
 Moved to the Pay button<br/>
 Clicked on the Pay button to proceed with payment<br/>
-Payment Success<br/>
 Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true<br/>
 Payment Successfully<br/>
  Opened staging environment in a new browser tab<br/>
 User enter ID in Username field<br/>
 User Enter Password in password field<br/>
 Click on submit button in login page<br/>
- Entered Transaction ID: 6948e7a3311f13a333ea8130<br/>
+ Entered Transaction ID: 694bb143197becacc1a08309<br/>
  Clicked on Search button<br/>
  Clicked on Search button<br/>
  Clicked on first Transaction ID from list<br/>
@@ -232,8 +252,611 @@ Purchase Transaction ID is not empty or not null<br/>
 </div>
 </td>
 <td></td>
-<td>85</td>
-<td>purchase.city@66629f63</td></tr>
+<td>76</td>
+<td>purchase.email@2cf92cc7</td></tr>
+<tr>
+<td title='purchase.email.Purchase()'><b>Purchase</b><br>Test class: purchase.email<br>Parameters: hello@brand.io, Virat Kohli, 5553042241984105, 07/28, 123, Master4105, Matrix<br/>
+<a href="#Output-1990790859" onClick='toggleBox("Output-1990790859", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1990790859" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1990790859">
+Email test case will run for this PSP :- Matrix<br/>
+Email test case will run for this runflag:- Master4105<br/>
+Generated Random Double: 51.44<br/>
+Generated First Name: john8f8<br/>
+emailId: hello@brand.io → Status: 202<br/>
+Response Body: {
+    "purchaseId": "694bb1a3197becacc1a085e8",
+    "client": {
+        "customerId": "NA",
+        "email": "hello@brand.io",
+        "phone": "+1111111111",
+        "full_name": "john8f8",
+        "street_address": "Main gate",
+        "country": "IN",
+        "city": "Paris",
+        "zip_code": "20001",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1766568355,
+    "type": "purchase",
+    "paymentMethod": "MASTER",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "savedCardUsed": "NO",
+    "redirectType": "POST",
+    "force_recurring": false,
+    "created_on": 1766568355,
+    "merchantRef": "694bb1a3197becacc1a085e8",
+    "merchantName": "suhasM",
+    "merchantType": "MERCHANT",
+    "purchase": {
+        "currency": "INR",
+        "products": [
+            {
+                "name": "Cricket bat",
+                "quantity": 1.0,
+                "price": 51.44,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 51.44,
+        "requestAmount": 51.44,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1766568355
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5424",
+    "issued": "2025-12-24",
+    "due": 1766568355,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://test4.paymentsclub.net/payments/00f0344eb0600fc3ec84053d6060c764/",
+    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/694bb1a3197becacc1a085e8/",
+    "payoutProcess": false
+}<br/>
+Email accepted by API: hello@brand.io<br/>
+API success → proceeding with full flow<br/>
+Entered Card Holder Name: Virat Kohli<br/>
+Entered Card Number: 5553042241984105<br/>
+Entered Card Expiry Date: 07/28<br/>
+Entered Card CVC: 123<br/>
+Moved to the Pay button<br/>
+Clicked on the Pay button to proceed with payment<br/>
+Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true<br/>
+Payment Successfully<br/>
+ Opened staging environment in a new browser tab<br/>
+User enter ID in Username field<br/>
+User Enter Password in password field<br/>
+Click on submit button in login page<br/>
+ Entered Transaction ID: 694bb1a3197becacc1a085e8<br/>
+ Clicked on Search button<br/>
+ Clicked on Search button<br/>
+ Clicked on first Transaction ID from list<br/>
+Purchase Transaction ID is not empty or not null<br/>
+</div>
+</td>
+<td></td>
+<td>77</td>
+<td>purchase.email@2cf92cc7</td></tr>
+<tr>
+<td title='purchase.email.Purchase()'><b>Purchase</b><br>Test class: purchase.email<br>Parameters: @@@, Virat Kohli, 5553042241984105, 07/28, 123, Master4105, Matrix<br/>
+<a href="#Output-1081867337" onClick='toggleBox("Output-1081867337", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1081867337" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1081867337">
+Email test case will run for this PSP :- Matrix<br/>
+Email test case will run for this runflag:- Master4105<br/>
+Generated Random Double: 39.19<br/>
+Generated First Name: johncf6<br/>
+emailId: @@@ → Status: 400<br/>
+Response Body: {
+    "message": "Invalid Email Format",
+    "code": "transaction_error"
+}<br/>
+Email rejected by API: @@@<br/>
+PASS → Email rejected correctly@@@<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>purchase.email@2cf92cc7</td></tr>
+<tr>
+<td title='purchase.email.Purchase()'><b>Purchase</b><br>Test class: purchase.email<br>Parameters: useralias@gmail.com, Virat Kohli, 5553042241984105, 07/28, 123, Master4105, Matrix<br/>
+<a href="#Output-792346604" onClick='toggleBox("Output-792346604", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-792346604" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-792346604">
+Email test case will run for this PSP :- Matrix<br/>
+Email test case will run for this runflag:- Master4105<br/>
+Generated Random Double: 44.10<br/>
+Generated First Name: john7f6<br/>
+emailId: useralias@gmail.com → Status: 202<br/>
+Response Body: {
+    "purchaseId": "694bb205197becacc1a088cd",
+    "client": {
+        "customerId": "NA",
+        "email": "useralias@gmail.com",
+        "phone": "+1111111111",
+        "full_name": "john7f6",
+        "street_address": "Main gate",
+        "country": "IN",
+        "city": "Paris",
+        "zip_code": "20001",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1766568453,
+    "type": "purchase",
+    "paymentMethod": "MASTER",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "savedCardUsed": "NO",
+    "redirectType": "POST",
+    "force_recurring": false,
+    "created_on": 1766568453,
+    "merchantRef": "694bb205197becacc1a088cd",
+    "merchantName": "suhasM",
+    "merchantType": "MERCHANT",
+    "purchase": {
+        "currency": "INR",
+        "products": [
+            {
+                "name": "Cricket bat",
+                "quantity": 1.0,
+                "price": 44.1,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 44.1,
+        "requestAmount": 44.1,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1766568453
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5425",
+    "issued": "2025-12-24",
+    "due": 1766568453,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://test4.paymentsclub.net/payments/22bce431b014af5ec8fbdddd3d1dcb53/",
+    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/694bb205197becacc1a088cd/",
+    "payoutProcess": false
+}<br/>
+Email accepted by API: useralias@gmail.com<br/>
+API success → proceeding with full flow<br/>
+Entered Card Holder Name: Virat Kohli<br/>
+Entered Card Number: 5553042241984105<br/>
+Entered Card Expiry Date: 07/28<br/>
+Entered Card CVC: 123<br/>
+Moved to the Pay button<br/>
+Clicked on the Pay button to proceed with payment<br/>
+Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true<br/>
+Payment Successfully<br/>
+ Opened staging environment in a new browser tab<br/>
+User enter ID in Username field<br/>
+User Enter Password in password field<br/>
+Click on submit button in login page<br/>
+ Entered Transaction ID: 694bb205197becacc1a088cd<br/>
+ Clicked on Search button<br/>
+ Clicked on Search button<br/>
+ Clicked on first Transaction ID from list<br/>
+Purchase Transaction ID is not empty or not null<br/>
+</div>
+</td>
+<td></td>
+<td>79</td>
+<td>purchase.email@2cf92cc7</td></tr>
+<tr>
+<td title='purchase.email.Purchase()'><b>Purchase</b><br>Test class: purchase.email<br>Parameters: null, Virat Kohli, 5553042241984105, 07/28, 123, Master4105, Matrix<br/>
+<a href="#Output-2009068503" onClick='toggleBox("Output-2009068503", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-2009068503" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-2009068503">
+Email test case will run for this PSP :- Matrix<br/>
+Email test case will run for this runflag:- Master4105<br/>
+Generated Random Double: 6.82<br/>
+Generated First Name: johne9e<br/>
+emailId: null → Status: 400<br/>
+Response Body: {
+    "message": "client.email is missing",
+    "code": "parameter_missing"
+}<br/>
+Email rejected by API: null<br/>
+PASS → Email rejected correctlynull<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>purchase.email@2cf92cc7</td></tr>
+<tr>
+<td title='purchase.email.Purchase()'><b>Purchase</b><br>Test class: purchase.email<br>Parameters: , Virat Kohli, 5553042241984105, 07/28, 123, Master4105, Matrix<br/>
+<a href="#Output-1086330138" onClick='toggleBox("Output-1086330138", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1086330138" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1086330138">
+Email test case will run for this PSP :- Matrix<br/>
+Email test case will run for this runflag:- Master4105<br/>
+Generated Random Double: 43.96<br/>
+Generated First Name: johnafb<br/>
+emailId:  → Status: 400<br/>
+Response Body: {
+    "message": "client.email is missing",
+    "code": "parameter_missing"
+}<br/>
+Email rejected by API: <br/>
+PASS → Email rejected correctly<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>purchase.email@2cf92cc7</td></tr>
+<tr>
+<td title='purchase.email.Purchase()'><b>Purchase</b><br>Test class: purchase.email<br>Parameters: @gmail.com, Virat Kohli, 5553042241984105, 07/28, 123, Master4105, Matrix<br/>
+<a href="#Output-1873299589" onClick='toggleBox("Output-1873299589", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1873299589" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1873299589">
+Email test case will run for this PSP :- Matrix<br/>
+Email test case will run for this runflag:- Master4105<br/>
+Generated Random Double: 5.32<br/>
+Generated First Name: john1d8<br/>
+emailId: @gmail.com → Status: 400<br/>
+Response Body: {
+    "message": "Invalid Email Format",
+    "code": "transaction_error"
+}<br/>
+Email rejected by API: @gmail.com<br/>
+PASS → Email rejected correctly@gmail.com<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>purchase.email@2cf92cc7</td></tr>
+<tr>
+<td title='purchase.email.Purchase()'><b>Purchase</b><br>Test class: purchase.email<br>Parameters: suhas, Virat Kohli, 5553042241984105, 07/28, 123, Master4105, Matrix<br/>
+<a href="#Output-539486713" onClick='toggleBox("Output-539486713", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-539486713" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-539486713">
+Email test case will run for this PSP :- Matrix<br/>
+Email test case will run for this runflag:- Master4105<br/>
+Generated Random Double: 42.07<br/>
+Generated First Name: johncb3<br/>
+emailId: suhas → Status: 400<br/>
+Response Body: {
+    "message": "Invalid Email Format",
+    "code": "transaction_error"
+}<br/>
+Email rejected by API: suhas<br/>
+PASS → Email rejected correctlysuhas<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>purchase.email@2cf92cc7</td></tr>
+<tr>
+<td title='purchase.email.Purchase()'><b>Purchase</b><br>Test class: purchase.email<br>Parameters: suhas@, Virat Kohli, 5553042241984105, 07/28, 123, Master4105, Matrix<br/>
+<a href="#Output-1197894457" onClick='toggleBox("Output-1197894457", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1197894457" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1197894457">
+Email test case will run for this PSP :- Matrix<br/>
+Email test case will run for this runflag:- Master4105<br/>
+Generated Random Double: 13.63<br/>
+Generated First Name: john171<br/>
+emailId: suhas@ → Status: 400<br/>
+Response Body: {
+    "message": "Invalid Email Format",
+    "code": "transaction_error"
+}<br/>
+Email rejected by API: suhas@<br/>
+PASS → Email rejected correctlysuhas@<br/>
+</div>
+</td>
+<td></td>
+<td>10</td>
+<td>purchase.email@2cf92cc7</td></tr>
+<tr>
+<td title='purchase.email.Purchase()'><b>Purchase</b><br>Test class: purchase.email<br>Parameters: suhas.patil@gmail.com, Virat Kohli, 5553042241984105, 07/28, 123, Master4105, Matrix<br/>
+<a href="#Output-1760173749" onClick='toggleBox("Output-1760173749", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1760173749" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1760173749">
+Email test case will run for this PSP :- Matrix<br/>
+Email test case will run for this runflag:- Master4105<br/>
+Generated Random Double: 9.08<br/>
+Generated First Name: john044<br/>
+emailId: suhas.patil@gmail.com → Status: 202<br/>
+Response Body: {
+    "purchaseId": "694bb0e3197becacc1a08026",
+    "client": {
+        "customerId": "NA",
+        "email": "suhas.patil@gmail.com",
+        "phone": "+1111111111",
+        "full_name": "john044",
+        "street_address": "Main gate",
+        "country": "IN",
+        "city": "Paris",
+        "zip_code": "20001",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1766568163,
+    "type": "purchase",
+    "paymentMethod": "MASTER",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "savedCardUsed": "NO",
+    "redirectType": "POST",
+    "force_recurring": false,
+    "created_on": 1766568163,
+    "merchantRef": "694bb0e3197becacc1a08026",
+    "merchantName": "suhasM",
+    "merchantType": "MERCHANT",
+    "purchase": {
+        "currency": "INR",
+        "products": [
+            {
+                "name": "Cricket bat",
+                "quantity": 1.0,
+                "price": 9.08,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 9.08,
+        "requestAmount": 9.08,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1766568163
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5422",
+    "issued": "2025-12-24",
+    "due": 1766568163,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://test4.paymentsclub.net/payments/88e94320a4744d3f51596a3809040cb1/",
+    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/694bb0e3197becacc1a08026/",
+    "payoutProcess": false
+}<br/>
+Email accepted by API: suhas.patil@gmail.com<br/>
+API success → proceeding with full flow<br/>
+Entered Card Holder Name: Virat Kohli<br/>
+Entered Card Number: 5553042241984105<br/>
+Entered Card Expiry Date: 07/28<br/>
+Entered Card CVC: 123<br/>
+Moved to the Pay button<br/>
+Clicked on the Pay button to proceed with payment<br/>
+Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true<br/>
+Payment Successfully<br/>
+ Opened staging environment in a new browser tab<br/>
+User enter ID in Username field<br/>
+User Enter Password in password field<br/>
+Click on submit button in login page<br/>
+ Entered Transaction ID: 694bb0e3197becacc1a08026<br/>
+ Clicked on Search button<br/>
+ Clicked on Search button<br/>
+ Clicked on first Transaction ID from list<br/>
+Purchase Transaction ID is not empty or not null<br/>
+</div>
+</td>
+<td></td>
+<td>75</td>
+<td>purchase.email@2cf92cc7</td></tr>
 </table><p>
 </body>
 </html>

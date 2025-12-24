@@ -55,7 +55,7 @@ public class transactionPage {
 	private By loginPayUButton=By.xpath(transactionPageLocators.loginPayUButton);
 	private By skipFlowPayU=By.xpath(transactionPageLocators.skipFlowPayU);
 	private By transactionPayU=By.xpath(transactionPageLocators.transactionPayU);
-
+	private By submitButton=By.xpath(transactionPageLocators.submitButton);
 	
 	@FindBy(xpath="//p[text()='Transactions']") private WebElement transactionPAyu;
 	@FindBy(xpath="//p[text()='Search']") private WebElement searchTransactionPAyu;
@@ -482,6 +482,25 @@ public void TransactionPayu() {
 public void checkTransactionPayuIndian(String paymentTxnID) {
 	searchTransactionPAyu.sendKeys(paymentTxnID);
 	SearchButtontransactionPAyu.click();
+}
+
+public void clickONSubmitButton() throws InterruptedException {
+	Thread.sleep(2000);
+	actionDriver.clickUsingJS(submitButton);
+	Thread.sleep(2000);
+	actionDriver.clickUsingJS(submitButton);
+}
+
+public void verifyCurrencyOnPaymentInfoPEN() {
+
+    String curPaymentInfo = actionDriver.getText(currencyFrompaymentInfo);
+
+    Reporter.log("UI Currency: " + uiCurrency, true);
+    Reporter.log("Payment Info Currency: " + curPaymentInfo, true);
+
+    Assert.assertEquals(curPaymentInfo, uiCurrency, "Currency mismatch on Payment Info");
+
+    Reporter.log("Currency on Payment Info verified successfully", true);
 }
 
 }

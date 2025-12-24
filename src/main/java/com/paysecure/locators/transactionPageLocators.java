@@ -157,8 +157,9 @@ public class transactionPageLocators {
     public static final String skipFlowPayU="//p[text()='Skip tour']";
     public static final String transactionPayU="//p[text()='Transactions']";
 
-
-
+   // payhost 6406
+    
+    public static final String submitButton="//button[text()='Submit']";
 
 
 
