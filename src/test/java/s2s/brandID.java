@@ -64,7 +64,7 @@ public class brandID extends baseClass {
 		String currency = PropertyReader.getPropertyForS2S("currencyS2S");
 		String paymentMethod = PropertyReader.getPropertyForS2S("paymentMethodS2S");
 		String firstName = generateRandomTestData.generateRandomFirstName();
-		String country = "US";
+		String country = "IN";
 		String zipcode="10001";
 		String city = "Paris";
 		String stateCode = "QLD";

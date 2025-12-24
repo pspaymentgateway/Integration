@@ -67,7 +67,7 @@ public class city extends baseClass {
 		String paymentMethod = PropertyReader.getPropertyForS2S("paymentMethodS2S");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId=generateRandomTestData.generateRandomEmail();
-		String country = "US";
+		String country = "IN";
 		
 		String stateCode = "QLD";
 		

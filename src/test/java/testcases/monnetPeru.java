@@ -66,22 +66,31 @@ public class monnetPeru extends baseClass{
 		String EmailPayu=PropertyReader.getPropertyForPurchase("EmailPayu");
 		String PassPayU=PropertyReader.getPropertyForPurchase("PassPayU");
 		
-		String requestBody = "{\n" +
+		String country="IN";
+		String city = "Paris";
+		String stateCode="QLD";
+		String streetAddress = "Main gate";
+		String zipcode = "20001";
+		String productname="Cricket bat";
+		
+		
+        System.err.println(baseUri);
+        String requestBody = "{\n" +
 		        "  \"client\": {\n" +
 		        "    \"full_name\": \""+firstName+"\",\n" +
 		        "    \"email\": \""+emailId+"\",\n" +
-		        "    \"country\": \"DZ\",\n" +
-		        "    \"city\": \"London\",\n" +
-		        "    \"stateCode\": \"QLD\",\n" +
-		        "    \"street_address\": \"GGNH JAIPUR\",\n" +
-		        "    \"zip_code\": \"W1S 3BE\",\n" +
+		        "    \"country\": \""+country+"\",\n" +
+		        "    \"city\": \""+city+"\",\n" +
+		        "    \"stateCode\": \""+stateCode+"\",\n" +
+		        "    \"street_address\": \""+streetAddress+"\",\n" +
+		        "    \"zip_code\": \""+zipcode+"\",\n" +
 		        "    \"phone\": \"+1111111111\"\n" +
 		        "  },\n" +
 		        "  \"purchase\": {\n" +
 		        "    \"currency\": \""+currency+"\",\n" +
 		        "    \"products\": [\n" +
 		        "      {\n" +
-		        "        \"name\": \"New Ebook Gaming cards\",\n" +
+		        "        \"name\": \""+productname+"\",\n" +
 		        "        \"price\":"+ price + "\n" +  // "        \"price\": " + price + "\n" +
 		        "      }\n" +
 		        "    ]\n" +
