@@ -3,16 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="CreateCustomerAndSession.createCustomerAndCreateSession">
+      <class name="s2s.city">
         <methods>
           <include name="loadConfig"/>
           <include name="beforeMethod"/>
-          <include name="createSession" invocation-numbers="0"/>
+          <include name="purchaseApi" invocation-numbers="0"/>
           <include name="tearDown"/>
           <include name="setup"/>
-          <include name="createCustomer"/>
         </methods>
-      </class> <!-- CreateCustomerAndSession.createCustomerAndCreateSession -->
+      </class> <!-- s2s.city -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\LENOVO\AppData\Local\Temp\testng-eclipse--1148771073\testng-customsuite.xml</span>
+                    <span>C:\Users\LENOVO\AppData\Local\Temp\testng-eclipse--751132595\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -92,7 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">2 methods,   2 passed</span>
+                    <span class="method-stats">1 method,   1 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -103,12 +103,7 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="CreateCustomerAndSession.createCustomerAndCreateSession" class="method navigator-link" hash-for-method="createCustomer">createCustomer</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="CreateCustomerAndSession.createCustomerAndCreateSession" class="method navigator-link" hash-for-method="createSession(Rohitman Sharma, 5553042241984105, 07/28, 123)">createSession(Rohitman Sharma, 5553042241984105, 07/28, 123)</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="s2s.city" class="method navigator-link" hash-for-method="purchaseApi(London, Pass, Easybuzz)">purchaseApi(London, Pass, Easybuzz)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -126,22 +121,15 @@
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">CreateCustomerAndSession.createCustomerAndCreateSession</span>
+              <span class="class-name">s2s.city</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="createCustomer">
-                  </a> <!-- createCustomer -->
-                  <span class="method-name">createCustomer</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="createSession(Rohitman Sharma, 5553042241984105, 07/28, 123)">
-                  </a> <!-- createSession(Rohitman Sharma, 5553042241984105, 07/28, 123) -->
-                  <span class="method-name">createSession</span>
-                  <span class="parameters">(Rohitman Sharma,5553042241984105,07/28,123)</span>
+                  <a name="purchaseApi(London, Pass, Easybuzz)">
+                  </a> <!-- purchaseApi(London, Pass, Easybuzz) -->
+                  <span class="method-name">purchaseApi</span>
+                  <span class="parameters">(London,Pass,Easybuzz)</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -149,7 +137,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\LENOVO\AppData\Local\Temp\testng-eclipse--1148771073\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\LENOVO\AppData\Local\Temp\testng-eclipse--751132595\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -158,12 +146,11 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;CreateCustomerAndSession.createCustomerAndCreateSession&quot;&gt;
+      &lt;class name=&quot;s2s.city&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;createSession&quot;/&gt;
-          &lt;include name=&quot;createCustomer&quot;/&gt;
+          &lt;include name=&quot;purchaseApi&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- CreateCustomerAndSession.createCustomerAndCreateSession --&gt;
+      &lt;/class&gt; &lt;!-- s2s.city --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -203,20 +190,16 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(2);
+data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'createSession')
-data.setCell(0, 2, 'CreateCustomerAndSession.createCustomerAndCreateSession')
-data.setCell(0, 3, 93144);
-data.setCell(1, 0, 1)
-data.setCell(1, 1, 'createCustomer')
-data.setCell(1, 2, 'CreateCustomerAndSession.createCustomerAndCreateSession')
-data.setCell(1, 3, 6299);
+data.setCell(0, 1, 'purchaseApi')
+data.setCell(0, 2, 's2s.city')
+data.setCell(0, 3, 132002);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 2 minutes</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -228,41 +211,28 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="reporter-method-div">
-              <span class="reporter-method-name">createCustomer</span>
+              <span class="reporter-method-name">purchaseApi(London, Pass, Easybuzz)</span>
               <div class="reporter-method-output-div">
-                <span class="reporter-method-output">Generated First Name: johnfd2</span>
-                <span class="reporter-method-output">Generated Email: nairobiPalermo950fd@gmail.com</span>
-                <span class="reporter-method-output">Generated Indian Mobile Number: 7715352697</span>
-                <span class="reporter-method-output">Generated Merchant Customer ID: Z377</span>
-              </div> <!-- reporter-method-output-div -->
-            </div> <!-- reporter-method-div -->
-            <div class="reporter-method-div">
-              <span class="reporter-method-name">createSession(Rohitman Sharma, 5553042241984105, 07/28, 123)</span>
-              <div class="reporter-method-output-div">
-                <span class="reporter-method-output">Generated Random Double: 17936.78</span>
-                <span class="reporter-method-output">Purchase API call successful</span>
-                <span class="reporter-method-output">Purchase ID: 694bd48d7d800f2da0d7e2d0</span>
-                <span class="reporter-method-output">Checkout URL received: https://test4.paymentsclub.net/payment-session/694bd48d7d800f2da0d7e2d0/</span>
-                <span class="reporter-method-output">Navigated to checkout page URL successfully</span>
-                <span class="reporter-method-output">Entered Card Holder Name: Rohitman Sharma</span>
-                <span class="reporter-method-output">Entered Card Number: 5553042241984105</span>
-                <span class="reporter-method-output">Entered Card Expiry Date: 07/28</span>
-                <span class="reporter-method-output">Entered Card CVC: 123</span>
-                <span class="reporter-method-output">Moved to the Pay button</span>
-                <span class="reporter-method-output">Clicked on the Pay button to proceed with payment</span>
+                <span class="reporter-method-output">Generated Random Double: 9.50</span>
+                <span class="reporter-method-output">Generated First Name: johnd09</span>
+                <span class="reporter-method-output">Generated Email: nairobiPalermo9dd84@gmail.com</span>
+                <span class="reporter-method-output">Purchase created successfully with ID: 6954b5d47e022464dbbbf9aa</span>
+                <span class="reporter-method-output">User enter ID in Username field</span>
+                <span class="reporter-method-output">User Enter Password in password field</span>
+                <span class="reporter-method-output">Click on submit button in login page</span>
+                <span class="reporter-method-output">S2S call successful on attempt 1</span>
                 <span class="reporter-method-output">Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true</span>
-                <span class="reporter-method-output">Payment Successfully</span>
+                <span class="reporter-method-output">PASS → Payment succeeded as expected</span>
                 <span class="reporter-method-output"> Opened staging environment in a new browser tab</span>
                 <span class="reporter-method-output">User enter ID in Username field</span>
                 <span class="reporter-method-output">User Enter Password in password field</span>
                 <span class="reporter-method-output">Click on submit button in login page</span>
-                <span class="reporter-method-output"> Entered Transaction ID: 694bd48d7d800f2da0d7e2d0</span>
-                <span class="reporter-method-output"> Clicked on Search button</span>
-                <span class="reporter-method-output"> Entered Transaction ID: 694bd48d7d800f2da0d7e2d0</span>
+                <span class="reporter-method-output"> Entered Transaction ID: 6954b5d47e022464dbbbf9aa</span>
                 <span class="reporter-method-output"> Clicked on Search button</span>
                 <span class="reporter-method-output"> Clicked on Search button</span>
                 <span class="reporter-method-output"> Clicked on first Transaction ID from list</span>
                 <span class="reporter-method-output">Purchase Transaction ID is not empty or not null</span>
+                <span class="reporter-method-output">city accepted by API: London</span>
               </div> <!-- reporter-method-output-div -->
             </div> <!-- reporter-method-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -280,42 +250,26 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">CreateCustomerAndSession.createCustomerAndCreateSession</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">s2s.city</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">loadConfig</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="configuration-method before">
                 <span class="method-name">setup</span>
-                <span class="method-start">174 ms</span>
+                <span class="method-start">103 ms</span>
               </div> <!-- configuration-method before -->
               <div class="configuration-method before">
                 <span class="method-name">beforeMethod</span>
-                <span class="method-start">16042 ms</span>
+                <span class="method-start">10900 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">createCustomer</span>
-                <span class="method-start">16103 ms</span>
+                <span class="method-name">purchaseApi(London, Pass, Easybuzz)</span>
+                <span class="method-start">10952 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">tearDown([TestResult name=createCustomer status=SUCCESS method=createCustomerAndCreateSession.createCustomer(...)</span>
-                <span class="method-start">22421 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method before">
-                <span class="method-name">setup</span>
-                <span class="method-start">25467 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="configuration-method before">
-                <span class="method-name">beforeMethod</span>
-                <span class="method-start">40140 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="test-method">
-                <span class="method-name">createSession(Rohitman Sharma, 5553042241984105, 07/28, 123)</span>
-                <span class="method-start">40148 ms</span>
-              </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">tearDown([TestResult name=createSession status=SUCCESS method=createCustomerAndCreateSession.createSession(ja...)</span>
-                <span class="method-start">133298 ms</span>
+                <span class="method-name">tearDown([TestResult name=purchaseApi status=SUCCESS method=city.purchaseApi(java.lang.String,java.lang.Strin...)</span>
+                <span class="method-start">142980 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

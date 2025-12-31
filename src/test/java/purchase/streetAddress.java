@@ -48,7 +48,7 @@ public class streetAddress extends baseClass{
 	  }
 	
   @Test(dataProvider ="StreetAddressData", dataProviderClass = jsonProvider.class)
-  public void validationForStreetAddresseField(String streetAddress,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String PSP) {
+  public void validationForStreetAddresseField(String streetAddress,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String ExpectedStatus,String PSP) {
 		WebDriver driver=baseClass.getDriver();
         Reporter.log("streetAddres test case will run for this PSP :- "+PSP, true);
         Reporter.log("streetAddres test case will run for this runflag:- "+runFlag, true);
@@ -64,6 +64,7 @@ public class streetAddress extends baseClass{
 		String master=PropertyReader.getPropertyForPurchase("Master");
 		String visa=PropertyReader.getPropertyForPurchase("Visa");
 		String payu = PropertyReader.getPropertyForS2S("payu");
+		String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
 		String country="IN";
 		String city = "Paris";
 		String stateCode="QLD";
@@ -122,12 +123,18 @@ public class streetAddress extends baseClass{
             Reporter.log("streetAddress accepted by API: " + streetAddress, true);
         }else if (response.statusCode() == 400 || response.statusCode() == 422) {
             Reporter.log("streetAddress rejected by API: " + streetAddress, true);
-            status = "PASS";
-            comment = "PASS → streetAddress rejected correctly   " + streetAddress;
+            // Email was rejected - check if this was expected
+            if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Fail")) {
+                status = "PASS"; // Test passed because rejection was expected
+                comment = "PASS → streetAddress rejected correctly as expected: " + streetAddress;
+            } else {
+                status = "FAIL"; // Test failed because rejection was NOT expected
+                comment = "FAIL → streetAddress was rejected but expected to pass: " + streetAddress;
+            }
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress,ExpectedStatus,    status, comment,purchaseId,PSP);
             driver.quit();
             return; 
         }  else {
@@ -145,18 +152,22 @@ public class streetAddress extends baseClass{
                 // Payment
                 driver.get(checkoutUrl);
 
-             //   mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
+                mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
                 mcp.clickOnPay();
                 
                 if(payu.equalsIgnoreCase("payu")) {
-        	    	pay.payForPayu(currency,purchaseId);
+        	    	pay.payForPayu(currency,purchaseId,ExpectedStatus);
+        	    }
+                
+                if(easybuzz.equalsIgnoreCase("easybuzz")) {
+        	    	tp.enterOTpEasyBuzz();
         	    }
                 
                 if (mcp.isCardNumberInvalid()) {
              	   status = "FAIL";
                    comment = "Payment Failed Cause Of Luhn ";
               Reporter.log("Invalid card number → Luhn check failed", true);
-              ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress, status, comment,purchaseId);
+              ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress,ExpectedStatus, status, comment,purchaseId,PSP);
                     driver.quit();
                     return;
                 }
@@ -174,32 +185,48 @@ public class streetAddress extends baseClass{
                         .findFirst().orElse("");
 
 
+                String actualOutcome;
                 if (flag.equalsIgnoreCase("false")) {
-                    status = "FAIL";
-                    comment = "Payment Failed";
+                	actualOutcome = "Fail";
+                    // Check if success was expected
+                    if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+                        status = "Pass"; // Test passed - success was expected
+                        comment = "Pass → Payment succeeded as expected";
+                    } else {
+                        status = "Fail"; // Test failed - expected failure but got success
+                        comment = "Fail → Payment succeeded but expected to fail";
+                    }
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
                     driver.quit();
                     return;
                 }
                 else if (flag.equalsIgnoreCase("true")) {
-                    status = "PASS";
-                    comment = "Payment Successfully";
+                	actualOutcome = "Pass";
+                    // Check if success was expected
+                    if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+                        status = "Pass"; // Test passed - success was expected
+                        comment = "Pass → Payment succeeded as expected";
+                    } else {
+                        status = "Fail"; // Test failed - expected failure but got success
+                        comment = "Fail → Payment succeeded but expected to fail";
+                    }
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
 
                 }
                 else {
+                	 actualOutcome = "UNKNOWN";
                     status = "UNKNOWN";
                     comment = "URL does not contain expected issucces parameter";
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("StreetAddress_Result", streetAddress,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
 
 
                 }
