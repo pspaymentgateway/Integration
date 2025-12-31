@@ -49,7 +49,7 @@ public class brandID extends baseClass{
 	  }
 	
 	@Test(dataProvider ="brandIDData", dataProviderClass = jsonProvider.class)
-	public void validationForBrandID(String BrandID, String cardHolder, String cardNumber, String expiry,String cvv,String runFlag,String PSP) {
+	public void validationForBrandID(String BrandID, String cardHolder, String cardNumber, String expiry,String cvv,String runFlag,String ExpectedStatus,String PSP) {
 		WebDriver driver = baseClass.getDriver();
         Reporter.log("City test case will run for this PSP :- "+PSP, true);
         Reporter.log("City test case will run for this runflag:- "+runFlag, true);
@@ -64,6 +64,7 @@ public class brandID extends baseClass{
 		String master=PropertyReader.getPropertyForPurchase("Master");
 		String visa=PropertyReader.getPropertyForPurchase("Visa");
 		String payu = PropertyReader.getPropertyForS2S("payu");
+		String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
 		String country="IN";
 		String city = "Paris";
 		String stateCode="QLD";
@@ -113,12 +114,18 @@ public class brandID extends baseClass{
 			Reporter.log("brandId accepted by API: " + BrandID, true);
 		} else if (response.statusCode() == 400 || response.statusCode() == 422) {
             Reporter.log("BrandID rejected by API:   " + BrandID, true);
-            status = "PASS";
-            comment = "PASS → BrandID rejected correctly   " + BrandID;
+            // City was rejected - check if this was expected
+            // City was rejected - check if this was expected
+            if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Fail")) {
+                status = "PASS"; // Test passed because rejection was expected
+                comment = "PASS → BrandID rejected correctly as expected: " + BrandID;
+            } else {
+                status = "FAIL"; // Test failed because rejection was NOT expected
+                comment = "FAIL → BrandID was rejected but expected to pass: " + BrandID;
+            }
 
             Reporter.log(comment, true);
-
-            ExcelWriteUtility.writeResult("BrandID_Result", BrandID, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("BrandID_Result", BrandID, ExpectedStatus, "FAIL", comment, purchaseId,PSP);
             driver.quit();
             return; 
         }else {
@@ -134,25 +141,21 @@ public class brandID extends baseClass{
 
 				// Payment
 				driver.get(checkoutUrl);
-//		        if(master.equalsIgnoreCase("master")){
-//		        	mcp.clickONMaster();
-//		        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
-//		        }
-//		        
-//		        if(visa.equalsIgnoreCase("visa")) {
-//		        	mcp.clickONVisa();
-//		        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
-//		        }
+
 				mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
 				 mcp.clickOnPay();
 				    if(payu.equalsIgnoreCase("payu")) {
-				    	pay.payForPayu(currency,purchaseId);
+				    	pay.payForPayu(currency,purchaseId,ExpectedStatus);
+				    }
+				    
+				    if(easybuzz.equalsIgnoreCase("easybuzz")) {
+				    	tp.enterOTpEasyBuzz();
 				    }
 				if (mcp.isCardNumberInvalid()) {
 					   status = "FAIL";
 	                    comment = "Payment Failed Cause Of Luhn ";
                   Reporter.log("Invalid card number → Luhn check failed", true);
-                  ExcelWriteUtility.writeResult("BrandID_Result", BrandID, status, comment,purchaseId);
+                  ExcelWriteUtility.writeResult("BrandID_Result", BrandID,ExpectedStatus,    status, comment,purchaseId,PSP);
 					driver.quit();
 					return;
 				}
@@ -169,33 +172,49 @@ public class brandID extends baseClass{
                         .map(p -> p.split("=")[1])
                         .findFirst().orElse("");
 
+                String actualOutcome;
 
                 if (flag.equalsIgnoreCase("false")) {
-                    status = "FAIL";
-                    comment = "Payment Failed";
+                	actualOutcome = "Fail";
+                    // Check if success was expected
+                    if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+                        status = "Pass"; // Test passed - success was expected
+                        comment = "Pass → Payment succeeded as expected";
+                    } else {
+                        status = "Fail"; // Test failed - expected failure but got success
+                        comment = "Fail → Payment succeeded but expected to fail";
+                    }
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("BrandID_Result", BrandID, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("BrandID_Result", BrandID,ExpectedStatus, status, comment,purchaseId,PSP);
                     driver.quit();
                     return;
                 }
                 else if (flag.equalsIgnoreCase("true")) {
-                    status = "PASS";
-                    comment = "Payment Successfully";
+                	actualOutcome = "Pass";
+                    // Check if success was expected
+                    if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+                        status = "Pass"; // Test passed - success was expected
+                        comment = "Pass → Payment succeeded as expected";
+                    } else {
+                        status = "Fail"; // Test failed - expected failure but got success
+                        comment = "Fail → Payment succeeded but expected to fail";
+                    }
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("BrandID_Result", BrandID, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("BrandID_Result", BrandID,ExpectedStatus,status, comment,purchaseId,PSP);
 
                 }
                 else {
+                	 actualOutcome = "UNKNOWN";
                     status = "UNKNOWN";
                     comment = "URL does not contain expected issucces parameter";
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("BrandID_Result", BrandID, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("BrandID_Result", BrandID,ExpectedStatus, status, comment,purchaseId,PSP);
 
 
                 }

@@ -1,121 +1,32 @@
-
 [
-	{
-	  "city": "QLD",
-	  "CardHolder": "KL Rahul",
-	  "CardNumber": "4222222222222",
-	  "Expiry": "04/28",
-	  "CVC": "123",
-	  "RunFlag": "Visa22",
-	  "PSP": "Neogate"
-	},
-	{
-	  "CITY": "NSW",
-	  "CardHolder": "MS Dhoni",
-	  "CardNumber": "4222222222222",
-	  "Expiry": "04/28",
-	  "CVC": "440",
-	  "RunFlag": "Visa22",
-	  "PSP": "Neogate"
-	},
-	{
-	  "City": "@",
-	  "CardHolder": "Hitman Sharma",
-	  "CardNumber": "4222222222222",
-	  "Expiry": "04/28",
-	  "CVC": "440",
-	  "RunFlag": "Visa22",
-	  "PSP": "Neogate"
-	},
-	{
-	  "City": "123",
-	  "CardHolder": "Hardik Pandya",
-	  "CardNumber": "4222222222222",
-	  "Expiry": "04/28",
-	  "CVC": "440",
-	  "RunFlag": "Visa22",
-	  "PSP": "Neogate"
-	},
-	{
-	  "City": "qld",
-	  "CardHolder": "Sir Jadeja",
-	  "CardNumber": "4222222222222",
-	  "Expiry": "04/28",
-	   "CVC": "440",
-	  "RunFlag": "Visa22",
-	  "PSP": "Neogate"
-	}
-	,  
-	{
-        "City": "Bengaluru",
-        "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag": "Master02",
-		"PSP" :"Matrix"
-    },
-    {
-        "City": "",
-        "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag": "Master02",
-		"PSP" :"Matrix"
-    },
-    {
-        "City": "Bengaluru",
-        "CardHolder": "AB de Villiers",
-        "CardNumber": "5123456789012346",
-        "Expiry": "05/30",
-        "CVC": "123",
-        "RunFlag": "Master2346"		,
-		"PSP" :"Matrix"
-    },
-    {
-        "City": "Bengaluru",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "NeogateMaster44",
-				"PSP" :"Matrix"
-    },
-    {
-        "City": "",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "Master44",
-		"PSP" :"Matrix"
-    },
-    {
-        "City": "null",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "NeogateMaster44",
-		"PSP" :"Matrix"
-    },
-	{
-	    "City": "London",
-	    "CardHolder": "Virat Kohli",
-	    "CardNumber": "4051885600446623",
-	    "Expiry": "12/27",
-	    "CVC": "123",
-	    "RunFlag": "Visa66234",
-		"PSP" :"Monnet"
-	},
 	{
 	    "City": "Jaipur",
 	    "CardHolder": "Virat Kohli",
-	    "CardNumber": "4051885600446623",
-	    "Expiry": "12/27",
-	    "CVC": "123",
-	    "RunFlag": "Visa6623",
-		"PSP" :"Monnet"
+		"CardNumber": "5553042241984105",
+		   "Expiry": "07/28",
+		   "CVV": "123",
+	    "RunFlag": "Master05",
+		"ExpectedStatus": "Pass",
+		"PSP" :"Easybuzz"
+	},
+	{
+	    "City": "@#$%^YUI",
+	    "CardHolder": "Virat Kohli",
+		"CardNumber": "5553042241984105",
+		"Expiry": "07/28",
+		"CVV": "123",
+	    "RunFlag": "Master4105",
+		"ExpectedStatus": "Pass",
+		"PSP" :"Easybuzz"
+	},
+	{
+	    "City": "",
+	    "CardHolder": "Virat Kohli",
+		"CardNumber": "5553042241984105",
+		"Expiry": "07/28",
+		"CVV": "123",
+	    "RunFlag": "Master05",
+		"ExpectedStatus": "Fail",
+		"PSP" :"Easybuzz"
 	}
 ]

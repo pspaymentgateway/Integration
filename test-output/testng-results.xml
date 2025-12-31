@@ -1,56 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Generated First Name: johnfd2]]>
+      <![CDATA[Generated Random Double: 9.50]]>
     </line>
     <line>
-      <![CDATA[Generated Email: nairobiPalermo950fd@gmail.com]]>
+      <![CDATA[Generated First Name: johnd09]]>
     </line>
     <line>
-      <![CDATA[Generated Indian Mobile Number: 7715352697]]>
+      <![CDATA[Generated Email: nairobiPalermo9dd84@gmail.com]]>
     </line>
     <line>
-      <![CDATA[Generated Merchant Customer ID: Z377]]>
+      <![CDATA[Purchase created successfully with ID: 6954b5d47e022464dbbbf9aa]]>
     </line>
     <line>
-      <![CDATA[Generated Random Double: 17936.78]]>
+      <![CDATA[User enter ID in Username field]]>
     </line>
     <line>
-      <![CDATA[Purchase API call successful]]>
+      <![CDATA[User Enter Password in password field]]>
     </line>
     <line>
-      <![CDATA[Purchase ID: 694bd48d7d800f2da0d7e2d0]]>
+      <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[Checkout URL received: https://test4.paymentsclub.net/payment-session/694bd48d7d800f2da0d7e2d0/]]>
-    </line>
-    <line>
-      <![CDATA[Navigated to checkout page URL successfully]]>
-    </line>
-    <line>
-      <![CDATA[Entered Card Holder Name: Rohitman Sharma]]>
-    </line>
-    <line>
-      <![CDATA[Entered Card Number: 5553042241984105]]>
-    </line>
-    <line>
-      <![CDATA[Entered Card Expiry Date: 07/28]]>
-    </line>
-    <line>
-      <![CDATA[Entered Card CVC: 123]]>
-    </line>
-    <line>
-      <![CDATA[Moved to the Pay button]]>
-    </line>
-    <line>
-      <![CDATA[Clicked on the Pay button to proceed with payment]]>
+      <![CDATA[S2S call successful on attempt 1]]>
     </line>
     <line>
       <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
     </line>
     <line>
-      <![CDATA[Payment Successfully]]>
+      <![CDATA[PASS → Payment succeeded as expected]]>
     </line>
     <line>
       <![CDATA[ Opened staging environment in a new browser tab]]>
@@ -65,13 +44,7 @@
       <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[ Entered Transaction ID: 694bd48d7d800f2da0d7e2d0]]>
-    </line>
-    <line>
-      <![CDATA[ Clicked on Search button]]>
-    </line>
-    <line>
-      <![CDATA[ Entered Transaction ID: 694bd48d7d800f2da0d7e2d0]]>
+      <![CDATA[ Entered Transaction ID: 6954b5d47e022464dbbbf9aa]]>
     </line>
     <line>
       <![CDATA[ Clicked on Search button]]>
@@ -85,121 +58,75 @@
     <line>
       <![CDATA[Purchase Transaction ID is not empty or not null]]>
     </line>
+    <line>
+      <![CDATA[city accepted by API: London]]>
+    </line>
   </reporter-output>
-  <suite started-at="2025-12-24T17:24:13 IST" name="Default suite" finished-at="2025-12-24T17:26:29 IST" duration-ms="136223">
+  <suite started-at="2025-12-31T11:03:59 IST" name="Default suite" finished-at="2025-12-31T11:06:25 IST" duration-ms="145974">
     <groups>
     </groups>
-    <test started-at="2025-12-24T17:24:13 IST" name="Default test" finished-at="2025-12-24T17:26:29 IST" duration-ms="136223">
-      <class name="CreateCustomerAndSession.createCustomerAndCreateSession">
-        <test-method is-config="true" signature="loadConfig()[pri:0, instance:CreateCustomerAndSession.createCustomerAndCreateSession@5d465e4b]" started-at="2025-12-24T17:24:13 IST" name="loadConfig" finished-at="2025-12-24T17:24:13 IST" duration-ms="72" status="PASS">
+    <test started-at="2025-12-31T11:03:59 IST" name="Default test" finished-at="2025-12-31T11:06:25 IST" duration-ms="145974">
+      <class name="s2s.city">
+        <test-method is-config="true" signature="loadConfig()[pri:0, instance:s2s.city@30ea8c23]" started-at="2025-12-31T11:03:59 IST" name="loadConfig" finished-at="2025-12-31T11:03:59 IST" duration-ms="34" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loadConfig -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:CreateCustomerAndSession.createCustomerAndCreateSession@5d465e4b]" started-at="2025-12-24T17:24:13 IST" name="setup" finished-at="2025-12-24T17:24:29 IST" duration-ms="15708" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:s2s.city@30ea8c23]" started-at="2025-12-31T11:03:59 IST" name="setup" finished-at="2025-12-31T11:04:10 IST" duration-ms="10688" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:CreateCustomerAndSession.createCustomerAndCreateSession@5d465e4b]" started-at="2025-12-24T17:24:29 IST" name="beforeMethod" finished-at="2025-12-24T17:24:29 IST" duration-ms="61" status="PASS">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:s2s.city@30ea8c23]" started-at="2025-12-31T11:04:10 IST" name="beforeMethod" finished-at="2025-12-31T11:04:10 IST" duration-ms="49" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="createCustomer()[pri:0, instance:CreateCustomerAndSession.createCustomerAndCreateSession@5d465e4b]" started-at="2025-12-24T17:24:29 IST" name="createCustomer" finished-at="2025-12-24T17:24:35 IST" duration-ms="6299" status="PASS">
-          <reporter-output>
-            <line>
-              <![CDATA[Generated First Name: johnfd2]]>
-            </line>
-            <line>
-              <![CDATA[Generated Email: nairobiPalermo950fd@gmail.com]]>
-            </line>
-            <line>
-              <![CDATA[Generated Indian Mobile Number: 7715352697]]>
-            </line>
-            <line>
-              <![CDATA[Generated Merchant Customer ID: Z377]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- createCustomer -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:CreateCustomerAndSession.createCustomerAndCreateSession@5d465e4b]" started-at="2025-12-24T17:24:35 IST" name="tearDown" finished-at="2025-12-24T17:24:38 IST" duration-ms="3020" status="PASS">
+        <test-method signature="purchaseApi(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:s2s.city@30ea8c23]" started-at="2025-12-31T11:04:10 IST" name="purchaseApi" data-provider="cityProvider" finished-at="2025-12-31T11:06:22 IST" duration-ms="132002" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=createCustomer status=SUCCESS method=createCustomerAndCreateSession.createCustomer()[pri:0, instance:CreateCustomerAndSession.createCustomerAndCreateSession@5d465e4b] output=Generated First Name: johnfd2]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:CreateCustomerAndSession.createCustomerAndCreateSession@5d465e4b]" started-at="2025-12-24T17:24:38 IST" name="setup" finished-at="2025-12-24T17:24:53 IST" duration-ms="14668" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:CreateCustomerAndSession.createCustomerAndCreateSession@5d465e4b]" started-at="2025-12-24T17:24:53 IST" name="beforeMethod" finished-at="2025-12-24T17:24:53 IST" duration-ms="5" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method signature="createSession(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:CreateCustomerAndSession.createCustomerAndCreateSession@5d465e4b]" started-at="2025-12-24T17:24:53 IST" name="createSession" data-provider="cardData" finished-at="2025-12-24T17:26:26 IST" depends-on-methods="CreateCustomerAndSession.createCustomerAndCreateSession.createCustomer" duration-ms="93144" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Rohitman Sharma]]>
+                <![CDATA[London]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[5553042241984105]]>
+                <![CDATA[Pass]]>
               </value>
             </param>
             <param index="2">
               <value>
-                <![CDATA[07/28]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[123]]>
+                <![CDATA[Easybuzz]]>
               </value>
             </param>
           </params>
           <reporter-output>
             <line>
-              <![CDATA[Generated Random Double: 17936.78]]>
+              <![CDATA[Generated Random Double: 9.50]]>
             </line>
             <line>
-              <![CDATA[Purchase API call successful]]>
+              <![CDATA[Generated First Name: johnd09]]>
             </line>
             <line>
-              <![CDATA[Purchase ID: 694bd48d7d800f2da0d7e2d0]]>
+              <![CDATA[Generated Email: nairobiPalermo9dd84@gmail.com]]>
             </line>
             <line>
-              <![CDATA[Checkout URL received: https://test4.paymentsclub.net/payment-session/694bd48d7d800f2da0d7e2d0/]]>
+              <![CDATA[Purchase created successfully with ID: 6954b5d47e022464dbbbf9aa]]>
             </line>
             <line>
-              <![CDATA[Navigated to checkout page URL successfully]]>
+              <![CDATA[User enter ID in Username field]]>
             </line>
             <line>
-              <![CDATA[Entered Card Holder Name: Rohitman Sharma]]>
+              <![CDATA[User Enter Password in password field]]>
             </line>
             <line>
-              <![CDATA[Entered Card Number: 5553042241984105]]>
+              <![CDATA[Click on submit button in login page]]>
             </line>
             <line>
-              <![CDATA[Entered Card Expiry Date: 07/28]]>
-            </line>
-            <line>
-              <![CDATA[Entered Card CVC: 123]]>
-            </line>
-            <line>
-              <![CDATA[Moved to the Pay button]]>
-            </line>
-            <line>
-              <![CDATA[Clicked on the Pay button to proceed with payment]]>
+              <![CDATA[S2S call successful on attempt 1]]>
             </line>
             <line>
               <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
             </line>
             <line>
-              <![CDATA[Payment Successfully]]>
+              <![CDATA[PASS → Payment succeeded as expected]]>
             </line>
             <line>
               <![CDATA[ Opened staging environment in a new browser tab]]>
@@ -214,13 +141,7 @@
               <![CDATA[Click on submit button in login page]]>
             </line>
             <line>
-              <![CDATA[ Entered Transaction ID: 694bd48d7d800f2da0d7e2d0]]>
-            </line>
-            <line>
-              <![CDATA[ Clicked on Search button]]>
-            </line>
-            <line>
-              <![CDATA[ Entered Transaction ID: 694bd48d7d800f2da0d7e2d0]]>
+              <![CDATA[ Entered Transaction ID: 6954b5d47e022464dbbbf9aa]]>
             </line>
             <line>
               <![CDATA[ Clicked on Search button]]>
@@ -234,20 +155,23 @@
             <line>
               <![CDATA[Purchase Transaction ID is not empty or not null]]>
             </line>
+            <line>
+              <![CDATA[city accepted by API: London]]>
+            </line>
           </reporter-output>
-        </test-method> <!-- createSession -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:CreateCustomerAndSession.createCustomerAndCreateSession@5d465e4b]" started-at="2025-12-24T17:26:26 IST" name="tearDown" finished-at="2025-12-24T17:26:29 IST" duration-ms="3005" status="PASS">
+        </test-method> <!-- purchaseApi -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:s2s.city@30ea8c23]" started-at="2025-12-31T11:06:22 IST" name="tearDown" finished-at="2025-12-31T11:06:25 IST" duration-ms="3028" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=createSession status=SUCCESS method=createCustomerAndCreateSession.createSession(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:CreateCustomerAndSession.createCustomerAndCreateSession@5d465e4b] output=Generated Random Double: 17936.78]]]>
+                <![CDATA[[TestResult name=purchaseApi status=SUCCESS method=city.purchaseApi(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:s2s.city@30ea8c23] output=Generated Random Double: 9.50]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- CreateCustomerAndSession.createCustomerAndCreateSession -->
+      </class> <!-- s2s.city -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

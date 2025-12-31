@@ -50,7 +50,7 @@ public class productName extends baseClass {
 
 	
 	@Test(dataProvider ="productNameProvider", dataProviderClass = DataProviders.class)
-	public void purchaseApi(String productname) throws Exception {
+	public void purchaseApi(String productname,String ExpectedStatus,String PSP) throws Exception {
 		WebDriver driver = baseClass.getDriver();
 		this.productname = productname;
 		
@@ -122,19 +122,19 @@ public class productName extends baseClass {
 		    // Add a small delay to ensure purchase is fully persisted
 		    Thread.sleep(2000);
 		    
-		    s2sMethod();
+		    s2sMethod(ExpectedStatus,PSP);
 		}
 
 		if (response.statusCode() == 202) {
 			Reporter.log("productname accepted by API: " + productname, true);
 		} else if (response.statusCode() == 400 || response.statusCode() == 422) {
             Reporter.log("productname rejected by API: " + productname, true);
-            status = "PASS";
+            status = "Fail";
             comment = "PASS → productname rejected correctly " + productname;
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("Productname_Result", productname, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("Productname_Result", productname,ExpectedStatus, status, comment, purchaseId,PSP);
             driver.quit();
             return; 
         } else {
@@ -142,7 +142,7 @@ public class productName extends baseClass {
 		}
 	}
 
-	public void s2sMethod() throws Exception {
+	public void s2sMethod(String ExpectedStatus,String PSP) throws Exception {
 
 	    WebDriver driver = baseClass.getDriver();
 	    lp = new loginPage(getDriver());
@@ -171,6 +171,7 @@ public class productName extends baseClass {
 	    String mmyy = PropertyReader.getPropertyForS2S("mmyy");
 	    String cvv = PropertyReader.getPropertyForS2S("cvv");
 
+	    String easybuzz = PropertyReader.getPropertyForS2S("easybuzz");
 	    String requestBody =
 	    		"{\n" +
 	    		"  \"cardholder_name\": \"Rahul Agarwal\",\n" +
@@ -241,7 +242,7 @@ public class productName extends baseClass {
 	        status = "FAIL";
 	        comment = "S2S call failed with status: " + (response != null ? response.statusCode() : "NULL");
 	        Reporter.log(comment, true);
-	        ExcelWriteUtility.writeResults2s("Productname_Result", productname, status, comment, purchaseId);
+	        ExcelWriteUtility.writeResults2s("Productname_Result", productname,ExpectedStatus, status, comment, purchaseId,PSP);
 	        driver.quit();
 	        return;
 	    }
@@ -254,14 +255,18 @@ public class productName extends baseClass {
 
 	        status = "FAIL";
 	        comment = "callback_url null for currency " + purchaseId;
-	        ExcelWriteUtility.writeResults2s("Productname_Result", productname, status, comment, purchaseId);
+	        ExcelWriteUtility.writeResults2s("Productname_Result", productname,ExpectedStatus, status, comment, purchaseId,PSP);
 	        driver.quit();
 	        return;
 	    }
 
 	    driver.get(callback_url);
 	    if(payu.equalsIgnoreCase("payu")) {
-	    	pay.payForPayu(currency,purchaseId);
+	    	pay.payForPayu(currency,purchaseId,ExpectedStatus);
+	    }
+	    
+	    if(easybuzz.equalsIgnoreCase("easybuzz")) {
+	    	tp.enterOTpEasyBuzz();
 	    }
 	    
 	    Thread.sleep(7000);
@@ -276,34 +281,49 @@ public class productName extends baseClass {
                 .map(p -> p.split("=")[1])
                 .findFirst().orElse("");
         System.err.println(flag);
-
+        String actualOutcome;
         if (flag.equalsIgnoreCase("false")) {
-            status = "FAIL";
-            comment = "Payment Failed";
+        	actualOutcome = "FAIL";
+            if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Fail")) {
+                status = "PASS"; // Test passed - failure was expected
+                comment = "PASS → Payment failed as expected";
+            } else {
+                status = "FAIL"; // Test failed - expected success but got failure
+                comment = "FAIL → Payment failed but expected to pass";
+            }
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("Productname_Result", productname, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("Productname_Result", productname,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
             driver.quit();
             return;
         }
         else if (flag.equalsIgnoreCase("true")) {
-            status = "PASS";
-            comment = "Payment Successfully";
+            actualOutcome = "PASS";
+            
+            // Payment succeeded - check if success was expected
+            if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+                status = "PASS"; // Test passed - success was expected
+                comment = "PASS → Payment succeeded as expected";
+            } else {
+                status = "FAIL"; // Test failed - expected failure but got success
+                comment = "FAIL → Payment succeeded but expected to fail";
+            }
             
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("Productname_Result", productname, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("Productname_Result", productname,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
 
         }
         else {
+        	 actualOutcome = "UNKNOWN";
             status = "UNKNOWN";
             comment = "URL does not contain expected issucces parameter";
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("Productname_Result", productname, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("Productname_Result", productname,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
         }
         
 		mcp.openBrowserForStaging(driver,url);

@@ -91,8 +91,8 @@ public class createCustomerAndCreateSession extends baseClass{
 	}
 	
 	
-	@Test(dependsOnMethods ="createCustomer",invocationCount = 1,dataProvider = "cardData", dataProviderClass = DataProviders.class)
-	public void createSession(String cardHolder, String cardNumber, String expiry, String cvv) throws Exception {
+	@Test(dependsOnMethods ="createCustomer",invocationCount = 1,dataProvider = "CreateCCCardData", dataProviderClass = DataProviders.class)
+	public void createSession(String cardHolder, String cardNumber, String expiry, String cvv,String PSP) throws Exception {
 		WebDriver driver=baseClass.getDriver();
 		String brandId =PropertyReader.getPropertyForCreateCustomerSession("BrandIDCC");
 		String currency =PropertyReader.getPropertyForCreateCustomerSession("currencyCC");
@@ -156,7 +156,7 @@ public class createCustomerAndCreateSession extends baseClass{
         	   status = "FAIL";
                comment = "Payment Failed Cause Of Luhn ";
           Reporter.log("Invalid card number → Luhn check failed", true);
-          ExcelWriteUtility.writeResult("CreateCustomerAndSession", currency + " " +paymentMethod, status, comment,sessionId);
+          ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency,paymentMethod, status, comment,sessionId,PSP);
               
              //  driver.quit();
                return;
@@ -174,6 +174,8 @@ public class createCustomerAndCreateSession extends baseClass{
                    .map(p -> p.split("=")[1])
                    .findFirst().orElse("");
 
+           
+           
 
            if (flag.equalsIgnoreCase("false")) {
                status = "FAIL";
@@ -181,7 +183,7 @@ public class createCustomerAndCreateSession extends baseClass{
 
                Reporter.log(comment, true);
 
-               ExcelWriteUtility.writeResult("CreateCustomerAndSession",  currency + " " +paymentMethod, status, comment,sessionId);
+               ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency,paymentMethod, status, comment,sessionId,PSP);
              //  driver.quit();
                return;
            }
@@ -191,7 +193,7 @@ public class createCustomerAndCreateSession extends baseClass{
 
                Reporter.log(comment, true);
 
-               ExcelWriteUtility.writeResult("CreateCustomerAndSession", currency + " " +paymentMethod, status, comment,sessionId);
+               ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency,paymentMethod, status, comment,sessionId,PSP);
 
            }
            else {
@@ -200,7 +202,7 @@ public class createCustomerAndCreateSession extends baseClass{
 
                Reporter.log(comment, true);
 
-               ExcelWriteUtility.writeResult("CreateCustomerAndSession", currency + " " +paymentMethod, status, comment,sessionId);
+               ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency ,paymentMethod, status, comment,sessionId,PSP);
 
 
            }

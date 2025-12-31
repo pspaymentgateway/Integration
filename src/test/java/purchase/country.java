@@ -51,7 +51,7 @@ public class country extends baseClass {
 	  
 	  
   @Test (dataProvider ="country", dataProviderClass = jsonProvider.class)
-  public void validationForCountryField(String Country,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String PSP) {
+  public void validationForCountryField(String Country,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String ExpectedStatus,String PSP) {
       WebDriver driver=baseClass.getDriver();
       Reporter.log("Email test case will run for this PSP :- "+PSP, true);
       Reporter.log("Email test case will run for this runflag:- "+runFlag, true);
@@ -67,7 +67,8 @@ public class country extends baseClass {
 			String master=PropertyReader.getPropertyForPurchase("Master");
 			String visa=PropertyReader.getPropertyForPurchase("Visa");
 			String payu = PropertyReader.getPropertyForS2S("payu");
-			String country="IN";
+			String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
+			String country=Country;
 			String city = "Paris";
 			String stateCode="QLD";
 			String streetAddress = "Main gate";
@@ -124,13 +125,18 @@ public class country extends baseClass {
 	        if (response.statusCode() == 202) {
 	            Reporter.log("Country accepted by API: " + Country, true);
 	        }else if (response.statusCode() == 400 || response.statusCode() == 422) {
-	            Reporter.log("Country rejected by API: " + Country, true);
-	            status = "PASS";
-	            comment = "PASS → Country rejected correctly   " + Country;
+	            // Email was rejected - check if this was expected
+	            if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Fail")) {
+	                status = "PASS"; // Test passed because rejection was expected
+	                comment = "PASS → Country rejected correctly as expected: " + Country;
+	            } else {
+	                status = "FAIL"; // Test failed because rejection was NOT expected
+	                comment = "FAIL → Country was rejected but expected to pass: " + Country;
+	            }
 
 	            Reporter.log(comment, true);
 
-	            ExcelWriteUtility.writeResult("Country_Result", Country, status, comment,purchaseId);
+	            ExcelWriteUtility.writeResult("Country_Result", Country,ExpectedStatus,"Fail", comment,purchaseId,PSP);
 	            driver.quit();
 	            return; 
 	        }  else {
@@ -151,13 +157,19 @@ public class country extends baseClass {
 	                mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
 	                mcp.clickOnPay();
 	                if(payu.equalsIgnoreCase("payu")) {
-	        	    	pay.payForPayu(currency,purchaseId);
+	        	    	pay.payForPayu(currency,purchaseId,ExpectedStatus);
+	        	    }
+	                
+	                if(easybuzz.equalsIgnoreCase("easybuzz")) {
+	        	    	tp.enterOTpEasyBuzz();
 	        	    }
 	                if (mcp.isCardNumberInvalid()) {
-	             	   status = "FAIL";
+	      
+	     			   status = "FAIL";
 	                    comment = "Payment Failed Cause Of Luhn ";
+                 Reporter.log("Invalid card number → Luhn check failed", true);
                   Reporter.log("Invalid card number → Luhn check failed", true);
-                  ExcelWriteUtility.writeResult("Country_Result", Country, status, comment,purchaseId);
+                  ExcelWriteUtility.writeResult("Country_Result", Country,ExpectedStatus,    status, comment,purchaseId,PSP);
 	                    driver.quit();
 	                    return;
 	                }
@@ -174,33 +186,49 @@ public class country extends baseClass {
 	                        .map(p -> p.split("=")[1])
 	                        .findFirst().orElse("");
 
+	                String actualOutcome;
 
 	                if (flag.equalsIgnoreCase("false")) {
-	                    status = "FAIL";
-	                    comment = "Payment Failed";
+	                	actualOutcome = "FAIL";
+	                    // Check if success was expected
+	                    if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+	                        status = "Pass"; // Test passed - success was expected
+	                        comment = "Pass → Payment succeeded as expected";
+	                    } else {
+	                        status = "Fail"; // Test failed - expected failure but got success
+	                        comment = "Fail → Payment succeeded but expected to fail";
+	                    }
 
 	                    Reporter.log(comment, true);
 
-	                    ExcelWriteUtility.writeResult("Country_Result", Country, status, comment,purchaseId);
+	                    ExcelWriteUtility.writeResult("Country_Result", Country,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
 	                    driver.quit();
 	                    return;
 	                }
 	                else if (flag.equalsIgnoreCase("true")) {
-	                    status = "PASS";
-	                    comment = "Payment Successfully";
+	                	actualOutcome = "Pass";
+	                    // Check if success was expected
+	                    if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+	                        status = "Pass"; // Test passed - success was expected
+	                        comment = "Pass → Payment succeeded as expected";
+	                    } else {
+	                        status = "Fail"; // Test failed - expected failure but got success
+	                        comment = "Fail → Payment succeeded but expected to fail";
+	                    }
 
 	                    Reporter.log(comment, true);
 
-	                    ExcelWriteUtility.writeResult("Country_Result", Country, status, comment,purchaseId);
+	                    ExcelWriteUtility.writeResult("Country_Result", Country,ExpectedStatus, actualOutcome, comment,purchaseId,PSP);
 
 	                }
 	                else {
+	                	 actualOutcome = "UNKNOWN";
 	                    status = "UNKNOWN";
 	                    comment = "URL does not contain expected issucces parameter";
 
 	                    Reporter.log(comment, true);
 
-	                    ExcelWriteUtility.writeResult("Country_Result", Country, status, comment,purchaseId);
+	                    ExcelWriteUtility.writeResult("Country_Result", Country,ExpectedStatus, actualOutcome, comment,purchaseId,PSP);
 
 
 	                }

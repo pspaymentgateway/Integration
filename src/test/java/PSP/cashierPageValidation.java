@@ -1,4 +1,4 @@
-package testcases;
+package PSP;
 
 import org.testng.annotations.Test;
 

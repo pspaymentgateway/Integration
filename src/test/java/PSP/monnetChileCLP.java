@@ -1,4 +1,4 @@
-package testcases;
+package PSP;
 
 import org.testng.annotations.Test;
 
@@ -27,7 +27,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 
-public class easebuzzcard extends baseClass{
+public class monnetChileCLP extends baseClass{
 	private WebDriver driver;
 	loginPage lp;
 	String checkoutUrl;
@@ -48,7 +48,7 @@ public class easebuzzcard extends baseClass{
 	  
 	//String cardHolder, String cardNumber, String expiry, String cvc
   @Test(dataProvider ="cardData",dataProviderClass = DataProviders.class) 
-  public void purchase(String cardHolder, String cardNumber, String expiry, String cvc) throws Exception {
+  public void purchase(String ExpectedStatus, String cardHolder, String cardNumber, String expiry, String cvc,String PSP) throws Exception {
       WebDriver driver=baseClass.getDriver();
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
@@ -136,7 +136,7 @@ public class easebuzzcard extends baseClass{
         mcp.clickOnPay();
         
 	    if(payu.equalsIgnoreCase("payu")) {
-	    	pay.payForPayu(currency,purchaseId);
+	    	pay.payForPayu(currency,purchaseId,ExpectedStatus);
 	    }
         
         Thread.sleep(4000);
@@ -159,7 +159,7 @@ public class easebuzzcard extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP);
             driver.quit();
             return;
         }
@@ -169,7 +169,7 @@ public class easebuzzcard extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP);
 
         }
         else {
@@ -178,7 +178,7 @@ public class easebuzzcard extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP);
 
 
         }
@@ -196,8 +196,8 @@ public class easebuzzcard extends baseClass{
         tp.verifyUsedCardOnUI(cardNumber);
         tp.clickOnTransactionId();
         tp.verifyPurchaseTransactionIDIsNotEmpty();
-		tp.verifyCurrencyOnPaymentInfo();
-		tp.verifyAmountFromPaymentInfo();
+		tp.verifyCurrencyOnPaymentInfoPayU();
+		tp.verifyAmountFromPaymentInfoPayU();
 
   }
 

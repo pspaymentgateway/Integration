@@ -10,7 +10,7 @@ public class PropertyReader {
 	    private static Properties configProps = new Properties();
 	    private static Properties s2sProps = new Properties();
 	    private static Properties createCustomerAndSession=new Properties();
-
+	    private static Properties purchase=new Properties();
 	    static {
 	        try {
 	            String projectPath = System.getProperty("user.dir");
@@ -26,18 +26,26 @@ public class PropertyReader {
 	            FileInputStream cc=
 	                    new FileInputStream(projectPath + "/src/test/resources/propertiesFolder/createCustomerAndSession.properties");
 	            createCustomerAndSession.load(cc);
+	            
+	            FileInputStream purchas=
+	                    new FileInputStream(projectPath + "/src/test/resources/propertiesFolder/purchase.properties");
+	            purchase.load(purchas);
 
 	        } catch (IOException e) {
 	            throw new RuntimeException("Failed to load property files", e);
 	        }
 	    }
 
-	    public static String getPropertyForPurchase(String key) {
+	    public static String getPropertyForconfigProps(String key) {
 	        return configProps.getProperty(key);
 	    }
 
 	    public static String getPropertyForS2S(String key) {
 	        return s2sProps.getProperty(key);
+	    }
+	    
+	    public static String getPropertyForPurchase(String key) {
+	        return purchase.getProperty(key);
 	    }
 	    
 	    public static String getPropertyForCreateCustomerSession(String key) {
