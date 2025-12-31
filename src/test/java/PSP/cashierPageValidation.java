@@ -1,4 +1,4 @@
-package testcases;
+package PSP;
 
 import org.testng.annotations.Test;
 
@@ -48,18 +48,18 @@ public class cashierPageValidation extends baseClass{
 	                String expectedError) throws InterruptedException {
 
 	        WebDriver driver = baseClass.getDriver();
-			String baseUri = PropertyReader.getProperty("baseURI");
+			String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 			RestAssured.baseURI =baseUri;
-			String brandId = PropertyReader.getProperty("brandId");
-			String token = PropertyReader.getProperty("token");
+			String brandId = PropertyReader.getPropertyForPurchase("brandId");
+			String token = PropertyReader.getPropertyForPurchase("token");
 			String price = generateRandomTestData.generateRandomDouble();
-			String currency =PropertyReader.getProperty("currency");
-			String paymentMethod=PropertyReader.getProperty("paymentMethod");
+			String currency =PropertyReader.getPropertyForPurchase("currency");
+			String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethod");
 			String firstName = generateRandomTestData.generateRandomFirstName();
 			String emailId = generateRandomTestData.generateRandomEmail();
-			String matrixPSPUrl=PropertyReader.getProperty("matrixPSPUrl");
-			String UID=PropertyReader.getProperty("UID");
-			String PASSWORD=PropertyReader.getProperty("PASSWORD");
+			String matrixPSPUrl=PropertyReader.getPropertyForPurchase("matrixPSPUrl");
+			String UID=PropertyReader.getPropertyForPurchase("UID");
+			String PASSWORD=PropertyReader.getPropertyForPurchase("PASSWORD");
 			String requestBody = "{\n" +
 			        "  \"client\": {\n" +
 			        "    \"full_name\": \""+firstName+"\",\n" +

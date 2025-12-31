@@ -30,7 +30,7 @@ public class payu3dPage {
 		this.actionDriver = new ActionDriver(driver);
 	}
 	
-	public void payForPayu(String currency, String purchaseId) {
+	public void payForPayu(String currency, String purchaseId,String ExpectedStatus) {
 
 	    WebDriver driver = baseClass.getDriver();
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -67,15 +67,16 @@ public class payu3dPage {
 
 	        Reporter.log(comment, true);
 	        ExcelWriteUtility.writeResults2s(
-	                "Currency_Result", currency, status, comment, purchaseId
-	        );
+	                "Currency_Result", currency,ExpectedStatus, status, comment, purchaseId,currency);
 
-	        driver.quit();
+	      //  driver.quit();
 	        return;
 	    }
 
 	    Reporter.log("Payment Success", true);
 	}
+	
+
 
 	
 }

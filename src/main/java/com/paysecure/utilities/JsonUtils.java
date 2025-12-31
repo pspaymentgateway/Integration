@@ -9,7 +9,7 @@ public class JsonUtils {
 
     public Object[][] readJsonData(String filePath, String jsonPath) throws Exception {
 
-        String runFlagColumnName = PropertyReader.getProperty("runFlagColumnName");
+        String runFlagColumnName = PropertyReader.getPropertyForPurchase("runFlagColumnName");
         String requiredRunFlag = System.getProperty("runFlag", runFlagColumnName);
 
         ObjectMapper mapper = new ObjectMapper();
@@ -29,15 +29,17 @@ public class JsonUtils {
 
             if (lowerCaseRow.get("runflag").toString().equalsIgnoreCase(requiredRunFlag)) {
 
-                filteredData.add(new Object[]{
-                        lowerCaseRow.get(jsonPath.toLowerCase()), // DYNAMIC FIELD 🔥
-                        lowerCaseRow.get("cardholder"),
-                        lowerCaseRow.get("cardnumber"),
-                        lowerCaseRow.get("expiry"),
-                        lowerCaseRow.get("cvc"),
-                        lowerCaseRow.get("runflag"),
-                        lowerCaseRow.get("psp")
-                });
+            	filteredData.add(new Object[]{
+            	        lowerCaseRow.get(jsonPath.toLowerCase()), // Email
+            	        lowerCaseRow.get("cardholder"),
+            	        lowerCaseRow.get("cardnumber"),
+            	        lowerCaseRow.get("expiry"),
+            	        lowerCaseRow.get("cvv"),
+            	        lowerCaseRow.get("runflag"),
+            	        lowerCaseRow.get("expectedstatus"), // ✅ FIXED
+            	        lowerCaseRow.get("psp")
+            	});
+
             }
         }
 

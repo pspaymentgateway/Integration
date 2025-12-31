@@ -1,9 +1,10 @@
-package testcases;
+package PSP;
 
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
@@ -18,20 +19,22 @@ import io.restassured.response.Response;
 import java.time.Duration;
 import java.util.Arrays;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 
-public class matrixEndToEndFlow extends baseClass{
+public class monnetChileCLP extends baseClass{
 	private WebDriver driver;
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
 	matrixCashierPage mcp;
 	transactionPage tp;
-	
+	payu3dPage pay;
     String status = "";
     String comment = "";
 	  @BeforeMethod
@@ -40,42 +43,54 @@ public class matrixEndToEndFlow extends baseClass{
 			lp.login();
 			mcp=new matrixCashierPage(getDriver());
 			tp=new transactionPage(getDriver());
+			pay = new payu3dPage(getDriver());
 	  }
+	  
 	//String cardHolder, String cardNumber, String expiry, String cvc
   @Test(dataProvider ="cardData",dataProviderClass = DataProviders.class) 
-  public void purchase(String cardHolder, String cardNumber, String expiry, String cvc) throws Exception {
+  public void purchase(String ExpectedStatus, String cardHolder, String cardNumber, String expiry, String cvc,String PSP) throws Exception {
       WebDriver driver=baseClass.getDriver();
-		String baseUri = PropertyReader.getProperty("baseURI");
+		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
-		String brandId = PropertyReader.getProperty("brandId");
-		String token = PropertyReader.getProperty("token");
+		String brandId = PropertyReader.getPropertyForPurchase("brandId");
+		String token = PropertyReader.getPropertyForPurchase("token");
 		String price = generateRandomTestData.generateRandomDouble();
-		String currency =PropertyReader.getProperty("currency");
-		String paymentMethod=PropertyReader.getProperty("paymentMethods");
+		String currency =PropertyReader.getPropertyForPurchase("currency");
+		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
-		String matrixPSPUrl=PropertyReader.getProperty("matrixPSPUrl");
-		String UID=PropertyReader.getProperty("UID");
-		String PASSWORD=PropertyReader.getProperty("PASSWORD");
-		String master=PropertyReader.getProperty("Master");
-		String visa=PropertyReader.getProperty("Visa");
+        String master=PropertyReader.getPropertyForPurchase("Master");
+		String visa=PropertyReader.getPropertyForPurchase("Visa");
+		String payu = PropertyReader.getPropertyForS2S("payu");
+		String payUURL=PropertyReader.getPropertyForPurchase("payUURL");
+		String EmailPayu=PropertyReader.getPropertyForPurchase("EmailPayu");
+		String PassPayU=PropertyReader.getPropertyForPurchase("PassPayU");
 		
-		String requestBody = "{\n" +
+		String country="IN";
+		String city = "Paris";
+		String stateCode="QLD";
+		String streetAddress = "Main gate";
+		String zipcode = "20001";
+		String productname="Cricket bat";
+		
+		
+        System.err.println(baseUri);
+        String requestBody = "{\n" +
 		        "  \"client\": {\n" +
 		        "    \"full_name\": \""+firstName+"\",\n" +
 		        "    \"email\": \""+emailId+"\",\n" +
-		        "    \"country\": \"DZ\",\n" +
-		        "    \"city\": \"London\",\n" +
-		        "    \"stateCode\": \"QLD\",\n" +
-		        "    \"street_address\": \"GGNH JAIPUR\",\n" +
-		        "    \"zip_code\": \"W1S 3BE\",\n" +
+		        "    \"country\": \""+country+"\",\n" +
+		        "    \"city\": \""+city+"\",\n" +
+		        "    \"stateCode\": \""+stateCode+"\",\n" +
+		        "    \"street_address\": \""+streetAddress+"\",\n" +
+		        "    \"zip_code\": \""+zipcode+"\",\n" +
 		        "    \"phone\": \"+1111111111\"\n" +
 		        "  },\n" +
 		        "  \"purchase\": {\n" +
 		        "    \"currency\": \""+currency+"\",\n" +
 		        "    \"products\": [\n" +
 		        "      {\n" +
-		        "        \"name\": \"New Ebook Gaming cards\",\n" +
+		        "        \"name\": \""+productname+"\",\n" +
 		        "        \"price\":"+ price + "\n" +  // "        \"price\": " + price + "\n" +
 		        "      }\n" +
 		        "    ]\n" +
@@ -107,19 +122,24 @@ public class matrixEndToEndFlow extends baseClass{
 		tp.validatePurchaseId(purchaseId);
         // Payment
         driver.get(checkoutUrl);
-        if(master.equalsIgnoreCase("master")){
-        	mcp.clickONMaster();
-        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
-        }
-        
-        if(visa.equalsIgnoreCase("visa")) {
-        	mcp.clickONVisa();
-        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
-        }
-        
+//        if(master.equalsIgnoreCase("master")){
+//        	mcp.clickONMaster();
+//        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
+//        }
+//        
+//        if(visa.equalsIgnoreCase("visa")) {
+//        	mcp.clickONVisa();
+//        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
+//        }
+        mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
         
         mcp.clickOnPay();
-        Thread.sleep(7000);
+        
+	    if(payu.equalsIgnoreCase("payu")) {
+	    	pay.payForPayu(currency,purchaseId,ExpectedStatus);
+	    }
+        
+        Thread.sleep(4000);
 		 // Wait until parameter appears in URL
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.urlContains("issucces"));
@@ -139,7 +159,7 @@ public class matrixEndToEndFlow extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP);
             driver.quit();
             return;
         }
@@ -149,7 +169,7 @@ public class matrixEndToEndFlow extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP);
 
         }
         else {
@@ -158,10 +178,11 @@ public class matrixEndToEndFlow extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP);
 
 
         }
+        
         mcp.openBrowserForStaging(driver,RestAssured.baseURI);
         lp.login();
         tp.navigateUptoTransaction();
@@ -175,18 +196,9 @@ public class matrixEndToEndFlow extends baseClass{
         tp.verifyUsedCardOnUI(cardNumber);
         tp.clickOnTransactionId();
         tp.verifyPurchaseTransactionIDIsNotEmpty();
-		tp.verifyCurrencyOnPaymentInfo();
-		tp.verifyAmountFromPaymentInfo();
-		mcp.openBrowserForStaging(driver,matrixPSPUrl);
-		tp.doLoginOnThePSPSide(UID, PASSWORD);
-		tp.navigateUptoPSPTransactionModule();
-		tp.searchTheLatestTransactions(tp.purchaseTxnId);
-		tp.verifyPurchaseTxnIdatPSP(tp.purchaseTxnId);
-		tp.verifyCurrencyInPSP();
-		tp.maskCardForPSP(cardNumber);
-		tp.verifyUsedCardOnPSP(cardNumber);
-		tp.getStatusFromPSP();
-		tp.verifyStatus();
+		tp.verifyCurrencyOnPaymentInfoPayU();
+		tp.verifyAmountFromPaymentInfoPayU();
+
   }
 
 

@@ -47,34 +47,37 @@ public class currency extends baseClass {
 	}
 
 	@Test(dataProvider ="currencyData", dataProviderClass = jsonProvider.class)
-	public void validationForCurrencyField(String Currency,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String PSP) {
+	public void validationForCurrencyField(String Currency,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String ExpectedStatus,String PSP) {
 		WebDriver driver=baseClass.getDriver();
         Reporter.log("City test case will run for this PSP :- "+PSP, true);
         Reporter.log("City test case will run for this runflag:- "+runFlag, true);
-		 String baseUri = PropertyReader.getProperty("baseURI");
+		 String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
-		String brandId = PropertyReader.getProperty("brandId");
+		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 	
-		String token = PropertyReader.getProperty("token");
+		String token = PropertyReader.getPropertyForPurchase("token");
 		String price = generateRandomTestData.generateRandomDouble();
 	
-		String paymentMethod=PropertyReader.getProperty("paymentMethod");
+		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
-		String master=PropertyReader.getProperty("Master");
-		String visa=PropertyReader.getProperty("Visa");
+		String master=PropertyReader.getPropertyForPurchase("Master");
+		String visa=PropertyReader.getPropertyForPurchase("Visa");
 		String payu = PropertyReader.getPropertyForS2S("payu");
-		String city="Paris";
-		String streetAddress="Main gate";
-		String zipcode="20001";
-       
+		String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
+		String country="IN";
+		String city = "Paris";
+		String stateCode="QLD";
+		String streetAddress = "Main gate";
+		String zipcode = "20001";
+		String productname="Cricket bat";
 		String requestBody = "{\n" +
 		        "  \"client\": {\n" +
 		        "    \"full_name\": \""+firstName+"\",\n" +
 		        "    \"email\": \""+emailId+"\",\n" +
-		        "    \"country\": \"DZ\",\n" +
+		        "    \"country\": \""+country+"\",\n" +
 		        "    \"city\": \""+city+"\",\n" +
-		        "    \"stateCode\": \"QLD\",\n" +
+		        "    \"stateCode\": \""+stateCode+"\",\n" +
 		        "    \"street_address\": \""+streetAddress+"\",\n" +
 		        "    \"zip_code\": \""+zipcode+"\",\n" +
 		        "    \"phone\": \"+1111111111\"\n" +
@@ -83,7 +86,7 @@ public class currency extends baseClass {
 		        "    \"currency\": \""+Currency+"\",\n" +
 		        "    \"products\": [\n" +
 		        "      {\n" +
-		        "        \"name\": \"New Ebook Gaming cards\",\n" +
+		        "        \"name\": \""+productname+"\",\n" +
 		        "        \"price\":"+ price + "\n" +  // "        \"price\": " + price + "\n" +
 		        "      }\n" +
 		        "    ]\n" +
@@ -119,13 +122,18 @@ public class currency extends baseClass {
         if (response.statusCode() == 202) {
             Reporter.log("Currency accepted by API: " + Currency, true);
         }else if (response.statusCode() == 400 || response.statusCode() == 422) {
-            Reporter.log("Currency rejected by API: " + Currency, true);
-            status = "PASS";
-            comment = "PASS → Currency rejected correctly   " + Currency;
+            // Email was rejected - check if this was expected
+            if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Fail")) {
+                status = "PASS"; // Test passed because rejection was expected
+                comment = "PASS → Email rejected correctly as expected: " + Currency;
+            } else {
+                status = "FAIL"; // Test failed because rejection was NOT expected
+                comment = "FAIL → Email was rejected but expected to pass: " + Currency;
+            }
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("Currency_Result", Currency, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("Currency_Result", Currency,ExpectedStatus,"Fail", comment,purchaseId,PSP);
             driver.quit();
             return; 
         }  else {
@@ -146,13 +154,19 @@ public class currency extends baseClass {
                 mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
                 mcp.clickOnPay();
                 if(payu.equalsIgnoreCase("payu")) {
-        	    	pay.payForPayu(Currency,purchaseId);
+        	    	pay.payForPayu(Currency,purchaseId,ExpectedStatus);
+        	    }
+                
+                if(easybuzz.equalsIgnoreCase("easybuzz")) {
+        	    	tp.enterOTpEasyBuzz();
         	    }
                 if (mcp.isCardNumberInvalid()) {
-             	   status = "FAIL";
+         
+     			   status = "FAIL";
                    comment = "Payment Failed Cause Of Luhn ";
+             Reporter.log("Invalid card number → Luhn check failed", true);
               Reporter.log("Invalid card number → Luhn check failed", true);
-              ExcelWriteUtility.writeResult("Currency_Result", Currency, status, comment,purchaseId);
+              ExcelWriteUtility.writeResult("Currency_Result", Currency,ExpectedStatus,status, comment,purchaseId,PSP);
                     driver.quit();
                     return;
                 }
@@ -169,33 +183,49 @@ public class currency extends baseClass {
                         .map(p -> p.split("=")[1])
                         .findFirst().orElse("");
 
+                String actualOutcome;
 
                 if (flag.equalsIgnoreCase("false")) {
-                    status = "FAIL";
-                    comment = "Payment Failed";
+                	actualOutcome = "Fail";
+                    // Check if success was expected
+                    if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+                        status = "Pass"; // Test passed - success was expected
+                        comment = "Pass → Payment succeeded as expected";
+                    } else {
+                        status = "Fail"; // Test failed - expected failure but got success
+                        comment = "Fail → Payment succeeded but expected to fail";
+                    }
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Currency_Result", Currency, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Currency_Result", Currency,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
                     driver.quit();
                     return;
                 }
                 else if (flag.equalsIgnoreCase("true")) {
-                    status = "PASS";
-                    comment = "Payment Successfully";
+                	actualOutcome = "Pass";
+                    // Check if success was expected
+                    if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+                        status = "Pass"; // Test passed - success was expected
+                        comment = "Pass → Payment succeeded as expected";
+                    } else {
+                        status = "Fail"; // Test failed - expected failure but got success
+                        comment = "Fail → Payment succeeded but expected to fail";
+                    }
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Currency_Result", Currency, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Currency_Result", Currency,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
 
                 }
                 else {
+                	 actualOutcome = "UNKNOWN";
                     status = "UNKNOWN";
                     comment = "URL does not contain expected issucces parameter";
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Currency_Result", Currency, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Currency_Result", Currency,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
 
 
                 }
