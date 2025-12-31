@@ -24,4 +24,14 @@ public class cashierPageLocators {
 	public static final String password="//input[@id='password']";
 	public static final String payPayu="//input[@id='submitBtn']";
 	
+	//for easybuzz Integration 
+	public static final String OTPEasyBuzz="//span[@id='random-number']";
+	public static final String EnterOtpEasyBuzz="//input[@id='digit1']";
+	
+	public static final String easySuccess="//button[text()='Success']";
+	public static final String easyFailure="//button[text()='Failure']";
+	public static final String easyCancel="//button[text()='Cancel']";
+	public static final String easySessionOut="//button[text()='Session Timeout']";
+	public static final String easyDelayedSuccess="//span[@id='random-number']";
+	public static final String easyDelayedFailure="//button[text()='Delayed Failure']";
 }

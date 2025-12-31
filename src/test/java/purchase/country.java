@@ -51,41 +51,46 @@ public class country extends baseClass {
 	  
 	  
   @Test (dataProvider ="country", dataProviderClass = jsonProvider.class)
-  public void validationForCountryField(String Country,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String PSP) {
+  public void validationForCountryField(String Country,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String ExpectedStatus,String PSP) {
       WebDriver driver=baseClass.getDriver();
       Reporter.log("Email test case will run for this PSP :- "+PSP, true);
       Reporter.log("Email test case will run for this runflag:- "+runFlag, true);
-		String baseUri = PropertyReader.getProperty("baseURI");
+		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
-			String brandId = PropertyReader.getProperty("brandId");
-			String token = PropertyReader.getProperty("token");
+			String brandId = PropertyReader.getPropertyForPurchase("brandId");
+			String token = PropertyReader.getPropertyForPurchase("token");
 			String price = generateRandomTestData.generateRandomDouble();
-			String currency =PropertyReader.getProperty("currency");
-			String paymentMethod=PropertyReader.getProperty("paymentMethod");
+			String currency =PropertyReader.getPropertyForPurchase("currency");
+			String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 			String firstName = generateRandomTestData.generateRandomFirstName();
 			String emailId = generateRandomTestData.generateRandomEmail();
-			String master=PropertyReader.getProperty("Master");
-			String visa=PropertyReader.getProperty("Visa");
+			String master=PropertyReader.getPropertyForPurchase("Master");
+			String visa=PropertyReader.getPropertyForPurchase("Visa");
 			String payu = PropertyReader.getPropertyForS2S("payu");
-			String city="Paris";
-			String requestBody =
-					"{\n" +
+			String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
+			String country=Country;
+			String city = "Paris";
+			String stateCode="QLD";
+			String streetAddress = "Main gate";
+			String zipcode = "20001";
+			String productname="Cricket bat";
+			String requestBody = "{\n" +
 			        "  \"client\": {\n" +
 			        "    \"full_name\": \""+firstName+"\",\n" +
 			        "    \"email\": \""+emailId+"\",\n" +
-			        "    \"country\": \""+Country+"\",\n" +
+			        "    \"country\": \""+country+"\",\n" +
 			        "    \"city\": \""+city+"\",\n" +
-			        "    \"stateCode\": \"QLD\",\n" +
-			        "    \"street_address\": \"GGNH JAIPUR\",\n" +
-			        "    \"zip_code\": \"W1S 3BE\",\n" +
+			        "    \"stateCode\": \""+stateCode+"\",\n" +
+			        "    \"street_address\": \""+streetAddress+"\",\n" +
+			        "    \"zip_code\": \""+zipcode+"\",\n" +
 			        "    \"phone\": \"+1111111111\"\n" +
 			        "  },\n" +
 			        "  \"purchase\": {\n" +
 			        "    \"currency\": \""+currency+"\",\n" +
 			        "    \"products\": [\n" +
 			        "      {\n" +
-			        "        \"name\": \"New Ebook Gaming cards\",\n" +
-			        "        \"price\":"+ price + "\n" +
+			        "        \"name\": \""+productname+"\",\n" +
+			        "        \"price\":"+ price + "\n" +  // "        \"price\": " + price + "\n" +
 			        "      }\n" +
 			        "    ]\n" +
 			        "  },\n" +
@@ -120,13 +125,18 @@ public class country extends baseClass {
 	        if (response.statusCode() == 202) {
 	            Reporter.log("Country accepted by API: " + Country, true);
 	        }else if (response.statusCode() == 400 || response.statusCode() == 422) {
-	            Reporter.log("Country rejected by API: " + Country, true);
-	            status = "PASS";
-	            comment = "PASS → Country rejected correctly   " + Country;
+	            // Email was rejected - check if this was expected
+	            if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Fail")) {
+	                status = "PASS"; // Test passed because rejection was expected
+	                comment = "PASS → Country rejected correctly as expected: " + Country;
+	            } else {
+	                status = "FAIL"; // Test failed because rejection was NOT expected
+	                comment = "FAIL → Country was rejected but expected to pass: " + Country;
+	            }
 
 	            Reporter.log(comment, true);
 
-	            ExcelWriteUtility.writeResult("Country_Result", Country, status, comment,purchaseId);
+	            ExcelWriteUtility.writeResult("Country_Result", Country,ExpectedStatus,"Fail", comment,purchaseId,PSP);
 	            driver.quit();
 	            return; 
 	        }  else {
@@ -147,13 +157,19 @@ public class country extends baseClass {
 	                mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
 	                mcp.clickOnPay();
 	                if(payu.equalsIgnoreCase("payu")) {
-	        	    	pay.payForPayu(currency,purchaseId);
+	        	    	pay.payForPayu(currency,purchaseId,ExpectedStatus);
+	        	    }
+	                
+	                if(easybuzz.equalsIgnoreCase("easybuzz")) {
+	        	    	tp.enterOTpEasyBuzz();
 	        	    }
 	                if (mcp.isCardNumberInvalid()) {
-	             	   status = "FAIL";
+	      
+	     			   status = "FAIL";
 	                    comment = "Payment Failed Cause Of Luhn ";
+                 Reporter.log("Invalid card number → Luhn check failed", true);
                   Reporter.log("Invalid card number → Luhn check failed", true);
-                  ExcelWriteUtility.writeResult("Country_Result", Country, status, comment,purchaseId);
+                  ExcelWriteUtility.writeResult("Country_Result", Country,ExpectedStatus,    status, comment,purchaseId,PSP);
 	                    driver.quit();
 	                    return;
 	                }
@@ -170,33 +186,49 @@ public class country extends baseClass {
 	                        .map(p -> p.split("=")[1])
 	                        .findFirst().orElse("");
 
+	                String actualOutcome;
 
 	                if (flag.equalsIgnoreCase("false")) {
-	                    status = "FAIL";
-	                    comment = "Payment Failed";
+	                	actualOutcome = "FAIL";
+	                    // Check if success was expected
+	                    if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+	                        status = "Pass"; // Test passed - success was expected
+	                        comment = "Pass → Payment succeeded as expected";
+	                    } else {
+	                        status = "Fail"; // Test failed - expected failure but got success
+	                        comment = "Fail → Payment succeeded but expected to fail";
+	                    }
 
 	                    Reporter.log(comment, true);
 
-	                    ExcelWriteUtility.writeResult("Country_Result", Country, status, comment,purchaseId);
+	                    ExcelWriteUtility.writeResult("Country_Result", Country,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
 	                    driver.quit();
 	                    return;
 	                }
 	                else if (flag.equalsIgnoreCase("true")) {
-	                    status = "PASS";
-	                    comment = "Payment Successfully";
+	                	actualOutcome = "Pass";
+	                    // Check if success was expected
+	                    if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+	                        status = "Pass"; // Test passed - success was expected
+	                        comment = "Pass → Payment succeeded as expected";
+	                    } else {
+	                        status = "Fail"; // Test failed - expected failure but got success
+	                        comment = "Fail → Payment succeeded but expected to fail";
+	                    }
 
 	                    Reporter.log(comment, true);
 
-	                    ExcelWriteUtility.writeResult("Country_Result", Country, status, comment,purchaseId);
+	                    ExcelWriteUtility.writeResult("Country_Result", Country,ExpectedStatus, actualOutcome, comment,purchaseId,PSP);
 
 	                }
 	                else {
+	                	 actualOutcome = "UNKNOWN";
 	                    status = "UNKNOWN";
 	                    comment = "URL does not contain expected issucces parameter";
 
 	                    Reporter.log(comment, true);
 
-	                    ExcelWriteUtility.writeResult("Country_Result", Country, status, comment,purchaseId);
+	                    ExcelWriteUtility.writeResult("Country_Result", Country,ExpectedStatus, actualOutcome, comment,purchaseId,PSP);
 
 
 	                }

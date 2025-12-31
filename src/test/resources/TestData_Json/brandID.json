@@ -1,191 +1,32 @@
 [
   {
-    "BrandID": "858d754d-106a-4c1d-b36a-820d82c84b8b",
+    "BrandID": "04199342",
     "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "Master02",
-    "PSP": "Matrix"
+	"CardNumber": "5553042241984105",
+	"Expiry": "07/28",
+	"CVV": "123",
+	"RunFlag": "Master05",
+	"ExpectedStatus": "Fail",
+	"PSP" :"Easybuzz"
   },
   {
-    "BrandID": "858D754D-106A-4C1D-B36A-820D82C84B8B",
+    "BrandID": "null",
     "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "Master02",
-    "PSP": "Matrix"
+	"CardNumber": "5553042241984105",
+	"Expiry": "07/28",
+	"CVV": "123",
+	"RunFlag": "Master05",
+	"ExpectedStatus": "Fail",
+	"PSP" :"Easybuzz"
   },
   {
-    "BrandID": "858D754D-106A-4C1D-B36A-820D82C84B8B",
+    "BrandID": "",
     "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "Master02",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": "858d754d-106a-41-b36a-82082c84b8b",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "Master02",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": "858d754d-106a4c1db36a820d82c84b8b",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "Master02",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": "858d754d-106a-4c1d-b36a-820d82c84b8b123",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "Master02",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": "858d754d-106a-4c1d-b36a-820d82c84b8bz",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "Master02",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": "@@@d858d754d-106a-4c1d-b36a-820d82c84b8b",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "Master02",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": "huagsuyush",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "Master02",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "Master02",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": "858d754d-106a-4c1d-b36a-820d82c84b8b",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5555555555554444",
-    "Expiry": "12/27",
-    "CVC": "111",
-    "RunFlag": "Master44",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": "858D754D-106A-4C1D-B36A-820D82C84B8B",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5555555555554444",
-    "Expiry": "12/27",
-    "CVC": "111",
-    "RunFlag": "MatrixMaster44",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": "858D754D-106A-4C1D-B36A-820D82C84B8B",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5555555555554444",
-    "Expiry": "12/27",
-    "CVC": "111",
-    "RunFlag": "Master44",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": "858d754d-106a-41-b36a-82082c84b8b",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5555555555554444",
-    "Expiry": "12/27",
-    "CVC": "111",
-    "RunFlag": "Master44",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": "858d754d-106a4c1db36a820d82c84b8b",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5555555555554444",
-    "Expiry": "12/27",
-    "CVC": "111",
-    "RunFlag": "Master44",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": "858d754d-106a-4c1d-b36a-820d82c84b8b123",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5555555555554444",
-    "Expiry": "12/27",
-    "CVC": "111",
-    "RunFlag": "Master44",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": "858d754d-106a-4c1d-b36a-820d82c84b8bz",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5555555555554444",
-    "Expiry": "12/27",
-    "CVC": "111",
-    "RunFlag": "Master44",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": "@@@d858d754d-106a-4c1d-b36a-820d82c84b8b",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5555555555554444",
-    "Expiry": "12/27",
-    "CVC": "111",
-    "RunFlag": "Master44",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": "huagsuyush",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5555555555554444",
-    "Expiry": "12/27",
-    "CVC": "111",
-    "RunFlag": "Master44",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5555555555554444",
-    "Expiry": "12/27",
-    "CVC": "111",
-    "RunFlag": "Master44",
-    "PSP": "Matrix"
-  },
-  {
-    "BrandID": null,
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5555555555554444",
-    "Expiry": "12/27",
-    "CVC": "111",
-    "RunFlag": "Master44",
-    "PSP": "Matrix"
+	"CardNumber": "5553042241984105",
+	"Expiry": "07/28",
+	"CVV": "123",
+	"RunFlag": "Master05",
+	"ExpectedStatus": "Fail",
+	"PSP" :"Easybuzz"
   }
 ]

@@ -2,73 +2,42 @@
   {
     "StateCode": "QLD",
     "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "MatrixMaster02",
-    "PSP": "Matrix"
+	"CardNumber": "5553042241984105",
+	"Expiry": "07/28",
+	"CVV": "123",
+	"RunFlag": "Master05",
+	"ExpectedStatus": "Pass",
+	"PSP" :"Easybuzz"
   },
-  {
-    "StateCode": "NSW",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "Master02",
-    "PSP": "Matrix"
-  },
-  {
-    "StateCode": "QLDD",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "Master02",
-    "PSP": "Matrix"
-  },
-  {
-    "StateCode": "C4",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "Master02",
-    "PSP": "Matrix"
-  },
-  {
-    "StateCode": "@",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "Master02",
-    "PSP": "Matrix"
-  },
+
   {
     "StateCode": "",
     "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "MatrixMaster02",
-    "PSP": "Matrix"
+	"CardNumber": "5553042241984105",
+	"Expiry": "07/28",
+	"CVV": "123",
+	"RunFlag": "Master05",
+	"ExpectedStatus": "Fail",
+	"PSP" :"Easybuzz"
   },
   {
     "StateCode": "XYZ",
     "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "MatrixMaster02",
-    "PSP": "Matrix"
+	"CardNumber": "5553042241984105",
+	"Expiry": "07/28",
+	"CVV": "123",
+	"RunFlag": "Master05",
+	"ExpectedStatus": "Fail",
+	"PSP" :"Easybuzz"
   },
   {
-    "StateCode":null,
+    "StateCode":"98",
     "CardHolder": "AB de Villiers",
-    "CardNumber": "5413330300003002",
-    "Expiry": "04/28",
-    "CVC": "440",
-    "RunFlag": "MatrixMMaster02",
-    "PSP": "Matrix"
+	"CardNumber": "5553042241984105",
+	"Expiry": "07/28",
+	"CVV": "123",
+	"RunFlag": "Master05",
+	"ExpectedStatus": "Pass",
+	"PSP" :"Easybuzz"
   }
 ]

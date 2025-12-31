@@ -2,73 +2,41 @@
     {
         "Country": "ZZ",
         "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag": "Master02",
-        "PSP": "Matrix"
+		"CardNumber": "5553042241984105",
+			"Expiry": "07/28",
+			"CVV": "123",
+		    "RunFlag": "Master05",
+			"ExpectedStatus": "Fail",
+			"PSP" :"Easybuzz"
     },
     {
         "Country": "XYZ",
         "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag": "MatrixMaster02",
-        "PSP": "Matrix"
+		"CardNumber": "5553042241984105",
+			"Expiry": "07/28",
+			"CVV": "123",
+		    "RunFlag": "Master05",
+			"ExpectedStatus": "Fail",
+			"PSP" :"Easybuzz"
     },
     {
         "Country": "IN R",
         "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag": "Master02",
-        "PSP": "Matrix"
-    },
+		"CardNumber": "5553042241984105",
+			"Expiry": "07/28",
+			"CVV": "123",
+		    "RunFlag": "Master05",
+			"ExpectedStatus": "Fail",
+			"PSP" :"Easybuzz"
+},
     {
-        "Country": "US",
+        "Country": "IN",
         "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag": "MatrixMaster02",
-        "PSP": "Matrix"
-    },
-    {
-        "Country": "ZZ",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "Master44",
-        "PSP": "Matrix"
-    },
-    {
-        "Country": "XYZ",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "Master44",
-        "PSP": "Matrix"
-    },
-    {
-        "Country": "IN R",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "Master44",
-        "PSP": "Matrix"
-    },
-    {
-        "Country": "US",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "MatrixMaster4444",
-        "PSP": "Matrix"
-    }
+		"CardNumber": "5553042241984105",
+			"Expiry": "07/28",
+			"CVV": "123",
+		    "RunFlag": "Master4105",
+			"ExpectedStatus": "Pass",
+			"PSP" :"Easybuzz"
+}
 ]

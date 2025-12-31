@@ -50,7 +50,7 @@ public class email extends baseClass {
 
 	
 	@Test(dataProvider ="emailProvider", dataProviderClass = DataProviders.class)
-	public void purchaseApi(String emailId) throws Exception {
+	public void purchaseApi(String emailId,String ExpectedStatus,String PSP) throws Exception {
 		WebDriver driver = baseClass.getDriver();
 		this.emailId = emailId;
 		
@@ -64,7 +64,7 @@ public class email extends baseClass {
 		String currency = PropertyReader.getPropertyForS2S("currencyS2S");
 		String paymentMethod = PropertyReader.getPropertyForS2S("paymentMethodS2S");
 		String firstName = generateRandomTestData.generateRandomFirstName();
-		String country = "US";
+		String country = "IN";
 		String city = "Paris";
 		String stateCode = "QLD";
 		
@@ -121,19 +121,19 @@ public class email extends baseClass {
 		    // Add a small delay to ensure purchase is fully persisted
 		    Thread.sleep(2000);
 		    
-		    s2sMethod();
+		    s2sMethod(ExpectedStatus,PSP);
 		}
 
 		if (response.statusCode() == 202) {
 			Reporter.log("emailId accepted by API: " + emailId, true);
 		} else if (response.statusCode() == 400 || response.statusCode() == 422) {
             Reporter.log("emailId rejected by API: " + emailId, true);
-            status = "PASS";
+            status = "Fail";
             comment = "PASS → emailId rejected correctly " + emailId;
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("EmailId_Result", emailId, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("EmailId_Result", emailId,ExpectedStatus,status, comment, purchaseId,PSP);
             driver.quit();
             return; 
         } else {
@@ -141,7 +141,7 @@ public class email extends baseClass {
 		}
 	}
 
-	public void s2sMethod() throws Exception {
+	public void s2sMethod(String ExpectedStatus,String PSP) throws Exception {
 
 	    WebDriver driver = baseClass.getDriver();
 	    lp = new loginPage(getDriver());
@@ -161,7 +161,7 @@ public class email extends baseClass {
 		System.err.println("Full URL: " + baseUri + endpoint);
 
 		// OPTION 1: Use same token as purchase creation (RECOMMENDED)
-		String url=PropertyReader.getProperty("url");
+		String url=PropertyReader.getPropertyForS2S("url");
 	    String token = PropertyReader.getPropertyForS2S("tokenS2S");
 	    String brandId = PropertyReader.getPropertyForS2S("brandIdS2S");
 	    String payu = PropertyReader.getPropertyForS2S("payu");
@@ -170,6 +170,7 @@ public class email extends baseClass {
 	    String mmyy = PropertyReader.getPropertyForS2S("mmyy");
 	    String cvv = PropertyReader.getPropertyForS2S("cvv");
 
+	    String easybuzz = PropertyReader.getPropertyForS2S("easybuzz");
 	    String requestBody =
 	    		"{\n" +
 	    		"  \"cardholder_name\": \"Rahul Agarwal\",\n" +
@@ -240,7 +241,7 @@ public class email extends baseClass {
 	        status = "FAIL";
 	        comment = "S2S call failed with status: " + (response != null ? response.statusCode() : "NULL");
 	        Reporter.log(comment, true);
-	        ExcelWriteUtility.writeResults2s("EmailId_Result", emailId, status, comment, purchaseId);
+	        ExcelWriteUtility.writeResults2s("EmailId_Result", emailId,ExpectedStatus, status, comment, purchaseId,PSP);
 	        driver.quit();
 	        return;
 	    }
@@ -253,14 +254,18 @@ public class email extends baseClass {
 
 	        status = "FAIL";
 	        comment = "callback_url null for purchaseId " + purchaseId;
-	        ExcelWriteUtility.writeResults2s("EmailId_Result", emailId, status, comment, purchaseId);
+	        ExcelWriteUtility.writeResults2s("EmailId_Result", emailId,ExpectedStatus, status, comment, purchaseId,PSP);
 	        driver.quit();
 	        return;
 	    }
 
 	    driver.get(callback_url);
 	    if(payu.equalsIgnoreCase("payu")) {
-	    	pay.payForPayu(emailId,purchaseId);
+	    	pay.payForPayu(emailId,purchaseId,ExpectedStatus);
+	    }
+	    
+	    if(easybuzz.equalsIgnoreCase("easybuzz")) {
+	    	tp.enterOTpEasyBuzz();
 	    }
 	    Thread.sleep(7000);
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
@@ -274,33 +279,48 @@ public class email extends baseClass {
                 .map(p -> p.split("=")[1])
                 .findFirst().orElse("");
         System.err.println(flag);
-
+        String actualOutcome;
         if (flag.equalsIgnoreCase("false")) {
-            status = "FAIL";
-            comment = "Payment Failed";
+        	actualOutcome = "FAIL";
+            if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Fail")) {
+                status = "PASS"; // Test passed - failure was expected
+                comment = "PASS → Payment failed as expected";
+            } else {
+                status = "FAIL"; // Test failed - expected success but got failure
+                comment = "FAIL → Payment failed but expected to pass";
+            }
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("EmailId_Result", emailId, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("EmailId_Result", emailId,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
             driver.quit();
             return;
         }
         else if (flag.equalsIgnoreCase("true")) {
-            status = "PASS";
-            comment = "Payment Successfully";
+            actualOutcome = "PASS";
+            
+            // Payment succeeded - check if success was expected
+            if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+                status = "PASS"; // Test passed - success was expected
+                comment = "PASS → Payment succeeded as expected";
+            } else {
+                status = "FAIL"; // Test failed - expected failure but got success
+                comment = "FAIL → Payment succeeded but expected to fail";
+            }
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("EmailId_Result", emailId, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("EmailId_Result", emailId,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
 
         }
         else {
+        	 actualOutcome = "UNKNOWN";
             status = "UNKNOWN";
             comment = "URL does not contain expected issucces parameter";
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("EmailId_Result", emailId, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("EmailId_Result", emailId,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
         }
         
 		mcp.openBrowserForStaging(driver,url);

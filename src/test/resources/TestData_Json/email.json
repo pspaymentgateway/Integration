@@ -1,219 +1,32 @@
-
 [
     {
-        "email": "suhasyuijhgyu@gmail.com",
-        "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag":"MatrixMaster02",
-		"PSP":"Matrix"
+        "Email": "useralias@gmail.com",
+        "CardHolder": "Virat Kohli",
+        "CardNumber": "5553042241984105",
+        "Expiry": "07/28",
+        "CVV": "123",
+        "RunFlag": "Master05",
+        "ExpectedStatus": "Pass",
+        "PSP": "Matrix"
     },
     {
-        "Email": "suhas@",
-        "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag": "MatrixMaster02",
-		"PSP":"Matrix"
-    },
-    {
-        "EMAIL": "suhas.patil@gmail.com",
-        "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag": "MatrixMaster02",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "gaurav.singh@paysecure.dev",
-        "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag": "Master02",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "hello@brand.io",
-        "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag": "MatrixMaster02",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "user+alias@gmail.com",
-        "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag": "MatrixMaster02",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "suhas@.com",
-        "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag": "MatrixMaster02",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "@gmail.com",
-        "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag": "Master02",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "suhas",
-        "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag": "Master02",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "@@@",
-        "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag": "Master02",
-		"PSP":"Matrix"
+        "Email": "invalid-email-format",
+        "CardHolder": "Test User",
+        "CardNumber": "5553042241984105",
+        "Expiry": "07/28",
+        "CVV": "123",
+        "RunFlag": "Master05",
+        "ExpectedStatus": "Fail",
+        "PSP": "Matrix"
     },
     {
         "Email": "",
-        "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag": "Master02",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "null",
-        "CardHolder": "AB de Villiers",
-        "CardNumber": "5413330300003002",
-        "Expiry": "04/28",
-        "CVC": "440",
-        "RunFlag": "Master02",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "suhasyuijhgyu@gmail.com",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "Master44",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "suhas@",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "Master44",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "suhas.patil@gmail.com",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "Master44",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "gaurav.singh@paysecure.dev",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "Master44",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "hello@brand.io",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "Master44",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "user+alias@gmail.com",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "Master44",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "suhas@.com",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "Master44",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "@gmail.com",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "Master44",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "suhas",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "Master44",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "@@@",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "Master44",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "Master44",
-		"PSP":"Matrix"
-    },
-    {
-        "Email": "null",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5555555555554444",
-        "Expiry": "12/27",
-        "CVC": "111",
-        "RunFlag": "Master44",
-		"PSP":"Matrix"
+        "CardHolder": "Empty Email Test",
+        "CardNumber": "5553042241984105",
+        "Expiry": "07/28",
+        "CVV": "123",
+        "RunFlag": "Master05",
+        "ExpectedStatus": "Fail",
+        "PSP": "Matrix"
     }
 ]

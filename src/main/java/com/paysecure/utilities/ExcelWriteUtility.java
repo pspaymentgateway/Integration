@@ -29,17 +29,17 @@ public class ExcelWriteUtility {
     
 
 
-    public static void writeResult(String sheetName, String value1, String value2, String value3, String purchaseID) {
+    public static void writeResult(String sheetName, String Email, String Expected, String Actual,String Status, String purchaseID,String PSP) {
         String filePath = getExcelPath("purchaseResults.xlsx");
-        writeExcel(sheetName, value1, value2, value3, purchaseID, filePath);
+        writeExcel(sheetName, Email, Expected, Actual,Status, purchaseID,PSP, filePath);
     }
 
-    public static void writeResults2s(String sheetName, String value1, String value2, String value3, String purchaseID) {
+    public static void writeResults2s(String sheetName, String Email, String Expected, String Actual,String Status, String purchaseID, String PSP) {
         String filePath = getExcelPath("s2sResults.xlsx");
-        writeExcel(sheetName, value1, value2, value3, purchaseID, filePath);
+        writeExcel(sheetName, Email, Expected, Actual,Status, purchaseID,PSP, filePath);
     }
 
-    public static void writeExcel(String sheetName, String value1, String value2, String value3, String purchaseID, String filePath) {
+    public static void writeExcel(String sheetName, String Email, String Expected, String Actual,String Status, String purchaseID, String PSP,String filePath) {
         File file = new File(filePath);
         FileInputStream fis = null;
         FileOutputStream fos = null;
@@ -63,21 +63,27 @@ public class ExcelWriteUtility {
 
                 Row header = sheet.createRow(0);
                 header.createCell(0).setCellValue("Test Data");
-                header.createCell(1).setCellValue("Result");
-                header.createCell(2).setCellValue("Status");
-                header.createCell(3).setCellValue("Transaction ID");
-                header.createCell(4).setCellValue("Timestamp");
+                header.createCell(1).setCellValue("Expected Outcome");
+                header.createCell(2).setCellValue("Actual Outcome");
+                header.createCell(3).setCellValue("Status");
+                header.createCell(4).setCellValue("Transaction ID");
+                header.createCell(5).setCellValue("PSP");
+                header.createCell(6).setCellValue("Timestamp");
             }
 
             int lastRow = sheet.getLastRowNum() + 1;
             Row row = sheet.createRow(lastRow);
 
-            row.createCell(0).setCellValue(value1);
-            row.createCell(1).setCellValue(value2);
-            row.createCell(2).setCellValue(value3);
-            row.createCell(3).setCellValue(purchaseID);
-            String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-            row.createCell(4).setCellValue(timeStamp);
+            row.createCell(0).setCellValue(Email); // Email
+            row.createCell(1).setCellValue(Expected); // Expected
+            row.createCell(2).setCellValue(Actual); // Actual
+            row.createCell(3).setCellValue(Status); // Status / Comment
+            row.createCell(4).setCellValue(purchaseID);
+            row.createCell(5).setCellValue(PSP);
+
+            String timeStamp =
+                    new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            row.createCell(6).setCellValue(timeStamp);
 
             fis.close(); // Very important
             fos = new FileOutputStream(file);
