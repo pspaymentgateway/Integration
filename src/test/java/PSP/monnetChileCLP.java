@@ -3,7 +3,7 @@ package PSP;
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
-import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
@@ -32,7 +32,7 @@ public class monnetChileCLP extends baseClass{
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
-	matrixCashierPage mcp;
+	CashierPage mcp;
 	transactionPage tp;
 	payu3dPage pay;
     String status = "";
@@ -41,7 +41,7 @@ public class monnetChileCLP extends baseClass{
 	  public void beforeMethod() throws InterruptedException {
 			lp = new loginPage(getDriver());
 			lp.login();
-			mcp=new matrixCashierPage(getDriver());
+			mcp=new CashierPage(getDriver());
 			tp=new transactionPage(getDriver());
 			pay = new payu3dPage(getDriver());
 	  }

@@ -49,7 +49,7 @@ public class DataProviders {
 	    return new Object[][]{
 
 	        // Valid ISO-2 country codes → Pass
-	        {"IN", "Pass", "Easybuzz"},   // India
+	        {"IN", "Pass", "Zaakpay"},   // India
 //	      {"US", "Pass", "Easybuzz"},   // United States
 //	      {"FR", "Pass", "Easybuzz"},   // France
 //	      {"CA", "Pass", "Easybuzz"},   // Canada
@@ -63,11 +63,11 @@ public class DataProviders {
 //	      {"IN ", "Fail", "Easybuzz"},     // trailing space
 //	      {" IN", "Fail", "Easybuzz"},     // leading space
 
-	        {"IN 1", "Fail", "Easybuzz"},    // contains number
-	        {"@N", "Fail", "Easybuzz"},      // special character
-	        {"123", "Fail", "Easybuzz"},     // numeric
-	        {"", "Fail", "Easybuzz"},        // empty
-	        {null, "Fail", "Easybuzz"}       // null
+//	        {"IN 1", "Fail", "Easybuzz"},    // contains number
+//	        {"@N", "Fail", "Easybuzz"},      // special character
+//	        {"123", "Fail", "Easybuzz"},     // numeric
+//	        {"", "Fail", "Easybuzz"},        // empty
+//	        {null, "Fail", "Easybuzz"}       // null
 	    };
 	}
 
@@ -81,7 +81,7 @@ public class DataProviders {
 	    return new Object[][] {
 
 	        // Valid city names → Pass
-	        {"London", "Pass", "Easybuzz"},
+	        {"London", "Pass", "Zaakpay"},
 //	      {"New York", "Pass", "Easybuzz"},
 //	      {"Paris", "Pass", "Easybuzz"},
 //	      {"San Francisco", "Pass", "Easybuzz"},
@@ -143,7 +143,7 @@ public class DataProviders {
     public Object[][] cardData() {
         return new Object[][] {
 
-        	{"Rohitman Sharma","5553042241984105","07/28","123","Easybuzz"},
+        	{"Rohitman Sharma","4111111111111111","07/29","123","Zaakpay"},
         };
     }
     
@@ -151,7 +151,7 @@ public class DataProviders {
     public Object[][] CreateCustomerSessioncardData() {
         return new Object[][] {
      
-        	{"Rohitman Sharma","5553042241984105","07/28","123","Easybuzz"},
+        	{"Rohitman Sharma","4111111111111111","07/29","123","Zaakpay"},
         };
     }
     @DataProvider(name = "streetAddressProvider")

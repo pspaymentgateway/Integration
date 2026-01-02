@@ -16,7 +16,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
-import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
@@ -35,7 +35,7 @@ public class email extends baseClass {
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
-	matrixCashierPage mcp;
+	CashierPage mcp;
 	transactionPage tp;
 	payu3dPage pay;
     String status = "";
@@ -44,7 +44,7 @@ public class email extends baseClass {
 	public void beforeMethod() throws InterruptedException {
 		lp = new loginPage(getDriver());
 		lp.login();
-		mcp=new matrixCashierPage(getDriver());
+		mcp=new CashierPage(getDriver());
 		tp=new transactionPage(getDriver());
 		pay = new payu3dPage(getDriver());
 	}
@@ -73,6 +73,7 @@ String master = PropertyReader.getPropertyForPurchase("Master");
 String visa = PropertyReader.getPropertyForPurchase("Visa");
 String payu = PropertyReader.getPropertyForS2S("payu");
 String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
+String zaakpay = PropertyReader.getPropertyForS2S("zaakpay");
 String country = "IN";
 String city = "Paris";
 String stateCode = "QLD";
@@ -165,6 +166,10 @@ try {
         
         if(easybuzz.equalsIgnoreCase("easybuzz")) {
 	    	tp.enterOTpEasyBuzz();
+	    }
+        
+	    if(zaakpay.equalsIgnoreCase("zaakpay")) {
+	    	mcp.zaakPayOtpEnterSuccessOrFailure();
 	    }
         
         if (mcp.isCardNumberInvalid()) {
