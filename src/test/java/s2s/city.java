@@ -3,7 +3,7 @@ package s2s;
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
-import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
@@ -31,7 +31,7 @@ public class city extends baseClass {
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
-	matrixCashierPage mcp;
+	CashierPage mcp;
 	transactionPage tp;
 	payu3dPage pay;
 	String stateCode;
@@ -45,7 +45,7 @@ public class city extends baseClass {
     
 	@BeforeMethod
 	public void beforeMethod() throws InterruptedException {
-		mcp = new matrixCashierPage(getDriver());
+		mcp = new CashierPage(getDriver());
 		tp = new transactionPage(getDriver());
 		pay=new payu3dPage(getDriver());
 	}
@@ -175,7 +175,7 @@ public class city extends baseClass {
 	    String mmyy = PropertyReader.getPropertyForS2S("mmyy");
 	    String cvv = PropertyReader.getPropertyForS2S("cvv");
 	    String easybuzz = PropertyReader.getPropertyForS2S("easybuzz");
-	    
+	    String zaakpay = PropertyReader.getPropertyForS2S("zaakpay");
 	    String requestBody =
 	    		"{\n" +
 	    		"  \"cardholder_name\": \"Rahul Agarwal\",\n" +
@@ -265,12 +265,17 @@ public class city extends baseClass {
 	    }
 
 	    driver.get(callback_url);
+	    
 	    if(payu.equalsIgnoreCase("payu")) {
 	    	pay.payForPayu(city,purchaseId,ExpectedStatus);
 	    }
 	    
 	    if(easybuzz.equalsIgnoreCase("easybuzz")) {
 	    	tp.enterOTpEasyBuzz();
+	    }
+	    
+	    if(zaakpay.equalsIgnoreCase("zaakpay")) {
+	    	mcp.zaakPayOtpEnterSuccessOrFailure();
 	    }
 	    
 	    

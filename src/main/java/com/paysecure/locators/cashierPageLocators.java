@@ -34,4 +34,11 @@ public class cashierPageLocators {
 	public static final String easySessionOut="//button[text()='Session Timeout']";
 	public static final String easyDelayedSuccess="//span[@id='random-number']";
 	public static final String easyDelayedFailure="//button[text()='Delayed Failure']";
+	
+	//zaakpay OTP 
+	public static final String zaakPayOTPEnter="//input[@id='pass']";
+	public static final String zaakpaySuccessfullBtn="//input[@class='btn success']";
+	public static final String zaakpayFailureBtn="//input[@class='btn alert']";
+	
+	
 }

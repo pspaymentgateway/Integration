@@ -28,5 +28,45 @@
         "RunFlag": "Master05",
         "ExpectedStatus": "Fail",
         "PSP": "Matrix"
-    }
+    },
+	{
+	        "Email": "useralias@gmail.com",
+	        "CardHolder": "Virat Kohli",
+	        "CardNumber": "4111111111111111",
+	        "Expiry": "07/29",
+	        "CVV": "123",
+	        "RunFlag": "Visa11",
+	        "ExpectedStatus": "Pass",
+	        "PSP": "ZaakPay"
+	    },
+	    {
+	        "Email": "useralias@gmail.com",
+	        "CardHolder": "Virat Kohli",
+			"CardNumber": "4111111111111111",
+			"Expiry": "07/29",
+			"CVV": "123",
+			"RunFlag": "Visa11",
+			"ExpectedStatus": "Pass",
+	        "PSP": "ZaakPay"
+	    },
+	    {
+	        "Email": "invalid-email-format",
+	        "CardHolder": "Test User",
+			"CardNumber": "4111111111111111",
+			"Expiry": "07/29",
+			"CVV": "123",
+			"RunFlag": "Visa11",
+			"ExpectedStatus": "Fail",
+	        "PSP": "ZaakPay"
+	    },
+	    {
+	        "Email": "",
+	        "CardHolder": "Empty Email Test",
+			"CardNumber": "4111111111111111",
+			"Expiry": "07/29",
+			"CVV": "123",
+			"RunFlag": "Visa11",
+			"ExpectedStatus": "Fail",
+	        "PSP": "ZaakPay"
+	    }
 ]

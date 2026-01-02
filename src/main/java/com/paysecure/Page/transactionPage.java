@@ -16,6 +16,7 @@ import com.paysecure.locators.payUPSP;
 import com.paysecure.locators.transactionPageLocators;
 import com.paysecure.utilities.PropertyReader;
 
+
 public class transactionPage {
 
 	private By analytics = By.xpath(transactionPageLocators.analytics);
@@ -74,6 +75,8 @@ public class transactionPage {
 	private By easySessionOut = By.xpath(cashierPageLocators.easySessionOut);
 	private By easyDelayedSuccess = By.xpath(cashierPageLocators.easyDelayedSuccess);
 	private By easyDelayedFailure = By.xpath(cashierPageLocators.easyDelayedFailure);
+	
+
 	private ActionDriver actionDriver;
 
 	// page factory constructor
@@ -524,30 +527,30 @@ public class transactionPage {
 		String key =easybuzzKey;
 		switch (key) {
 		case "success": {
-			actionDriver.clickUsingJS(easySuccess);
+			actionDriver.click(easySuccess);
 			break;
 		}
 		
 		case "failure": {
-			actionDriver.clickUsingJS(easyFailure);
+			actionDriver.click(easyFailure);
 			break;
 		}
 		
 		case "cancel": {
-			actionDriver.clickUsingJS(easyCancel);
+			actionDriver.click(easyCancel);
 			break;
 		}
 		case "session timeout": {
-			actionDriver.clickUsingJS(easySessionOut);
+			actionDriver.click(easySessionOut);
 			break;
 		}
 		
 		case "delayed success": {
-			actionDriver.clickUsingJS(easyDelayedSuccess);
+			actionDriver.click(easyDelayedSuccess);
 			break;
 		}
 		case "delayed failure": {
-			actionDriver.clickUsingJS(easyDelayedFailure);
+			actionDriver.click(easyDelayedFailure);
 			break;
 		}
 		
@@ -556,5 +559,10 @@ public class transactionPage {
 			
 		}
 	}
+public	String LastSTatus;
+public String getLastSTtaus() {
+	return LastSTatus= actionDriver.getText(lastStatusFromTxnPage);
+}
+
 
 }

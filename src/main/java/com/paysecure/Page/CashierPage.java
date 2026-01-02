@@ -18,9 +18,10 @@ import org.testng.Reporter;
 import com.paysecure.actiondriver.ActionDriver;
 import com.paysecure.base.baseClass;
 import com.paysecure.locators.cashierPageLocators;
+import com.paysecure.utilities.PropertyReader;
 
 
-public class matrixCashierPage {
+public class CashierPage {
 
 	private By cardHolderName=By.xpath(cashierPageLocators.cardHolderName);
 	private By cardHolderNumber=By.xpath(cashierPageLocators.cardHolderNumber);
@@ -40,10 +41,15 @@ public class matrixCashierPage {
 	//Payment Method
 	private By Visa=By.xpath(cashierPageLocators.Visa);
 	private By Master=By.xpath(cashierPageLocators.Master);
+	
+	//zaakpay Integration 
+	private By zaakPayOTPEnter=By.xpath(cashierPageLocators.zaakPayOTPEnter);
+	private By zaakpaySuccessfullBtn=By.xpath(cashierPageLocators.zaakpaySuccessfullBtn);
+	private By zaakpayFailureBtn=By.xpath(cashierPageLocators.zaakpayFailureBtn);
 
 	private ActionDriver actionDriver;
 	// page factory constructor
-	public matrixCashierPage(WebDriver driver) {
+	public CashierPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 		this.actionDriver = new ActionDriver(driver);
 	}
@@ -199,5 +205,23 @@ public class matrixCashierPage {
 	}
 
 
+	public void zaakPayOtpEnterSuccessOrFailure() {
+
+		String ZaakPaykey = PropertyReader.getPropertyForS2S("ZaakPaykey");
+		
+		switch (ZaakPaykey) {
+		case "success": {
+			actionDriver.enterText(zaakPayOTPEnter, "1234");
+			actionDriver.click(zaakpaySuccessfullBtn);
+			break;
+		}case "failure": {
+			actionDriver.enterText(zaakPayOTPEnter, "1234");
+			actionDriver.click(zaakpayFailureBtn);
+			break;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + ZaakPaykey);
+		}
+	}
 	
 }
