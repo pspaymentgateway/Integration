@@ -6,6 +6,7 @@ import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
+import com.paysecure.utilities.DataProviders;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
@@ -15,11 +16,14 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Map;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
 
 public class city extends baseClass {
@@ -42,13 +46,34 @@ public class city extends baseClass {
         pay = new payu3dPage(getDriver());
     }
 
-    @Test(dataProvider ="cityData", dataProviderClass = jsonProvider.class)
-    public void validationForCityField(String City, String CardHolder, String CardNumber, 
-            String Expiry, String CVV, String RunFlag, 
-            String ExpectedStatus, String PSP) {
+    @Test(dataProvider ="CityProvider", dataProviderClass = DataProviders.class)
+    public void validationForCityField(Map<String, String> cityData, Map<String, String> cardData) {
         WebDriver driver = baseClass.getDriver();
-        Reporter.log("City test case will run for this PSP :- " + PSP, true);
-        Reporter.log("City test case will run for this runflag:- " + RunFlag, true);
+        //
+		String City = cityData.getOrDefault("TestData", "");
+		String ExpectedStatus = cityData.getOrDefault("Status", "");
+		String emailRunFlag = cityData.getOrDefault("RunFlag", "");
+
+		//
+		String CardHolder = cardData.getOrDefault("CardholderName", "");
+		String CardNumber = cardData.getOrDefault("CardNumber", "");
+		String Expiry = cardData.getOrDefault("Expiry", "");
+		String CVV = cardData.getOrDefault("CVV", "");
+		String PSP = cardData.getOrDefault("PSP", "");
+		String cardRunFlag = cardData.getOrDefault("RunFlag", "");
+		System.err.println(City +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
+
+		//Validate data is not empty
+		if (City.isEmpty() || CardNumber.isEmpty()) {
+			Reporter.log("Skipping test - Empty email or card number", true);
+			throw new SkipException("Empty test data");
+		}
+
+		
+		Reporter.log("Email test case will run for this PSP: " + PSP, true);
+		Reporter.log("Testing Email: " + City + " with Card: " + CardNumber, true);
+        Reporter.log("City test case will run for this PSPCardsIntegrations :- " + PSP, true);
+        Reporter.log("City test case will run for this runflag:- " + cardRunFlag, true);
         
         String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
         RestAssured.baseURI = baseUri;
@@ -61,7 +86,7 @@ public class city extends baseClass {
         String emailId = generateRandomTestData.generateRandomEmail();
         String payu = PropertyReader.getPropertyForS2S("payu");
         String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
-        String zaakpay = PropertyReader.getPropertyForPurchase("zaakpay");
+        String zaakpay = PropertyReader.getPropertyForPurchase("zaakpayNetBanking");
         
         String country = "IN";
         String city = City;
@@ -129,7 +154,7 @@ public class city extends baseClass {
             }
 
             Reporter.log(comment, true);
-            ExcelWriteUtility.writeResult("City_Result", City, ExpectedStatus, "FAIL", comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResult("Purchase_Result", City, ExpectedStatus, "FAIL", comment, purchaseId,PSP);
             driver.quit();
             return;
         } else {
@@ -146,14 +171,14 @@ public class city extends baseClass {
                 mcp.clickOnPay();
 
                 if (payu.equalsIgnoreCase("payu")) {
-                    pay.payForPayu(currency, purchaseId, ExpectedStatus);
+                 
                 }
                 
                 if(easybuzz.equalsIgnoreCase("easybuzz")) {
         	    	tp.enterOTpEasyBuzz();
         	    }
                 
-        	    if(zaakpay.equalsIgnoreCase("zaakpay")) {
+        	    if(zaakpay.equalsIgnoreCase("zaakpayNetBanking")) {
         	    	mcp.zaakPayOtpEnterSuccessOrFailure();
         	    }
 
@@ -164,7 +189,7 @@ public class city extends baseClass {
              Reporter.log("Invalid card number → Luhn check failed", true);
 
                     Reporter.log("Invalid card number → Luhn check failed", true);
-                    ExcelWriteUtility.writeResult("City_Result", City, ExpectedStatus, "FAIL", comment, purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", City, ExpectedStatus, "FAIL", comment, purchaseId,PSP);
                     driver.quit();
                     return;
                 }
@@ -195,7 +220,7 @@ public class city extends baseClass {
                     }
 
                     Reporter.log(comment, true);
-                    ExcelWriteUtility.writeResult("City_Result", City, ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", City, ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
                     driver.quit();
                     return;
                     
@@ -212,7 +237,7 @@ public class city extends baseClass {
                     }
 
                     Reporter.log(comment, true);
-                    ExcelWriteUtility.writeResult("City_Result", City, ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", City, ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
 
                 } else {
                     actualOutcome = "UNKNOWN";
@@ -220,7 +245,7 @@ public class city extends baseClass {
                     comment = "FAIL → URL does not contain expected issucces parameter";
 
                     Reporter.log(comment, true);
-                    ExcelWriteUtility.writeResult("City_Result", City, ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", City, ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
                 }
 
                 // Continue with transaction verification only if payment succeeded

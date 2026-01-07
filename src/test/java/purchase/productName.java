@@ -51,7 +51,7 @@ public class productName extends baseClass {
 			String cvv,String runFlag,String ExpectedStatus,String PSP) {
 
 		WebDriver driver = baseClass.getDriver();
-	      Reporter.log("StateCode test case will run for this PSP :- "+PSP, true);
+	      Reporter.log("StateCode test case will run for this PSPCardsIntegrations :- "+PSP, true);
 	       Reporter.log("StateCode test case will run for this runflag:- "+runFlag, true);
 		 String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
@@ -67,7 +67,7 @@ public class productName extends baseClass {
 		String visa=PropertyReader.getPropertyForPurchase("Visa");
 		String payu = PropertyReader.getPropertyForS2S("payu");
 		String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
-		String zaakpay = PropertyReader.getPropertyForS2S("zaakpay");
+		String zaakpay = PropertyReader.getPropertyForS2S("zaakpayNetBanking");
 		String country="IN";
 		String city = "Paris";
 		String stateCode="QLD";
@@ -154,7 +154,7 @@ public class productName extends baseClass {
 				    	tp.enterOTpEasyBuzz();
 				    }
 				    
-				    if(zaakpay.equalsIgnoreCase("zaakpay")) {
+				    if(zaakpay.equalsIgnoreCase("zaakpayNetBanking")) {
 				    	mcp.zaakPayOtpEnterSuccessOrFailure();
 				    }
 				if (mcp.isCardNumberInvalid()) {

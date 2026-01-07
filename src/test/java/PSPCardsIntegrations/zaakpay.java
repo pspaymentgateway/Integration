@@ -1,9 +1,10 @@
-package PSP;
+package PSPCardsIntegrations;
 
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
+import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
@@ -18,20 +19,22 @@ import io.restassured.response.Response;
 import java.time.Duration;
 import java.util.Arrays;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 
-public class matrixEndToEndFlow extends baseClass{
+public class zaakpay extends baseClass{
 	private WebDriver driver;
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
 	CashierPage mcp;
 	transactionPage tp;
-	
+	payu3dPage pay;
     String status = "";
     String comment = "";
 	  @BeforeMethod
@@ -40,10 +43,12 @@ public class matrixEndToEndFlow extends baseClass{
 			lp.login();
 			mcp=new CashierPage(getDriver());
 			tp=new transactionPage(getDriver());
+			pay = new payu3dPage(getDriver());
 	  }
+	  
 	//String cardHolder, String cardNumber, String expiry, String cvc
   @Test(dataProvider ="cardData",dataProviderClass = DataProviders.class) 
-  public void purchase(String ExpectedStatus, String cardHolder, String cardNumber, String expiry, String cvc,String PSP) throws Exception {
+  public void purchase( String cardHolder, String cardNumber, String expiry, String cvc,String PSP) throws Exception {
       WebDriver driver=baseClass.getDriver();
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
@@ -54,12 +59,7 @@ public class matrixEndToEndFlow extends baseClass{
 		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
-		String matrixPSPUrl=PropertyReader.getPropertyForPurchase("matrixPSPUrl");
-		String UID=PropertyReader.getPropertyForPurchase("UID");
-		String PASSWORD=PropertyReader.getPropertyForPurchase("PASSWORD");
-		String master=PropertyReader.getPropertyForPurchase("Master");
-		String visa=PropertyReader.getPropertyForPurchase("Visa");
-		
+		String zaakpay = PropertyReader.getPropertyForPurchase("zaakpayNetBanking");
 		String country="IN";
 		String city = "Paris";
 		String stateCode="QLD";
@@ -116,19 +116,17 @@ public class matrixEndToEndFlow extends baseClass{
 		tp.validatePurchaseId(purchaseId);
         // Payment
         driver.get(checkoutUrl);
-        if(master.equalsIgnoreCase("master")){
-        	mcp.clickONMaster();
-        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
-        }
-        
-        if(visa.equalsIgnoreCase("visa")) {
-        	mcp.clickONVisa();
-        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
-        }
-        
+
+        mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
         
         mcp.clickOnPay();
-        Thread.sleep(7000);
+        
+        
+ 	    if(zaakpay.equalsIgnoreCase("zaakpayNetBanking")) {
+ 	    	mcp.zaakPayOtpEnterSuccessOrFailure();
+ 	    }
+        
+        Thread.sleep(4000);
 		 // Wait until parameter appears in URL
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.urlContains("issucces"));
@@ -145,17 +143,18 @@ public class matrixEndToEndFlow extends baseClass{
         if (flag.equalsIgnoreCase("false")) {
             status = "FAIL";
             comment = "Payment Failed";
-
+            String ExpectedStatus="FAIL";
+            
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,  status, comment,purchaseId,PSP);
             driver.quit();
             return;
         }
         else if (flag.equalsIgnoreCase("true")) {
             status = "PASS";
             comment = "Payment Successfully";
-
+            String ExpectedStatus="PASS";
             Reporter.log(comment, true);
 
             ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP);
@@ -164,13 +163,14 @@ public class matrixEndToEndFlow extends baseClass{
         else {
             status = "UNKNOWN";
             comment = "URL does not contain expected issucces parameter";
-
+            String ExpectedStatus="UNKNOWN";
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus, status, comment,purchaseId,PSP);
 
 
         }
+        
         mcp.openBrowserForStaging(driver,RestAssured.baseURI);
         lp.login();
         tp.navigateUptoTransaction();

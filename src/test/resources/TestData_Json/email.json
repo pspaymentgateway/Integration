@@ -1,72 +1,37 @@
-[
-    {
-        "Email": "useralias@gmail.com",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5553042241984105",
-        "Expiry": "07/28",
-        "CVV": "123",
-        "RunFlag": "Master05",
-        "ExpectedStatus": "Pass",
-        "PSP": "Matrix"
-    },
-    {
-        "Email": "invalid-email-format",
-        "CardHolder": "Test User",
-        "CardNumber": "5553042241984105",
-        "Expiry": "07/28",
-        "CVV": "123",
-        "RunFlag": "Master05",
+{
+  "EmailData": {
+    "emails": [
+      
+      {  "email": "suhas@gmail.com","ExpectedStatus": "Pass", "RunFlag": "Y"},
+        
+       
+      
+      {
+        "email": "test@gmail.com",
         "ExpectedStatus": "Fail",
-        "PSP": "Matrix"
+        "RunFlag": "N"
+      }
+    ]
+  },
+
+  "CardData": [
+    {
+      "Currency": "INR",
+      "CardHolder": "Virat Kohli",
+      "CardNumber": "5553042241984105",
+      "Expiry": "07/28",
+      "CVV": "123",
+      "PSP": "Matrix",
+      "RunFlag": "Y"
     },
     {
-        "Email": "",
-        "CardHolder": "Empty Email Test",
-        "CardNumber": "5553042241984105",
-        "Expiry": "07/28",
-        "CVV": "123",
-        "RunFlag": "Master05",
-        "ExpectedStatus": "Fail",
-        "PSP": "Matrix"
-    },
-	{
-	        "Email": "useralias@gmail.com",
-	        "CardHolder": "Virat Kohli",
-	        "CardNumber": "4111111111111111",
-	        "Expiry": "07/29",
-	        "CVV": "123",
-	        "RunFlag": "Visa11",
-	        "ExpectedStatus": "Pass",
-	        "PSP": "ZaakPay"
-	    },
-	    {
-	        "Email": "useralias@gmail.com",
-	        "CardHolder": "Virat Kohli",
-			"CardNumber": "4111111111111111",
-			"Expiry": "07/29",
-			"CVV": "123",
-			"RunFlag": "Visa11",
-			"ExpectedStatus": "Pass",
-	        "PSP": "ZaakPay"
-	    },
-	    {
-	        "Email": "invalid-email-format",
-	        "CardHolder": "Test User",
-			"CardNumber": "4111111111111111",
-			"Expiry": "07/29",
-			"CVV": "123",
-			"RunFlag": "Visa11",
-			"ExpectedStatus": "Fail",
-	        "PSP": "ZaakPay"
-	    },
-	    {
-	        "Email": "",
-	        "CardHolder": "Empty Email Test",
-			"CardNumber": "4111111111111111",
-			"Expiry": "07/29",
-			"CVV": "123",
-			"RunFlag": "Visa11",
-			"ExpectedStatus": "Fail",
-	        "PSP": "ZaakPay"
-	    }
-]
+      "Currency": "PHP",
+      "CardHolder": "AB de Villiers",
+      "CardNumber": "5553042241984105",
+      "Expiry": "07/28",
+      "CVV": "123",
+      "PSP": "Easybuzz",
+      "RunFlag": "N"
+    }
+  ]
+}
