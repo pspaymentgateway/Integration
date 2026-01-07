@@ -1,9 +1,9 @@
-package testcases;
+package PSPCardsIntegrations;
 
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
-import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
@@ -32,7 +32,7 @@ public class monnetPeru extends baseClass{
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
-	matrixCashierPage mcp;
+	CashierPage mcp;
 	transactionPage tp;
 	payu3dPage pay;
     String status = "";
@@ -41,14 +41,14 @@ public class monnetPeru extends baseClass{
 	  public void beforeMethod() throws InterruptedException {
 			lp = new loginPage(getDriver());
 			lp.login();
-			mcp=new matrixCashierPage(getDriver());
+			mcp=new CashierPage(getDriver());
 			tp=new transactionPage(getDriver());
 			pay = new payu3dPage(getDriver());
 	  }
 	  
 	//String cardHolder, String cardNumber, String expiry, String cvc
   @Test(dataProvider ="cardData",dataProviderClass = DataProviders.class) 
-  public void purchase(String cardHolder, String cardNumber, String expiry, String cvc) throws Exception {
+  public void purchase(String ExpectedStatus,String cardHolder, String cardNumber, String expiry, String cvc,String PSP) throws Exception {
       WebDriver driver=baseClass.getDriver();
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
@@ -66,22 +66,31 @@ public class monnetPeru extends baseClass{
 		String EmailPayu=PropertyReader.getPropertyForPurchase("EmailPayu");
 		String PassPayU=PropertyReader.getPropertyForPurchase("PassPayU");
 		
-		String requestBody = "{\n" +
+		String country="IN";
+		String city = "Paris";
+		String stateCode="QLD";
+		String streetAddress = "Main gate";
+		String zipcode = "20001";
+		String productname="Cricket bat";
+		
+		
+        System.err.println(baseUri);
+        String requestBody = "{\n" +
 		        "  \"client\": {\n" +
 		        "    \"full_name\": \""+firstName+"\",\n" +
 		        "    \"email\": \""+emailId+"\",\n" +
-		        "    \"country\": \"DZ\",\n" +
-		        "    \"city\": \"London\",\n" +
-		        "    \"stateCode\": \"QLD\",\n" +
-		        "    \"street_address\": \"GGNH JAIPUR\",\n" +
-		        "    \"zip_code\": \"W1S 3BE\",\n" +
+		        "    \"country\": \""+country+"\",\n" +
+		        "    \"city\": \""+city+"\",\n" +
+		        "    \"stateCode\": \""+stateCode+"\",\n" +
+		        "    \"street_address\": \""+streetAddress+"\",\n" +
+		        "    \"zip_code\": \""+zipcode+"\",\n" +
 		        "    \"phone\": \"+1111111111\"\n" +
 		        "  },\n" +
 		        "  \"purchase\": {\n" +
 		        "    \"currency\": \""+currency+"\",\n" +
 		        "    \"products\": [\n" +
 		        "      {\n" +
-		        "        \"name\": \"New Ebook Gaming cards\",\n" +
+		        "        \"name\": \""+productname+"\",\n" +
 		        "        \"price\":"+ price + "\n" +  // "        \"price\": " + price + "\n" +
 		        "      }\n" +
 		        "    ]\n" +
@@ -127,7 +136,7 @@ public class monnetPeru extends baseClass{
         mcp.clickOnPay();
         
 	    if(payu.equalsIgnoreCase("payu")) {
-	    	pay.payForPayu(currency,purchaseId);
+	    	pay.payForPayu(currency,purchaseId,ExpectedStatus);
 	    }
         
         Thread.sleep(4000);
@@ -150,7 +159,7 @@ public class monnetPeru extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP);
             driver.quit();
             return;
         }
@@ -160,7 +169,7 @@ public class monnetPeru extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP);
 
         }
         else {
@@ -169,7 +178,7 @@ public class monnetPeru extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP);
 
 
         }

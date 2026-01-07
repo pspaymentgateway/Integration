@@ -24,4 +24,25 @@ public class cashierPageLocators {
 	public static final String password="//input[@id='password']";
 	public static final String payPayu="//input[@id='submitBtn']";
 	
+	//for easybuzz Integration 
+	public static final String OTPEasyBuzz="//span[@id='random-number']";
+	public static final String EnterOtpEasyBuzz="//input[@id='digit1']";
+	
+	public static final String easySuccess="//button[text()='Success']";
+	public static final String easyFailure="//button[text()='Failure']";
+	public static final String easyCancel="//button[text()='Cancel']";
+	public static final String easySessionOut="//button[text()='Session Timeout']";
+	public static final String easyDelayedSuccess="//span[@id='random-number']";
+	public static final String easyDelayedFailure="//button[text()='Delayed Failure']";
+	
+	//zaakpayNetBanking OTP 
+	public static final String zaakPayOTPEnter="//input[@id='pass']";
+	public static final String zaakpaySuccessfullBtn="//input[@class='btn success']";
+	public static final String zaakpayFailureBtn="//input[@class='btn alert']";
+	
+	//zaakpay - Netbanking Integration
+	public static final String zaakPaySelectbank="//span[@id='select2-providerselect-container']";
+	public static final String zaakPaySelectbankAllList="//ul[@id='select2-providerselect-results']/li";
+	public static final String zaakpaySearchField="//input[@class='select2-search__field']";
+	public static final String zaakpaySubmitButton="//button[text()='Submit']";
 }

@@ -3,7 +3,7 @@ package purchase;
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
-import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
@@ -32,7 +32,7 @@ public class productName extends baseClass {
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
-	matrixCashierPage mcp;
+	CashierPage mcp;
 	transactionPage tp;
 	payu3dPage pay;
     String status = "";
@@ -41,17 +41,17 @@ public class productName extends baseClass {
 	public void beforeMethod() throws InterruptedException {
 		lp = new loginPage(getDriver());
 		lp.login();
-		mcp = new matrixCashierPage(getDriver());
+		mcp = new CashierPage(getDriver());
 		tp = new transactionPage(getDriver());
 		pay = new payu3dPage(getDriver());
 	}
 
 	@Test(dataProvider = "productNameData", dataProviderClass = jsonProvider.class)
-	public void validateForProductNameField(String productname, String cardHolder, String cardNumber, String expiry,
-			String cvv,String runFlag,String PSP) {
+	public void validateForProductNameField(String ProductName, String cardHolder, String cardNumber, String expiry,
+			String cvv,String runFlag,String ExpectedStatus,String PSP) {
 
 		WebDriver driver = baseClass.getDriver();
-	      Reporter.log("StateCode test case will run for this PSP :- "+PSP, true);
+	      Reporter.log("StateCode test case will run for this PSPCardsIntegrations :- "+PSP, true);
 	       Reporter.log("StateCode test case will run for this runflag:- "+runFlag, true);
 		 String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
@@ -66,6 +66,8 @@ public class productName extends baseClass {
 		String master=PropertyReader.getPropertyForPurchase("Master");
 		String visa=PropertyReader.getPropertyForPurchase("Visa");
 		String payu = PropertyReader.getPropertyForS2S("payu");
+		String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
+		String zaakpay = PropertyReader.getPropertyForS2S("zaakpayNetBanking");
 		String country="IN";
 		String city = "Paris";
 		String stateCode="QLD";
@@ -87,7 +89,7 @@ public class productName extends baseClass {
 		        "    \"currency\": \""+currency+"\",\n" +
 		        "    \"products\": [\n" +
 		        "      {\n" +
-		        "        \"name\": \""+productname+"\",\n" +
+		        "        \"name\": \""+ProductName+"\",\n" +
 		        "        \"price\":"+ price + "\n" +  // "        \"price\": " + price + "\n" +
 		        "      }\n" +
 		        "    ]\n" +
@@ -106,25 +108,30 @@ public class productName extends baseClass {
 		checkoutUrl = response.jsonPath().getString("checkout_url");
 		purchaseId = response.jsonPath().getString("purchaseId");
 
-		Reporter.log("productname: " + productname + " → Status: " + response.getStatusCode(), true);
+		Reporter.log("productname: " + ProductName + " → Status: " + response.getStatusCode(), true);
 		Reporter.log("Response Body: " + response.getBody().asPrettyString(), true);
 
 		checkoutUrl = response.jsonPath().getString("checkout_url");
 
 		if (response.statusCode() == 202) {
-			Reporter.log("productname accepted by API: " + productname, true);
+			Reporter.log("productname accepted by API: " + ProductName, true);
 		}else if (response.statusCode() == 400 || response.statusCode() == 422) {
-            Reporter.log("productname rejected by API: " + productname, true);
-            status = "PASS";
-            comment = "PASS → productname rejected correctly   " + productname;
+		    // Email was rejected - check if this was expected
+		    if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Fail")) {
+		        status = "PASS"; // Test passed because rejection was expected
+		        comment = "PASS → ProductName rejected correctly as expected: " + ProductName;
+		    } else {
+		        status = "FAIL"; // Test failed because rejection was NOT expected
+		        comment = "FAIL → ProductName was rejected but expected to pass: " + ProductName;
+		    }
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("Productname_Result", productname, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("Productname_Result", ProductName,ExpectedStatus, "Fail", comment,purchaseId,PSP);
             driver.quit();
             return; 
         }  else {
-			Reporter.log("Unexpected response for productname: " + productname + " -> " + response.statusCode(), true);
+			Reporter.log("Unexpected response for productname: " + ProductName + " -> " + response.statusCode(), true);
 		}
 
 		try {
@@ -140,13 +147,23 @@ public class productName extends baseClass {
 				mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
 				 mcp.clickOnPay();
 				    if(payu.equalsIgnoreCase("payu")) {
-				    	pay.payForPayu(currency,purchaseId);
+				    	pay.payForPayu(currency,purchaseId,ExpectedStatus);
+				    }
+				    
+				    if(easybuzz.equalsIgnoreCase("easybuzz")) {
+				    	tp.enterOTpEasyBuzz();
+				    }
+				    
+				    if(zaakpay.equalsIgnoreCase("zaakpayNetBanking")) {
+				    	mcp.zaakPayOtpEnterSuccessOrFailure();
 				    }
 				if (mcp.isCardNumberInvalid()) {
+				
 					   status = "FAIL";
 	                    comment = "Payment Failed Cause Of Luhn ";
+                 Reporter.log("Invalid card number → Luhn check failed", true);
                   Reporter.log("Invalid card number → Luhn check failed", true);
-                  ExcelWriteUtility.writeResult("Productname_Result", productname, status, comment,purchaseId);
+                  ExcelWriteUtility.writeResult("Productname_Result", ProductName,ExpectedStatus,    status, comment,purchaseId,PSP);
 					driver.quit();
 					return;
 				}
@@ -163,33 +180,49 @@ public class productName extends baseClass {
                         .map(p -> p.split("=")[1])
                         .findFirst().orElse("");
 
+                String actualOutcome;
 
                 if (flag.equalsIgnoreCase("false")) {
-                    status = "FAIL";
-                    comment = "Payment Failed";
+                	actualOutcome = "Fail";
+                    // Check if success was expected
+                    if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+                        status = "Pass"; // Test passed - success was expected
+                        comment = "Pass → Payment succeeded as expected";
+                    } else {
+                        status = "Fail"; // Test failed - expected failure but got success
+                        comment = "Fail → Payment succeeded but expected to fail";
+                    }
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Productname_Result", productname, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Productname_Result", ProductName,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
                     driver.quit();
                     return;
                 }
                 else if (flag.equalsIgnoreCase("true")) {
-                    status = "PASS";
-                    comment = "Payment Successfully";
+                	actualOutcome = "Pass";
+                    // Check if success was expected
+                    if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+                        status = "Pass"; // Test passed - success was expected
+                        comment = "Pass → Payment succeeded as expected";
+                    } else {
+                        status = "Fail"; // Test failed - expected failure but got success
+                        comment = "Fail → Payment succeeded but expected to fail";
+                    }
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Productname_Result", productname, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Productname_Result", ProductName,ExpectedStatus, actualOutcome, comment,purchaseId,PSP);
 
                 }
                 else {
+                	 actualOutcome = "UNKNOWN";
                     status = "UNKNOWN";
                     comment = "URL does not contain expected issucces parameter";
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Productname_Result", productname, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Productname_Result", ProductName,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
 
 
                 }

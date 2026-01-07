@@ -4,6 +4,7 @@ import io.restassured.http.ContentType;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,8 +17,9 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
-import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
+import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
@@ -35,198 +37,238 @@ public class email extends baseClass {
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
-	matrixCashierPage mcp;
+	CashierPage mcp;
 	transactionPage tp;
+	pspOTPPage otp;
 	payu3dPage pay;
-    String status = "";
-    String comment = "";
+	String status = "";
+	String comment = "";
+
 	@BeforeMethod
 	public void beforeMethod() throws InterruptedException {
 		lp = new loginPage(getDriver());
 		lp.login();
-		mcp=new matrixCashierPage(getDriver());
-		tp=new transactionPage(getDriver());
+		mcp = new CashierPage(getDriver());
+		tp = new transactionPage(getDriver());
 		pay = new payu3dPage(getDriver());
+		otp=new pspOTPPage();
 	}
 
+	@Test(dataProvider = "EmailData", dataProviderClass = DataProviders.class)
+	public void Purchase(Map<String, String> emailData, Map<String, String> cardData) throws InterruptedException {
+
+		//
+		String Email = emailData.getOrDefault("TestData", "");
+		String ExpectedStatus = emailData.getOrDefault("Status", "");
+		String emailRunFlag = emailData.getOrDefault("RunFlag", "");
+
+		//
+		String CardHolder = cardData.getOrDefault("CardholderName", "");
+		String CardNumber = cardData.getOrDefault("CardNumber", "");
+		String Expiry = cardData.getOrDefault("Expiry", "");
+		String CVV = cardData.getOrDefault("CVV", "");
+		String PSP = cardData.getOrDefault("PSP", "");
+		String cardRunFlag = cardData.getOrDefault("RunFlag", "");
+		String PaymentMethod=cardData.getOrDefault("PaymentMethod","");
+		String Currency=cardData.getOrDefault("Currency", "");
+
+		System.err.println(Email +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
+
+		//Validate data is not empty
+		if (Email.isEmpty() || CardNumber.isEmpty()) {
+			Reporter.log("Skipping test - Empty email or card number", true);
+			throw new SkipException("Empty test data");
+		}
+
+		WebDriver driver = baseClass.getDriver();
+		Reporter.log("Email test case will run for this PSP: " + PSP, true);
+		Reporter.log("Testing Email: " + Email + " with Card: " + CardNumber, true);
+
 	
-	@Test(dataProvider ="email", dataProviderClass = jsonProvider.class)
-	public void Purchase(String emailId,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String PSP) throws InterruptedException {
-        WebDriver driver=baseClass.getDriver();
-        Reporter.log("Email test case will run for this PSP :- "+PSP, true);
-        Reporter.log("Email test case will run for this runflag:- "+runFlag, true);
+
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
-		RestAssured.baseURI =baseUri;
+		RestAssured.baseURI = baseUri;
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
 		String price = generateRandomTestData.generateRandomDouble();
-	
-		String currency =PropertyReader.getPropertyForPurchase("currency");
-		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
-		String firstName = generateRandomTestData.generateRandomFirstName();
-		String master=PropertyReader.getPropertyForPurchase("Master");
-		String visa=PropertyReader.getPropertyForPurchase("Visa");
+      	String firstName = generateRandomTestData.generateRandomFirstName();
 		String payu = PropertyReader.getPropertyForS2S("payu");
-		
-		String country="IN";
+		String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
+		String zaakpay = PropertyReader.getPropertyForS2S("zaakpay");
+		String country = "IN";
 		String city = "Paris";
-		String stateCode="QLD";
+		String stateCode = "QLD";
 		String streetAddress = "Main gate";
 		String zipcode = "20001";
-		String productname="Cricket bat";
-		
-		
-        System.err.println(baseUri);
-        String requestBody = "{\n" +
-		        "  \"client\": {\n" +
-		        "    \"full_name\": \""+firstName+"\",\n" +
-		        "    \"email\": \""+emailId+"\",\n" +
-		        "    \"country\": \""+country+"\",\n" +
-		        "    \"city\": \""+city+"\",\n" +
-		        "    \"stateCode\": \""+stateCode+"\",\n" +
-		        "    \"street_address\": \""+streetAddress+"\",\n" +
-		        "    \"zip_code\": \""+zipcode+"\",\n" +
-		        "    \"phone\": \"+1111111111\"\n" +
-		        "  },\n" +
-		        "  \"purchase\": {\n" +
-		        "    \"currency\": \""+currency+"\",\n" +
-		        "    \"products\": [\n" +
-		        "      {\n" +
-		        "        \"name\": \""+productname+"\",\n" +
-		        "        \"price\":"+ price + "\n" +  // "        \"price\": " + price + "\n" +
-		        "      }\n" +
-		        "    ]\n" +
-		        "  },\n" +
-		        "  \"paymentMethod\": \""+paymentMethod+"\",\n" +
-		        "  \"brand_id\": \"" + brandId + "\",\n" +
-		        "  \"success_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=true\",\n" +
-		        "  \"failure_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=false\",\n" +
-		        "  \"success_callback\": \"https://www.google.com/\",\n" +
-		        "  \"failure_callback\": \"https://staging.paysecure.net/merchant\"\n" +
-		        "}";
+		String productname = "Cricket bat";
 
-	    Response  response = RestAssured.given()
-                .header("Authorization", "Bearer " + token)
-                .contentType(ContentType.JSON)
-                .body(requestBody)
-                .when()
-                .post("api/v1/purchases")
-                .then()
-                .extract()
-                .response();
+		System.err.println(baseUri);
+		String requestBody = "{\n" +
+		   "  \"client\": {\n" +
+		   "    \"full_name\": \"" + firstName + "\",\n" +
+		   "    \"email\": \"" + Email + "\",\n" +  // Changed from emailId to Email
+		   "    \"country\": \"" + country + "\",\n" +
+		   "    \"city\": \"" + city + "\",\n" +
+		   "    \"stateCode\": \"" + stateCode + "\",\n" +
+		   "    \"street_address\": \"" + streetAddress + "\",\n" +
+		   "    \"zip_code\": \"" + zipcode + "\",\n" +
+		   "    \"phone\": \"+1111111111\"\n" +
+		   "  },\n" +
+		   "  \"purchase\": {\n" +
+		   "    \"currency\": \"" + Currency + "\",\n" +
+		   "    \"products\": [\n" +
+		   "      {\n" +
+		   "        \"name\": \"" + productname + "\",\n" +
+		   "        \"price\":" + price + "\n" +
+		   "      }\n" +
+		   "    ]\n" +
+		   "  },\n" +
+		   "  \"paymentMethod\": \"" + PaymentMethod + "\",\n" +
+		   "  \"brand_id\": \"" + brandId + "\",\n" +
+		   "  \"success_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=true\",\n" +
+		   "  \"failure_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=false\",\n" +
+		   "  \"success_callback\": \"https://www.google.com/\",\n" +
+		   "  \"failure_callback\": \"https://staging.paysecure.net/merchant\"\n" +
+		   "}";
+		Response response = RestAssured.given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
+				.body(requestBody).when().post("api/v1/purchases").then().extract().response();
 
 		checkoutUrl = response.jsonPath().getString("checkout_url");
 		purchaseId = response.jsonPath().getString("purchaseId");
 
-		Reporter.log("emailId: " + emailId + " → Status: " + response.getStatusCode(), true);
+		Reporter.log("Email: " + Email + " → Status: " + response.getStatusCode(), true); // Changed
 		Reporter.log("Response Body: " + response.getBody().asPrettyString(), true);
-        
-        
-        checkoutUrl = response.jsonPath().getString("checkout_url");
-        System.err.println(checkoutUrl);
 
-        
-        if (response.statusCode() == 202) {
-            Reporter.log("Email accepted by API: " + emailId, true);
-        } else if (response.statusCode() == 400 || response.statusCode() == 422) {
-            Reporter.log("Email rejected by API: " + emailId, true);
-            status = "PASS";
-            comment = "PASS → Email rejected correctly" + emailId;
+		checkoutUrl = response.jsonPath().getString("checkout_url");
+		System.err.println(checkoutUrl);
 
-            Reporter.log(comment, true);
+		if (response.statusCode() == 202) {
+			Reporter.log("Email accepted by API: " + Email, true);
+		} else if (response.statusCode() == 400 || response.statusCode() == 422) {
+			Reporter.log("Email rejected by API: " + Email, true);
 
-            ExcelWriteUtility.writeResult("Email_Result", emailId, status, comment,purchaseId);
-            return; 
-        }
-        else {
-            Reporter.log("Unexpected response for email: " + emailId + " -> " + response.statusCode(), true);
-        }
-    
-        try {
+			// Email was rejected - check if this was expected
+			if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Fail")) {
+				status = "PASS"; // Test passed because rejection was expected
+				comment = "PASS → Email rejected correctly as expected: " + Email;
+			} else {
+				status = "FAIL"; // Test failed because rejection was NOT expected
+				comment = "FAIL → Email was rejected but expected to pass: " + Email;
+			}
 
-            //SUCCESS CASE (202 + checkout_url exists)
-            if (response.statusCode()  == 202 && checkoutUrl != null && !checkoutUrl.isEmpty()) {
+			Reporter.log(comment, true);
+			ExcelWriteUtility.writeResult("Purchase_Result", Email, ExpectedStatus, "FAIL", comment, purchaseId,
+					PSP);
+			return;
+		} else {
+			Reporter.log("Unexpected response for email: " + Email + " -> " + response.statusCode(), true);
+		}
 
-                Reporter.log("API success → proceeding with full flow", true);
-                System.err.println(checkoutUrl);
-                // Payment
-                driver.get(checkoutUrl);
+		try {
+			if (response.statusCode() == 202 && checkoutUrl != null && !checkoutUrl.isEmpty()) {
+				Reporter.log("API success → proceeding with full flow", true);
+				System.err.println(checkoutUrl);
 
-                mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
-                mcp.clickOnPay();
-                if(payu.equalsIgnoreCase("payu")) {
-        	    	pay.payForPayu(currency,purchaseId);
-        	    }
-                if (mcp.isCardNumberInvalid()) {
-             	   status = "FAIL";
-                   comment = "Payment Failed Cause Of Luhn ";
-              Reporter.log("Invalid card number → Luhn check failed", true);
-              ExcelWriteUtility.writeResult("Email_Result", emailId, status, comment,purchaseId);
-                    driver.quit();
-                    return;
-                }
-                
-             // Wait until parameter appears in URL
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-                wait.until(ExpectedConditions.urlContains("issucces"));
+				driver.get(checkoutUrl);
 
-                String redirectUrl = driver.getCurrentUrl();
-                Reporter.log("Redirected URL: " + redirectUrl, true);
+				mcp.userEnterCardInformationForPayment(CardHolder, CardNumber, Expiry, CVV);
+				mcp.clickOnPay();
 
-                String flag = Arrays.stream(redirectUrl.split("\\?")[1].split("&"))
-                        .filter(p -> p.startsWith("issucces="))
-                        .map(p -> p.split("=")[1])
-                        .findFirst().orElse("");
+				if (payu.equalsIgnoreCase("payu")) {
+					pay.payForPayu(Currency, purchaseId, ExpectedStatus);
+				}
 
+				otp.enterOTP(PSP);
+				if (mcp.isCardNumberInvalid()) {
 
-                if (flag.equalsIgnoreCase("false")) {
-                    status = "FAIL";
-                    comment = "Payment Failed";
+					status = "FAIL";
+					comment = "Payment Failed Cause Of Luhn ";
+					Reporter.log("Invalid card number → Luhn check failed", true);
 
-                    Reporter.log(comment, true);
+					Reporter.log(comment, true);
+					ExcelWriteUtility.writeResult("Purchase_Result", Email, ExpectedStatus, "Fail", comment,
+							purchaseId, PSP);
+					driver.quit();
+					return;
+				}
 
-                    ExcelWriteUtility.writeResult("Email_Result", emailId, status, comment,purchaseId);
-                    return;
-                }
-                else if (flag.equalsIgnoreCase("true")) {
-                    status = "PASS";
-                    comment = "Payment Successfully";
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+				wait.until(ExpectedConditions.urlContains("issucces"));
 
-                    Reporter.log(comment, true);
+				
+				String redirectUrl = driver.getCurrentUrl();
+				Reporter.log("Redirected URL: " + redirectUrl, true);
 
-                    ExcelWriteUtility.writeResult("Email_Result", emailId, status, comment,purchaseId);
+				String flag = Arrays.stream(redirectUrl.split("\\?")[1].split("&"))
+						.filter(p -> p.startsWith("issucces=")).map(p -> p.split("=")[1]).findFirst().orElse("");
 
-                }
-                else {
-                    status = "UNKNOWN";
-                    comment = "URL does not contain expected issucces parameter";
+				String actualOutcome;
 
-                    Reporter.log(comment, true);
+				if (flag.equalsIgnoreCase("false")) {
+					actualOutcome = "Fail";
 
-                    ExcelWriteUtility.writeResult("Email_Result", emailId, status, comment,purchaseId);
+					// Check if failure was expected
+					if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Fail")) {
+						status = "PASS"; // Test passed - failure was expected
+						comment = "PASS → Payment failed as expected";
+					} else {
+						status = "FAIL"; // Test failed - expected success but got failure
+						comment = "FAIL → Payment failed but expected to pass";
+					}
 
-                }
+					Reporter.log(comment, true);
+					ExcelWriteUtility.writeResult("Purchase_Result", Email, ExpectedStatus, actualOutcome, comment,
+							purchaseId, PSP);
+					return;
 
-                // Login + Transaction check
-                mcp.openBrowserForStaging(driver,baseUri);
-                lp.login();
-                tp.navigateUptoTransaction();
-                tp.searchTheTransaction(purchaseId);
-                tp.searchButton();
-                tp.clickOnTransactionId();
-                tp.verifyPurchaseTransactionIDIsNotEmpty();
-                Thread.sleep(4000);
+				} else if (flag.equalsIgnoreCase("true")) {
+					actualOutcome = "Pass";
 
-                return; // PASS
-            }
+					// Check if success was expected
+					if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+						status = "Pass"; // Test passed - success was expected
+						comment = "Pass → Payment succeeded as expected";
+					} else {
+						status = "Fail"; // Test failed - expected failure but got success
+						comment = "Fail → Payment succeeded but expected to fail";
+					}
 
+					Reporter.log(comment, true);
+					ExcelWriteUtility.writeResult("Purchase_Result", Email, ExpectedStatus, actualOutcome, comment,
+							purchaseId, PSP);
 
-        } catch (Exception e) {
-          // System.out.println("Unexpected error: " + e.getMessage());
-        	  Assert.fail("Unexpected error: " + e.getMessage()); // keep this
-        } 
-        finally {
-            if (driver != null) driver.quit();
-        }
+				} else {
+					actualOutcome = "UNKNOWN";
+					status = "FAIL";
+					comment = "FAIL → URL does not contain expected issucces parameter";
+
+					Reporter.log(comment, true);
+					ExcelWriteUtility.writeResult("Purchase_Result", Email, ExpectedStatus, actualOutcome, comment,
+							purchaseId, PSP);
+				}
+
+				// Continue with transaction verification only if payment succeeded
+				if (flag.equalsIgnoreCase("true")) {
+					mcp.openBrowserForStaging(driver, baseUri);
+					lp.login();
+					tp.navigateUptoTransaction();
+					tp.searchTheTransaction(purchaseId);
+					tp.searchButton();
+					tp.clickOnTransactionId();
+					tp.verifyPurchaseTransactionIDIsNotEmpty();
+					Thread.sleep(4000);
+				}
+
+				return;
+			}
+
+		} catch (Exception e) {
+			Assert.fail("Unexpected error: " + e.getMessage());
+		} finally {
+			if (driver != null)
+				driver.quit();
+
+		}
+
 	}
 }

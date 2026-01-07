@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
-import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
@@ -32,7 +32,7 @@ public class createCustomerAndCreateSession extends baseClass{
 	loginPage lp;
 	String checkoutUrl;
 	//String purchaseId;
-	matrixCashierPage mcp;
+	CashierPage mcp;
 	transactionPage tp;
 	payu3dPage pay;
 	String stateCode;
@@ -49,7 +49,7 @@ public class createCustomerAndCreateSession extends baseClass{
 	@BeforeMethod
 	public void beforeMethod() throws InterruptedException {
 		lp = new loginPage(getDriver());
-		mcp = new matrixCashierPage(getDriver());
+		mcp = new CashierPage(getDriver());
 		tp = new transactionPage(getDriver());
 		pay=new payu3dPage(getDriver());
 	
@@ -60,12 +60,13 @@ public class createCustomerAndCreateSession extends baseClass{
 		String brandId =PropertyReader.getPropertyForCreateCustomerSession("BrandIDCC");
 		String token =PropertyReader.getPropertyForCreateCustomerSession("TokenCC");
 		String firstName = generateRandomTestData.generateRandomFirstName();
-		String lastName = generateRandomTestData.generateRandomFirstName();
+		
 		String emailId = generateRandomTestData.generateRandomEmail();
 		String mobileNumber=generateRandomTestData.generateRandomIndianMobileNumber();
 		String merchantCSID=generateRandomTestData.generateRandomMerchantCustomerId();
 		
 		baseUri = PropertyReader.getPropertyForCreateCustomerSession("baseURICC");
+		String country="IN";
 		RestAssured.baseURI = baseUri;
 		String requestBody = "{\n" +
 				"  \"merchantCustomerId\": \""+merchantCSID+"\",\n" +
@@ -73,9 +74,9 @@ public class createCustomerAndCreateSession extends baseClass{
 				"  \"emailId\": \""+emailId+"\",\n" +
 				"  \"phoneNo\": \""+mobileNumber+"\",\n" +
 				"  \"city\": \"juneau\",\n" +
-				"  \"stateCode\": \"CT\",\n" +
+				"  \"stateCode\": \"MH\",\n" +
 				"  \"zipCode\": \"99812\",\n" +
-				"  \"country\": \"CA\",\n" +
+				"  \"country\": \""+country+"\",\n" +
 				"  \"custRegDate\": \"2024-11-23\",\n" +
 				"  \"successTrans\": \"23\",\n" +
 				"  \"extraParam\": {}\n" +
@@ -90,17 +91,21 @@ public class createCustomerAndCreateSession extends baseClass{
 	}
 	
 	
-	@Test(dependsOnMethods ="createCustomer",invocationCount = 1,dataProvider = "cardData", dataProviderClass = DataProviders.class)
-	public void createSession(String cardHolder, String cardNumber, String expiry, String cvv) throws Exception {
+	
+	@Test(dependsOnMethods ="createCustomer",invocationCount = 3,dataProvider = "CreateCCCardData", dataProviderClass = DataProviders.class)
+	public void createSession(String cardHolder, String cardNumber, String expiry, String cvv,String PSP) throws Exception {
 		WebDriver driver=baseClass.getDriver();
 		String brandId =PropertyReader.getPropertyForCreateCustomerSession("BrandIDCC");
 		String currency =PropertyReader.getPropertyForCreateCustomerSession("currencyCC");
 		String token =PropertyReader.getPropertyForCreateCustomerSession("TokenCC");
-		baseUri = PropertyReader.getPropertyForCreateCustomerSession("baseURICC");
-		String paymentMethod=PropertyReader.getPropertyForCreateCustomerSession("paymentMethod");
+		String baseUri = PropertyReader.getPropertyForCreateCustomerSession("baseURICC");
+		String paymentMethod=PropertyReader.getPropertyForCreateCustomerSession("paymentMethods");
 		String price = generateRandomTestData.generateRandomDoublePrice();
 		String payu = PropertyReader.getPropertyForCreateCustomerSession("payu");
 		String payhost = PropertyReader.getPropertyForCreateCustomerSession("payhost");
+	      String payu1 = PropertyReader.getPropertyForS2S("payu");
+	        String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
+	        String zaakpay = PropertyReader.getPropertyForPurchase("zaakpayNetBanking");
 		RestAssured.baseURI = baseUri;
 		
 		String requestBody = "{\n" +
@@ -141,21 +146,25 @@ public class createCustomerAndCreateSession extends baseClass{
 	
 	       mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
            mcp.clickOnPay();
+
+           if (payu1.equalsIgnoreCase("payu")) {
+               pay.payForPayu(currency, sessionId, paymentMethod);
+           }
            
-//           if(payhost.equalsIgnoreCase("Payhost")) {
-//        	   tp.clickONSubmitButton();
-//           }
-          
-	
-//           if(payu.equalsIgnoreCase("payu")) {
-//   	    	pay.payForPayu(currency,sessionId);
-//   	    }
+           if(easybuzz.equalsIgnoreCase("easybuzz")) {
+   	    	tp.enterOTpEasyBuzz();
+   	    }
+           
+   	    if(zaakpay.equalsIgnoreCase("zaakpayNetBanking")) {
+   	    	mcp.zaakPayOtpEnterSuccessOrFailure();
+   	    }
            
            if (mcp.isCardNumberInvalid()) {
         	   status = "FAIL";
+        	   String ExpectedStatus="Fail";
                comment = "Payment Failed Cause Of Luhn ";
           Reporter.log("Invalid card number → Luhn check failed", true);
-          ExcelWriteUtility.writeResult("CreateCustomerAndSession", currency + " " +paymentMethod, status, comment,sessionId);
+          ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency,ExpectedStatus, status, comment,sessionId,PSP);
               
              //  driver.quit();
                return;
@@ -173,33 +182,36 @@ public class createCustomerAndCreateSession extends baseClass{
                    .map(p -> p.split("=")[1])
                    .findFirst().orElse("");
 
-
+           
            if (flag.equalsIgnoreCase("false")) {
                status = "FAIL";
+             String ExpectedStatus="Fail";
                comment = "Payment Failed";
 
                Reporter.log(comment, true);
 
-               ExcelWriteUtility.writeResult("CreateCustomerAndSession",  currency + " " +paymentMethod, status, comment,sessionId);
+               ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency,ExpectedStatus, status, comment,sessionId,PSP);
              //  driver.quit();
                return;
            }
            else if (flag.equalsIgnoreCase("true")) {
                status = "PASS";
+               String ExpectedStatus="Pass";
                comment = "Payment Successfully";
 
                Reporter.log(comment, true);
 
-               ExcelWriteUtility.writeResult("CreateCustomerAndSession", currency + " " +paymentMethod, status, comment,sessionId);
+               ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency,ExpectedStatus, status, comment,sessionId,PSP);
 
            }
            else {
                status = "UNKNOWN";
+               String ExpectedStatus="UNKNOWN";
                comment = "URL does not contain expected issucces parameter";
 
                Reporter.log(comment, true);
 
-               ExcelWriteUtility.writeResult("CreateCustomerAndSession", currency + " " +paymentMethod, status, comment,sessionId);
+               ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency ,ExpectedStatus, status, comment,sessionId,PSP);
 
 
            }
@@ -209,11 +221,12 @@ public class createCustomerAndCreateSession extends baseClass{
            mcp.openBrowserForStaging(driver,baseUri);
            lp.login();
            tp.navigateUptoTransaction();
+           tp.searchTheTransaction(sessionId);
            tp.searchTheTransaction( sessionId);
            tp.searchButton();
            tp.clickOnTransactionId();
            tp.verifyPurchaseTransactionIDIsNotEmpty();
-           Thread.sleep(4000); 
+           Thread.sleep(4000);
            
 
            

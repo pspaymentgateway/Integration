@@ -3,7 +3,7 @@ package s2s;
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
-import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
@@ -31,7 +31,7 @@ public class brandID extends baseClass {
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
-	matrixCashierPage mcp;
+	CashierPage mcp;
 	transactionPage tp;
 	payu3dPage pay;
     String status = "";
@@ -43,14 +43,14 @@ public class brandID extends baseClass {
     
 	@BeforeMethod
 	public void beforeMethod() throws InterruptedException {
-		mcp = new matrixCashierPage(getDriver());
+		mcp = new CashierPage(getDriver());
 		tp = new transactionPage(getDriver());
 		pay=new payu3dPage(getDriver());
 	}
 
 	
 	@Test(dataProvider ="brandIdProvider", dataProviderClass = DataProviders.class)
-	public void purchaseApi(String brandid) throws Exception {
+	public void purchaseApi(String brandid,String ExpectedStatus,String PSP) throws Exception {
 		WebDriver driver = baseClass.getDriver();
 		this.brandid = brandid;
 		
@@ -64,7 +64,7 @@ public class brandID extends baseClass {
 		String currency = PropertyReader.getPropertyForS2S("currencyS2S");
 		String paymentMethod = PropertyReader.getPropertyForS2S("paymentMethodS2S");
 		String firstName = generateRandomTestData.generateRandomFirstName();
-		String country = "US";
+		String country = "IN";
 		String zipcode="10001";
 		String city = "Paris";
 		String stateCode = "QLD";
@@ -121,7 +121,7 @@ public class brandID extends baseClass {
 		    // Add a small delay to ensure purchase is fully persisted
 		    Thread.sleep(2000);
 		    
-		    s2sMethod();
+		    s2sMethod(ExpectedStatus,PSP);
 		}
 
 		if (response.statusCode() == 202) {
@@ -133,7 +133,7 @@ public class brandID extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("BrandID_Result", brandid, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("BrandID_Result", brandid,ExpectedStatus, status, comment, purchaseId,PSP);
             driver.quit();
             return; 
         } else {
@@ -141,7 +141,7 @@ public class brandID extends baseClass {
 		}
 	}
 
-	public void s2sMethod() throws Exception {
+	public void s2sMethod(String ExpectedStatus,String PSP) throws Exception {
 
 	    WebDriver driver = baseClass.getDriver();
 	    lp = new loginPage(getDriver());
@@ -170,6 +170,8 @@ public class brandID extends baseClass {
 	    String mmyy = PropertyReader.getPropertyForS2S("mmyy");
 	    String cvv = PropertyReader.getPropertyForS2S("cvv");
 
+	    String easybuzz = PropertyReader.getPropertyForS2S("easybuzz");
+	    String zaakpay = PropertyReader.getPropertyForS2S("zaakpayNetBanking");
 	    String requestBody =
 	    		"{\n" +
 	    		"  \"cardholder_name\": \"Rahul Agarwal\",\n" +
@@ -240,7 +242,7 @@ public class brandID extends baseClass {
 	        status = "FAIL";
 	        comment = "S2S call failed with status: " + (response != null ? response.statusCode() : "NULL");
 	        Reporter.log(comment, true);
-	        ExcelWriteUtility.writeResults2s("BrandID_Result", brandid, status, comment, purchaseId);
+	        ExcelWriteUtility.writeResults2s("BrandID_Result", brandid,ExpectedStatus, status, comment, purchaseId,PSP);
 	        driver.quit();
 	        return;
 	    }
@@ -253,14 +255,21 @@ public class brandID extends baseClass {
 
 	        status = "FAIL";
 	        comment = "callback_url null for purchaseId " + purchaseId;
-	        ExcelWriteUtility.writeResults2s("BrandID_Result", brandid, status, comment, purchaseId);
+	        ExcelWriteUtility.writeResults2s("BrandID_Result", brandid,ExpectedStatus,  status, comment, purchaseId,PSP);
 	        driver.quit();
 	        return;
 	    }
 
 	    driver.get(callback_url);
 	    if(payu.equalsIgnoreCase("payu")) {
-	    	pay.payForPayu(brandid,purchaseId);
+	    	pay.payForPayu(brandid,purchaseId,ExpectedStatus);
+	    }
+	    
+	    if(easybuzz.equalsIgnoreCase("easybuzz")) {
+	    	tp.enterOTpEasyBuzz();
+	    }
+	    if(zaakpay.equalsIgnoreCase("zaakpayNetBanking")) {
+	    	mcp.zaakPayOtpEnterSuccessOrFailure();
 	    }
 	    Thread.sleep(7000);
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
@@ -281,7 +290,7 @@ public class brandID extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("BrandID_Result", brandid, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("BrandID_Result", brandid,ExpectedStatus, status, comment, purchaseId,PSP);
             driver.quit();
             return;
         }
@@ -291,7 +300,7 @@ public class brandID extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("BrandID_Result", brandid, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("BrandID_Result", brandid,ExpectedStatus,    status, comment, purchaseId,PSP);
 
         }
         else {
@@ -300,7 +309,7 @@ public class brandID extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("BrandID_Result", brandid, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("BrandID_Result", brandid,ExpectedStatus,    status, comment, purchaseId,PSP);
         }
         
 		mcp.openBrowserForStaging(driver,url);

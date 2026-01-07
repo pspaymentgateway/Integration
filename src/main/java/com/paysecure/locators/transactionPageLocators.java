@@ -144,7 +144,7 @@ public class transactionPageLocators {
     public static final String transactionPSPModule="//div[text()='Transactions']";
     
     
-    //search transactions in PSP - Matrix
+    //search transactions in PSPCardsIntegrations - Matrix
     public static final String txID="//div[text()='Tx ID']";
     public static final String searchTXIDPSP="//input[@class='filter-search-input']";
     public static final String txinPSP="(//div[@class='multiline-cell ellipsis-cell'])[1]/a";

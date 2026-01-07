@@ -3,73 +3,32 @@
   {
     "ZipCode": "SW1A 1AA",
     "CardHolder": "AB de Villiers",
-    "CardNumber": "4557392539764654",
-    "Expiry": "04/28",
-    "CVC": "123",
-    "RunFlag": "Visa4654",
-    "PSP": "Neogate"
+	"CardNumber": "5553042241984105",
+	"Expiry": "07/28",
+	"CVV": "123",
+	"RunFlag": "Master05",
+	"ExpectedStatus": "Pass",
+	"PSP" :"Easybuzz"
   },
   {
     "ZipCode": "560001",
     "CardHolder": "AB de Villiers",
-    "CardNumber": "4557392539764654",
-    "Expiry": "04/28",
-    "CVC": "123",
-    "RunFlag": "Visa4654",
-    "PSP": "Neogate"
+	"CardNumber": "5553042241984105",
+	"Expiry": "07/28",
+	"CVV": "123",
+	"RunFlag": "Master05",
+	"ExpectedStatus": "Pass",
+	"PSP" :"Easybuzz"
   },
   {
     "ZipCode": "10115",
     "CardHolder": "AB de Villiers",
-    "CardNumber": "4557392539764654",
-    "Expiry": "04/28",
-    "CVC": "123",
-    "RunFlag": "Visa4654",
-    "PSP": "Neogate"
-  },
-  {
-    "ZipCode": "12",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "4557392539764654",
-    "Expiry": "04/28",
-    "CVC": "123",
-    "RunFlag": "Visa4654",
-    "PSP": "Neogate"
-  },
-  {
-    "ZipCode": "12345678901",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "4557392539764654",
-    "Expiry": "04/28",
-    "CVC": "123",
-    "RunFlag": "Visa4654",
-    "PSP": "Neogate"
-  },
-  {
-    "ZipCode": "123@#",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "4557392539764654",
-    "Expiry": "04/28",
-    "CVC": "123",
-    "RunFlag": "Visa4654",
-    "PSP": "Neogate"
-  },
-  {
-    "ZipCode": "",
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "4557392539764654",
-    "Expiry": "04/28",
-    "CVC": "123",
-    "RunFlag": "Visa4654",
-    "PSP": "Neogate"
-  },
-  {
-    "ZipCode": null,
-    "CardHolder": "AB de Villiers",
-    "CardNumber": "4557392539764654",
-    "Expiry": "04/28",
-    "CVC": "123",
-    "RunFlag": "Visa4654",
-    "PSP": "Neogate"
+	"CardNumber": "5553042241984105",
+	"Expiry": "07/28",
+	"CVV": "123",
+	"RunFlag": "Master05",
+	"ExpectedStatus": "Pass",
+	"PSP" :"Easybuzz"
   }
+
 ]
