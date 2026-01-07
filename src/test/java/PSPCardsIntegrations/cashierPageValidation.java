@@ -1,9 +1,9 @@
-package PSP;
+package PSPCardsIntegrations;
 
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
-import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
@@ -24,14 +24,14 @@ public class cashierPageValidation extends baseClass{
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
-	matrixCashierPage mcp;
+	CashierPage mcp;
 	transactionPage tp;
 	
 	  @BeforeMethod
 	  public void beforeMethod() throws InterruptedException{
 			lp = new loginPage(getDriver());
 			lp.login();
-			mcp=new matrixCashierPage(getDriver());
+			mcp=new CashierPage(getDriver());
 			tp=new transactionPage(getDriver());
 	  }
 	  

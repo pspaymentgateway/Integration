@@ -1,9 +1,9 @@
-package PSP;
+package PSPCardsIntegrations;
 
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
-import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
@@ -27,12 +27,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 
-public class payuEndToEndFlow extends baseClass{
+public class monnetChileCLP extends baseClass{
 	private WebDriver driver;
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
-	matrixCashierPage mcp;
+	CashierPage mcp;
 	transactionPage tp;
 	payu3dPage pay;
     String status = "";
@@ -41,14 +41,14 @@ public class payuEndToEndFlow extends baseClass{
 	  public void beforeMethod() throws InterruptedException {
 			lp = new loginPage(getDriver());
 			lp.login();
-			mcp=new matrixCashierPage(getDriver());
+			mcp=new CashierPage(getDriver());
 			tp=new transactionPage(getDriver());
 			pay = new payu3dPage(getDriver());
 	  }
 	  
 	//String cardHolder, String cardNumber, String expiry, String cvc
   @Test(dataProvider ="cardData",dataProviderClass = DataProviders.class) 
-  public void purchase(String ExpectedStatus,String cardHolder, String cardNumber, String expiry, String cvc,String PSP) throws Exception {
+  public void purchase(String ExpectedStatus, String cardHolder, String cardNumber, String expiry, String cvc,String PSP) throws Exception {
       WebDriver driver=baseClass.getDriver();
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
@@ -159,7 +159,7 @@ public class payuEndToEndFlow extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus, status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP);
             driver.quit();
             return;
         }
@@ -169,7 +169,7 @@ public class payuEndToEndFlow extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP);
 
         }
         else {
@@ -178,7 +178,7 @@ public class payuEndToEndFlow extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP);
 
 
         }

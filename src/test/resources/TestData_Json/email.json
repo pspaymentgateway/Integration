@@ -1,32 +1,37 @@
-[
+{
+  "EmailData": {
+    "emails": [
+      
+      {  "email": "suhas@gmail.com","ExpectedStatus": "Pass", "RunFlag": "Y"},
+        
+       
+      
+      {
+        "email": "test@gmail.com",
+        "ExpectedStatus": "Fail",
+        "RunFlag": "N"
+      }
+    ]
+  },
+
+  "CardData": [
     {
-        "Email": "useralias@gmail.com",
-        "CardHolder": "Virat Kohli",
-        "CardNumber": "5553042241984105",
-        "Expiry": "07/28",
-        "CVV": "123",
-        "RunFlag": "Master05",
-        "ExpectedStatus": "Pass",
-        "PSP": "Matrix"
+      "Currency": "INR",
+      "CardHolder": "Virat Kohli",
+      "CardNumber": "5553042241984105",
+      "Expiry": "07/28",
+      "CVV": "123",
+      "PSP": "Matrix",
+      "RunFlag": "Y"
     },
     {
-        "Email": "invalid-email-format",
-        "CardHolder": "Test User",
-        "CardNumber": "5553042241984105",
-        "Expiry": "07/28",
-        "CVV": "123",
-        "RunFlag": "Master05",
-        "ExpectedStatus": "Fail",
-        "PSP": "Matrix"
-    },
-    {
-        "Email": "",
-        "CardHolder": "Empty Email Test",
-        "CardNumber": "5553042241984105",
-        "Expiry": "07/28",
-        "CVV": "123",
-        "RunFlag": "Master05",
-        "ExpectedStatus": "Fail",
-        "PSP": "Matrix"
+      "Currency": "PHP",
+      "CardHolder": "AB de Villiers",
+      "CardNumber": "5553042241984105",
+      "Expiry": "07/28",
+      "CVV": "123",
+      "PSP": "Easybuzz",
+      "RunFlag": "N"
     }
-]
+  ]
+}

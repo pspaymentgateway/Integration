@@ -16,7 +16,7 @@
 		"Expiry": "07/28",
 		"CVV": "123",
 	    "RunFlag": "Master4105",
-		"ExpectedStatus": "Pass",
+		"ExpectedStatus": "Fail",
 		"PSP" :"Easybuzz"
 	},
 	{
@@ -29,4 +29,40 @@
 		"ExpectedStatus": "Fail",
 		"PSP" :"Easybuzz"
 	}
+	,
+	{
+	    "City": "Jaipur",
+	    "CardHolder": "Virat Kohli",
+	    "CardNumber": "4111111111111111",
+	    "Expiry": "07/29",
+	    "CVV": "123",
+	    "RunFlag": "Visa11",
+	    "ExpectedStatus": "Pass",
+	    "PSP": "ZaakPay"
+	},
+	{
+	    "City": "@#$%^YUI",
+	    "CardHolder": "Virat Kohli",
+	    "CardNumber": "4111111111111111",
+	    "Expiry": "07/29",
+	    "CVV": "123",
+	    "RunFlag": "Visa11",
+	    "ExpectedStatus": "Pass",
+	    "PSP": "ZaakPay"
+	},
+	{
+	    "City": "",
+
+	},
+	{
+	    "City": "Noida",
+	    "CardHolder": "Virat Kohli",
+		"CardNumber": "5553042241984105",
+		"Expiry": "07/28",
+		"CVV": "123",
+	    "RunFlag": "Master4105",
+		"ExpectedStatus": "Pass",
+		"PSP" :"Easybuzz"
+	}
+
 ]

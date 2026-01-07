@@ -18,9 +18,10 @@ import org.testng.Reporter;
 import com.paysecure.actiondriver.ActionDriver;
 import com.paysecure.base.baseClass;
 import com.paysecure.locators.cashierPageLocators;
+import com.paysecure.utilities.PropertyReader;
 
 
-public class matrixCashierPage {
+public class CashierPage {
 
 	private By cardHolderName=By.xpath(cashierPageLocators.cardHolderName);
 	private By cardHolderNumber=By.xpath(cashierPageLocators.cardHolderNumber);
@@ -40,17 +41,30 @@ public class matrixCashierPage {
 	//Payment Method
 	private By Visa=By.xpath(cashierPageLocators.Visa);
 	private By Master=By.xpath(cashierPageLocators.Master);
-
+	
+	//zaakpayNetBanking cards Integration 
+	private By zaakPayOTPEnter=By.xpath(cashierPageLocators.zaakPayOTPEnter);
+	private By zaakpaySuccessfullBtn=By.xpath(cashierPageLocators.zaakpaySuccessfullBtn);
+	private By zaakpayFailureBtn=By.xpath(cashierPageLocators.zaakpayFailureBtn);
+	
+	//zaakpay- Netbanking non cards integration
+	private By zaakPaySelectbank=By.xpath(cashierPageLocators.zaakPaySelectbank);
+	private By zaakPaySelectbankAllList=By.xpath(cashierPageLocators.zaakPaySelectbankAllList);
+	private By zaakpaySearchField=By.xpath(cashierPageLocators.zaakpaySearchField);
+	private By zaakpaySubmitButton=By.xpath(cashierPageLocators.zaakpaySubmitButton);
+	
+	
+	
 	private ActionDriver actionDriver;
 	// page factory constructor
-	public matrixCashierPage(WebDriver driver) {
+	public CashierPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 		this.actionDriver = new ActionDriver(driver);
 	}
 	
 	public String entercardNumber;
 	public void userEnterCardInformationForPayment(
-			String cardHolder, String cardNumber,String expiry, String cvc) throws InterruptedException {
+			String cardHolder, String cardNumber,String expiry, String cvv) throws InterruptedException {
 		WebDriver driver=baseClass.getDriver();
 //		Thread.sleep(500);
 //		driver.manage().window().setSize(new Dimension(1280, 720));
@@ -69,8 +83,8 @@ public class matrixCashierPage {
 		actionDriver.enterText(cardMonthYear, expiry);
 		Reporter.log("Entered Card Expiry Date: " + expiry, true);
 	//	Thread.sleep(5000);
-		actionDriver.enterText(cardCvcNumber, cvc);
-		Reporter.log("Entered Card CVC: " + cvc, true);
+		actionDriver.enterText(cardCvcNumber, cvv);
+		Reporter.log("Entered Card CVV: " + cvv, true);
 
 	}
 	
@@ -198,6 +212,61 @@ public class matrixCashierPage {
 		actionDriver.clickUsingJS(Master);
 	}
 
+
+	public void zaakPayOtpEnterSuccessOrFailure() {
+
+		String ZaakPaykey = PropertyReader.getPropertyForS2S("ZaakPaykey");
+		
+		switch (ZaakPaykey) {
+		case "success": {
+			actionDriver.enterText(zaakPayOTPEnter, "1234");
+			actionDriver.click(zaakpaySuccessfullBtn);
+			break;
+		}case "failure": {
+			actionDriver.enterText(zaakPayOTPEnter, "1234");
+			actionDriver.click(zaakpayFailureBtn);
+			break;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + ZaakPaykey);
+		}
+	}
+	
+	public void selectZakpayBank(String PartialBank, String ZaakPaybank) throws InterruptedException {
+
+	    WebDriver driver = baseClass.getDriver();
+	    WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+	    actionDriver.click(zaakPaySelectbank);
+	    Reporter.log("Clicked on ZaakPay bank select dropdown", true);
+
+	    actionDriver.enterText(zaakpaySearchField, PartialBank);
+	    Reporter.log("Entered partial bank name: " + PartialBank, true);
+
+	    List<WebElement> suggestions = w.until(
+	            ExpectedConditions.visibilityOfAllElementsLocatedBy(
+	                    By.xpath("//ul[@id='select2-providerselect-results']/li"))
+	    );
+	    Reporter.log("ZaakPay bank suggestions loaded. Count: " + suggestions.size(), true);
+
+	    for (WebElement s : suggestions) {
+
+	        if (ZaakPaybank.equalsIgnoreCase(s.getText().trim())) {
+	            Thread.sleep(2000);
+	            s.click();
+	            Reporter.log("Selected ZaakPay bank name: " + ZaakPaybank, true);
+	            break;
+	        }
+	    }
+	}
+
+	
+	public void zaakpaySubmitButtonOnBankPage() {
+	    actionDriver.click(zaakpaySubmitButton);
+	    Reporter.log("Clicked on ZaakPay submit button on bank page", true);
+	}
+
+	
 
 	
 }

@@ -3,7 +3,7 @@ package purchase;
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
-import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
@@ -19,12 +19,14 @@ import io.restassured.response.Response;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
 
 public class country extends baseClass {
@@ -32,7 +34,7 @@ public class country extends baseClass {
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
-	matrixCashierPage mcp;
+	CashierPage mcp;
 	transactionPage tp;
 	payu3dPage pay;
     String status = "";
@@ -43,18 +45,38 @@ public class country extends baseClass {
 	  public void beforeMethod() throws InterruptedException {
 			lp = new loginPage(getDriver());
 			lp.login();
-			mcp=new matrixCashierPage(getDriver());
+			mcp=new CashierPage(getDriver());
 			tp=new transactionPage(getDriver());
 			pay = new payu3dPage(getDriver());
 	  }
 	  
 	  
 	  
-  @Test (dataProvider ="country", dataProviderClass = jsonProvider.class)
-  public void validationForCountryField(String Country,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String ExpectedStatus,String PSP) {
+  @Test (dataProvider ="CountryProvider", dataProviderClass = DataProviders.class)
+  public void validationForCountryField(Map<String, String> CountryData, Map<String, String> cardData) {
       WebDriver driver=baseClass.getDriver();
-      Reporter.log("Email test case will run for this PSP :- "+PSP, true);
-      Reporter.log("Email test case will run for this runflag:- "+runFlag, true);
+      
+		String Country = CountryData.getOrDefault("TestData", "");
+		String ExpectedStatus = CountryData.getOrDefault("Status", "");
+		String RunFlag = CountryData.getOrDefault("RunFlag", "");
+
+		//
+		String CardHolder = cardData.getOrDefault("CardholderName", "");
+		String CardNumber = cardData.getOrDefault("CardNumber", "");
+		String Expiry = cardData.getOrDefault("Expiry", "");
+		String CVV = cardData.getOrDefault("CVV", "");
+		String PSP = cardData.getOrDefault("PSP", "");
+		String cardRunFlag = cardData.getOrDefault("RunFlag", "");
+		System.err.println(Country +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
+
+		//Validate data is not empty
+		if (Country.isEmpty() || CardNumber.isEmpty()) {
+			Reporter.log("Skipping test - Empty email or card number", true);
+			throw new SkipException("Empty test data");
+		}
+      
+      Reporter.log("Email test case will run for this PSPCardsIntegrations :- "+PSP, true);
+      Reporter.log("Email test case will run for this runflag:- "+RunFlag, true);
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
 			String brandId = PropertyReader.getPropertyForPurchase("brandId");
@@ -68,6 +90,7 @@ public class country extends baseClass {
 			String visa=PropertyReader.getPropertyForPurchase("Visa");
 			String payu = PropertyReader.getPropertyForS2S("payu");
 			String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
+			 String zaakpay = PropertyReader.getPropertyForPurchase("zaakpayNetBanking");
 			String country=Country;
 			String city = "Paris";
 			String stateCode="QLD";
@@ -136,7 +159,7 @@ public class country extends baseClass {
 
 	            Reporter.log(comment, true);
 
-	            ExcelWriteUtility.writeResult("Country_Result", Country,ExpectedStatus,"Fail", comment,purchaseId,PSP);
+	            ExcelWriteUtility.writeResult("Purchase_Result", Country,ExpectedStatus,"Fail", comment,purchaseId,PSP);
 	            driver.quit();
 	            return; 
 	        }  else {
@@ -154,7 +177,7 @@ public class country extends baseClass {
 	                driver.get(checkoutUrl);
 	       
 	                
-	                mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+	                mcp.userEnterCardInformationForPayment(CardHolder, CardNumber, Expiry, CVV);
 	                mcp.clickOnPay();
 	                if(payu.equalsIgnoreCase("payu")) {
 	        	    	pay.payForPayu(currency,purchaseId,ExpectedStatus);
@@ -163,13 +186,16 @@ public class country extends baseClass {
 	                if(easybuzz.equalsIgnoreCase("easybuzz")) {
 	        	    	tp.enterOTpEasyBuzz();
 	        	    }
+	        	    if(zaakpay.equalsIgnoreCase("zaakpayNetBanking")) {
+	        	    	mcp.zaakPayOtpEnterSuccessOrFailure();
+	        	    }
 	                if (mcp.isCardNumberInvalid()) {
 	      
 	     			   status = "FAIL";
 	                    comment = "Payment Failed Cause Of Luhn ";
                  Reporter.log("Invalid card number → Luhn check failed", true);
                   Reporter.log("Invalid card number → Luhn check failed", true);
-                  ExcelWriteUtility.writeResult("Country_Result", Country,ExpectedStatus,    status, comment,purchaseId,PSP);
+                  ExcelWriteUtility.writeResult("Purchase_Result", Country,ExpectedStatus,    status, comment,purchaseId,PSP);
 	                    driver.quit();
 	                    return;
 	                }
@@ -201,7 +227,7 @@ public class country extends baseClass {
 
 	                    Reporter.log(comment, true);
 
-	                    ExcelWriteUtility.writeResult("Country_Result", Country,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
+	                    ExcelWriteUtility.writeResult("Purchase_Result", Country,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
 	                    driver.quit();
 	                    return;
 	                }
@@ -218,7 +244,7 @@ public class country extends baseClass {
 
 	                    Reporter.log(comment, true);
 
-	                    ExcelWriteUtility.writeResult("Country_Result", Country,ExpectedStatus, actualOutcome, comment,purchaseId,PSP);
+	                    ExcelWriteUtility.writeResult("Purchase_Result", Country,ExpectedStatus, actualOutcome, comment,purchaseId,PSP);
 
 	                }
 	                else {
@@ -228,7 +254,7 @@ public class country extends baseClass {
 
 	                    Reporter.log(comment, true);
 
-	                    ExcelWriteUtility.writeResult("Country_Result", Country,ExpectedStatus, actualOutcome, comment,purchaseId,PSP);
+	                    ExcelWriteUtility.writeResult("Purchase_Result", Country,ExpectedStatus, actualOutcome, comment,purchaseId,PSP);
 
 
 	                }

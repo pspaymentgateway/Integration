@@ -9,10 +9,127 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">145,974</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Default test</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">81,897</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">s2s.city</td><td><a href="#m0">purchaseApi</a></td><td rowspan="1">1767159250167</td><td rowspan="1">132002</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">purchase.email</td><td><a href="#m0">Purchase</a></td><td rowspan="1">1767775620543</td><td rowspan="1">66120</td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">s2s.city#purchaseApi</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th><th>Parameter #3</th></tr><tr class="param stripe"><td>London</td><td>Pass</td><td>Easybuzz</td></tr><tr><th colspan="3">Messages</th></tr><tr><td colspan="3"><div class="messages">Generated Random Double: 9.50<br/>Generated First Name: johnd09<br/>Generated Email: nairobiPalermo9dd84@gmail.com<br/>Purchase created successfully with ID: 6954b5d47e022464dbbbf9aa<br/>User enter ID in Username field<br/>User Enter Password in password field<br/>Click on submit button in login page<br/>S2S call successful on attempt 1<br/>Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true<br/>PASS → Payment succeeded as expected<br/> Opened staging environment in a new browser tab<br/>User enter ID in Username field<br/>User Enter Password in password field<br/>Click on submit button in login page<br/> Entered Transaction ID: 6954b5d47e022464dbbbf9aa<br/> Clicked on Search button<br/> Clicked on Search button<br/> Clicked on first Transaction ID from list<br/>Purchase Transaction ID is not empty or not null<br/>city accepted by API: London</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Default test</h2><h3 id="m0">purchase.email#Purchase</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>{Status=Pass, TestData=user+alias@gmail.com, RunFlag=TRUE}</td><td>{CardholderName=Virat Kohli, CardNumber=5553042241984105, CVV=123, RunFlag=TRUE, Currency=INR, PaymentMethod=MASTER, PSP=Easybuzz, Expiry=07/28}</td></tr><tr><th colspan="2">Messages</th></tr><tr><td colspan="2"><div class="messages">Email test case will run for this PSP: Easybuzz<br/>Testing Email: user+alias@gmail.com with Card: 5553042241984105<br/>Generated Random Double: 12.22<br/>Generated First Name: john7c8<br/>Email: user+alias@gmail.com → Status: 202<br/>Response Body: {
+    "purchaseId": "695e1d875f2236af768eebaa",
+    "client": {
+        "customerId": "NA",
+        "email": "user+alias@gmail.com",
+        "phone": "+1111111111",
+        "full_name": "john7c8",
+        "street_address": "Main gate",
+        "country": "IN",
+        "city": "Paris",
+        "zip_code": "20001",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1767775623,
+    "type": "purchase",
+    "paymentMethod": "MASTER",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "force_recurring": false,
+    "created_on": 1767775623,
+    "merchantRef": "695e1d875f2236af768eebaa",
+    "purchase": {
+        "currency": "INR",
+        "products": [
+            {
+                "name": "Cricket bat",
+                "quantity": 1.0,
+                "price": 12.22,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 12.22,
+        "requestAmount": 12.22,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "practice",
+        "brand_name": "practice",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1767775623
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS5687",
+    "issued": "2026-01-07",
+    "due": 1767775623,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "110.235.229.39",
+    "checkout_url": "https://test4.paymentsclub.net/payments/3cb00d819f131e3edac0cf20e4f127bd/",
+    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/695e1d875f2236af768eebaa/",
+    "payoutProcess": false
+}<br/>Email accepted by API: user+alias@gmail.com<br/>API success → proceeding with full flow<br/>Entered Card Holder Name: Virat Kohli<br/>Entered Card Number: 5553042241984105<br/>Entered Card Expiry Date: 07/28<br/>Entered Card CVV: 123<br/>Moved to the Pay button<br/>Clicked on the Pay button to proceed with payment<br/>Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true<br/>Pass → Payment succeeded as expected<br/> Opened staging environment in a new browser tab<br/>User enter ID in Username field<br/>User Enter Password in password field<br/>Click on submit button in login page<br/> Entered Transaction ID: 695e1d875f2236af768eebaa<br/> Clicked on Search button<br/> Clicked on Search button<br/> Clicked on first Transaction ID from list<br/>Purchase Transaction ID is not empty or not null</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

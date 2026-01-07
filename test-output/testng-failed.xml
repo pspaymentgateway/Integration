@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="s2s.city">
+      <class name="purchase.email">
         <methods>
           <include name="loadConfig"/>
+          <include name="Purchase" invocation-numbers="2"/>
           <include name="beforeMethod"/>
-          <include name="purchaseApi" invocation-numbers="0"/>
           <include name="tearDown"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- s2s.city -->
+      </class> <!-- purchase.email -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

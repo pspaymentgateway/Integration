@@ -3,7 +3,7 @@ package s2s;
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
-import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
@@ -31,7 +31,7 @@ public class currency extends baseClass {
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
-	matrixCashierPage mcp;
+	CashierPage mcp;
 	transactionPage tp;
 	payu3dPage pay;
     String status = "";
@@ -43,7 +43,7 @@ public class currency extends baseClass {
     
 	@BeforeMethod
 	public void beforeMethod() throws InterruptedException {
-		mcp = new matrixCashierPage(getDriver());
+		mcp = new CashierPage(getDriver());
 		tp = new transactionPage(getDriver());
 		pay=new payu3dPage(getDriver());
 	}
@@ -171,6 +171,7 @@ public class currency extends baseClass {
 	    String mmyy = PropertyReader.getPropertyForS2S("mmyy");
 	    String cvv = PropertyReader.getPropertyForS2S("cvv");
 	    String easybuzz = PropertyReader.getPropertyForS2S("easybuzz");
+	    String zaakpay = PropertyReader.getPropertyForS2S("zaakpayNetBanking");
 	    
 	    String requestBody =
 	    		"{\n" +
@@ -267,6 +268,10 @@ public class currency extends baseClass {
 	    
 	    if(easybuzz.equalsIgnoreCase("easybuzz")) {
 	    	tp.enterOTpEasyBuzz();
+	    }
+	    
+	    if(zaakpay.equalsIgnoreCase("zaakpayNetBanking")) {
+	    	mcp.zaakPayOtpEnterSuccessOrFailure();
 	    }
 	    
 	    

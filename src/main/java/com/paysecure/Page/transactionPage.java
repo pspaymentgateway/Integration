@@ -16,6 +16,7 @@ import com.paysecure.locators.payUPSP;
 import com.paysecure.locators.transactionPageLocators;
 import com.paysecure.utilities.PropertyReader;
 
+
 public class transactionPage {
 
 	private By analytics = By.xpath(transactionPageLocators.analytics);
@@ -74,6 +75,8 @@ public class transactionPage {
 	private By easySessionOut = By.xpath(cashierPageLocators.easySessionOut);
 	private By easyDelayedSuccess = By.xpath(cashierPageLocators.easyDelayedSuccess);
 	private By easyDelayedFailure = By.xpath(cashierPageLocators.easyDelayedFailure);
+	
+
 	private ActionDriver actionDriver;
 
 	// page factory constructor
@@ -322,31 +325,31 @@ public class transactionPage {
 
 	public void doLoginOnThePSPSide(String emailID, String password) {
 
-		Reporter.log("Entering email on PSP side: " + emailID, true);
+		Reporter.log("Entering email on PSPCardsIntegrations side: " + emailID, true);
 		actionDriver.enterText(emailPSP, emailID);
 
-		Reporter.log("Entering password on PSP side", true);
+		Reporter.log("Entering password on PSPCardsIntegrations side", true);
 		actionDriver.enterText(passwordPSP, password);
 
-		Reporter.log("Clicking Sign In button on PSP side", true);
+		Reporter.log("Clicking Sign In button on PSPCardsIntegrations side", true);
 		actionDriver.clickUsingJS(signinButtonPSP);
 
-		Reporter.log("Login action performed successfully on PSP side", true);
+		Reporter.log("Login action performed successfully on PSPCardsIntegrations side", true);
 	}
 
 	public void doLoginOnThePSPSideForPayU(String emailID, String password) {
 		WebDriver driver = baseClass.getDriver();
 		WebElement signInBtn = driver.findElement(By.xpath("//button[@type='submit']"));
-		Reporter.log("Entering email on PSP side: " + emailID, true);
+		Reporter.log("Entering email on PSPCardsIntegrations side: " + emailID, true);
 		actionDriver.enterText(emailPSP, emailID);
 
 		actionDriver.enterText(passwordPSP, password);
-		Reporter.log("Entering password on PSP side", true);
+		Reporter.log("Entering password on PSPCardsIntegrations side", true);
 
 		signInBtn.click();
-		Reporter.log("Clicking Sign In button on PSP side", true);
+		Reporter.log("Clicking Sign In button on PSPCardsIntegrations side", true);
 
-		Reporter.log("Login action performed successfully on PSP side", true);
+		Reporter.log("Login action performed successfully on PSPCardsIntegrations side", true);
 	}
 
 	public void navigateUptoPSPTransactionModule() {
@@ -369,10 +372,10 @@ public class transactionPage {
 
 	public void verifyPurchaseTxnIdatPSP(String txNID) {
 
-		Reporter.log("Verifying Transaction ID in PSP UI for: " + txNID, true);
+		Reporter.log("Verifying Transaction ID in PSPCardsIntegrations UI for: " + txNID, true);
 		String txnPSP = actionDriver.getText(txinPSP);
 
-		Reporter.log("PSP displayed Transaction ID: " + txnPSP, true);
+		Reporter.log("PSPCardsIntegrations displayed Transaction ID: " + txnPSP, true);
 		Assert.assertEquals(txnPSP, txNID, "Transaction ID mismatch!!!");
 
 		Reporter.log("Transaction ID verification successful", true);
@@ -380,7 +383,7 @@ public class transactionPage {
 
 	public void verifyCurrencyInPSP() {
 
-		Reporter.log("Fetching Amount and Currency text from PSP UI", true);
+		Reporter.log("Fetching Amount and Currency text from PSPCardsIntegrations UI", true);
 		String acPSP = actionDriver.getText(amountAndCurrencyPSP);
 
 		Reporter.log("Raw Amount + Currency text received: " + acPSP, true);
@@ -391,8 +394,8 @@ public class transactionPage {
 
 		double amountPSP = Double.parseDouble(amount);
 
-		Reporter.log("Extracted Amount from PSP: " + amountPSP, true);
-		Reporter.log("Extracted Currency from PSP: " + currencyPSP, true);
+		Reporter.log("Extracted Amount from PSPCardsIntegrations: " + amountPSP, true);
+		Reporter.log("Extracted Currency from PSPCardsIntegrations: " + currencyPSP, true);
 
 		Reporter.log("Comparing Amount with UI value: " + uiAmount, true);
 		Assert.assertEquals(amountPSP, uiAmount, "Amount mismatch!!!");
@@ -524,30 +527,30 @@ public class transactionPage {
 		String key =easybuzzKey;
 		switch (key) {
 		case "success": {
-			actionDriver.clickUsingJS(easySuccess);
+			actionDriver.click(easySuccess);
 			break;
 		}
 		
 		case "failure": {
-			actionDriver.clickUsingJS(easyFailure);
+			actionDriver.click(easyFailure);
 			break;
 		}
 		
 		case "cancel": {
-			actionDriver.clickUsingJS(easyCancel);
+			actionDriver.click(easyCancel);
 			break;
 		}
 		case "session timeout": {
-			actionDriver.clickUsingJS(easySessionOut);
+			actionDriver.click(easySessionOut);
 			break;
 		}
 		
 		case "delayed success": {
-			actionDriver.clickUsingJS(easyDelayedSuccess);
+			actionDriver.click(easyDelayedSuccess);
 			break;
 		}
 		case "delayed failure": {
-			actionDriver.clickUsingJS(easyDelayedFailure);
+			actionDriver.click(easyDelayedFailure);
 			break;
 		}
 		
@@ -556,5 +559,10 @@ public class transactionPage {
 			
 		}
 	}
+public	String LastSTatus;
+public String getLastSTtaus() {
+	return LastSTatus= actionDriver.getText(lastStatusFromTxnPage);
+}
+
 
 }

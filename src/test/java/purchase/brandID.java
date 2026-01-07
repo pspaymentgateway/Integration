@@ -3,7 +3,7 @@ package purchase;
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
-import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
@@ -32,7 +32,7 @@ public class brandID extends baseClass{
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
-	matrixCashierPage mcp;
+	CashierPage mcp;
 	transactionPage tp;
 	payu3dPage pay;
     String status = "";
@@ -42,7 +42,7 @@ public class brandID extends baseClass{
 	  public void beforeMethod() throws InterruptedException {
 			lp = new loginPage(getDriver());
 			lp.login();
-			mcp = new matrixCashierPage(getDriver());
+			mcp = new CashierPage(getDriver());
 			tp = new transactionPage(getDriver());
 		 
 			pay = new payu3dPage(getDriver());
@@ -51,7 +51,7 @@ public class brandID extends baseClass{
 	@Test(dataProvider ="brandIDData", dataProviderClass = jsonProvider.class)
 	public void validationForBrandID(String BrandID, String cardHolder, String cardNumber, String expiry,String cvv,String runFlag,String ExpectedStatus,String PSP) {
 		WebDriver driver = baseClass.getDriver();
-        Reporter.log("City test case will run for this PSP :- "+PSP, true);
+        Reporter.log("City test case will run for this PSPCardsIntegrations :- "+PSP, true);
         Reporter.log("City test case will run for this runflag:- "+runFlag, true);
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
@@ -65,6 +65,7 @@ public class brandID extends baseClass{
 		String visa=PropertyReader.getPropertyForPurchase("Visa");
 		String payu = PropertyReader.getPropertyForS2S("payu");
 		String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
+		String zaakpay = PropertyReader.getPropertyForS2S("zaakpayNetBanking");
 		String country="IN";
 		String city = "Paris";
 		String stateCode="QLD";
@@ -150,6 +151,10 @@ public class brandID extends baseClass{
 				    
 				    if(easybuzz.equalsIgnoreCase("easybuzz")) {
 				    	tp.enterOTpEasyBuzz();
+				    }
+				    
+				    if(zaakpay.equalsIgnoreCase("zaakpayNetBanking")) {
+				    	mcp.zaakPayOtpEnterSuccessOrFailure();
 				    }
 				if (mcp.isCardNumberInvalid()) {
 					   status = "FAIL";
