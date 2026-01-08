@@ -132,7 +132,7 @@ public class streetAddress extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("StreetAddress_Result", streetAddress,ExpectedStatus, status, comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResults2s("s2s_Result", streetAddress,ExpectedStatus, status, comment, purchaseId,PSP);
             driver.quit();
             return; 
         } else {
@@ -240,7 +240,7 @@ public class streetAddress extends baseClass {
 	        status = "FAIL";
 	        comment = "S2S call failed with status: " + (response != null ? response.statusCode() : "NULL");
 	        Reporter.log(comment, true);
-	        ExcelWriteUtility.writeResults2s("StreetAddress_Result", streetAddress,ExpectedStatus, status, comment, purchaseId,PSP);
+	        ExcelWriteUtility.writeResults2s("s2s_Result", streetAddress,ExpectedStatus, status, comment, purchaseId,PSP);
 	        driver.quit();
 	        return;
 	    }
@@ -253,7 +253,7 @@ public class streetAddress extends baseClass {
 
 	        status = "FAIL";
 	        comment = "callback_url null for purchaseId " + purchaseId;
-	        ExcelWriteUtility.writeResults2s("StreetAddress_Result", streetAddress,ExpectedStatus, status, comment, purchaseId,PSP);
+	        ExcelWriteUtility.writeResults2s("s2s_Result", streetAddress,ExpectedStatus, status, comment, purchaseId,PSP);
 	        driver.quit();
 	        return;
 	    }
@@ -295,7 +295,7 @@ public class streetAddress extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("StreetAddress_Result", streetAddress,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResults2s("s2s_Result", streetAddress,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
             driver.quit();
             return;
         }
@@ -313,7 +313,7 @@ public class streetAddress extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("StreetAddress_Result", streetAddress,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResults2s("s2s_Result", streetAddress,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
 
         }
         else {
@@ -323,7 +323,7 @@ public class streetAddress extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("StreetAddress_Result", streetAddress,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResults2s("s2s_Result", streetAddress,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
         }
         
 		mcp.openBrowserForStaging(driver, "https://staging.paysecure.net/");

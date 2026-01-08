@@ -282,9 +282,9 @@ public class email extends baseClass {
             // Fail the test in TestNG
             Assert.fail(comment, e);
 		} finally {
-			if (driver != null)
-				driver.quit();
-
+			//if (driver != null)
+				//driver.quit();
+System.out.println("driver closed");
 		}
 
 	}
