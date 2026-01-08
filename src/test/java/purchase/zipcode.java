@@ -51,9 +51,7 @@ public class zipcode extends baseClass{
 			pay = new payu3dPage(getDriver());
 			otp= new pspOTPPage();
 	  }
-	  
-	
-	  
+	 
   @Test(dataProvider ="ZipCodeProvider", dataProviderClass = DataProviders.class)
   public void validationForZipcodeField(Map<String, String> zipcodeData, Map<String, String> cardData) {
 		WebDriver driver=baseClass.getDriver();

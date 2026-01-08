@@ -53,7 +53,16 @@ public class CashierPage {
 	private By zaakpaySearchField=By.xpath(cashierPageLocators.zaakpaySearchField);
 	private By zaakpaySubmitButton=By.xpath(cashierPageLocators.zaakpaySubmitButton);
 	
+	//Euro exchnage
+	private By possibleUseCasesEuroExchnage=By.xpath(cashierPageLocators.possibleUseCasesEuroExchnage);
+	private By statusEuroExchnage=By.xpath(cashierPageLocators.statusEuroExchnage);
+	private By cvvEuroExchnage=By.xpath(cashierPageLocators.cvvEuroExchnage);
+	private By submitButtonEuroExchnage=By.xpath(cashierPageLocators.submitButtonEuroExchnage);
 	
+	//Easybuzz Netbanking 
+	private By easybuzzNetBankingOTP=By.xpath(cashierPageLocators.easybuzzNetBankingOTP);
+	private By easybuzzFailureBtn=By.xpath(cashierPageLocators.easybuzzFailureBtn);
+	private By easybuzzSuccessBtn=By.xpath(cashierPageLocators.easybuzzSuccessBtn);
 	
 	private ActionDriver actionDriver;
 	// page factory constructor
@@ -266,7 +275,32 @@ public class CashierPage {
 	    Reporter.log("Clicked on ZaakPay submit button on bank page", true);
 	}
 
+	public void handlePSPPageForEuroExchange(String PossibleUseCases,String status,String CAVV) {
+		actionDriver.selectByVisibleText(possibleUseCasesEuroExchnage,PossibleUseCases);
+		actionDriver.selectByVisibleText(statusEuroExchnage,status);
+		actionDriver.clearText(cvvEuroExchnage);
+		actionDriver.enterText(cvvEuroExchnage, CAVV);
+		actionDriver.click(submitButtonEuroExchnage);
+		
+	}
 	
+	public void easyBuzzNetbankingEnterOTP() {
+		actionDriver.enterText(easybuzzNetBankingOTP, "1234");
+		String key = "success";
+		switch (key) {
+		case "success": {
+			actionDriver.click(easybuzzSuccessBtn);
+		break;
+		}
+		
+		case "failure": {
+			actionDriver.click(easybuzzFailureBtn);
+			break;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + key);
+		}
+	}
 
 	
 }

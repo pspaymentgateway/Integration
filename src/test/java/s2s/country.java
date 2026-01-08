@@ -133,7 +133,7 @@ public class country extends baseClass {
             comment = "PASS → Country rejected correctly: " + country;
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("Countries_Result", country,ExpectedStatus, "Fail", comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResults2s("s2s_Result", country,ExpectedStatus, "Fail", comment, purchaseId,PSP);
             driver.quit();
             return; 
         } else {
@@ -242,7 +242,7 @@ public class country extends baseClass {
 	        status = "FAIL";
 	        comment = "S2S call failed with status: " + (response != null ? response.statusCode() : "NULL");
 	        Reporter.log(comment, true);
-	        ExcelWriteUtility.writeResults2s("Countries_Result", country,ExpectedStatus, status, comment, purchaseId,PSP);
+	        ExcelWriteUtility.writeResults2s("s2s_Result", country,ExpectedStatus, status, comment, purchaseId,PSP);
 	        driver.quit();
 	        return;
 	    }
@@ -295,7 +295,7 @@ public class country extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("Countries_Result", country,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResults2s("s2s_Result", country,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
             driver.quit();
             return;
         }
@@ -313,7 +313,7 @@ public class country extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("Countries_Result", country,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResults2s("s2s_Result", country,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
 
         }
         else {
@@ -323,7 +323,7 @@ public class country extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("Countries_Result", country,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResults2s("s2s_Result", country,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
         }
         
 		mcp.openBrowserForStaging(driver,url);
