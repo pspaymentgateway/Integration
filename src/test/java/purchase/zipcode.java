@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
+import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
@@ -19,12 +20,14 @@ import io.restassured.response.Response;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
 
 public class zipcode extends baseClass{
@@ -34,6 +37,7 @@ public class zipcode extends baseClass{
 	String purchaseId;
 	CashierPage mcp;
 	transactionPage tp;
+	pspOTPPage otp;
 	payu3dPage pay;
     String status = "";
     String comment = "";
@@ -45,28 +49,42 @@ public class zipcode extends baseClass{
 			mcp=new CashierPage(getDriver());
 			tp=new transactionPage(getDriver()); 
 			pay = new payu3dPage(getDriver());
+			otp= new pspOTPPage();
 	  }
 	  
-  @Test(dataProvider ="zipCodeData", dataProviderClass = jsonProvider.class)
-  public void validationForZipcodeField(String zipcode,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String ExpectedStatus,String PSP) {
+	
+	  
+  @Test(dataProvider ="ZipCodeProvider", dataProviderClass = DataProviders.class)
+  public void validationForZipcodeField(Map<String, String> zipcodeData, Map<String, String> cardData) {
 		WebDriver driver=baseClass.getDriver();
-        Reporter.log("streetAddres test case will run for this PSP :- "+PSP, true);
-        Reporter.log("streetAddres test case will run for this runflag:- "+runFlag, true);
+	    
+				String zipcode = zipcodeData.getOrDefault("TestData", "");
+				String ExpectedStatus = zipcodeData.getOrDefault("Status", "");
+				String CardHolder = cardData.getOrDefault("CardholderName", "");
+				String CardNumber = cardData.getOrDefault("CardNumber", "");
+			
+				String Expiry = cardData.getOrDefault("Expiry", "");
+				String CVV = cardData.getOrDefault("CVV", "");
+				String PSP = cardData.getOrDefault("PSP", "");
+				String PaymentMethod=cardData.getOrDefault("PaymentMethod","");
+				String Currency=cardData.getOrDefault("Currency", "");
+				System.err.println(zipcode +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
+
+				//Validate data is not empty
+				if (zipcode.isEmpty() || CardNumber.isEmpty()) {
+					Reporter.log("Skipping test - Empty email or card number", true);
+					throw new SkipException("Empty test data");
+				}
+		    Reporter.log("StateCode test case will run for this PSPCardsIntegrations :- "+PSP, true);
 		 String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 	
 		String token = PropertyReader.getPropertyForPurchase("token");
 		String price = generateRandomTestData.generateRandomDouble();
-		String currency =PropertyReader.getPropertyForPurchase("currency");
-		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
-		String master=PropertyReader.getPropertyForPurchase("Master");
-		String visa=PropertyReader.getPropertyForPurchase("Visa");
 		String payu = PropertyReader.getPropertyForS2S("payu");
-		String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
-		String zaakpay = PropertyReader.getPropertyForS2S("zaakpay");
 		String country="IN";
 		String city = "Paris";
 		String stateCode="QLD";
@@ -85,7 +103,7 @@ public class zipcode extends baseClass{
 		        "    \"phone\": \"+1111111111\"\n" +
 		        "  },\n" +
 		        "  \"purchase\": {\n" +
-		        "    \"currency\": \""+currency+"\",\n" +
+		        "    \"currency\": \""+Currency+"\",\n" +
 		        "    \"products\": [\n" +
 		        "      {\n" +
 		        "        \"name\": \""+productname+"\",\n" +
@@ -93,7 +111,7 @@ public class zipcode extends baseClass{
 		        "      }\n" +
 		        "    ]\n" +
 		        "  },\n" +
-		        "  \"paymentMethod\": \""+paymentMethod+"\",\n" +
+		        "  \"paymentMethod\": \""+PaymentMethod+"\",\n" +
 		        "  \"brand_id\": \"" + brandId + "\",\n" +
 		        "  \"success_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=true\",\n" +
 		        "  \"failure_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=false\",\n" +
@@ -136,7 +154,7 @@ public class zipcode extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("zipcode_Result", zipcode,ExpectedStatus,    status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("Purchase_Result", zipcode,ExpectedStatus,    status, comment,purchaseId,PSP);
             driver.quit();
             return; 
         }  else {
@@ -154,27 +172,21 @@ public class zipcode extends baseClass{
                 // Payment
                 driver.get(checkoutUrl);
 
-                mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+                mcp.userEnterCardInformationForPayment( CardHolder, CardNumber, Expiry, CVV);
                 mcp.clickOnPay();
                 
-                if(payu.equalsIgnoreCase("payu")) {
-        	    	pay.payForPayu(currency,purchaseId,ExpectedStatus);
-        	    }
+            	if (payu.equalsIgnoreCase("payu")) {
+					pay.payForPayu(Currency, purchaseId, ExpectedStatus);
+				}
                 
-                if(easybuzz.equalsIgnoreCase("easybuzz")) {
-        	    	tp.enterOTpEasyBuzz();
-        	    }
-                
-        	    if(zaakpay.equalsIgnoreCase("zaakpay")) {
-        	    	mcp.zaakPayOtpEnterSuccessOrFailure();
-        	    }
+				otp.enterOTP(PSP);
                 
                 
                 if (mcp.isCardNumberInvalid()) {
              	   status = "FAIL";
                    comment = "Payment Failed Cause Of Luhn ";
               Reporter.log("Invalid card number → Luhn check failed", true);
-              ExcelWriteUtility.writeResult("Zipcode_Result",ExpectedStatus,    zipcode, "Fail", comment,purchaseId,PSP);
+              ExcelWriteUtility.writeResult("Purchase_Result",ExpectedStatus,    zipcode, "Fail", comment,purchaseId,PSP);
                     driver.quit();
                     return;
                 }
@@ -207,7 +219,7 @@ public class zipcode extends baseClass{
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Zipcode_Result", zipcode,ExpectedStatus,    status, comment,purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", zipcode,ExpectedStatus,    status, comment,purchaseId,PSP);
                     driver.quit();
                     return;
                 }
@@ -224,7 +236,7 @@ public class zipcode extends baseClass{
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Zipcode_Result", zipcode,ExpectedStatus,    status, comment,purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", zipcode,ExpectedStatus,    status, comment,purchaseId,PSP);
 
                 }
                 else {
@@ -234,7 +246,7 @@ public class zipcode extends baseClass{
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Zipcode_Result", zipcode,ExpectedStatus,    status, comment,purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", zipcode,ExpectedStatus,    status, comment,purchaseId,PSP);
 
 
                 }
@@ -254,8 +266,24 @@ public class zipcode extends baseClass{
 
 
         } catch (Exception e) {
-          // System.out.println("Unexpected error: " + e.getMessage());
-        	  Assert.fail("Unexpected error: " + e.getMessage()); // keep this
+        	status = "FAIL";
+            comment = "FAIL → Exception occurred during payment flow: " + e.getMessage();
+
+            Reporter.log(comment, true);
+
+            // Write failure into Excel
+            ExcelWriteUtility.writeResult(
+                    "Purchase_Result",   // Sheet name
+                    zipcode,                // Test data
+                    ExpectedStatus,      // Expected
+                    "FAIL",              // Actual outcome
+                    comment,             // Comment
+                    purchaseId,          // Purchase ID (may be null)
+                    PSP                  // PSP name
+            );
+
+            // Fail the test in TestNG
+            Assert.fail(comment, e);
         } 
         finally {
             if (driver != null) driver.quit();

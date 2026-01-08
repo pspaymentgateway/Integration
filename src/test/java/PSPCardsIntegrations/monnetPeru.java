@@ -1,4 +1,4 @@
-package PSP;
+package PSPCardsIntegrations;
 
 import org.testng.annotations.Test;
 
@@ -27,7 +27,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 
-public class payuEndToEndFlow extends baseClass{
+public class monnetPeru extends baseClass{
 	private WebDriver driver;
 	loginPage lp;
 	String checkoutUrl;
@@ -159,7 +159,7 @@ public class payuEndToEndFlow extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus, status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP);
             driver.quit();
             return;
         }
@@ -196,8 +196,8 @@ public class payuEndToEndFlow extends baseClass{
         tp.verifyUsedCardOnUI(cardNumber);
         tp.clickOnTransactionId();
         tp.verifyPurchaseTransactionIDIsNotEmpty();
-		tp.verifyCurrencyOnPaymentInfoPayU();
-		tp.verifyAmountFromPaymentInfoPayU();
+		tp.verifyCurrencyOnPaymentInfo();
+		tp.verifyAmountFromPaymentInfo();
 
   }
 

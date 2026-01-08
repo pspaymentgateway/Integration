@@ -35,10 +35,14 @@ public class cashierPageLocators {
 	public static final String easyDelayedSuccess="//span[@id='random-number']";
 	public static final String easyDelayedFailure="//button[text()='Delayed Failure']";
 	
-	//zaakpay OTP 
+	//zaakpayNetBanking OTP 
 	public static final String zaakPayOTPEnter="//input[@id='pass']";
 	public static final String zaakpaySuccessfullBtn="//input[@class='btn success']";
 	public static final String zaakpayFailureBtn="//input[@class='btn alert']";
 	
-	
+	//zaakpay - Netbanking Integration
+	public static final String zaakPaySelectbank="//span[@id='select2-providerselect-container']";
+	public static final String zaakPaySelectbankAllList="//ul[@id='select2-providerselect-results']/li";
+	public static final String zaakpaySearchField="//input[@class='select2-search__field']";
+	public static final String zaakpaySubmitButton="//button[text()='Submit']";
 }

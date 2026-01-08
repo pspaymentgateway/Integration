@@ -105,7 +105,7 @@ public class createCustomerAndCreateSession extends baseClass{
 		String payhost = PropertyReader.getPropertyForCreateCustomerSession("payhost");
 	      String payu1 = PropertyReader.getPropertyForS2S("payu");
 	        String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
-	        String zaakpay = PropertyReader.getPropertyForPurchase("zaakpay");
+	        String zaakpay = PropertyReader.getPropertyForPurchase("zaakpayNetBanking");
 		RestAssured.baseURI = baseUri;
 		
 		String requestBody = "{\n" +
@@ -155,7 +155,7 @@ public class createCustomerAndCreateSession extends baseClass{
    	    	tp.enterOTpEasyBuzz();
    	    }
            
-   	    if(zaakpay.equalsIgnoreCase("zaakpay")) {
+   	    if(zaakpay.equalsIgnoreCase("zaakpayNetBanking")) {
    	    	mcp.zaakPayOtpEnterSuccessOrFailure();
    	    }
            

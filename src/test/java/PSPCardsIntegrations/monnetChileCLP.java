@@ -1,4 +1,4 @@
-package PSP;
+package PSPCardsIntegrations;
 
 import org.testng.annotations.Test;
 
@@ -27,7 +27,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 
-public class zaakpay extends baseClass{
+public class monnetChileCLP extends baseClass{
 	private WebDriver driver;
 	loginPage lp;
 	String checkoutUrl;
@@ -48,7 +48,7 @@ public class zaakpay extends baseClass{
 	  
 	//String cardHolder, String cardNumber, String expiry, String cvc
   @Test(dataProvider ="cardData",dataProviderClass = DataProviders.class) 
-  public void purchase( String cardHolder, String cardNumber, String expiry, String cvc,String PSP) throws Exception {
+  public void purchase(String ExpectedStatus, String cardHolder, String cardNumber, String expiry, String cvc,String PSP) throws Exception {
       WebDriver driver=baseClass.getDriver();
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
@@ -59,7 +59,13 @@ public class zaakpay extends baseClass{
 		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
-		String zaakpay = PropertyReader.getPropertyForPurchase("zaakpay");
+        String master=PropertyReader.getPropertyForPurchase("Master");
+		String visa=PropertyReader.getPropertyForPurchase("Visa");
+		String payu = PropertyReader.getPropertyForS2S("payu");
+		String payUURL=PropertyReader.getPropertyForPurchase("payUURL");
+		String EmailPayu=PropertyReader.getPropertyForPurchase("EmailPayu");
+		String PassPayU=PropertyReader.getPropertyForPurchase("PassPayU");
+		
 		String country="IN";
 		String city = "Paris";
 		String stateCode="QLD";
@@ -116,15 +122,22 @@ public class zaakpay extends baseClass{
 		tp.validatePurchaseId(purchaseId);
         // Payment
         driver.get(checkoutUrl);
-
+//        if(master.equalsIgnoreCase("master")){
+//        	mcp.clickONMaster();
+//        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
+//        }
+//        
+//        if(visa.equalsIgnoreCase("visa")) {
+//        	mcp.clickONVisa();
+//        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
+//        }
         mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
         
         mcp.clickOnPay();
         
-        
- 	    if(zaakpay.equalsIgnoreCase("zaakpay")) {
- 	    	mcp.zaakPayOtpEnterSuccessOrFailure();
- 	    }
+	    if(payu.equalsIgnoreCase("payu")) {
+	    	pay.payForPayu(currency,purchaseId,ExpectedStatus);
+	    }
         
         Thread.sleep(4000);
 		 // Wait until parameter appears in URL
@@ -143,30 +156,29 @@ public class zaakpay extends baseClass{
         if (flag.equalsIgnoreCase("false")) {
             status = "FAIL";
             comment = "Payment Failed";
-            String ExpectedStatus="FAIL";
-            
+
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,  status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP);
             driver.quit();
             return;
         }
         else if (flag.equalsIgnoreCase("true")) {
             status = "PASS";
             comment = "Payment Successfully";
-            String ExpectedStatus="PASS";
+
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP);
 
         }
         else {
             status = "UNKNOWN";
             comment = "URL does not contain expected issucces parameter";
-            String ExpectedStatus="UNKNOWN";
+
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus, status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP);
 
 
         }
@@ -184,8 +196,8 @@ public class zaakpay extends baseClass{
         tp.verifyUsedCardOnUI(cardNumber);
         tp.clickOnTransactionId();
         tp.verifyPurchaseTransactionIDIsNotEmpty();
-		tp.verifyCurrencyOnPaymentInfo();
-		tp.verifyAmountFromPaymentInfo();
+		tp.verifyCurrencyOnPaymentInfoPayU();
+		tp.verifyAmountFromPaymentInfoPayU();
 
   }
 

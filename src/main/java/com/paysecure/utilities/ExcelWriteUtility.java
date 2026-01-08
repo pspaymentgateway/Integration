@@ -67,7 +67,7 @@ public class ExcelWriteUtility {
                 header.createCell(2).setCellValue("Actual Outcome");
                 header.createCell(3).setCellValue("Status");
                 header.createCell(4).setCellValue("Transaction ID");
-                header.createCell(5).setCellValue("PSP");
+                header.createCell(5).setCellValue("PSPCardsIntegrations");
                 header.createCell(6).setCellValue("Timestamp");
             }
 
@@ -97,6 +97,8 @@ public class ExcelWriteUtility {
             try { if (workbook != null) workbook.close(); } catch (Exception ignore) {}
         }
     }
+    
+   
 
 }
 
