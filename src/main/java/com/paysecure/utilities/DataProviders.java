@@ -18,7 +18,9 @@ public class DataProviders {
 	public Object[][] cardData() {
 		return new Object[][] {
 
-				{ "Rohitman Sharma", "4111111111111111", "07/29", "123", "Zaakpay" }, };
+			//	{ "Rohitman Sharma", "4111111111111111", "07/29", "123", "Zaakpay" }, 
+				{ "Rohitman Sharma", "4999992100017063", "08/28", "870", "EuroExchange" }, 
+		};
 	}
 
 	@DataProvider(name = "CreateCCCardData")

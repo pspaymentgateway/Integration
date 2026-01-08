@@ -45,4 +45,16 @@ public class cashierPageLocators {
 	public static final String zaakPaySelectbankAllList="//ul[@id='select2-providerselect-results']/li";
 	public static final String zaakpaySearchField="//input[@class='select2-search__field']";
 	public static final String zaakpaySubmitButton="//button[text()='Submit']";
+	
+	//euro exchange Integration 
+	public static final String possibleUseCasesEuroExchnage="//select[@id='pucOptions']/option";
+	public static final String statusEuroExchnage="//select[@id='mdStatus']/option";
+	public static final String cvvEuroExchnage="//input[@id='fcavv']";
+	public static final String submitButtonEuroExchnage="//input[@class='btn btn-primary']";
+	
+	//easybuzz netbanking 
+	public static final String easybuzzNetBankingOTP="//input[@id='pass']";
+	public static final String easybuzzFailureBtn="//input[@class='btn alert']";
+	public static final String easybuzzSuccessBtn="//input[@class='btn success']";
+	
 }
