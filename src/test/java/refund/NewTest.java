@@ -43,7 +43,7 @@ public class NewTest extends baseClass{
   @Test(dataProvider ="CreateCCCardData", dataProviderClass = DataProviders.class)
   public void purchaseApi(String cardHolder, String cardNumber, String expiry, String cvv,String PSP) throws Exception {
       WebDriver driver=baseClass.getDriver();
-      Reporter.log("Email test case will run for this PSP :- "+PSP, true);
+      Reporter.log("Email test case will run for this PSPCardsIntegrations :- "+PSP, true);
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
 			String brandId = PropertyReader.getPropertyForPurchase("brandId");

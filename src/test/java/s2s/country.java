@@ -171,7 +171,7 @@ public class country extends baseClass {
 	    String cvv = PropertyReader.getPropertyForS2S("cvv");
 
 	    String easybuzz = PropertyReader.getPropertyForS2S("easybuzz");
-	    String zaakpay = PropertyReader.getPropertyForS2S("zaakpay");
+	    String zaakpay = PropertyReader.getPropertyForS2S("zaakpayNetBanking");
 	    String requestBody =
 	    		"{\n" +
 	    		"  \"cardholder_name\": \"Rahul Agarwal\",\n" +
@@ -267,7 +267,7 @@ public class country extends baseClass {
 	    if(easybuzz.equalsIgnoreCase("easybuzz")) {
 	    	tp.enterOTpEasyBuzz();
 	    }
-	    if(zaakpay.equalsIgnoreCase("zaakpay")) {
+	    if(zaakpay.equalsIgnoreCase("zaakpayNetBanking")) {
 	    	mcp.zaakPayOtpEnterSuccessOrFailure();
 	    }
 	    Thread.sleep(7000);
