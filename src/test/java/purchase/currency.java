@@ -1,9 +1,11 @@
-package schemaValidation;
+package purchase;
 
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
-import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.CashierPage;
+import com.paysecure.Page.payu3dPage;
+import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
@@ -18,12 +20,14 @@ import io.restassured.response.Response;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
 
 public class currency extends baseClass {
@@ -31,47 +35,70 @@ public class currency extends baseClass {
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
-	matrixCashierPage mcp;
+	CashierPage mcp;
 	transactionPage tp;
-
+	pspOTPPage otp;
+	payu3dPage pay;
     String status = "";
     String comment = "";
 	@BeforeMethod
 	public void beforeMethod() throws InterruptedException {
 		lp = new loginPage(getDriver());
 		lp.login();
-		mcp = new matrixCashierPage(getDriver());
+		mcp = new CashierPage(getDriver());
 		tp = new transactionPage(getDriver());
+		pay = new payu3dPage(getDriver());
+		otp= new pspOTPPage();
 	}
 
-	@Test(dataProvider ="currencyData", dataProviderClass = jsonProvider.class)
-	public void validationForCurrencyField(String Currency,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String PSP) {
+	@Test(dataProvider ="CurrencyProvider", dataProviderClass = DataProviders.class)
+	public void validationForCurrencyField(Map<String, String> CurrencyData, Map<String, String> cardData) {
 		WebDriver driver=baseClass.getDriver();
-        Reporter.log("City test case will run for this PSP :- "+PSP, true);
-        Reporter.log("City test case will run for this runflag:- "+runFlag, true);
-		 String baseUri = PropertyReader.getProperty("baseURI");
+	      
+			String Currency = CurrencyData.getOrDefault("TestData", "");
+			String ExpectedStatus = CurrencyData.getOrDefault("Status", "");
+			String RunFlag = CurrencyData.getOrDefault("RunFlag", "");
+			String CardHolder = cardData.getOrDefault("CardholderName", "");
+			String CardNumber = cardData.getOrDefault("CardNumber", "");
+			String Expiry = cardData.getOrDefault("Expiry", "");
+			String CVV = cardData.getOrDefault("CVV", "");
+			String PSP = cardData.getOrDefault("PSP", "");
+			String cardRunFlag = cardData.getOrDefault("RunFlag", "");
+			String PaymentMethod=cardData.getOrDefault("PaymentMethod","");
+
+			System.err.println(Currency +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
+
+			//Validate data is not empty
+			if (Currency.isEmpty() || CardNumber.isEmpty()) {
+				Reporter.log("Skipping test - Empty email or card number", true);
+				throw new SkipException("Empty test data");
+			}
+			
+			
+		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
-		String brandId = PropertyReader.getProperty("brandId");
+		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 	
-		String token = PropertyReader.getProperty("token");
+		String token = PropertyReader.getPropertyForPurchase("token");
 		String price = generateRandomTestData.generateRandomDouble();
 	
-		String paymentMethod=PropertyReader.getProperty("paymentMethod");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
-		String master=PropertyReader.getProperty("Master");
-		String visa=PropertyReader.getProperty("Visa");
-		String city="Paris";
-		String streetAddress="Main gate";
-		String zipcode="20001";
-       
+		String payu = PropertyReader.getPropertyForS2S("payu");
+
+		String country="IN";
+		String city = "Paris";
+		String stateCode="QLD";
+		String streetAddress = "Main gate";
+		String zipcode = "20001";
+		String productname="Cricket bat";
 		String requestBody = "{\n" +
 		        "  \"client\": {\n" +
 		        "    \"full_name\": \""+firstName+"\",\n" +
 		        "    \"email\": \""+emailId+"\",\n" +
-		        "    \"country\": \"DZ\",\n" +
+		        "    \"country\": \""+country+"\",\n" +
 		        "    \"city\": \""+city+"\",\n" +
-		        "    \"stateCode\": \"QLD\",\n" +
+		        "    \"stateCode\": \""+stateCode+"\",\n" +
 		        "    \"street_address\": \""+streetAddress+"\",\n" +
 		        "    \"zip_code\": \""+zipcode+"\",\n" +
 		        "    \"phone\": \"+1111111111\"\n" +
@@ -80,12 +107,12 @@ public class currency extends baseClass {
 		        "    \"currency\": \""+Currency+"\",\n" +
 		        "    \"products\": [\n" +
 		        "      {\n" +
-		        "        \"name\": \"New Ebook Gaming cards\",\n" +
+		        "        \"name\": \""+productname+"\",\n" +
 		        "        \"price\":"+ price + "\n" +  // "        \"price\": " + price + "\n" +
 		        "      }\n" +
 		        "    ]\n" +
 		        "  },\n" +
-		        "  \"paymentMethod\": \""+paymentMethod+"\",\n" +
+		        "  \"paymentMethod\": \""+PaymentMethod+"\",\n" +
 		        "  \"brand_id\": \"" + brandId + "\",\n" +
 		        "  \"success_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=true\",\n" +
 		        "  \"failure_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=false\",\n" +
@@ -116,13 +143,18 @@ public class currency extends baseClass {
         if (response.statusCode() == 202) {
             Reporter.log("Currency accepted by API: " + Currency, true);
         }else if (response.statusCode() == 400 || response.statusCode() == 422) {
-            Reporter.log("Currency rejected by API: " + Currency, true);
-            status = "PASS";
-            comment = "PASS → Currency rejected correctly   " + Currency;
+            // Email was rejected - check if this was expected
+            if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Fail")) {
+                status = "PASS"; // Test passed because rejection was expected
+                comment = "PASS → Email rejected correctly as expected: " + Currency;
+            } else {
+                status = "FAIL"; // Test failed because rejection was NOT expected
+                comment = "FAIL → Email was rejected but expected to pass: " + Currency;
+            }
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("Currency_Result", Currency, status, comment,purchaseId);
+            ExcelWriteUtility.writeResult("Purchase_Result", Currency,ExpectedStatus,"Fail", comment,purchaseId,PSP);
             driver.quit();
             return; 
         }  else {
@@ -140,11 +172,20 @@ public class currency extends baseClass {
                 // Payment
                 driver.get(checkoutUrl);
           
-                mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
+                mcp.userEnterCardInformationForPayment( CardHolder, CardNumber, Expiry, CVV);
                 mcp.clickOnPay();
+            	if (payu.equalsIgnoreCase("payu")) {
+					pay.payForPayu(Currency, purchaseId, ExpectedStatus);
+				}
                 
+				otp.enterOTP(PSP);
                 if (mcp.isCardNumberInvalid()) {
-                    Reporter.log("Invalid card number → Luhn check failed", true);
+         
+     			   status = "FAIL";
+                   comment = "Payment Failed Cause Of Luhn ";
+             Reporter.log("Invalid card number → Luhn check failed", true);
+              Reporter.log("Invalid card number → Luhn check failed", true);
+              ExcelWriteUtility.writeResult("Purchase_Result", Currency,ExpectedStatus,status, comment,purchaseId,PSP);
                     driver.quit();
                     return;
                 }
@@ -161,33 +202,49 @@ public class currency extends baseClass {
                         .map(p -> p.split("=")[1])
                         .findFirst().orElse("");
 
+                String actualOutcome;
 
                 if (flag.equalsIgnoreCase("false")) {
-                    status = "FAIL";
-                    comment = "Payment Failed";
+                	actualOutcome = "Fail";
+                    // Check if success was expected
+                    if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+                        status = "Pass"; // Test passed - success was expected
+                        comment = "Pass → Payment succeeded as expected";
+                    } else {
+                        status = "Fail"; // Test failed - expected failure but got success
+                        comment = "Fail → Payment succeeded but expected to fail";
+                    }
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Currency_Result", Currency, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Purchase_Result", Currency,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
                     driver.quit();
                     return;
                 }
                 else if (flag.equalsIgnoreCase("true")) {
-                    status = "PASS";
-                    comment = "Payment Successfully";
+                	actualOutcome = "Pass";
+                    // Check if success was expected
+                    if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+                        status = "Pass"; // Test passed - success was expected
+                        comment = "Pass → Payment succeeded as expected";
+                    } else {
+                        status = "Fail"; // Test failed - expected failure but got success
+                        comment = "Fail → Payment succeeded but expected to fail";
+                    }
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Currency_Result", Currency, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Purchase_Result", Currency,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
 
                 }
                 else {
+                	 actualOutcome = "UNKNOWN";
                     status = "UNKNOWN";
                     comment = "URL does not contain expected issucces parameter";
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Currency_Result", Currency, status, comment,purchaseId);
+                    ExcelWriteUtility.writeResult("Purchase_Result", Currency,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
 
 
                 }
@@ -206,8 +263,24 @@ public class currency extends baseClass {
 
 
         } catch (Exception e) {
-          // System.out.println("Unexpected error: " + e.getMessage());
-        	  Assert.fail("Unexpected error: " + e.getMessage()); // keep this
+        	status = "FAIL";
+            comment = "FAIL → Exception occurred during payment flow: " + e.getMessage();
+
+            Reporter.log(comment, true);
+
+            // Write failure into Excel
+            ExcelWriteUtility.writeResult(
+                    "Purchase_Result",   // Sheet name
+                    Currency,                // Test data
+                    ExpectedStatus,      // Expected
+                    "FAIL",              // Actual outcome
+                    comment,             // Comment
+                    purchaseId,          // Purchase ID (may be null)
+                    PSP                  // PSP name
+            );
+
+            // Fail the test in TestNG
+            Assert.fail(comment, e);
         } 
         finally {
             if (driver != null) driver.quit();

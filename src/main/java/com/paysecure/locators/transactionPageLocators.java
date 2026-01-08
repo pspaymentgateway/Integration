@@ -132,7 +132,9 @@ public class transactionPageLocators {
     //payment info 
     public static final String purchaseTransactionID="(//td[@class='propValue'])[6]";
     public static final String currencyFrompaymentInfo="(//td[@class='propValue'])[9]";
+    public static final String currnecyPayUPaymentInfo="(//td[@class='propValue'])[10]";
     public static final String amountFrompaymentInfo="(//td[@class='propValue'])[11]";
+    public static final String amountForPayUPaymentInfo="(//td[@class='propValue'])[12]";
     public static final String maskedCardOnUI="((//th[text()='Transaction ID'])[1]/ancestor::table//td[7])[1]";
     
     //psp login 
@@ -142,7 +144,7 @@ public class transactionPageLocators {
     public static final String transactionPSPModule="//div[text()='Transactions']";
     
     
-    //search transactions in PSP
+    //search transactions in PSPCardsIntegrations - Matrix
     public static final String txID="//div[text()='Tx ID']";
     public static final String searchTXIDPSP="//input[@class='filter-search-input']";
     public static final String txinPSP="(//div[@class='multiline-cell ellipsis-cell'])[1]/a";
@@ -150,12 +152,14 @@ public class transactionPageLocators {
     public static final String maskCardPSP="//a[@class='item card-mask']/div";
     public static final String successStatusFromPSP="//div[@class='badge-cell active']";
 
+   //Transaction - PAYU
+    public static final String loginPayUButton="//button[@type='submit']";
+    public static final String skipFlowPayU="//p[text()='Skip tour']";
+    public static final String transactionPayU="//p[text()='Transactions']";
 
-
-
-
-
-
+   // payhost 6406
+    
+    public static final String submitButton="//button[text()='Submit']";
 
 
 

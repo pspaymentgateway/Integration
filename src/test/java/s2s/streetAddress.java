@@ -3,7 +3,7 @@ package s2s;
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
-import com.paysecure.Page.matrixCashierPage;
+import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
@@ -31,7 +31,7 @@ public class streetAddress extends baseClass {
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
-	matrixCashierPage mcp;
+	CashierPage mcp;
 	transactionPage tp;
 	payu3dPage pay;
     String status = "";
@@ -43,28 +43,28 @@ public class streetAddress extends baseClass {
     
 	@BeforeMethod
 	public void beforeMethod() throws InterruptedException {
-		mcp = new matrixCashierPage(getDriver());
+		mcp = new CashierPage(getDriver());
 		tp = new transactionPage(getDriver());
 		pay=new payu3dPage(getDriver());
 	}
 
 	
 	@Test(dataProvider ="streetAddressProvider", dataProviderClass = DataProviders.class)
-	public void purchaseApi(String streetAddress) throws Exception {
+	public void purchaseApi(String streetAddress,String ExpectedStatus,String PSP) throws Exception {
 		WebDriver driver = baseClass.getDriver();
 		this.streetAddress = streetAddress;
 		
 		// Store baseUri for later use
-		baseUri = PropertyReader.getPropertyforS2S("baseURI");
+		baseUri = PropertyReader.getPropertyForS2S("baseURI");
 		RestAssured.baseURI = baseUri;
 		
-        String token = PropertyReader.getPropertyforS2S("tokenS2S");
-        String BrandID = PropertyReader.getPropertyforS2S("brandIdS2S");
+        String token = PropertyReader.getPropertyForS2S("tokenS2S");
+        String BrandID = PropertyReader.getPropertyForS2S("brandIdS2S");
 		String price = generateRandomTestData.generateRandomDouble();
-		String currency = PropertyReader.getPropertyforS2S("currencyS2S");
-		String paymentMethod = PropertyReader.getPropertyforS2S("paymentMethodS2S");
+		String currency = PropertyReader.getPropertyForS2S("currencyS2S");
+		String paymentMethod = PropertyReader.getPropertyForS2S("paymentMethodS2S");
 		String firstName = generateRandomTestData.generateRandomFirstName();
-		String country = "US";
+		String country = "IN";
 		String city = "Paris";
 		String stateCode = "QLD";
 		String emailId = "viratkohli+1@gmail.com";
@@ -120,19 +120,19 @@ public class streetAddress extends baseClass {
 		    // Add a small delay to ensure purchase is fully persisted
 		    Thread.sleep(2000);
 		    
-		    s2sMethod();
+		    s2sMethod(ExpectedStatus,PSP);
 		}
 
 		if (response.statusCode() == 202) {
 			Reporter.log("streetAddress accepted by API: " + streetAddress, true);
 		} else if (response.statusCode() == 400 || response.statusCode() == 422) {
             Reporter.log("streetAddress rejected by API: " + streetAddress, true);
-            status = "PASS";
+            status = "Fail";
             comment = "PASS → streetAddress rejected correctly " + streetAddress;
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("StreetAddress_Result", streetAddress, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("s2s_Result", streetAddress,ExpectedStatus, status, comment, purchaseId,PSP);
             driver.quit();
             return; 
         } else {
@@ -140,7 +140,7 @@ public class streetAddress extends baseClass {
 		}
 	}
 
-	public void s2sMethod() throws Exception {
+	public void s2sMethod(String ExpectedStatus,String PSP) throws Exception {
 
 	    WebDriver driver = baseClass.getDriver();
 	    lp = new loginPage(getDriver());
@@ -160,14 +160,16 @@ public class streetAddress extends baseClass {
 		System.err.println("Full URL: " + baseUri + endpoint);
 
 		// OPTION 1: Use same token as purchase creation (RECOMMENDED)
-	    String token = PropertyReader.getPropertyforS2S("tokenS2S");
-	    String brandId = PropertyReader.getPropertyforS2S("brandIdS2S");
-	    String payu = PropertyReader.getPropertyforS2S("payu");
+	    String token = PropertyReader.getPropertyForS2S("tokenS2S");
+	    String brandId = PropertyReader.getPropertyForS2S("brandIdS2S");
+	    String payu = PropertyReader.getPropertyForS2S("payu");
 	    
-	    String cardNumber = PropertyReader.getProperty("cardNumber");
-	    String mmyy = PropertyReader.getProperty("mmyy");
-	    String cvv = PropertyReader.getProperty("cvv");
+	    String cardNumber = PropertyReader.getPropertyForS2S("cardNumber");
+	    String mmyy = PropertyReader.getPropertyForS2S("mmyy");
+	    String cvv = PropertyReader.getPropertyForS2S("cvv");
 
+	    String easybuzz = PropertyReader.getPropertyForS2S("easybuzz");
+	    String zaakpay = PropertyReader.getPropertyForS2S("zaakpayNetBanking");
 	    String requestBody =
 	    		"{\n" +
 	    		"  \"cardholder_name\": \"Rahul Agarwal\",\n" +
@@ -238,7 +240,7 @@ public class streetAddress extends baseClass {
 	        status = "FAIL";
 	        comment = "S2S call failed with status: " + (response != null ? response.statusCode() : "NULL");
 	        Reporter.log(comment, true);
-	        ExcelWriteUtility.writeResults2s("StreetAddress_Result", streetAddress, status, comment, purchaseId);
+	        ExcelWriteUtility.writeResults2s("s2s_Result", streetAddress,ExpectedStatus, status, comment, purchaseId,PSP);
 	        driver.quit();
 	        return;
 	    }
@@ -251,15 +253,23 @@ public class streetAddress extends baseClass {
 
 	        status = "FAIL";
 	        comment = "callback_url null for purchaseId " + purchaseId;
-	        ExcelWriteUtility.writeResults2s("StreetAddress_Result", streetAddress, status, comment, purchaseId);
+	        ExcelWriteUtility.writeResults2s("s2s_Result", streetAddress,ExpectedStatus, status, comment, purchaseId,PSP);
 	        driver.quit();
 	        return;
 	    }
 
 	    driver.get(callback_url);
 	    if(payu.equalsIgnoreCase("payu")) {
-	    	pay.payForPayu();
+	    	pay.payForPayu(streetAddress,purchaseId,ExpectedStatus);
 	    }
+	    
+	    if(easybuzz.equalsIgnoreCase("easybuzz")) {
+	    	tp.enterOTpEasyBuzz();
+	    }
+	    if(zaakpay.equalsIgnoreCase("zaakpayNetBanking")) {
+	    	mcp.zaakPayOtpEnterSuccessOrFailure();
+	    }
+	    
 	    Thread.sleep(7000);
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.urlContains("issucces"));
@@ -272,33 +282,48 @@ public class streetAddress extends baseClass {
                 .map(p -> p.split("=")[1])
                 .findFirst().orElse("");
         System.err.println(flag);
-
+        String actualOutcome;
         if (flag.equalsIgnoreCase("false")) {
-            status = "FAIL";
-            comment = "Payment Failed";
+        	actualOutcome = "FAIL";
+            if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Fail")) {
+                status = "PASS"; // Test passed - failure was expected
+                comment = "PASS → Payment failed as expected";
+            } else {
+                status = "FAIL"; // Test failed - expected success but got failure
+                comment = "FAIL → Payment failed but expected to pass";
+            }
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("StreetAddress_Result", streetAddress, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("s2s_Result", streetAddress,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
             driver.quit();
             return;
         }
         else if (flag.equalsIgnoreCase("true")) {
-            status = "PASS";
-            comment = "Payment Successfully";
+            actualOutcome = "PASS";
+            
+            // Payment succeeded - check if success was expected
+            if (ExpectedStatus != null && ExpectedStatus.equalsIgnoreCase("Pass")) {
+                status = "PASS"; // Test passed - success was expected
+                comment = "PASS → Payment succeeded as expected";
+            } else {
+                status = "FAIL"; // Test failed - expected failure but got success
+                comment = "FAIL → Payment succeeded but expected to fail";
+            }
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("StreetAddress_Result", streetAddress, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("s2s_Result", streetAddress,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
 
         }
         else {
+        	 actualOutcome = "UNKNOWN";
             status = "UNKNOWN";
             comment = "URL does not contain expected issucces parameter";
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("StreetAddress_Result", streetAddress, status, comment, purchaseId);
+            ExcelWriteUtility.writeResults2s("s2s_Result", streetAddress,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
         }
         
 		mcp.openBrowserForStaging(driver, "https://staging.paysecure.net/");
