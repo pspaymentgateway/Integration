@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
+import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
@@ -19,12 +20,14 @@ import io.restassured.response.Response;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
 
 public class currency extends baseClass {
@@ -34,6 +37,7 @@ public class currency extends baseClass {
 	String purchaseId;
 	CashierPage mcp;
 	transactionPage tp;
+	pspOTPPage otp;
 	payu3dPage pay;
     String status = "";
     String comment = "";
@@ -44,28 +48,44 @@ public class currency extends baseClass {
 		mcp = new CashierPage(getDriver());
 		tp = new transactionPage(getDriver());
 		pay = new payu3dPage(getDriver());
+		otp= new pspOTPPage();
 	}
 
-	@Test(dataProvider ="currencyData", dataProviderClass = jsonProvider.class)
-	public void validationForCurrencyField(String Currency,String cardHolder, String cardNumber, String expiry, String cvv,String runFlag,String ExpectedStatus,String PSP) {
+	@Test(dataProvider ="CurrencyProvider", dataProviderClass = DataProviders.class)
+	public void validationForCurrencyField(Map<String, String> CurrencyData, Map<String, String> cardData) {
 		WebDriver driver=baseClass.getDriver();
-        Reporter.log("City test case will run for this PSPCardsIntegrations :- "+PSP, true);
-        Reporter.log("City test case will run for this runflag:- "+runFlag, true);
-		 String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
+	      
+			String Currency = CurrencyData.getOrDefault("TestData", "");
+			String ExpectedStatus = CurrencyData.getOrDefault("Status", "");
+			String RunFlag = CurrencyData.getOrDefault("RunFlag", "");
+			String CardHolder = cardData.getOrDefault("CardholderName", "");
+			String CardNumber = cardData.getOrDefault("CardNumber", "");
+			String Expiry = cardData.getOrDefault("Expiry", "");
+			String CVV = cardData.getOrDefault("CVV", "");
+			String PSP = cardData.getOrDefault("PSP", "");
+			String cardRunFlag = cardData.getOrDefault("RunFlag", "");
+			String PaymentMethod=cardData.getOrDefault("PaymentMethod","");
+
+			System.err.println(Currency +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
+
+			//Validate data is not empty
+			if (Currency.isEmpty() || CardNumber.isEmpty()) {
+				Reporter.log("Skipping test - Empty email or card number", true);
+				throw new SkipException("Empty test data");
+			}
+			
+			
+		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 	
 		String token = PropertyReader.getPropertyForPurchase("token");
 		String price = generateRandomTestData.generateRandomDouble();
 	
-		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
-		String master=PropertyReader.getPropertyForPurchase("Master");
-		String visa=PropertyReader.getPropertyForPurchase("Visa");
 		String payu = PropertyReader.getPropertyForS2S("payu");
-		String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
-		String zaakpay = PropertyReader.getPropertyForS2S("zaakpayNetBanking");
+
 		String country="IN";
 		String city = "Paris";
 		String stateCode="QLD";
@@ -92,7 +112,7 @@ public class currency extends baseClass {
 		        "      }\n" +
 		        "    ]\n" +
 		        "  },\n" +
-		        "  \"paymentMethod\": \""+paymentMethod+"\",\n" +
+		        "  \"paymentMethod\": \""+PaymentMethod+"\",\n" +
 		        "  \"brand_id\": \"" + brandId + "\",\n" +
 		        "  \"success_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=true\",\n" +
 		        "  \"failure_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=false\",\n" +
@@ -134,7 +154,7 @@ public class currency extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("Currency_Result", Currency,ExpectedStatus,"Fail", comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("Purchase_Result", Currency,ExpectedStatus,"Fail", comment,purchaseId,PSP);
             driver.quit();
             return; 
         }  else {
@@ -152,25 +172,20 @@ public class currency extends baseClass {
                 // Payment
                 driver.get(checkoutUrl);
           
-                mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
+                mcp.userEnterCardInformationForPayment( CardHolder, CardNumber, Expiry, CVV);
                 mcp.clickOnPay();
-                if(payu.equalsIgnoreCase("payu")) {
-        	    	pay.payForPayu(Currency,purchaseId,ExpectedStatus);
-        	    }
+            	if (payu.equalsIgnoreCase("payu")) {
+					pay.payForPayu(Currency, purchaseId, ExpectedStatus);
+				}
                 
-                if(easybuzz.equalsIgnoreCase("easybuzz")) {
-        	    	tp.enterOTpEasyBuzz();
-        	    }
-        	    if(zaakpay.equalsIgnoreCase("zaakpayNetBanking")) {
-        	    	mcp.zaakPayOtpEnterSuccessOrFailure();
-        	    }
+				otp.enterOTP(PSP);
                 if (mcp.isCardNumberInvalid()) {
          
      			   status = "FAIL";
                    comment = "Payment Failed Cause Of Luhn ";
              Reporter.log("Invalid card number → Luhn check failed", true);
               Reporter.log("Invalid card number → Luhn check failed", true);
-              ExcelWriteUtility.writeResult("Currency_Result", Currency,ExpectedStatus,status, comment,purchaseId,PSP);
+              ExcelWriteUtility.writeResult("Purchase_Result", Currency,ExpectedStatus,status, comment,purchaseId,PSP);
                     driver.quit();
                     return;
                 }
@@ -202,7 +217,7 @@ public class currency extends baseClass {
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Currency_Result", Currency,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", Currency,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
                     driver.quit();
                     return;
                 }
@@ -219,7 +234,7 @@ public class currency extends baseClass {
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Currency_Result", Currency,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", Currency,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
 
                 }
                 else {
@@ -229,7 +244,7 @@ public class currency extends baseClass {
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Currency_Result", Currency,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", Currency,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
 
 
                 }
@@ -248,8 +263,24 @@ public class currency extends baseClass {
 
 
         } catch (Exception e) {
-          // System.out.println("Unexpected error: " + e.getMessage());
-        	  Assert.fail("Unexpected error: " + e.getMessage()); // keep this
+        	status = "FAIL";
+            comment = "FAIL → Exception occurred during payment flow: " + e.getMessage();
+
+            Reporter.log(comment, true);
+
+            // Write failure into Excel
+            ExcelWriteUtility.writeResult(
+                    "Purchase_Result",   // Sheet name
+                    Currency,                // Test data
+                    ExpectedStatus,      // Expected
+                    "FAIL",              // Actual outcome
+                    comment,             // Comment
+                    purchaseId,          // Purchase ID (may be null)
+                    PSP                  // PSP name
+            );
+
+            // Fail the test in TestNG
+            Assert.fail(comment, e);
         } 
         finally {
             if (driver != null) driver.quit();
