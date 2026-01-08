@@ -51,5 +51,44 @@ public class DataProviders {
 
 		return ExcelUtils.getCartesianData(path, "Country", "PSPCards");
 	}
+	
+	@DataProvider(name = "StreetAddressProvider")
+	public Object[][] getStreetAddressProvider() {
+		String path = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "ExcelResultsFolder",
+				"purchaseResults.xlsx").toString();
 
+		return ExcelUtils.getCartesianData(path, "StreetAddress", "PSPCards");
+	}
+
+	@DataProvider(name = "ZipCodeProvider")
+	public Object[][] getZipCodeProvider() {
+		String path = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "ExcelResultsFolder",
+				"purchaseResults.xlsx").toString();
+
+		return ExcelUtils.getCartesianData(path, "ZipCode", "PSPCards");
+	}
+	
+	@DataProvider(name = "CurrencyProvider")
+	public Object[][] getCurrencyProvider() {
+		String path = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "ExcelResultsFolder",
+				"purchaseResults.xlsx").toString();
+
+		return ExcelUtils.getCartesianData(path, "Currency", "PSPCards");
+	}
+	
+	@DataProvider(name = "ProductNameProvider")
+	public Object[][] getProductNameProvider() {
+		String path = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "ExcelResultsFolder",
+				"purchaseResults.xlsx").toString();
+
+		return ExcelUtils.getCartesianData(path, "ProductName", "PSPCards");
+	}
+	
+	@DataProvider(name = "StateCodeProvider")
+	public Object[][] getStateCodeProvider() {
+		String path = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "ExcelResultsFolder",
+				"purchaseResults.xlsx").toString();
+
+		return ExcelUtils.getCartesianData(path, "StateCode", "PSPCards");
+	}
 }

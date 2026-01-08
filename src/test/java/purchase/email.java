@@ -177,7 +177,7 @@ public class email extends baseClass {
 				if (payu.equalsIgnoreCase("payu")) {
 					pay.payForPayu(Currency, purchaseId, ExpectedStatus);
 				}
-
+                
 				otp.enterOTP(PSP);
 				if (mcp.isCardNumberInvalid()) {
 
@@ -263,7 +263,24 @@ public class email extends baseClass {
 			}
 
 		} catch (Exception e) {
-			Assert.fail("Unexpected error: " + e.getMessage());
+        	status = "FAIL";
+            comment = "FAIL → Exception occurred during payment flow: " + e.getMessage();
+
+            Reporter.log(comment, true);
+
+            // Write failure into Excel
+            ExcelWriteUtility.writeResult(
+                    "Purchase_Result",   // Sheet name
+                    Email,                // Test data
+                    ExpectedStatus,      // Expected
+                    "FAIL",              // Actual outcome
+                    comment,             // Comment
+                    purchaseId,          // Purchase ID (may be null)
+                    PSP                  // PSP name
+            );
+
+            // Fail the test in TestNG
+            Assert.fail(comment, e);
 		} finally {
 			if (driver != null)
 				driver.quit();

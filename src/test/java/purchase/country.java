@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
+import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
@@ -36,6 +37,7 @@ public class country extends baseClass {
 	String purchaseId;
 	CashierPage mcp;
 	transactionPage tp;
+	pspOTPPage otp;
 	payu3dPage pay;
     String status = "";
     String comment = "";
@@ -48,6 +50,7 @@ public class country extends baseClass {
 			mcp=new CashierPage(getDriver());
 			tp=new transactionPage(getDriver());
 			pay = new payu3dPage(getDriver());
+			otp= new pspOTPPage();
 	  }
 	  
 	  
@@ -58,15 +61,14 @@ public class country extends baseClass {
       
 		String Country = CountryData.getOrDefault("TestData", "");
 		String ExpectedStatus = CountryData.getOrDefault("Status", "");
-		String RunFlag = CountryData.getOrDefault("RunFlag", "");
 
-		//
 		String CardHolder = cardData.getOrDefault("CardholderName", "");
 		String CardNumber = cardData.getOrDefault("CardNumber", "");
 		String Expiry = cardData.getOrDefault("Expiry", "");
 		String CVV = cardData.getOrDefault("CVV", "");
 		String PSP = cardData.getOrDefault("PSP", "");
-		String cardRunFlag = cardData.getOrDefault("RunFlag", "");
+		String PaymentMethod=cardData.getOrDefault("PaymentMethod","");
+		String Currency=cardData.getOrDefault("Currency", "");
 		System.err.println(Country +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
 
 		//Validate data is not empty
@@ -76,21 +78,15 @@ public class country extends baseClass {
 		}
       
       Reporter.log("Email test case will run for this PSPCardsIntegrations :- "+PSP, true);
-      Reporter.log("Email test case will run for this runflag:- "+RunFlag, true);
+    
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
 			String brandId = PropertyReader.getPropertyForPurchase("brandId");
 			String token = PropertyReader.getPropertyForPurchase("token");
 			String price = generateRandomTestData.generateRandomDouble();
-			String currency =PropertyReader.getPropertyForPurchase("currency");
-			String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 			String firstName = generateRandomTestData.generateRandomFirstName();
 			String emailId = generateRandomTestData.generateRandomEmail();
-			String master=PropertyReader.getPropertyForPurchase("Master");
-			String visa=PropertyReader.getPropertyForPurchase("Visa");
-			String payu = PropertyReader.getPropertyForS2S("payu");
-			String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
-			 String zaakpay = PropertyReader.getPropertyForPurchase("zaakpayNetBanking");
+			 String payu = PropertyReader.getPropertyForS2S("payu");
 			String country=Country;
 			String city = "Paris";
 			String stateCode="QLD";
@@ -109,7 +105,7 @@ public class country extends baseClass {
 			        "    \"phone\": \"+1111111111\"\n" +
 			        "  },\n" +
 			        "  \"purchase\": {\n" +
-			        "    \"currency\": \""+currency+"\",\n" +
+			        "    \"currency\": \""+Currency+"\",\n" +
 			        "    \"products\": [\n" +
 			        "      {\n" +
 			        "        \"name\": \""+productname+"\",\n" +
@@ -117,7 +113,7 @@ public class country extends baseClass {
 			        "      }\n" +
 			        "    ]\n" +
 			        "  },\n" +
-			        "  \"paymentMethod\": \""+paymentMethod+"\",\n" +
+			        "  \"paymentMethod\": \""+PaymentMethod+"\",\n" +
 			        "  \"brand_id\": \"" + brandId + "\",\n" +
 			        "  \"success_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=true\",\n" +
 			        "  \"failure_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=false\",\n" +
@@ -179,16 +175,11 @@ public class country extends baseClass {
 	                
 	                mcp.userEnterCardInformationForPayment(CardHolder, CardNumber, Expiry, CVV);
 	                mcp.clickOnPay();
-	                if(payu.equalsIgnoreCase("payu")) {
-	        	    	pay.payForPayu(currency,purchaseId,ExpectedStatus);
-	        	    }
+	            	if (payu.equalsIgnoreCase("payu")) {
+						pay.payForPayu(Currency, purchaseId, ExpectedStatus);
+					}
 	                
-	                if(easybuzz.equalsIgnoreCase("easybuzz")) {
-	        	    	tp.enterOTpEasyBuzz();
-	        	    }
-	        	    if(zaakpay.equalsIgnoreCase("zaakpayNetBanking")) {
-	        	    	mcp.zaakPayOtpEnterSuccessOrFailure();
-	        	    }
+					otp.enterOTP(PSP);
 	                if (mcp.isCardNumberInvalid()) {
 	      
 	     			   status = "FAIL";
@@ -273,8 +264,24 @@ public class country extends baseClass {
 
 
 	        } catch (Exception e) {
-	          // System.out.println("Unexpected error: " + e.getMessage());
-	        	  Assert.fail("Unexpected error: " + e.getMessage()); // keep this
+	        	status = "FAIL";
+	            comment = "FAIL → Exception occurred during payment flow: " + e.getMessage();
+
+	            Reporter.log(comment, true);
+
+	            // Write failure into Excel
+	            ExcelWriteUtility.writeResult(
+	                    "Purchase_Result",   // Sheet name
+	                    Country,                // Test data
+	                    ExpectedStatus,      // Expected
+	                    "FAIL",              // Actual outcome
+	                    comment,             // Comment
+	                    purchaseId,          // Purchase ID (may be null)
+	                    PSP                  // PSP name
+	            );
+
+	            // Fail the test in TestNG
+	            Assert.fail(comment, e);
 	        } 
 	        finally {
 	            if (driver != null) driver.quit();
