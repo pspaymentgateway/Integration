@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -39,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Default_suite" class="navigator-link">
-              <span class="suite-name border-passed">Default suite</span>
+              <span class="suite-name border-failed">Default suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\LENOVO\AppData\Local\Temp\testng-eclipse-1650265682\testng-customsuite.xml</span>
+                    <span>C:\Users\LENOVO\AppData\Local\Temp\testng-eclipse--983075454\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -92,21 +92,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">1 method, 1 failed,   </span>
                   </li>
                   <li>
-                    <span class="method-list-title passed">Passed methods</span>
-                    <span class="show-or-hide-methods passed">
-                      <a href="#" panel-name="suite-Default_suite" class="hide-methods passed suite-Default_suite"> (hide)</a> <!-- hide-methods passed suite-Default_suite -->
-                      <a href="#" panel-name="suite-Default_suite" class="show-methods passed suite-Default_suite"> (show)</a> <!-- show-methods passed suite-Default_suite -->
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods failed suite-Default_suite"> (hide)</a> <!-- hide-methods failed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods failed suite-Default_suite"> (show)</a> <!-- show-methods failed suite-Default_suite -->
                     </span>
-                    <div class="method-list-content passed suite-Default_suite">
+                    <div class="method-list-content failed suite-Default_suite">
                       <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="purchase.email" class="method navigator-link" hash-for-method="Purchase({Status=Pass, TestData=user+alias@gmail.com, RunFlag=TRUE}, {CardholderName=Virat Kohli, CardNumber=...)">Purchase({Status=Pass, TestData=user+alias@gmail.com, RunFlag=TRUE}, {CardholderName=Virat Kohli, CardNumber=...)</a> <!-- method navigator-link -->
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="PspWithoutCards.easybuzzNetBanking" class="method navigator-link" hash-for-method="purchase">purchase</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content passed suite-Default_suite -->
+                    </div> <!-- method-list-content failed suite-Default_suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -118,26 +118,61 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Default_suite" class="panel Default_suite">
-          <div class="suite-Default_suite-class-passed">
+          <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">purchase.email</span>
+              <img src="failed.png"/>
+              <span class="class-name">PspWithoutCards.easybuzzNetBanking</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="Purchase({Status=Pass, TestData=user+alias@gmail.com, RunFlag=TRUE}, {CardholderName=Virat Kohli, CardNumber=...)">
-                  </a> <!-- Purchase({Status=Pass, TestData=user+alias@gmail.com, RunFlag=TRUE}, {CardholderName=Virat Kohli, CardNumber=...) -->
-                  <span class="method-name">Purchase</span>
-                  <span class="parameters">({Status=Pass, TestData=user+alias@gmail.com, RunFlag=TRUE},{CardholderName=Virat Kohli, CardNumber=5553042241984105, CVV=123, RunFlag=TRUE, Currency=INR, PaymentMethod=MASTER, PSP=Easybuzz, Expiry=07/28})</span>
+                  <a name="purchase">
+                  </a> <!-- purchase -->
+                  <span class="method-name">purchase</span>
+                  <div class="stack-trace">java.lang.AssertionError: Merchant name mismatch expected [null] but found [suhasM]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1590)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:656)
+	at com.paysecure.Page.transactionPage.verifyMerchantName(transactionPage.java:206)
+	at PspWithoutCards.easybuzzNetBanking.purchase(easybuzzNetBanking.java:177)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:741)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+
+</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Default_suite-class-passed -->
+          </div> <!-- suite-Default_suite-class-failed -->
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\LENOVO\AppData\Local\Temp\testng-eclipse-1650265682\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\LENOVO\AppData\Local\Temp\testng-eclipse--983075454\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -146,11 +181,11 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;purchase.email&quot;&gt;
+      &lt;class name=&quot;PspWithoutCards.easybuzzNetBanking&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;Purchase&quot;/&gt;
+          &lt;include name=&quot;purchase&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- purchase.email --&gt;
+      &lt;/class&gt; &lt;!-- PspWithoutCards.easybuzzNetBanking --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -192,14 +227,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'Purchase')
-data.setCell(0, 2, 'purchase.email')
-data.setCell(0, 3, 66120);
+data.setCell(0, 1, 'purchase')
+data.setCell(0, 2, 'PspWithoutCards.easybuzzNetBanking')
+data.setCell(0, 3, 36021);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 36 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -211,150 +246,34 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="reporter-method-div">
-              <span class="reporter-method-name">Purchase({Status=Pass, TestData=user+alias@gmail.com, RunFlag=TRUE}, {CardholderName=Virat Kohli, CardNumber=...)</span>
+              <span class="reporter-method-name">purchase</span>
               <div class="reporter-method-output-div">
-                <span class="reporter-method-output">Email test case will run for this PSP: Easybuzz</span>
-                <span class="reporter-method-output">Testing Email: user+alias@gmail.com with Card: 5553042241984105</span>
-                <span class="reporter-method-output">Generated Random Double: 12.22</span>
-                <span class="reporter-method-output">Generated First Name: john7c8</span>
-                <span class="reporter-method-output">Email: user+alias@gmail.com → Status: 202</span>
-                <span class="reporter-method-output">Response Body: {
-    "purchaseId": "695e1d875f2236af768eebaa",
-    "client": {
-        "customerId": "NA",
-        "email": "user+alias@gmail.com",
-        "phone": "+1111111111",
-        "full_name": "john7c8",
-        "street_address": "Main gate",
-        "country": "IN",
-        "city": "Paris",
-        "zip_code": "20001",
-        "cc": [
-            
-        ],
-        "bcc": [
-            
-        ],
-        "stateCode": "QLD"
-    },
-    "updated_on": 1767775623,
-    "type": "purchase",
-    "paymentMethod": "MASTER",
-    "amountUnit": "MAJOR",
-    "errorMsg": "",
-    "errorCode": "NA",
-    "force_recurring": false,
-    "created_on": 1767775623,
-    "merchantRef": "695e1d875f2236af768eebaa",
-    "purchase": {
-        "currency": "INR",
-        "products": [
-            {
-                "name": "Cricket bat",
-                "quantity": 1.0,
-                "price": 12.22,
-                "discount": 0,
-                "tax_percent": "0.00"
-            }
-        ],
-        "total": 12.22,
-        "requestAmount": 12.22,
-        "language": "en",
-        "notes": "",
-        "debt": 0,
-        "total_formatted": 1.0,
-        "taxAmount": 0.0,
-        "taxPercent": 0.0,
-        "request_client_details": [
-            
-        ],
-        "email_message": ""
-    },
-    "issuer_details": {
-        "website": "",
-        "legal_street_address": "",
-        "legal_country": "",
-        "legal_city": "",
-        "legal_zip_code": "",
-        "bank_accounts": [
-            {
-                
-            }
-        ],
-        "legal_name": "practice",
-        "brand_name": "practice",
-        "registration_number": "",
-        "tax_number": ""
-    },
-    "transaction_data": {
-        "payment_method": "",
-        "flow": "payform",
-        "extra": {
-            
-        },
-        "country": "",
-        "attempts": [
-            
-        ]
-    },
-    "status": "CREATED",
-    "status_history": [
-        {
-            "status": "created",
-            "timestamp": 1767775623
-        }
-    ],
-    "is_test": false,
-    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
-    "send_receipt": false,
-    "is_recurring_token": false,
-    "skip_capture": false,
-    "reference_generated": "PS5687",
-    "issued": "2026-01-07",
-    "due": 1767775623,
-    "refund_upto": 0,
-    "cc_descriptor": "",
-    "fraudScore": "NA",
-    "trustScore": "NA",
-    "extraFee": "0",
-    "paidOn": 0,
-    "receivedAmt": 0.0,
-    "taxAmount": 0.0,
-    "surcharge": 0.0,
-    "surchargeType": "",
-    "sessionId": "",
-    "refund_availability": "NONE",
-    "refundable_amount": 0.0,
-    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
-    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
-    "cancel_redirect": "",
-    "success_callback": "https://www.google.com/",
-    "failure_callback": "https://staging.paysecure.net/merchant",
-    "platform": "API",
-    "created_from_ip": "110.235.229.39",
-    "checkout_url": "https://test4.paymentsclub.net/payments/3cb00d819f131e3edac0cf20e4f127bd/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/695e1d875f2236af768eebaa/",
-    "payoutProcess": false
-}</span>
-                <span class="reporter-method-output">Email accepted by API: user+alias@gmail.com</span>
-                <span class="reporter-method-output">API success → proceeding with full flow</span>
-                <span class="reporter-method-output">Entered Card Holder Name: Virat Kohli</span>
-                <span class="reporter-method-output">Entered Card Number: 5553042241984105</span>
-                <span class="reporter-method-output">Entered Card Expiry Date: 07/28</span>
-                <span class="reporter-method-output">Entered Card CVV: 123</span>
-                <span class="reporter-method-output">Moved to the Pay button</span>
-                <span class="reporter-method-output">Clicked on the Pay button to proceed with payment</span>
+                <span class="reporter-method-output">Generated Random Double: 85.08</span>
+                <span class="reporter-method-output">Generated First Name: john0e0</span>
+                <span class="reporter-method-output">Generated Email: nairobiPalermoadeb8@gmail.com</span>
+                <span class="reporter-method-output">purchaseId is not null</span>
+                <span class="reporter-method-output">purchaseId is not empty</span>
+                <span class="reporter-method-output">purchaseId format is valid: 695f9bddc6bec9683d1ffb76</span>
+                <span class="reporter-method-output">purchaseId length is 24</span>
+                <span class="reporter-method-output">purchaseId validated successfully: 695f9bddc6bec9683d1ffb76</span>
+                <span class="reporter-method-output">Clicked on ZaakPay bank select dropdown</span>
+                <span class="reporter-method-output">Entered partial bank name: HD</span>
+                <span class="reporter-method-output">ZaakPay bank suggestions loaded. Count: 1</span>
+                <span class="reporter-method-output">Selected ZaakPay bank name: HDFC Bank</span>
+                <span class="reporter-method-output">Clicked on ZaakPay submit button on bank page</span>
                 <span class="reporter-method-output">Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true</span>
-                <span class="reporter-method-output">Pass → Payment succeeded as expected</span>
+                <span class="reporter-method-output">Payment Successfully</span>
                 <span class="reporter-method-output"> Opened staging environment in a new browser tab</span>
                 <span class="reporter-method-output">User enter ID in Username field</span>
                 <span class="reporter-method-output">User Enter Password in password field</span>
                 <span class="reporter-method-output">Click on submit button in login page</span>
-                <span class="reporter-method-output"> Entered Transaction ID: 695e1d875f2236af768eebaa</span>
+                <span class="reporter-method-output"> Entered Transaction ID: 695f9bddc6bec9683d1ffb76</span>
                 <span class="reporter-method-output"> Clicked on Search button</span>
-                <span class="reporter-method-output"> Clicked on Search button</span>
-                <span class="reporter-method-output"> Clicked on first Transaction ID from list</span>
-                <span class="reporter-method-output">Purchase Transaction ID is not empty or not null</span>
+                <span class="reporter-method-output">UI transaction ID: 695f9bddc6bec9683d1ffb76</span>
+                <span class="reporter-method-output">API transaction ID: 695f9bddc6bec9683d1ffb76</span>
+                <span class="reporter-method-output">Transaction ID verified successfully</span>
+                <span class="reporter-method-output">UI Merchant Name: suhasM</span>
+                <span class="reporter-method-output">API Merchant Name: null</span>
               </div> <!-- reporter-method-output-div -->
             </div> <!-- reporter-method-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -372,26 +291,28 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">purchase.email</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">PspWithoutCards.easybuzzNetBanking</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">loadConfig</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="configuration-method before">
                 <span class="method-name">setup</span>
-                <span class="method-start">1610 ms</span>
+                <span class="method-start">71 ms</span>
               </div> <!-- configuration-method before -->
               <div class="configuration-method before">
                 <span class="method-name">beforeMethod</span>
-                <span class="method-start">9785 ms</span>
+                <span class="method-start">11848 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">Purchase({Status=Pass, TestData=user+alias@gmail.com, RunFlag=TRUE}, {CardholderName=Virat Kohli, CardNumber=...)</span>
-                <span class="method-start">12776 ms</span>
+                <img src="failed.png">
+                </img>
+                <span class="method-name">purchase</span>
+                <span class="method-start">14886 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">tearDown([TestResult name=Purchase status=SUCCESS method=email.Purchase(java.util.Map,java.util.Map)[pri:0, i...)</span>
-                <span class="method-start">78908 ms</span>
+                <span class="method-name">tearDown([TestResult name=purchase status=FAILURE method=easybuzzNetBanking.purchase()[pri:0, instance:PspWit...)</span>
+                <span class="method-start">50921 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

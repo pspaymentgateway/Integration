@@ -18,7 +18,9 @@ public class DataProviders {
 	public Object[][] cardData() {
 		return new Object[][] {
 
-				{ "Rohitman Sharma", "4111111111111111", "07/29", "123", "Zaakpay" }, };
+			//	{ "Rohitman Sharma", "4111111111111111", "07/29", "123", "Zaakpay" }, 
+				{ "Rohitman Sharma", "4999992100017063", "08/28", "870", "EuroExchange" }, 
+		};
 	}
 
 	@DataProvider(name = "CreateCCCardData")
@@ -51,5 +53,44 @@ public class DataProviders {
 
 		return ExcelUtils.getCartesianData(path, "Country", "PSPCards");
 	}
+	
+	@DataProvider(name = "StreetAddressProvider")
+	public Object[][] getStreetAddressProvider() {
+		String path = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "ExcelResultsFolder",
+				"purchaseResults.xlsx").toString();
 
+		return ExcelUtils.getCartesianData(path, "StreetAddress", "PSPCards");
+	}
+
+	@DataProvider(name = "ZipCodeProvider")
+	public Object[][] getZipCodeProvider() {
+		String path = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "ExcelResultsFolder",
+				"purchaseResults.xlsx").toString();
+
+		return ExcelUtils.getCartesianData(path, "ZipCode", "PSPCards");
+	}
+	
+	@DataProvider(name = "CurrencyProvider")
+	public Object[][] getCurrencyProvider() {
+		String path = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "ExcelResultsFolder",
+				"purchaseResults.xlsx").toString();
+
+		return ExcelUtils.getCartesianData(path, "Currency", "PSPCards");
+	}
+	
+	@DataProvider(name = "ProductNameProvider")
+	public Object[][] getProductNameProvider() {
+		String path = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "ExcelResultsFolder",
+				"purchaseResults.xlsx").toString();
+
+		return ExcelUtils.getCartesianData(path, "ProductName", "PSPCards");
+	}
+	
+	@DataProvider(name = "StateCodeProvider")
+	public Object[][] getStateCodeProvider() {
+		String path = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "ExcelResultsFolder",
+				"purchaseResults.xlsx").toString();
+
+		return ExcelUtils.getCartesianData(path, "StateCode", "PSPCards");
+	}
 }
