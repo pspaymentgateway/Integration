@@ -27,6 +27,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 
+
 public class easybuzzNetBanking extends baseClass{
 	private WebDriver driver;
 	loginPage lp;
@@ -46,6 +47,7 @@ public class easybuzzNetBanking extends baseClass{
 			pay = new payu3dPage(getDriver());
 			
 	  }
+	 
 	  
 
   @Test() 

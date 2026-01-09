@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
       <![CDATA[User enter ID in Username field]]>
@@ -11,29 +11,140 @@
       <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[Generated Random Double: 47.98]]>
+      <![CDATA[Generated Random Double: 69.02]]>
     </line>
     <line>
-      <![CDATA[Generated First Name: johnb8e]]>
+      <![CDATA[Generated First Name: johnbd2]]>
     </line>
     <line>
-      <![CDATA[Generated Email: nairobiPalermo88a74@gmail.com]]>
+      <![CDATA[Generated Email: nairobiPalermo47355@gmail.com]]>
+    </line>
+    <line>
+      <![CDATA[purchaseId is not null]]>
+    </line>
+    <line>
+      <![CDATA[purchaseId is not empty]]>
+    </line>
+    <line>
+      <![CDATA[purchaseId format is valid: 696098565a39512d3851e377]]>
+    </line>
+    <line>
+      <![CDATA[purchaseId length is 24]]>
+    </line>
+    <line>
+      <![CDATA[purchaseId validated successfully: 696098565a39512d3851e377]]>
+    </line>
+    <line>
+      <![CDATA[Clicked on ZaakPay bank select dropdown]]>
+    </line>
+    <line>
+      <![CDATA[Entered partial bank name: HD]]>
+    </line>
+    <line>
+      <![CDATA[ZaakPay bank suggestions loaded. Count: 1]]>
+    </line>
+    <line>
+      <![CDATA[Selected ZaakPay bank name: HDFC Bank]]>
+    </line>
+    <line>
+      <![CDATA[Clicked on ZaakPay submit button on bank page]]>
+    </line>
+    <line>
+      <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
+    </line>
+    <line>
+      <![CDATA[Payment Successfully]]>
+    </line>
+    <line>
+      <![CDATA[ Opened staging environment in a new browser tab]]>
+    </line>
+    <line>
+      <![CDATA[User enter ID in Username field]]>
+    </line>
+    <line>
+      <![CDATA[User Enter Password in password field]]>
+    </line>
+    <line>
+      <![CDATA[Click on submit button in login page]]>
+    </line>
+    <line>
+      <![CDATA[ Entered Transaction ID: 696098565a39512d3851e377]]>
+    </line>
+    <line>
+      <![CDATA[ Clicked on Search button]]>
+    </line>
+    <line>
+      <![CDATA[UI transaction ID: 696098565a39512d3851e377]]>
+    </line>
+    <line>
+      <![CDATA[API transaction ID: 696098565a39512d3851e377]]>
+    </line>
+    <line>
+      <![CDATA[Transaction ID verified successfully]]>
+    </line>
+    <line>
+      <![CDATA[UI Amount: 69.02]]>
+    </line>
+    <line>
+      <![CDATA[API Amount: 69.02]]>
+    </line>
+    <line>
+      <![CDATA[currency conversion not applied]]>
+    </line>
+    <line>
+      <![CDATA[Amount verified successfully]]>
+    </line>
+    <line>
+      <![CDATA[UI Currency: INR]]>
+    </line>
+    <line>
+      <![CDATA[API Currency: INR]]>
+    </line>
+    <line>
+      <![CDATA[Currency matched correctly]]>
+    </line>
+    <line>
+      <![CDATA[Currency verified successfully]]>
+    </line>
+    <line>
+      <![CDATA[ Clicked on first Transaction ID from list]]>
+    </line>
+    <line>
+      <![CDATA[Purchase Transaction ID is not empty or not null]]>
+    </line>
+    <line>
+      <![CDATA[UI Currency: INR]]>
+    </line>
+    <line>
+      <![CDATA[Payment Info Currency: INR]]>
+    </line>
+    <line>
+      <![CDATA[Currency on Payment Info verified successfully]]>
+    </line>
+    <line>
+      <![CDATA[UI Amount: 69.02]]>
+    </line>
+    <line>
+      <![CDATA[Payment Info Amount: 69.02]]>
+    </line>
+    <line>
+      <![CDATA[Amount on Payment Info verified successfully]]>
     </line>
   </reporter-output>
-  <suite started-at="2026-01-07T15:47:03 IST" name="Default suite" finished-at="2026-01-07T15:47:28 IST" duration-ms="25341">
+  <suite started-at="2026-01-09T11:25:18 IST" name="Default suite" finished-at="2026-01-09T11:26:15 IST" duration-ms="57403">
     <groups>
     </groups>
-    <test started-at="2026-01-07T15:47:03 IST" name="Default test" finished-at="2026-01-07T15:47:28 IST" duration-ms="25341">
-      <class name="PspWithoutCards.zaakpayNetBanking">
-        <test-method is-config="true" signature="loadConfig()[pri:0, instance:PspWithoutCards.zaakpayNetBanking@2cf92cc7]" started-at="2026-01-07T15:47:03 IST" name="loadConfig" finished-at="2026-01-07T15:47:03 IST" duration-ms="15" status="PASS">
+    <test started-at="2026-01-09T11:25:18 IST" name="Default test" finished-at="2026-01-09T11:26:15 IST" duration-ms="57403">
+      <class name="PspWithoutCards.easybuzzNetBanking">
+        <test-method is-config="true" signature="loadConfig()[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7]" started-at="2026-01-09T11:25:18 IST" name="loadConfig" finished-at="2026-01-09T11:25:18 IST" duration-ms="13" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loadConfig -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:PspWithoutCards.zaakpayNetBanking@2cf92cc7]" started-at="2026-01-07T15:47:03 IST" name="setup" finished-at="2026-01-07T15:47:08 IST" duration-ms="5317" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7]" started-at="2026-01-09T11:25:18 IST" name="setup" finished-at="2026-01-09T11:25:25 IST" duration-ms="7077" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:PspWithoutCards.zaakpayNetBanking@2cf92cc7]" started-at="2026-01-07T15:47:08 IST" name="beforeMethod" finished-at="2026-01-07T15:47:10 IST" duration-ms="2540" status="PASS">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7]" started-at="2026-01-09T11:25:25 IST" name="beforeMethod" finished-at="2026-01-09T11:25:34 IST" duration-ms="9058" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[User enter ID in Username field]]>
@@ -46,160 +157,142 @@
             </line>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="purchase()[pri:0, instance:PspWithoutCards.zaakpayNetBanking@2cf92cc7]" started-at="2026-01-07T15:47:10 IST" name="purchase" finished-at="2026-01-07T15:47:25 IST" duration-ms="14377" status="FAIL">
-          <exception class="java.net.ConnectException">
-            <message>
-              <![CDATA[Connection timed out: connect]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.net.ConnectException: Connection timed out: connect
-at java.base/sun.nio.ch.Net.connect0(Native Method)
-at java.base/sun.nio.ch.Net.connect(Net.java:589)
-at java.base/sun.nio.ch.Net.connect(Net.java:578)
-at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:583)
-at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
-at java.base/java.net.Socket.connect(Socket.java:751)
-at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
-at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:415)
-at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:180)
-at org.apache.http.impl.conn.ManagedClientConnectionImpl.open(ManagedClientConnectionImpl.java:326)
-at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:605)
-at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:440)
-at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:835)
-at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
-at io.restassured.internal.RestAssuredHttpBuilder.doRequest(RestAssuredHttpBuilder.java:141)
-at io.restassured.internal.http.HTTPBuilder.post(HTTPBuilder.java:349)
-at io.restassured.internal.http.HTTPBuilder$post$2.call(Unknown Source)
-at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
-at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
-at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:148)
-at io.restassured.internal.RequestSpecificationImpl.sendRequest(RequestSpecificationImpl.groovy:1209)
-at io.restassured.internal.RequestSpecificationImpl.this$2$sendRequest(RequestSpecificationImpl.groovy)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
-at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
-at groovy.lang.MetaClassImpl.doInvokeMethod(MetaClassImpl.java:1333)
-at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1088)
-at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
-at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:790)
-at io.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)
-at org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:46)
-at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
-at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
-at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:166)
-at io.restassured.internal.filter.SendRequestFilter.filter(SendRequestFilter.groovy:30)
-at io.restassured.filter.Filter$filter.call(Unknown Source)
-at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
-at io.restassured.filter.Filter$filter$0.call(Unknown Source)
-at io.restassured.internal.filter.FilterContextImpl.next(FilterContextImpl.groovy:72)
-at io.restassured.filter.time.TimingFilter.filter(TimingFilter.java:56)
-at io.restassured.filter.Filter$filter$0.call(Unknown Source)
-at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
-at io.restassured.filter.Filter$filter.call(Unknown Source)
-at io.restassured.internal.filter.FilterContextImpl.next(FilterContextImpl.groovy:72)
-at io.restassured.filter.FilterContext$next.call(Unknown Source)
-at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
-at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
-at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:148)
-at io.restassured.internal.filter.CsrfFilter.filter(CsrfFilter.groovy:70)
-at io.restassured.filter.Filter$filter.call(Unknown Source)
-at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
-at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
-at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:157)
-at io.restassured.internal.filter.FilterContextImpl.next(FilterContextImpl.groovy:72)
-at io.restassured.filter.FilterContext$next.call(Unknown Source)
-at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
-at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
-at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:148)
-at io.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1704)
-at io.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
-at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
-at groovy.lang.MetaClassImpl.doInvokeMethod(MetaClassImpl.java:1333)
-at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1088)
-at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
-at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:790)
-at io.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)
-at org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:46)
-at org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:57)
-at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
-at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:171)
-at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:203)
-at io.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1710)
-at io.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
-at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
-at groovy.lang.MetaClassImpl.doInvokeMethod(MetaClassImpl.java:1333)
-at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1088)
-at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
-at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:790)
-at io.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)
-at org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:46)
-at org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:57)
-at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
-at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:171)
-at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:203)
-at io.restassured.internal.RequestSpecificationImpl.post(RequestSpecificationImpl.groovy:176)
-at io.restassured.internal.RequestSpecificationImpl.post(RequestSpecificationImpl.groovy)
-at PspWithoutCards.zaakpayNetBanking.purchase(zaakpayNetBanking.java:107)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.net.ConnectException -->
+        <test-method signature="purchase()[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7]" started-at="2026-01-09T11:25:34 IST" name="purchase" finished-at="2026-01-09T11:26:12 IST" duration-ms="38122" status="PASS">
           <reporter-output>
             <line>
-              <![CDATA[Generated Random Double: 47.98]]>
+              <![CDATA[Generated Random Double: 69.02]]>
             </line>
             <line>
-              <![CDATA[Generated First Name: johnb8e]]>
+              <![CDATA[Generated First Name: johnbd2]]>
             </line>
             <line>
-              <![CDATA[Generated Email: nairobiPalermo88a74@gmail.com]]>
+              <![CDATA[Generated Email: nairobiPalermo47355@gmail.com]]>
+            </line>
+            <line>
+              <![CDATA[purchaseId is not null]]>
+            </line>
+            <line>
+              <![CDATA[purchaseId is not empty]]>
+            </line>
+            <line>
+              <![CDATA[purchaseId format is valid: 696098565a39512d3851e377]]>
+            </line>
+            <line>
+              <![CDATA[purchaseId length is 24]]>
+            </line>
+            <line>
+              <![CDATA[purchaseId validated successfully: 696098565a39512d3851e377]]>
+            </line>
+            <line>
+              <![CDATA[Clicked on ZaakPay bank select dropdown]]>
+            </line>
+            <line>
+              <![CDATA[Entered partial bank name: HD]]>
+            </line>
+            <line>
+              <![CDATA[ZaakPay bank suggestions loaded. Count: 1]]>
+            </line>
+            <line>
+              <![CDATA[Selected ZaakPay bank name: HDFC Bank]]>
+            </line>
+            <line>
+              <![CDATA[Clicked on ZaakPay submit button on bank page]]>
+            </line>
+            <line>
+              <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
+            </line>
+            <line>
+              <![CDATA[Payment Successfully]]>
+            </line>
+            <line>
+              <![CDATA[ Opened staging environment in a new browser tab]]>
+            </line>
+            <line>
+              <![CDATA[User enter ID in Username field]]>
+            </line>
+            <line>
+              <![CDATA[User Enter Password in password field]]>
+            </line>
+            <line>
+              <![CDATA[Click on submit button in login page]]>
+            </line>
+            <line>
+              <![CDATA[ Entered Transaction ID: 696098565a39512d3851e377]]>
+            </line>
+            <line>
+              <![CDATA[ Clicked on Search button]]>
+            </line>
+            <line>
+              <![CDATA[UI transaction ID: 696098565a39512d3851e377]]>
+            </line>
+            <line>
+              <![CDATA[API transaction ID: 696098565a39512d3851e377]]>
+            </line>
+            <line>
+              <![CDATA[Transaction ID verified successfully]]>
+            </line>
+            <line>
+              <![CDATA[UI Amount: 69.02]]>
+            </line>
+            <line>
+              <![CDATA[API Amount: 69.02]]>
+            </line>
+            <line>
+              <![CDATA[currency conversion not applied]]>
+            </line>
+            <line>
+              <![CDATA[Amount verified successfully]]>
+            </line>
+            <line>
+              <![CDATA[UI Currency: INR]]>
+            </line>
+            <line>
+              <![CDATA[API Currency: INR]]>
+            </line>
+            <line>
+              <![CDATA[Currency matched correctly]]>
+            </line>
+            <line>
+              <![CDATA[Currency verified successfully]]>
+            </line>
+            <line>
+              <![CDATA[ Clicked on first Transaction ID from list]]>
+            </line>
+            <line>
+              <![CDATA[Purchase Transaction ID is not empty or not null]]>
+            </line>
+            <line>
+              <![CDATA[UI Currency: INR]]>
+            </line>
+            <line>
+              <![CDATA[Payment Info Currency: INR]]>
+            </line>
+            <line>
+              <![CDATA[Currency on Payment Info verified successfully]]>
+            </line>
+            <line>
+              <![CDATA[UI Amount: 69.02]]>
+            </line>
+            <line>
+              <![CDATA[Payment Info Amount: 69.02]]>
+            </line>
+            <line>
+              <![CDATA[Amount on Payment Info verified successfully]]>
             </line>
           </reporter-output>
         </test-method> <!-- purchase -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:PspWithoutCards.zaakpayNetBanking@2cf92cc7]" started-at="2026-01-07T15:47:25 IST" name="tearDown" finished-at="2026-01-07T15:47:28 IST" duration-ms="3011" status="PASS">
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7]" started-at="2026-01-09T11:26:12 IST" name="tearDown" finished-at="2026-01-09T11:26:15 IST" duration-ms="3004" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=purchase status=FAILURE method=zaakpayNetBanking.purchase()[pri:0, instance:PspWithoutCards.zaakpayNetBanking@2cf92cc7] output=Generated Random Double: 47.98]]]>
+                <![CDATA[[TestResult name=purchase status=SUCCESS method=easybuzzNetBanking.purchase()[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7] output=Generated Random Double: 69.02]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- PspWithoutCards.zaakpayNetBanking -->
+      </class> <!-- PspWithoutCards.easybuzzNetBanking -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
