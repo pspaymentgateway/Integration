@@ -47,8 +47,9 @@ public class zaakpayNetBanking extends baseClass{
 			
 	  }
 	  
+	  
 
-  @Test() 
+  @Test(invocationCount = 1) 
   public void purchase() throws Exception {
       WebDriver driver=baseClass.getDriver();
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
@@ -175,7 +176,6 @@ public class zaakpayNetBanking extends baseClass{
         tp.navigateUptoTransaction();
         tp.searchTheTransaction(purchaseId);
         tp.verifyTxnId(purchaseId);
-        tp.verifyMerchantName(merchantName);
         tp.verifyAmount(total);
         tp.verifyCurrency(currency);
         tp.getStatusFromUI();

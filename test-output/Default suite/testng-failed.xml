@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="PspWithoutCards.easybuzzNetBanking">
+      <class name="PspWithoutCards.zaakpayNetBanking">
         <methods>
-          <include name="purchase"/>
           <include name="loadConfig"/>
+          <include name="beforeMethod"/>
           <include name="tearDown"/>
           <include name="setup"/>
-          <include name="beforeMethod"/>
+          <include name="purchase"/>
         </methods>
-      </class> <!-- PspWithoutCards.easybuzzNetBanking -->
+      </class> <!-- PspWithoutCards.zaakpayNetBanking -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
