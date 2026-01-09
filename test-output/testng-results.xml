@@ -11,13 +11,13 @@
       <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[Generated Random Double: 69.02]]>
+      <![CDATA[Generated Random Double: 30.31]]>
     </line>
     <line>
-      <![CDATA[Generated First Name: johnbd2]]>
+      <![CDATA[Generated First Name: johnc23]]>
     </line>
     <line>
-      <![CDATA[Generated Email: nairobiPalermo47355@gmail.com]]>
+      <![CDATA[Generated Email: nairobiPalermo3f032@gmail.com]]>
     </line>
     <line>
       <![CDATA[purchaseId is not null]]>
@@ -26,28 +26,13 @@
       <![CDATA[purchaseId is not empty]]>
     </line>
     <line>
-      <![CDATA[purchaseId format is valid: 696098565a39512d3851e377]]>
+      <![CDATA[purchaseId format is valid: 6960a6aa5a39512d38524d03]]>
     </line>
     <line>
       <![CDATA[purchaseId length is 24]]>
     </line>
     <line>
-      <![CDATA[purchaseId validated successfully: 696098565a39512d3851e377]]>
-    </line>
-    <line>
-      <![CDATA[Clicked on ZaakPay bank select dropdown]]>
-    </line>
-    <line>
-      <![CDATA[Entered partial bank name: HD]]>
-    </line>
-    <line>
-      <![CDATA[ZaakPay bank suggestions loaded. Count: 1]]>
-    </line>
-    <line>
-      <![CDATA[Selected ZaakPay bank name: HDFC Bank]]>
-    </line>
-    <line>
-      <![CDATA[Clicked on ZaakPay submit button on bank page]]>
+      <![CDATA[purchaseId validated successfully: 6960a6aa5a39512d38524d03]]>
     </line>
     <line>
       <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
@@ -68,25 +53,25 @@
       <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[ Entered Transaction ID: 696098565a39512d3851e377]]>
+      <![CDATA[ Entered Transaction ID: 6960a6aa5a39512d38524d03]]>
     </line>
     <line>
       <![CDATA[ Clicked on Search button]]>
     </line>
     <line>
-      <![CDATA[UI transaction ID: 696098565a39512d3851e377]]>
+      <![CDATA[UI transaction ID: 6960a6aa5a39512d38524d03]]>
     </line>
     <line>
-      <![CDATA[API transaction ID: 696098565a39512d3851e377]]>
+      <![CDATA[API transaction ID: 6960a6aa5a39512d38524d03]]>
     </line>
     <line>
       <![CDATA[Transaction ID verified successfully]]>
     </line>
     <line>
-      <![CDATA[UI Amount: 69.02]]>
+      <![CDATA[UI Amount: 30.31]]>
     </line>
     <line>
-      <![CDATA[API Amount: 69.02]]>
+      <![CDATA[API Amount: 30.31]]>
     </line>
     <line>
       <![CDATA[currency conversion not applied]]>
@@ -122,29 +107,29 @@
       <![CDATA[Currency on Payment Info verified successfully]]>
     </line>
     <line>
-      <![CDATA[UI Amount: 69.02]]>
+      <![CDATA[UI Amount: 30.31]]>
     </line>
     <line>
-      <![CDATA[Payment Info Amount: 69.02]]>
+      <![CDATA[Payment Info Amount: 30.31]]>
     </line>
     <line>
       <![CDATA[Amount on Payment Info verified successfully]]>
     </line>
   </reporter-output>
-  <suite started-at="2026-01-09T11:25:18 IST" name="Default suite" finished-at="2026-01-09T11:26:15 IST" duration-ms="57403">
+  <suite started-at="2026-01-09T12:26:13 IST" name="Default suite" finished-at="2026-01-09T12:27:24 IST" duration-ms="71502">
     <groups>
     </groups>
-    <test started-at="2026-01-09T11:25:18 IST" name="Default test" finished-at="2026-01-09T11:26:15 IST" duration-ms="57403">
+    <test started-at="2026-01-09T12:26:13 IST" name="Default test" finished-at="2026-01-09T12:27:24 IST" duration-ms="71502">
       <class name="PspWithoutCards.easybuzzNetBanking">
-        <test-method is-config="true" signature="loadConfig()[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7]" started-at="2026-01-09T11:25:18 IST" name="loadConfig" finished-at="2026-01-09T11:25:18 IST" duration-ms="13" status="PASS">
+        <test-method is-config="true" signature="loadConfig()[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7]" started-at="2026-01-09T12:26:13 IST" name="loadConfig" finished-at="2026-01-09T12:26:13 IST" duration-ms="34" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loadConfig -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7]" started-at="2026-01-09T11:25:18 IST" name="setup" finished-at="2026-01-09T11:25:25 IST" duration-ms="7077" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7]" started-at="2026-01-09T12:26:13 IST" name="setup" finished-at="2026-01-09T12:26:25 IST" duration-ms="12788" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7]" started-at="2026-01-09T11:25:25 IST" name="beforeMethod" finished-at="2026-01-09T11:25:34 IST" duration-ms="9058" status="PASS">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7]" started-at="2026-01-09T12:26:26 IST" name="beforeMethod" finished-at="2026-01-09T12:26:37 IST" duration-ms="11628" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[User enter ID in Username field]]>
@@ -157,16 +142,16 @@
             </line>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="purchase()[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7]" started-at="2026-01-09T11:25:34 IST" name="purchase" finished-at="2026-01-09T11:26:12 IST" duration-ms="38122" status="PASS">
+        <test-method signature="purchase()[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7]" started-at="2026-01-09T12:26:37 IST" name="purchase" finished-at="2026-01-09T12:27:21 IST" duration-ms="43827" status="PASS">
           <reporter-output>
             <line>
-              <![CDATA[Generated Random Double: 69.02]]>
+              <![CDATA[Generated Random Double: 30.31]]>
             </line>
             <line>
-              <![CDATA[Generated First Name: johnbd2]]>
+              <![CDATA[Generated First Name: johnc23]]>
             </line>
             <line>
-              <![CDATA[Generated Email: nairobiPalermo47355@gmail.com]]>
+              <![CDATA[Generated Email: nairobiPalermo3f032@gmail.com]]>
             </line>
             <line>
               <![CDATA[purchaseId is not null]]>
@@ -175,28 +160,13 @@
               <![CDATA[purchaseId is not empty]]>
             </line>
             <line>
-              <![CDATA[purchaseId format is valid: 696098565a39512d3851e377]]>
+              <![CDATA[purchaseId format is valid: 6960a6aa5a39512d38524d03]]>
             </line>
             <line>
               <![CDATA[purchaseId length is 24]]>
             </line>
             <line>
-              <![CDATA[purchaseId validated successfully: 696098565a39512d3851e377]]>
-            </line>
-            <line>
-              <![CDATA[Clicked on ZaakPay bank select dropdown]]>
-            </line>
-            <line>
-              <![CDATA[Entered partial bank name: HD]]>
-            </line>
-            <line>
-              <![CDATA[ZaakPay bank suggestions loaded. Count: 1]]>
-            </line>
-            <line>
-              <![CDATA[Selected ZaakPay bank name: HDFC Bank]]>
-            </line>
-            <line>
-              <![CDATA[Clicked on ZaakPay submit button on bank page]]>
+              <![CDATA[purchaseId validated successfully: 6960a6aa5a39512d38524d03]]>
             </line>
             <line>
               <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
@@ -217,25 +187,25 @@
               <![CDATA[Click on submit button in login page]]>
             </line>
             <line>
-              <![CDATA[ Entered Transaction ID: 696098565a39512d3851e377]]>
+              <![CDATA[ Entered Transaction ID: 6960a6aa5a39512d38524d03]]>
             </line>
             <line>
               <![CDATA[ Clicked on Search button]]>
             </line>
             <line>
-              <![CDATA[UI transaction ID: 696098565a39512d3851e377]]>
+              <![CDATA[UI transaction ID: 6960a6aa5a39512d38524d03]]>
             </line>
             <line>
-              <![CDATA[API transaction ID: 696098565a39512d3851e377]]>
+              <![CDATA[API transaction ID: 6960a6aa5a39512d38524d03]]>
             </line>
             <line>
               <![CDATA[Transaction ID verified successfully]]>
             </line>
             <line>
-              <![CDATA[UI Amount: 69.02]]>
+              <![CDATA[UI Amount: 30.31]]>
             </line>
             <line>
-              <![CDATA[API Amount: 69.02]]>
+              <![CDATA[API Amount: 30.31]]>
             </line>
             <line>
               <![CDATA[currency conversion not applied]]>
@@ -271,21 +241,21 @@
               <![CDATA[Currency on Payment Info verified successfully]]>
             </line>
             <line>
-              <![CDATA[UI Amount: 69.02]]>
+              <![CDATA[UI Amount: 30.31]]>
             </line>
             <line>
-              <![CDATA[Payment Info Amount: 69.02]]>
+              <![CDATA[Payment Info Amount: 30.31]]>
             </line>
             <line>
               <![CDATA[Amount on Payment Info verified successfully]]>
             </line>
           </reporter-output>
         </test-method> <!-- purchase -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7]" started-at="2026-01-09T11:26:12 IST" name="tearDown" finished-at="2026-01-09T11:26:15 IST" duration-ms="3004" status="PASS">
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7]" started-at="2026-01-09T12:27:21 IST" name="tearDown" finished-at="2026-01-09T12:27:24 IST" duration-ms="3014" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=purchase status=SUCCESS method=easybuzzNetBanking.purchase()[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7] output=Generated Random Double: 69.02]]]>
+                <![CDATA[[TestResult name=purchase status=SUCCESS method=easybuzzNetBanking.purchase()[pri:0, instance:PspWithoutCards.easybuzzNetBanking@2cf92cc7] output=Generated Random Double: 30.31]]]>
               </value>
             </param>
           </params>

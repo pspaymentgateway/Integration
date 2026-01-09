@@ -49,7 +49,6 @@ public class easybuzzNetBanking extends baseClass{
 	  }
 	 
 	  
-
   @Test() 
   public void purchase() throws Exception {
       WebDriver driver=baseClass.getDriver();
@@ -94,6 +93,9 @@ public class easybuzzNetBanking extends baseClass{
 		        "  },\n" +
 		        "  \"paymentMethod\": \""+paymentMethod+"\",\n" +
 		        "  \"brand_id\": \"" + brandId + "\",\n" +
+		        "  \"extraParam\": {\n" +
+		        "    \"bankCode\": \"HDFCB\"\n" +
+		        "  },\n" +
 		        "  \"success_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=true\",\n" +
 		        "  \"failure_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=false\",\n" +
 		        "  \"success_callback\": \"https://www.google.com/\",\n" +
@@ -120,10 +122,10 @@ public class easybuzzNetBanking extends baseClass{
         // Payment
         driver.get(checkoutUrl);
 
-        mcp.selectZakpayBank("HD", "HDFC Bank");
-        mcp.zaakpaySubmitButtonOnBankPage();
+//        mcp.selectZakpayBank("HD", "HDFC Bank");
+//        mcp.zaakpaySubmitButtonOnBankPage();
 
-        mcp.easyBuzzNetbankingEnterOTP();
+        tp.enterOTpEasyBuzz();
         
         
         Thread.sleep(4000);
@@ -181,8 +183,8 @@ public class easybuzzNetBanking extends baseClass{
         tp.getStatusFromUI();
         tp.clickOnTransactionId();
         tp.verifyPurchaseTransactionIDIsNotEmpty();
-		tp.verifyCurrencyOnPaymentInfo();
-		tp.verifyAmountFromPaymentInfo();
+		tp.verifyCurrencyOnPaymentInfoPayU();
+		tp.verifyAmountFromPaymentInfoPayU();
 		
 
   }
