@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>2/0/0</td>
 </tr><tr>
-<td>Started on:</td><td>Thu Jan 08 17:28:02 IST 2026</td>
+<td>Started on:</td><td>Tue Jan 13 16:18:29 IST 2026</td>
 </tr>
-<tr><td>Total time:</td><td>53 seconds (53898 ms)</td>
+<tr><td>Total time:</td><td>137 seconds (137684 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,8 +67,8 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-failed'>
-<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td><b>Attribute(s)</b></td>
 <td width="30%"><b>Exception</b></td>
@@ -76,111 +76,65 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='PspWithoutCards.easybuzzNetBanking.purchase()'><b>purchase</b><br>Test class: PspWithoutCards.easybuzzNetBanking<br/>
-<a href="#Output-2143659352" onClick='toggleBox("Output-2143659352", this, "Show output", "Hide output");'>Show output</a>
+<td title='s2s.zipcode.purchaseApi()'><b>purchaseApi</b><br>Test class: s2s.zipcode<br>Parameters: {Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE}, {CardholderName=Virat Kohli, CardNumber=5553042241984105, CVV=123, RunFlag=TRUE, Currency=INR, PaymentMethod=MASTER, PSP=Easybuzz, Expiry=07/28}<br/>
+<a href="#Output-1506844659" onClick='toggleBox("Output-1506844659", this, "Show output", "Hide output");'>Show output</a>
 
-<a href="#Output-2143659352" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-2143659352">
-Generated Random Double: 85.08<br/>
-Generated First Name: john0e0<br/>
-Generated Email: nairobiPalermoadeb8@gmail.com<br/>
-purchaseId is not null<br/>
-purchaseId is not empty<br/>
-purchaseId format is valid: 695f9bddc6bec9683d1ffb76<br/>
-purchaseId length is 24<br/>
-purchaseId validated successfully: 695f9bddc6bec9683d1ffb76<br/>
-Clicked on ZaakPay bank select dropdown<br/>
-Entered partial bank name: HD<br/>
-ZaakPay bank suggestions loaded. Count: 1<br/>
-Selected ZaakPay bank name: HDFC Bank<br/>
-Clicked on ZaakPay submit button on bank page<br/>
+<a href="#Output-1506844659" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1506844659">
+Generated Random Double: 97.15<br/>
+Generated First Name: john622<br/>
+Purchase created successfully with ID: 6966230f4f505f9a91fdcec8<br/>
+User enter ID in Username field<br/>
+User Enter Password in password field<br/>
+Click on submit button in login page<br/>
+S2S call successful on attempt 1<br/>
 Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true<br/>
-Payment Successfully<br/>
+PASS → Payment succeeded as expected<br/>
  Opened staging environment in a new browser tab<br/>
 User enter ID in Username field<br/>
 User Enter Password in password field<br/>
 Click on submit button in login page<br/>
- Entered Transaction ID: 695f9bddc6bec9683d1ffb76<br/>
+ Entered Transaction ID: 6966230f4f505f9a91fdcec8<br/>
  Clicked on Search button<br/>
-UI transaction ID: 695f9bddc6bec9683d1ffb76<br/>
-API transaction ID: 695f9bddc6bec9683d1ffb76<br/>
-Transaction ID verified successfully<br/>
-UI Merchant Name: suhasM<br/>
-API Merchant Name: null<br/>
+ Clicked on Search button<br/>
+ Clicked on first Transaction ID from list<br/>
+Purchase Transaction ID is not empty or not null<br/>
+zipcode accepted by API: SW1A 1AA<br/>
 </div>
 </td>
-<td><div><pre>java.lang.AssertionError: Merchant name mismatch expected [null] but found [suhasM]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:132)
-	at org.testng.Assert.assertEquals(Assert.java:656)
-	at com.paysecure.Page.transactionPage.verifyMerchantName(transactionPage.java:206)
-	at PspWithoutCards.easybuzzNetBanking.purchase(easybuzzNetBanking.java:177)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at org.testng.TestRunner.privateRun(TestRunner.java:741)
-	at org.testng.TestRunner.run(TestRunner.java:616)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-	at org.testng.TestNG.runSuites(TestNG.java:1112)
-	at org.testng.TestNG.run(TestNG.java:1079)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</pre></div><a href='#' onClick='toggleBox("stack-trace2143659352", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace2143659352'><pre>java.lang.AssertionError: Merchant name mismatch expected [null] but found [suhasM]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:132)
-	at org.testng.Assert.assertEquals(Assert.java:656)
-	at com.paysecure.Page.transactionPage.verifyMerchantName(transactionPage.java:206)
-	at PspWithoutCards.easybuzzNetBanking.purchase(easybuzzNetBanking.java:177)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at org.testng.TestRunner.privateRun(TestRunner.java:741)
-	at org.testng.TestRunner.run(TestRunner.java:616)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-	at org.testng.TestNG.runSuites(TestNG.java:1112)
-	at org.testng.TestNG.run(TestNG.java:1079)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</pre></div></td>
-<td>36</td>
-<td>PspWithoutCards.easybuzzNetBanking@2cf92cc7</td></tr>
+<td></td>
+<td>58</td>
+<td>s2s.zipcode@30ea8c23</td></tr>
+<tr>
+<td title='s2s.zipcode.purchaseApi()'><b>purchaseApi</b><br>Test class: s2s.zipcode<br>Parameters: {Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE}, {CardholderName=Rohitman Sharma, CardNumber=4012888888881881, CVV=000, RunFlag=TRUE, Currency=EUR, PaymentMethod=VISA, PSP=Matrix, Expiry=10/27}<br/>
+<a href="#Output-362417934" onClick='toggleBox("Output-362417934", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-362417934" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-362417934">
+Generated Random Double: 49.93<br/>
+Generated First Name: john573<br/>
+Purchase created successfully with ID: 696623534f505f9a91fdd5d4<br/>
+User enter ID in Username field<br/>
+User Enter Password in password field<br/>
+Click on submit button in login page<br/>
+S2S call successful on attempt 1<br/>
+Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true<br/>
+PASS → Payment succeeded as expected<br/>
+ Opened staging environment in a new browser tab<br/>
+User enter ID in Username field<br/>
+User Enter Password in password field<br/>
+Click on submit button in login page<br/>
+ Entered Transaction ID: 696623534f505f9a91fdd5d4<br/>
+ Clicked on Search button<br/>
+ Clicked on Search button<br/>
+ Clicked on first Transaction ID from list<br/>
+Purchase Transaction ID is not empty or not null<br/>
+zipcode accepted by API: SW1A 1AA<br/>
+</div>
+</td>
+<td></td>
+<td>47</td>
+<td>s2s.zipcode@30ea8c23</td></tr>
 </table><p>
 </body>
 </html>

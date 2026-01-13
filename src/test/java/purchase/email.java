@@ -158,7 +158,7 @@ public class email extends baseClass {
 
 			Reporter.log(comment, true);
 			ExcelWriteUtility.writeResult("Purchase_Result", Email, ExpectedStatus, "FAIL", comment, purchaseId,
-					PSP);
+					PSP,PaymentMethod);
 			return;
 		} else {
 			Reporter.log("Unexpected response for email: " + Email + " -> " + response.statusCode(), true);
@@ -175,7 +175,7 @@ public class email extends baseClass {
 				mcp.clickOnPay();
 
 				if (payu.equalsIgnoreCase("payu")) {
-					pay.payForPayu(Currency, purchaseId, ExpectedStatus);
+					pay.payForPayu(Currency, purchaseId, ExpectedStatus,PaymentMethod);
 				}
                 
 				otp.enterOTP(PSP);
@@ -187,7 +187,7 @@ public class email extends baseClass {
 
 					Reporter.log(comment, true);
 					ExcelWriteUtility.writeResult("Purchase_Result", Email, ExpectedStatus, "Fail", comment,
-							purchaseId, PSP);
+							purchaseId, PSP,PaymentMethod);
 					driver.quit();
 					return;
 				}
@@ -218,7 +218,7 @@ public class email extends baseClass {
 
 					Reporter.log(comment, true);
 					ExcelWriteUtility.writeResult("Purchase_Result", Email, ExpectedStatus, actualOutcome, comment,
-							purchaseId, PSP);
+							purchaseId, PSP,PaymentMethod);
 					return;
 
 				} else if (flag.equalsIgnoreCase("true")) {
@@ -235,7 +235,7 @@ public class email extends baseClass {
 
 					Reporter.log(comment, true);
 					ExcelWriteUtility.writeResult("Purchase_Result", Email, ExpectedStatus, actualOutcome, comment,
-							purchaseId, PSP);
+							purchaseId, PSP,PaymentMethod);
 
 				} else {
 					actualOutcome = "UNKNOWN";
@@ -244,7 +244,7 @@ public class email extends baseClass {
 
 					Reporter.log(comment, true);
 					ExcelWriteUtility.writeResult("Purchase_Result", Email, ExpectedStatus, actualOutcome, comment,
-							purchaseId, PSP);
+							purchaseId, PSP,PaymentMethod);
 				}
 
 				// Continue with transaction verification only if payment succeeded
@@ -275,7 +275,8 @@ public class email extends baseClass {
                     ExpectedStatus,      // Expected
                     "FAIL",              // Actual outcome
                     comment,             // Comment
-                    purchaseId,          // Purchase ID (may be null)
+                    purchaseId,
+                    PaymentMethod,         // Purchase ID (may be null)
                     PSP                  // PSP name
             );
 

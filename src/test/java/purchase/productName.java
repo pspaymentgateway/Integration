@@ -147,7 +147,7 @@ public class productName extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("Purchase_Result", ProductName,ExpectedStatus, "Fail", comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("Purchase_Result", ProductName,ExpectedStatus, "Fail", comment,purchaseId,PSP,PaymentMethod);
             driver.quit();
             return; 
         }  else {
@@ -167,7 +167,7 @@ public class productName extends baseClass {
 				mcp.userEnterCardInformationForPayment( CardHolder, CardNumber, Expiry, CVV);
 				 mcp.clickOnPay();
 					if (payu.equalsIgnoreCase("payu")) {
-						pay.payForPayu(Currency, purchaseId, ExpectedStatus);
+						pay.payForPayu(Currency, purchaseId, ExpectedStatus,PaymentMethod);
 					}
 	                
 					otp.enterOTP(PSP);
@@ -177,7 +177,7 @@ public class productName extends baseClass {
 	                    comment = "Payment Failed Cause Of Luhn ";
                  Reporter.log("Invalid card number → Luhn check failed", true);
                   Reporter.log("Invalid card number → Luhn check failed", true);
-                  ExcelWriteUtility.writeResult("Purchase_Result", ProductName,ExpectedStatus,    status, comment,purchaseId,PSP);
+                  ExcelWriteUtility.writeResult("Purchase_Result", ProductName,ExpectedStatus,    status, comment,purchaseId,PSP,PaymentMethod);
 					driver.quit();
 					return;
 				}
@@ -209,7 +209,7 @@ public class productName extends baseClass {
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Purchase_Result", ProductName,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", ProductName,ExpectedStatus,actualOutcome, comment,purchaseId,PSP,PaymentMethod);
                     driver.quit();
                     return;
                 }
@@ -226,7 +226,7 @@ public class productName extends baseClass {
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Purchase_Result", ProductName,ExpectedStatus, actualOutcome, comment,purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", ProductName,ExpectedStatus, actualOutcome, comment,purchaseId,PSP,PaymentMethod);
 
                 }
                 else {
@@ -236,7 +236,7 @@ public class productName extends baseClass {
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Purchase_Result", ProductName,ExpectedStatus,actualOutcome, comment,purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", ProductName,ExpectedStatus,actualOutcome, comment,purchaseId,PSP,PaymentMethod);
 
 
                 }
@@ -268,7 +268,8 @@ public class productName extends baseClass {
                     ExpectedStatus,      // Expected
                     "FAIL",              // Actual outcome
                     comment,             // Comment
-                    purchaseId,          // Purchase ID (may be null)
+                    purchaseId
+                    ,PaymentMethod,// Purchase ID (may be null)
                     PSP                  // PSP name
             );
 

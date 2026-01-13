@@ -21,7 +21,7 @@ public class loginPage {
 	private By pass = By.xpath(loginPageLocators.password);
 
 	public loginPage(WebDriver driver) {
-		this.actionDriver = baseClass.getActionDriver();
+		this.actionDriver = baseClass.getActionDriver(); 
 	}
 
 	// Method to perform login
