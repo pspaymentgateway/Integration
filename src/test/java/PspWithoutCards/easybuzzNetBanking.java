@@ -49,7 +49,7 @@ public class easybuzzNetBanking extends baseClass{
 	  }
 	 
 	  
-  @Test() 
+  @Test(invocationCount = 10) 
   public void purchase() throws Exception {
       WebDriver driver=baseClass.getDriver();
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
@@ -68,7 +68,7 @@ public class easybuzzNetBanking extends baseClass{
 		String streetAddress = "Main gate";
 		String zipcode = "20001";
 		String productname="Cricket bat";
-		String PSP="ZaakPay-NetBanking";
+		String PSP="EasyBuzz-Netbanking";
 		
         System.err.println(baseUri);
         String requestBody = "{\n" +
