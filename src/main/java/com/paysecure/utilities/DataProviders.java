@@ -19,7 +19,8 @@ public class DataProviders {
 		return new Object[][] {
 
 			//	{ "Rohitman Sharma", "4111111111111111", "07/29", "123", "Zaakpay" }, 
-				{ "Rohitman Sharma", "4999992100017063", "08/28", "870", "EuroExchange" }, 
+			//	{ "Rohitman Sharma", "4999992100017063", "08/28", "870", "EuroExchange" }, 
+			{"Pass","Yash SHarma","5553042241984105","07/28","123","Easybuzz"}
 		};
 	}
 
@@ -93,4 +94,26 @@ public class DataProviders {
 
 		return ExcelUtils.getCartesianData(path, "StateCode", "PSPCards");
 	}
+	
+	 @DataProvider(name = "emailValidationData")
+	    public Object[][] emailValidationData() {
+
+	        return new Object[][] {
+
+	            // ✅ VALID EMAILS
+	        	 {"test@gmail.com", "Pass", "Matrix"},
+	             {"user.name@yahoo.com", "Pass", "Matrix"},
+	             {"user_123@outlook.com", "Pass", "Matrix"},
+	             {"user-name@domain.co.in", "Pass", "Matrix"},
+
+	             // ❌ INVALID EMAILS
+	             {"testgmail.com", "Fail", "Matrix"},     // missing @
+	             {"@gmail.com", "Fail", "Matrix"},        // missing username
+	             {"test@gmail", "Fail", "Matrix"},        // missing domain
+	             {"test@ gmail.com", "Fail", "Matrix"},   // space in email
+	             {"test@domain@com", "Fail", "Matrix"},   // multiple @
+	             {"", "Fail", "Matrix"},                  // empty
+	             {null, "Fail", "Matrix"}                   // null
+	        };
+	    }
 }

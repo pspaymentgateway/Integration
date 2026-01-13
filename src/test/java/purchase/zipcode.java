@@ -152,7 +152,7 @@ public class zipcode extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("Purchase_Result", zipcode,ExpectedStatus,    status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("Purchase_Result", zipcode,ExpectedStatus,    status, comment,purchaseId,PSP,PaymentMethod);
             driver.quit();
             return; 
         }  else {
@@ -174,7 +174,7 @@ public class zipcode extends baseClass{
                 mcp.clickOnPay();
                 
             	if (payu.equalsIgnoreCase("payu")) {
-					pay.payForPayu(Currency, purchaseId, ExpectedStatus);
+					pay.payForPayu(Currency, purchaseId, ExpectedStatus,PaymentMethod);
 				}
                 
 				otp.enterOTP(PSP);
@@ -184,7 +184,7 @@ public class zipcode extends baseClass{
              	   status = "FAIL";
                    comment = "Payment Failed Cause Of Luhn ";
               Reporter.log("Invalid card number → Luhn check failed", true);
-              ExcelWriteUtility.writeResult("Purchase_Result",ExpectedStatus,    zipcode, "Fail", comment,purchaseId,PSP);
+              ExcelWriteUtility.writeResult("Purchase_Result",ExpectedStatus,    zipcode, "Fail", comment,purchaseId,PSP,PaymentMethod);
                     driver.quit();
                     return;
                 }
@@ -217,7 +217,7 @@ public class zipcode extends baseClass{
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Purchase_Result", zipcode,ExpectedStatus,    status, comment,purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", zipcode,ExpectedStatus,    status, comment,purchaseId,PSP,PaymentMethod);
                     driver.quit();
                     return;
                 }
@@ -234,7 +234,7 @@ public class zipcode extends baseClass{
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Purchase_Result", zipcode,ExpectedStatus,    status, comment,purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", zipcode,ExpectedStatus,    status, comment,purchaseId,PSP,PaymentMethod);
 
                 }
                 else {
@@ -244,7 +244,7 @@ public class zipcode extends baseClass{
 
                     Reporter.log(comment, true);
 
-                    ExcelWriteUtility.writeResult("Purchase_Result", zipcode,ExpectedStatus,    status, comment,purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", zipcode,ExpectedStatus,status,comment,purchaseId,PSP,PaymentMethod);
 
 
                 }
@@ -276,7 +276,8 @@ public class zipcode extends baseClass{
                     ExpectedStatus,      // Expected
                     "FAIL",              // Actual outcome
                     comment,             // Comment
-                    purchaseId,          // Purchase ID (may be null)
+                    purchaseId
+                    ,PaymentMethod,// Purchase ID (may be null)
                     PSP                  // PSP name
             );
 

@@ -5,9 +5,11 @@ import org.testng.annotations.Test;
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
+import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
+import com.paysecure.utilities.DataProvidersS2S;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
@@ -18,11 +20,13 @@ import io.restassured.response.Response;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
 
 public class currency extends baseClass {
@@ -33,10 +37,11 @@ public class currency extends baseClass {
 	String purchaseId;
 	CashierPage mcp;
 	transactionPage tp;
+	pspOTPPage otp;
 	payu3dPage pay;
     String status = "";
     String comment = "";
-    String currency;
+  
     
     // Store base URI to reuse in S2S call
     String baseUri;
@@ -46,23 +51,46 @@ public class currency extends baseClass {
 		mcp = new CashierPage(getDriver());
 		tp = new transactionPage(getDriver());
 		pay=new payu3dPage(getDriver());
+		otp= new pspOTPPage();
 	}
 
 	
-	@Test(dataProvider ="currencyProvider", dataProviderClass = DataProviders.class)
-	public void purchaseApi(String currency,String ExpectedStatus,String PSP) throws Exception {
+	@Test(dataProvider ="CurrencyData", dataProviderClass = DataProvidersS2S.class)
+	public void purchaseApi(Map<String, String> currencyData, Map<String, String> cardData) throws Exception {
 		WebDriver driver = baseClass.getDriver();
-		this.currency = currency;
+		
 		
 		// Store baseUri for later use
 		baseUri = PropertyReader.getPropertyForS2S("baseURI");
+		// Store baseUri for later use
+		baseUri = PropertyReader.getPropertyForS2S("baseURI");
 		RestAssured.baseURI = baseUri;
+		String Currency = currencyData.getOrDefault("TestData", "");
+		String ExpectedStatus = currencyData.getOrDefault("Status", "");
+		String CardHolder = cardData.getOrDefault("CardholderName", "");
+		String CardNumber = cardData.getOrDefault("CardNumber", "");
+		String Expiry = cardData.getOrDefault("Expiry", "");
+		String CVV = cardData.getOrDefault("CVV", "");
+		String PSP = cardData.getOrDefault("PSP", "");
+		String cardRunFlag = cardData.getOrDefault("RunFlag", "");
+		String PaymentMethod = cardData.getOrDefault("PaymentMethod","");
+		//
+		System.err.println(Currency +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP+" "+PaymentMethod);
+
+		if (Currency.isEmpty() || CardNumber.isEmpty()) {
+			Reporter.log("Skipping test - Empty city or card number", true);
+			throw new SkipException("Empty test data");
+		}
+
+		if (ExpectedStatus == null || ExpectedStatus.trim().isEmpty()) {
+			ExpectedStatus = "Pass";
+		}
 		
         String token = PropertyReader.getPropertyForS2S("tokenS2S");
         String BrandID = PropertyReader.getPropertyForS2S("brandIdS2S");
 		String price = generateRandomTestData.generateRandomDouble();
 		
-		String paymentMethod = PropertyReader.getPropertyForS2S("paymentMethodS2S");
+
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId=generateRandomTestData.generateRandomEmail();
 		String country = "IN";
@@ -85,7 +113,7 @@ public class currency extends baseClass {
 		        "    \"phone\": \"+1111111111\"\n" +
 		        "  },\n" +
 		        "  \"purchase\": {\n" +
-		        "    \"currency\": \""+currency+"\",\n" +
+		        "    \"currency\": \""+Currency+"\",\n" +
 		        "    \"products\": [\n" +
 		        "      {\n" +
 		        "        \"name\": \""+productname+"\",\n" +
@@ -93,7 +121,7 @@ public class currency extends baseClass {
 		        "      }\n" +
 		        "    ]\n" +
 		        "  },\n" +
-		        "  \"paymentMethod\": \""+paymentMethod+"\",\n" +
+		        "  \"paymentMethod\": \""+PaymentMethod+"\",\n" +
 		        "  \"brand_id\": \"" + BrandID + "\",\n" +
 		        "  \"success_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=true\",\n" +
 		        "  \"failure_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=false\",\n" +
@@ -122,27 +150,27 @@ public class currency extends baseClass {
 		    // Add a small delay to ensure purchase is fully persisted
 		    Thread.sleep(2000);
 		    
-		    s2sMethod(ExpectedStatus,PSP);
+		    s2sMethod(Currency, ExpectedStatus, PSP, CardNumber, Expiry, CVV,PaymentMethod);
 		}
 
 		if (response.statusCode() == 202) {
-			Reporter.log("currency accepted by API: " + currency, true);
+			Reporter.log("currency accepted by API: " + Currency, true);
 		} else if (response.statusCode() == 400 || response.statusCode() == 422) {
-            Reporter.log("currency rejected by API: " + currency, true);
+            Reporter.log("currency rejected by API: " + Currency, true);
             status = "Fail";
-            comment = "PASS → currency rejected correctly " + currency;
+            comment = "PASS → currency rejected correctly " + Currency;
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("s2s_Result", currency,ExpectedStatus, status, comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResults2s("s2s_Result", Currency,ExpectedStatus, status, comment, purchaseId,PSP,PaymentMethod);
             driver.quit();
             return; 
         } else {
-			Reporter.log("Unexpected response for currency: " + currency + " -> " + response.statusCode(), true);
+			Reporter.log("Unexpected response for currency: " + Currency + " -> " + response.statusCode(), true);
 		}
 	}
 
-	public void s2sMethod(String ExpectedStatus,String PSP) throws Exception {
+	public void s2sMethod(String Currency, String ExpectedStatus, String PSP, String CardNumber, String Expiry, String CVV,String PaymentMethod) throws Exception {
 
 	    WebDriver driver = baseClass.getDriver();
 	    lp = new loginPage(getDriver());
@@ -167,18 +195,13 @@ public class currency extends baseClass {
 	    String brandId = PropertyReader.getPropertyForS2S("brandIdS2S");
 	    String payu = PropertyReader.getPropertyForS2S("payu");
 	    
-	    String cardNumber = PropertyReader.getPropertyForS2S("cardNumber");
-	    String mmyy = PropertyReader.getPropertyForS2S("mmyy");
-	    String cvv = PropertyReader.getPropertyForS2S("cvv");
-	    String easybuzz = PropertyReader.getPropertyForS2S("easybuzz");
-	    String zaakpay = PropertyReader.getPropertyForS2S("zaakpayNetBanking");
 	    
 	    String requestBody =
 	    		"{\n" +
 	    		"  \"cardholder_name\": \"Rahul Agarwal\",\n" +
-	    		"  \"card_number\": \"" + cardNumber + "\",\n" +
-	    		"  \"expires\": \"" + mmyy + "\",\n" +
-	    		"  \"cvc\": \"" + cvv + "\",\n" +
+	    		"  \"card_number\": \"" + CardNumber + "\",\n" +
+	    		"  \"expires\": \"" + Expiry + "\",\n" +
+	    		"  \"cvc\": \"" + CVV + "\",\n" +
 	    		"  \"remember_card\": \"on\",\n" +
 	    		"  \"remote_ip\": \"157.38.242.7\",\n" +
 	    		"  \"user_agent\": \"Mozilla/5.0\",\n" +
@@ -243,7 +266,7 @@ public class currency extends baseClass {
 	        status = "FAIL";
 	        comment = "S2S call failed with status: " + (response != null ? response.statusCode() : "NULL");
 	        Reporter.log(comment, true);
-	        ExcelWriteUtility.writeResults2s("s2s_Result", currency,ExpectedStatus, status, comment, purchaseId,PSP);
+	        ExcelWriteUtility.writeResults2s("s2s_Result", Currency,ExpectedStatus, status, comment, purchaseId,PSP,PaymentMethod);
 	        driver.quit();
 	        return;
 	    }
@@ -256,24 +279,17 @@ public class currency extends baseClass {
 
 	        status = "FAIL";
 	        comment = "callback_url null for currency " + purchaseId;
-	        ExcelWriteUtility.writeResults2s("s2s_Result", currency,ExpectedStatus, status, comment, purchaseId,PSP);
+	        ExcelWriteUtility.writeResults2s("s2s_Result", Currency,ExpectedStatus, status, comment, purchaseId,PSP,PaymentMethod);
 	        driver.quit();
 	        return;
 	    }
 
 	    driver.get(callback_url);
 	    if(payu.equalsIgnoreCase("payu")) {
-	    	pay.payForPayu(currency,purchaseId,ExpectedStatus);
+	    	pay.payForPayu(Currency,purchaseId,ExpectedStatus,PaymentMethod);
 	    }
-	    
-	    if(easybuzz.equalsIgnoreCase("easybuzz")) {
-	    	tp.enterOTpEasyBuzz();
-	    }
-	    
-	    if(zaakpay.equalsIgnoreCase("zaakpayNetBanking")) {
-	    	mcp.zaakPayOtpEnterSuccessOrFailure();
-	    }
-	    
+
+	    otp.enterOTP(PSP);
 	    
 	    Thread.sleep(7000);
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
@@ -300,7 +316,7 @@ public class currency extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("s2s_Result", currency,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResults2s("s2s_Result", Currency,ExpectedStatus, actualOutcome, comment, purchaseId,PSP,PaymentMethod);
             driver.quit();
             return;
         }
@@ -319,7 +335,7 @@ public class currency extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("s2s_Result", currency,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResults2s("s2s_Result", Currency,ExpectedStatus, actualOutcome, comment, purchaseId,PSP,PaymentMethod);
 
         }
         else {
@@ -329,7 +345,7 @@ public class currency extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("s2s_Result", currency,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResults2s("s2s_Result", Currency,ExpectedStatus, actualOutcome, comment, purchaseId,PSP,PaymentMethod);
         }
         
 		mcp.openBrowserForStaging(driver,url);

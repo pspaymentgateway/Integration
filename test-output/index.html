@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\LENOVO\AppData\Local\Temp\testng-eclipse--2146120917\testng-customsuite.xml</span>
+                    <span>C:\Users\LENOVO\AppData\Local\Temp\testng-eclipse--245843202\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -92,7 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">2 methods,   2 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -103,7 +103,12 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="PspWithoutCards.easybuzzNetBanking" class="method navigator-link" hash-for-method="purchase">purchase</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="s2s.zipcode" class="method navigator-link" hash-for-method="purchaseApi({Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE}, {CardholderName=Virat Kohli, CardNumber=555304224198...)">purchaseApi({Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE}, {CardholderName=Virat Kohli, CardNumber=555304224198...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="s2s.zipcode" class="method navigator-link" hash-for-method="purchaseApi({Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE}, {CardholderName=Rohitman Sharma, CardNumber=40128888...)">purchaseApi({Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE}, {CardholderName=Rohitman Sharma, CardNumber=40128888...)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -121,14 +126,23 @@
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">PspWithoutCards.easybuzzNetBanking</span>
+              <span class="class-name">s2s.zipcode</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="purchase">
-                  </a> <!-- purchase -->
-                  <span class="method-name">purchase</span>
+                  <a name="purchaseApi({Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE}, {CardholderName=Virat Kohli, CardNumber=555304224198...)">
+                  </a> <!-- purchaseApi({Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE}, {CardholderName=Virat Kohli, CardNumber=555304224198...) -->
+                  <span class="method-name">purchaseApi</span>
+                  <span class="parameters">({Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE},{CardholderName=Virat Kohli, CardNumber=5553042241984105, CVV=123, RunFlag=TRUE, Currency=INR, PaymentMethod=MASTER, PSP=Easybuzz, Expiry=07/28})</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="purchaseApi({Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE}, {CardholderName=Rohitman Sharma, CardNumber=40128888...)">
+                  </a> <!-- purchaseApi({Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE}, {CardholderName=Rohitman Sharma, CardNumber=40128888...) -->
+                  <span class="method-name">purchaseApi</span>
+                  <span class="parameters">({Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE},{CardholderName=Rohitman Sharma, CardNumber=4012888888881881, CVV=000, RunFlag=TRUE, Currency=EUR, PaymentMethod=VISA, PSP=Matrix, Expiry=10/27})</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -136,7 +150,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\LENOVO\AppData\Local\Temp\testng-eclipse--2146120917\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\LENOVO\AppData\Local\Temp\testng-eclipse--245843202\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -145,11 +159,11 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;PspWithoutCards.easybuzzNetBanking&quot;&gt;
+      &lt;class name=&quot;s2s.zipcode&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;purchase&quot;/&gt;
+          &lt;include name=&quot;purchaseApi&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- PspWithoutCards.easybuzzNetBanking --&gt;
+      &lt;/class&gt; &lt;!-- s2s.zipcode --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -189,16 +203,20 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(2);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'purchase')
-data.setCell(0, 2, 'PspWithoutCards.easybuzzNetBanking')
-data.setCell(0, 3, 43827);
+data.setCell(0, 1, 'purchaseApi')
+data.setCell(0, 2, 's2s.zipcode')
+data.setCell(0, 3, 58331);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'purchaseApi')
+data.setCell(1, 2, 's2s.zipcode')
+data.setCell(1, 3, 47949);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 43 seconds</span>
+              <span class="suite-total-time">Total running time: 1 minutes</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -210,43 +228,51 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="reporter-method-div">
-              <span class="reporter-method-name">purchase</span>
+              <span class="reporter-method-name">purchaseApi({Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE}, {CardholderName=Virat Kohli, CardNumber=555304224198...)</span>
               <div class="reporter-method-output-div">
-                <span class="reporter-method-output">Generated Random Double: 30.31</span>
-                <span class="reporter-method-output">Generated First Name: johnc23</span>
-                <span class="reporter-method-output">Generated Email: nairobiPalermo3f032@gmail.com</span>
-                <span class="reporter-method-output">purchaseId is not null</span>
-                <span class="reporter-method-output">purchaseId is not empty</span>
-                <span class="reporter-method-output">purchaseId format is valid: 6960a6aa5a39512d38524d03</span>
-                <span class="reporter-method-output">purchaseId length is 24</span>
-                <span class="reporter-method-output">purchaseId validated successfully: 6960a6aa5a39512d38524d03</span>
+                <span class="reporter-method-output">Generated Random Double: 97.15</span>
+                <span class="reporter-method-output">Generated First Name: john622</span>
+                <span class="reporter-method-output">Purchase created successfully with ID: 6966230f4f505f9a91fdcec8</span>
+                <span class="reporter-method-output">User enter ID in Username field</span>
+                <span class="reporter-method-output">User Enter Password in password field</span>
+                <span class="reporter-method-output">Click on submit button in login page</span>
+                <span class="reporter-method-output">S2S call successful on attempt 1</span>
                 <span class="reporter-method-output">Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true</span>
-                <span class="reporter-method-output">Payment Successfully</span>
+                <span class="reporter-method-output">PASS → Payment succeeded as expected</span>
                 <span class="reporter-method-output"> Opened staging environment in a new browser tab</span>
                 <span class="reporter-method-output">User enter ID in Username field</span>
                 <span class="reporter-method-output">User Enter Password in password field</span>
                 <span class="reporter-method-output">Click on submit button in login page</span>
-                <span class="reporter-method-output"> Entered Transaction ID: 6960a6aa5a39512d38524d03</span>
+                <span class="reporter-method-output"> Entered Transaction ID: 6966230f4f505f9a91fdcec8</span>
                 <span class="reporter-method-output"> Clicked on Search button</span>
-                <span class="reporter-method-output">UI transaction ID: 6960a6aa5a39512d38524d03</span>
-                <span class="reporter-method-output">API transaction ID: 6960a6aa5a39512d38524d03</span>
-                <span class="reporter-method-output">Transaction ID verified successfully</span>
-                <span class="reporter-method-output">UI Amount: 30.31</span>
-                <span class="reporter-method-output">API Amount: 30.31</span>
-                <span class="reporter-method-output">currency conversion not applied</span>
-                <span class="reporter-method-output">Amount verified successfully</span>
-                <span class="reporter-method-output">UI Currency: INR</span>
-                <span class="reporter-method-output">API Currency: INR</span>
-                <span class="reporter-method-output">Currency matched correctly</span>
-                <span class="reporter-method-output">Currency verified successfully</span>
+                <span class="reporter-method-output"> Clicked on Search button</span>
                 <span class="reporter-method-output"> Clicked on first Transaction ID from list</span>
                 <span class="reporter-method-output">Purchase Transaction ID is not empty or not null</span>
-                <span class="reporter-method-output">UI Currency: INR</span>
-                <span class="reporter-method-output">Payment Info Currency: INR</span>
-                <span class="reporter-method-output">Currency on Payment Info verified successfully</span>
-                <span class="reporter-method-output">UI Amount: 30.31</span>
-                <span class="reporter-method-output">Payment Info Amount: 30.31</span>
-                <span class="reporter-method-output">Amount on Payment Info verified successfully</span>
+                <span class="reporter-method-output">zipcode accepted by API: SW1A 1AA</span>
+              </div> <!-- reporter-method-output-div -->
+            </div> <!-- reporter-method-div -->
+            <div class="reporter-method-div">
+              <span class="reporter-method-name">purchaseApi({Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE}, {CardholderName=Rohitman Sharma, CardNumber=40128888...)</span>
+              <div class="reporter-method-output-div">
+                <span class="reporter-method-output">Generated Random Double: 49.93</span>
+                <span class="reporter-method-output">Generated First Name: john573</span>
+                <span class="reporter-method-output">Purchase created successfully with ID: 696623534f505f9a91fdd5d4</span>
+                <span class="reporter-method-output">User enter ID in Username field</span>
+                <span class="reporter-method-output">User Enter Password in password field</span>
+                <span class="reporter-method-output">Click on submit button in login page</span>
+                <span class="reporter-method-output">S2S call successful on attempt 1</span>
+                <span class="reporter-method-output">Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true</span>
+                <span class="reporter-method-output">PASS → Payment succeeded as expected</span>
+                <span class="reporter-method-output"> Opened staging environment in a new browser tab</span>
+                <span class="reporter-method-output">User enter ID in Username field</span>
+                <span class="reporter-method-output">User Enter Password in password field</span>
+                <span class="reporter-method-output">Click on submit button in login page</span>
+                <span class="reporter-method-output"> Entered Transaction ID: 696623534f505f9a91fdd5d4</span>
+                <span class="reporter-method-output"> Clicked on Search button</span>
+                <span class="reporter-method-output"> Clicked on Search button</span>
+                <span class="reporter-method-output"> Clicked on first Transaction ID from list</span>
+                <span class="reporter-method-output">Purchase Transaction ID is not empty or not null</span>
+                <span class="reporter-method-output">zipcode accepted by API: SW1A 1AA</span>
               </div> <!-- reporter-method-output-div -->
             </div> <!-- reporter-method-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -264,26 +290,42 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">PspWithoutCards.easybuzzNetBanking</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">s2s.zipcode</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">loadConfig</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="configuration-method before">
                 <span class="method-name">setup</span>
-                <span class="method-start">83 ms</span>
+                <span class="method-start">2648 ms</span>
               </div> <!-- configuration-method before -->
               <div class="configuration-method before">
                 <span class="method-name">beforeMethod</span>
-                <span class="method-start">13036 ms</span>
+                <span class="method-start">15219 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">purchase</span>
-                <span class="method-start">24664 ms</span>
+                <span class="method-name">purchaseApi({Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE}, {CardholderName=Virat Kohli, CardNumber=555304224198...)</span>
+                <span class="method-start">15283 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">tearDown([TestResult name=purchase status=SUCCESS method=easybuzzNetBanking.purchase()[pri:0, instance:PspWit...)</span>
-                <span class="method-start">68517 ms</span>
+                <span class="method-name">tearDown([TestResult name=purchaseApi status=SUCCESS method=zipcode.purchaseApi(java.util.Map,java.util.Map)[...)</span>
+                <span class="method-start">73646 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">76673 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">beforeMethod</span>
+                <span class="method-start">86743 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">purchaseApi({Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE}, {CardholderName=Rohitman Sharma, CardNumber=40128888...)</span>
+                <span class="method-start">86749 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=purchaseApi status=SUCCESS method=zipcode.purchaseApi(java.util.Map,java.util.Map)[...)</span>
+                <span class="method-start">134707 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

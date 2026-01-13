@@ -146,7 +146,7 @@ public class zaakpayNetBanking extends baseClass{
             
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,  status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,  status, comment,purchaseId,PSP,paymentMethod);
             driver.quit();
             return;
         }
@@ -156,7 +156,7 @@ public class zaakpayNetBanking extends baseClass{
             String ExpectedStatus="PASS";
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP,paymentMethod);
 
         }
         else {
@@ -165,7 +165,7 @@ public class zaakpayNetBanking extends baseClass{
             String ExpectedStatus="UNKNOWN";
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus, status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus, status, comment,purchaseId,PSP,paymentMethod);
 
 
         }

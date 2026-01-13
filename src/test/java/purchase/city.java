@@ -85,8 +85,7 @@ public class city extends baseClass {
         String firstName = generateRandomTestData.generateRandomFirstName();
         String emailId = generateRandomTestData.generateRandomEmail();
         String payu = PropertyReader.getPropertyForS2S("payu");
-   
-        
+ 
         String country = "IN";
         String city = City;
         String stateCode = "QLD";
@@ -153,7 +152,7 @@ public class city extends baseClass {
             }
 
             Reporter.log(comment, true);
-            ExcelWriteUtility.writeResult("Purchase_Result", City, ExpectedStatus, "FAIL", comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResult("Purchase_Result", City, ExpectedStatus, "FAIL", comment, purchaseId,PSP,PaymentMethod);
             driver.quit();
             return;
         } else {
@@ -170,7 +169,7 @@ public class city extends baseClass {
                 mcp.clickOnPay();
 
             	if (payu.equalsIgnoreCase("payu")) {
-					pay.payForPayu(Currency, purchaseId, ExpectedStatus);
+					pay.payForPayu(Currency, purchaseId, ExpectedStatus,PaymentMethod);
 				}
                 
 				otp.enterOTP(PSP);
@@ -182,7 +181,7 @@ public class city extends baseClass {
              Reporter.log("Invalid card number → Luhn check failed", true);
 
                     Reporter.log("Invalid card number → Luhn check failed", true);
-                    ExcelWriteUtility.writeResult("Purchase_Result", City, ExpectedStatus, "FAIL", comment, purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", City, ExpectedStatus, "FAIL", comment, purchaseId,PSP,PaymentMethod);
                     driver.quit();
                     return;
                 }
@@ -213,7 +212,7 @@ public class city extends baseClass {
                     }
 
                     Reporter.log(comment, true);
-                    ExcelWriteUtility.writeResult("Purchase_Result", City, ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", City, ExpectedStatus, actualOutcome, comment, purchaseId,PSP,PaymentMethod);
                     driver.quit();
                     return;
                     
@@ -230,7 +229,7 @@ public class city extends baseClass {
                     }
 
                     Reporter.log(comment, true);
-                    ExcelWriteUtility.writeResult("Purchase_Result", City, ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", City, ExpectedStatus, actualOutcome, comment, purchaseId,PSP,PaymentMethod);
 
                 } else {
                     actualOutcome = "UNKNOWN";
@@ -238,7 +237,7 @@ public class city extends baseClass {
                     comment = "FAIL → URL does not contain expected issucces parameter";
 
                     Reporter.log(comment, true);
-                    ExcelWriteUtility.writeResult("Purchase_Result", City, ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+                    ExcelWriteUtility.writeResult("Purchase_Result", City, ExpectedStatus, actualOutcome, comment, purchaseId,PSP,PaymentMethod);
                 }
 
                 // Continue with transaction verification only if payment succeeded
@@ -269,7 +268,8 @@ public class city extends baseClass {
                     ExpectedStatus,      // Expected
                     "FAIL",              // Actual outcome
                     comment,             // Comment
-                    purchaseId,          // Purchase ID (may be null)
+                    purchaseId,   
+                    PaymentMethod,// Purchase ID (may be null)
                     PSP                  // PSP name
             );
 

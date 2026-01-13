@@ -136,7 +136,7 @@ public class payuEndToEndFlow extends baseClass{
         mcp.clickOnPay();
         
 	    if(payu.equalsIgnoreCase("payu")) {
-	    	pay.payForPayu(currency,purchaseId,ExpectedStatus);
+	    	pay.payForPayu(currency,purchaseId,ExpectedStatus,paymentMethod);
 	    }
         
         Thread.sleep(4000);
@@ -159,7 +159,7 @@ public class payuEndToEndFlow extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus, status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus, status, comment,purchaseId,PSP,paymentMethod);
             driver.quit();
             return;
         }
@@ -169,7 +169,7 @@ public class payuEndToEndFlow extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP,paymentMethod);
 
         }
         else {
@@ -178,7 +178,7 @@ public class payuEndToEndFlow extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP,paymentMethod);
 
 
         }
