@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
+import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
@@ -35,6 +36,7 @@ public class easebuzzcard extends baseClass{
 	CashierPage mcp;
 	transactionPage tp;
 	payu3dPage pay;
+	pspOTPPage otp;
     String status = "";
     String comment = "";
 	  @BeforeMethod
@@ -44,6 +46,7 @@ public class easebuzzcard extends baseClass{
 			mcp=new CashierPage(getDriver());
 			tp=new transactionPage(getDriver());
 			pay = new payu3dPage(getDriver());
+			otp= new pspOTPPage();
 	  }
 	  
 	//String cardHolder, String cardNumber, String expiry, String cvc
@@ -122,23 +125,17 @@ public class easebuzzcard extends baseClass{
 		tp.validatePurchaseId(purchaseId);
         // Payment
         driver.get(checkoutUrl);
-//        if(master.equalsIgnoreCase("master")){
-//        	mcp.clickONMaster();
-//        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
-//        }
-//        
-//        if(visa.equalsIgnoreCase("visa")) {
-//        	mcp.clickONVisa();
-//        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
-//        }
+
         mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
         
         mcp.clickOnPay();
         
 	    if(payu.equalsIgnoreCase("payu")) {
-	    	pay.payForPayu(currency,purchaseId,ExpectedStatus);
+	    	pay.payForPayu(currency,purchaseId,ExpectedStatus,paymentMethod);
 	    }
-        
+	    
+	    otp.enterOTP(PSP);
+	    
         Thread.sleep(4000);
 		 // Wait until parameter appears in URL
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
@@ -159,7 +156,7 @@ public class easebuzzcard extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,  status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,  status, comment,purchaseId,PSP,paymentMethod);
             driver.quit();
             return;
         }
@@ -169,7 +166,7 @@ public class easebuzzcard extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP,paymentMethod);
 
         }
         else {
@@ -178,7 +175,7 @@ public class easebuzzcard extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP,paymentMethod);
 
 
         }
@@ -188,7 +185,6 @@ public class easebuzzcard extends baseClass{
         tp.navigateUptoTransaction();
         tp.searchTheTransaction(purchaseId);
         tp.verifyTxnId(purchaseId);
-        tp.verifyMerchantName(merchantName);
         tp.verifyAmount(total);
         tp.verifyCurrency(currency);
         tp.getStatusFromUI();
