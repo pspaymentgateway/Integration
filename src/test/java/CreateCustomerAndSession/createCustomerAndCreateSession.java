@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
+import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
@@ -39,6 +40,7 @@ public class createCustomerAndCreateSession extends baseClass{
 	String customerId;
 	String	sessionId;
 	String	sessionUrl;
+	pspOTPPage otp;
     String status = "";
     String comment = "";
     String city;
@@ -52,6 +54,7 @@ public class createCustomerAndCreateSession extends baseClass{
 		mcp = new CashierPage(getDriver());
 		tp = new transactionPage(getDriver());
 		pay=new payu3dPage(getDriver());
+		otp= new pspOTPPage();
 	
 	}
 	
@@ -148,23 +151,17 @@ public class createCustomerAndCreateSession extends baseClass{
            mcp.clickOnPay();
 
            if (payu1.equalsIgnoreCase("payu")) {
-               pay.payForPayu(currency, sessionId, paymentMethod);
+               pay.payForPayu(currency, sessionId, paymentMethod,paymentMethod);
            }
-           
-           if(easybuzz.equalsIgnoreCase("easybuzz")) {
-   	    	tp.enterOTpEasyBuzz();
-   	    }
-           
-   	    if(zaakpay.equalsIgnoreCase("zaakpayNetBanking")) {
-   	    	mcp.zaakPayOtpEnterSuccessOrFailure();
-   	    }
+
+           otp.enterOTP(PSP);
            
            if (mcp.isCardNumberInvalid()) {
         	   status = "FAIL";
         	   String ExpectedStatus="Fail";
                comment = "Payment Failed Cause Of Luhn ";
           Reporter.log("Invalid card number → Luhn check failed", true);
-          ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency,ExpectedStatus, status, comment,sessionId,PSP);
+          ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency,ExpectedStatus, status, comment,sessionId,PSP,paymentMethod);
               
              //  driver.quit();
                return;
@@ -190,7 +187,7 @@ public class createCustomerAndCreateSession extends baseClass{
 
                Reporter.log(comment, true);
 
-               ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency,ExpectedStatus, status, comment,sessionId,PSP);
+               ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency,ExpectedStatus, status, comment,sessionId,PSP,paymentMethod);
              //  driver.quit();
                return;
            }
@@ -201,7 +198,7 @@ public class createCustomerAndCreateSession extends baseClass{
 
                Reporter.log(comment, true);
 
-               ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency,ExpectedStatus, status, comment,sessionId,PSP);
+               ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency,ExpectedStatus, status, comment,sessionId,PSP,paymentMethod);
 
            }
            else {
@@ -211,7 +208,7 @@ public class createCustomerAndCreateSession extends baseClass{
 
                Reporter.log(comment, true);
 
-               ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency ,ExpectedStatus, status, comment,sessionId,PSP);
+               ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency ,ExpectedStatus, status, comment,sessionId,PSP,paymentMethod);
 
 
            }
@@ -229,8 +226,6 @@ public class createCustomerAndCreateSession extends baseClass{
            Thread.sleep(4000);
            
 
-           
-	
 	}
 	
 }

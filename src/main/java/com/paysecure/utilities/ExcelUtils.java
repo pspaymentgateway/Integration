@@ -258,7 +258,7 @@ public class ExcelUtils {
 	                    // Handle numeric cells (CVV, Card Number, etc.)
 	                    double numValue = cell.getNumericCellValue();
 	                    
-	                    // ✅ Remove .0 from whole numbers
+	                    // Remove .0 from whole numbers
 	                    if (numValue == (long) numValue) {
 	                        return String.valueOf((long) numValue);  // 123.0 → "123"
 	                    }

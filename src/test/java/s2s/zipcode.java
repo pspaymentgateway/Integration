@@ -5,9 +5,11 @@ import org.testng.annotations.Test;
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
 import com.paysecure.Page.payu3dPage;
+import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
+import com.paysecure.utilities.DataProvidersS2S;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
@@ -18,11 +20,13 @@ import io.restassured.response.Response;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
 
 public class zipcode extends baseClass {
@@ -34,9 +38,10 @@ public class zipcode extends baseClass {
 	CashierPage mcp;
 	transactionPage tp;
 	payu3dPage pay;
+	pspOTPPage otp;
     String status = "";
     String comment = "";
-    String zipcode;
+   
     
     // Store base URI to reuse in S2S call
     String baseUri;
@@ -46,23 +51,43 @@ public class zipcode extends baseClass {
 		mcp = new CashierPage(getDriver());
 		tp = new transactionPage(getDriver());
 		pay=new payu3dPage(getDriver());
+		otp= new pspOTPPage();
 	}
 
 	
-	@Test(dataProvider ="zipCodeProvider", dataProviderClass = DataProviders.class)
-	public void purchaseApi(String zipcode,String ExpectedStatus,String PSP ) throws Exception {
+	@Test(dataProvider ="ZipCodeData", dataProviderClass = DataProvidersS2S.class)
+	public void purchaseApi(Map<String, String> ZipcodeData, Map<String, String> cardData ) throws Exception {
 		WebDriver driver = baseClass.getDriver();
-		this.zipcode = zipcode;
 		
+		
+		// Store baseUri for later use
 		// Store baseUri for later use
 		baseUri = PropertyReader.getPropertyForS2S("baseURI");
 		RestAssured.baseURI = baseUri;
+		String zipCode = ZipcodeData.getOrDefault("TestData", "");
+		String ExpectedStatus = ZipcodeData.getOrDefault("Status", "");
+		String CardHolder = cardData.getOrDefault("CardholderName", "");
+		String CardNumber = cardData.getOrDefault("CardNumber", "");
+		String Expiry = cardData.getOrDefault("Expiry", "");
+		String CVV = cardData.getOrDefault("CVV", "");
+		String PSP = cardData.getOrDefault("PSP", "");
+		String cardRunFlag = cardData.getOrDefault("RunFlag", "");
+		String PaymentMethod = cardData.getOrDefault("PaymentMethod","");
+		String Currency = cardData.getOrDefault("Currency", "");
+		System.err.println(zipCode +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
+
+		if (zipCode.isEmpty() || CardNumber.isEmpty()) {
+			Reporter.log("Skipping test - Empty city or card number", true);
+			throw new SkipException("Empty test data");
+		}
+
+		if (ExpectedStatus == null || ExpectedStatus.trim().isEmpty()) {
+			ExpectedStatus = "Pass";
+		}
 		
         String token = PropertyReader.getPropertyForS2S("tokenS2S");
         String BrandID = PropertyReader.getPropertyForS2S("brandIdS2S");
 		String price = generateRandomTestData.generateRandomDouble();
-		String currency = PropertyReader.getPropertyForS2S("currencyS2S");
-		String paymentMethod = PropertyReader.getPropertyForS2S("paymentMethodS2S");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String country = "IN";
 		String city = "Paris";
@@ -80,11 +105,11 @@ public class zipcode extends baseClass {
 		        "    \"city\": \""+city+"\",\n" +
 		        "    \"stateCode\": \""+stateCode+"\",\n" +
 		        "    \"street_address\": \""+streetAddress+"\",\n" +
-		        "    \"zip_code\": \""+zipcode+"\",\n" +
+		        "    \"zip_code\": \""+zipCode+"\",\n" +
 		        "    \"phone\": \"+1111111111\"\n" +
 		        "  },\n" +
 		        "  \"purchase\": {\n" +
-		        "    \"currency\": \""+currency+"\",\n" +
+		        "    \"currency\": \""+Currency+"\",\n" +
 		        "    \"products\": [\n" +
 		        "      {\n" +
 		        "        \"name\": \""+productname+"\",\n" +
@@ -92,7 +117,7 @@ public class zipcode extends baseClass {
 		        "      }\n" +
 		        "    ]\n" +
 		        "  },\n" +
-		        "  \"paymentMethod\": \""+paymentMethod+"\",\n" +
+		        "  \"paymentMethod\": \""+PaymentMethod+"\",\n" +
 		        "  \"brand_id\": \"" + BrandID + "\",\n" +
 		        "  \"success_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=true\",\n" +
 		        "  \"failure_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=false\",\n" +
@@ -121,27 +146,27 @@ public class zipcode extends baseClass {
 		    // Add a small delay to ensure purchase is fully persisted
 		    Thread.sleep(2000);
 		    
-		    s2sMethod(ExpectedStatus,PSP);
+		    s2sMethod(zipCode, ExpectedStatus, PSP, CardNumber, Expiry, CVV,PaymentMethod);
 		}
 
 		if (response.statusCode() == 202) {
-			Reporter.log("zipcode accepted by API: " + zipcode, true);
+			Reporter.log("zipcode accepted by API: " + zipCode, true);
 		} else if (response.statusCode() == 400 || response.statusCode() == 422) {
-            Reporter.log("streetAddress rejected by API: " + zipcode, true);
+            Reporter.log("streetAddress rejected by API: " + zipCode, true);
             status = "Fail";
-            comment = "PASS → streetAddress rejected correctly " + zipcode;
+            comment = "PASS → streetAddress rejected correctly " + zipCode;
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("s2s_Result", zipcode,ExpectedStatus, status, comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResults2s("s2s_Result", zipCode,ExpectedStatus, status, comment, purchaseId,PSP,PaymentMethod);
             driver.quit();
             return; 
         } else {
-			Reporter.log("Unexpected response for streetAddress: " + zipcode + " -> " + response.statusCode(), true);
+			Reporter.log("Unexpected response for streetAddress: " + zipCode + " -> " + response.statusCode(), true);
 		}
 	}
 
-	public void s2sMethod(String ExpectedStatus,String PSP) throws Exception {
+	public void s2sMethod(String zipCode, String ExpectedStatus, String PSP, String CardNumber, String Expiry, String CVV,String PaymentMethod) throws Exception {
 
 	    WebDriver driver = baseClass.getDriver();
 	    lp = new loginPage(getDriver());
@@ -166,18 +191,13 @@ public class zipcode extends baseClass {
 	    String brandId = PropertyReader.getPropertyForS2S("brandIdS2S");
 	    String payu = PropertyReader.getPropertyForS2S("payu");
 	    
-	    String cardNumber = PropertyReader.getPropertyForS2S("cardNumber");
-	    String mmyy = PropertyReader.getPropertyForS2S("mmyy");
-	    String cvv = PropertyReader.getPropertyForS2S("cvv");
-	    String easybuzz = PropertyReader.getPropertyForS2S("easybuzz");
-	    String zaakpay = PropertyReader.getPropertyForS2S("zaakpayNetBanking");
 	    
 	    String requestBody =
 	    		"{\n" +
 	    		"  \"cardholder_name\": \"Rahul Agarwal\",\n" +
-	    		"  \"card_number\": \"" + cardNumber + "\",\n" +
-	    		"  \"expires\": \"" + mmyy + "\",\n" +
-	    		"  \"cvc\": \"" + cvv + "\",\n" +
+	    		"  \"card_number\": \"" + CardNumber + "\",\n" +
+	    		"  \"expires\": \"" + Expiry + "\",\n" +
+	    		"  \"cvc\": \"" + CVV + "\",\n" +
 	    		"  \"remember_card\": \"on\",\n" +
 	    		"  \"remote_ip\": \"157.38.242.7\",\n" +
 	    		"  \"user_agent\": \"Mozilla/5.0\",\n" +
@@ -242,7 +262,7 @@ public class zipcode extends baseClass {
 	        status = "FAIL";
 	        comment = "S2S call failed with status: " + (response != null ? response.statusCode() : "NULL");
 	        Reporter.log(comment, true);
-	        ExcelWriteUtility.writeResults2s("s2s_Result", zipcode,ExpectedStatus, status, comment, purchaseId,PSP);
+	        ExcelWriteUtility.writeResults2s("s2s_Result", zipCode,ExpectedStatus, status, comment, purchaseId,PSP,PaymentMethod);
 	        driver.quit();
 	        return;
 	    }
@@ -255,21 +275,17 @@ public class zipcode extends baseClass {
 
 	        status = "FAIL";
 	        comment = "callback_url null for purchaseId " + purchaseId;
-	        ExcelWriteUtility.writeResults2s("s2s_Result", zipcode,ExpectedStatus, status, comment, purchaseId,PSP);
+	        ExcelWriteUtility.writeResults2s("s2s_Result", zipCode,ExpectedStatus, status, comment, purchaseId,PSP,PaymentMethod);
 	        driver.quit();
 	        return;
 	    }
 
 	    driver.get(callback_url);
 	    if(payu.equalsIgnoreCase("payu")) {
-	    	pay.payForPayu(zipcode,purchaseId,ExpectedStatus);
+	    	pay.payForPayu(zipCode,purchaseId,ExpectedStatus,PaymentMethod);
 	    }
-	    if(easybuzz.equalsIgnoreCase("easybuzz")) {
-	    	tp.enterOTpEasyBuzz();
-	    }
-	    if(zaakpay.equalsIgnoreCase("zaakpayNetBanking")) {
-	    	mcp.zaakPayOtpEnterSuccessOrFailure();
-	    }
+
+	    otp.enterOTP(PSP);
 	    Thread.sleep(7000);
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.urlContains("issucces"));
@@ -295,7 +311,7 @@ public class zipcode extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("s2s_Result", zipcode,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResults2s("s2s_Result", zipCode,ExpectedStatus, actualOutcome, comment, purchaseId,PSP,PaymentMethod);
             driver.quit();
             return;
         }
@@ -313,7 +329,7 @@ public class zipcode extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("s2s_Result", zipcode,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResults2s("s2s_Result", zipCode,ExpectedStatus, actualOutcome, comment, purchaseId,PSP,PaymentMethod);
 
         }
         else {
@@ -323,7 +339,7 @@ public class zipcode extends baseClass {
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResults2s("s2s_Result", zipcode,ExpectedStatus, actualOutcome, comment, purchaseId,PSP);
+            ExcelWriteUtility.writeResults2s("s2s_Result", zipCode,ExpectedStatus, actualOutcome, comment, purchaseId,PSP,PaymentMethod);
         }
         
 		mcp.openBrowserForStaging(driver,url);
