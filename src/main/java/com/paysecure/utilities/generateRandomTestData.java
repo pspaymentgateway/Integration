@@ -38,15 +38,43 @@ public class generateRandomTestData {
 	    }
 	    
 	    public static String generateRandomDoublePrice() {
+
 	        Random random = new Random();
 
-	        double min = 1.00;
-	        double max = 49999.00;
+	        // Default values
+	        double min = 10.00;
+	        double max = 100.00;
+
+	       
+	        try {
+	            String minProp = PropertyReader.getPropertyForconfigProps("minAmount");
+	            String maxProp =PropertyReader.getPropertyForconfigProps("maxAmount");
+
+	            System.out.println("Min AMount ");
+	            if (minProp != null && maxProp != null) {
+	                min = Double.parseDouble(minProp);
+	                max = Double.parseDouble(maxProp);
+	            }
+	        } catch (Exception e) {
+	            Reporter.log("Invalid amount range in properties. Using default 10–100", true);
+	        }
+
+	        // Validation (important for PSP rules)
+	        if (min <= 0 || max <= min) {
+	            throw new IllegalArgumentException(
+	                "Invalid amount range: min=" + min + ", max=" + max
+	            );
+	        }
 
 	        double value = min + (random.nextDouble() * (max - min));
 	        String formattedValue = String.format("%.2f", value);
 
-	        Reporter.log("Generated Random Double: " + formattedValue, true);
+	        Reporter.log(
+	            "Generated Amount: " + formattedValue +
+	            " (Range: " + min + " - " + max + ")",
+	            true
+	        );
+
 	        return formattedValue;
 	    }
 
