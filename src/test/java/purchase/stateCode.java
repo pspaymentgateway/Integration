@@ -79,7 +79,7 @@ public class stateCode extends baseClass{
 		RestAssured.baseURI =baseUri;
         String token = PropertyReader.getPropertyForPurchase("token");
         String brandId = PropertyReader.getPropertyForPurchase("brandId");
-		String price = generateRandomTestData.generateRandomDouble();
+		String price = generateRandomTestData.generateRandomDoublePrice();
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
         String payu = PropertyReader.getPropertyForS2S("payu");

@@ -49,7 +49,7 @@ public class matrixEndToEndFlow extends baseClass{
 		RestAssured.baseURI =baseUri;
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
-		String price = generateRandomTestData.generateRandomDouble();
+		String price = generateRandomTestData.generateRandomDoublePrice();
 		String currency =PropertyReader.getPropertyForPurchase("currency");
 		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();

@@ -79,7 +79,7 @@ public class zipcode extends baseClass{
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 	
 		String token = PropertyReader.getPropertyForPurchase("token");
-		String price = generateRandomTestData.generateRandomDouble();
+		String price = generateRandomTestData.generateRandomDoublePrice();
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
 		String payu = PropertyReader.getPropertyForS2S("payu");

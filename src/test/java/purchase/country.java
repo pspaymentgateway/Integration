@@ -52,9 +52,7 @@ public class country extends baseClass {
 			pay = new payu3dPage(getDriver());
 			otp= new pspOTPPage();
 	  }
-	  
-	  
-	  
+	 
   @Test (dataProvider ="CountryProvider", dataProviderClass = DataProviders.class)
   public void validationForCountryField(Map<String, String> CountryData, Map<String, String> cardData) {
       WebDriver driver=baseClass.getDriver();
@@ -83,7 +81,7 @@ public class country extends baseClass {
 		RestAssured.baseURI =baseUri;
 			String brandId = PropertyReader.getPropertyForPurchase("brandId");
 			String token = PropertyReader.getPropertyForPurchase("token");
-			String price = generateRandomTestData.generateRandomDouble();
+			String price = generateRandomTestData.generateRandomDoublePrice();
 			String firstName = generateRandomTestData.generateRandomFirstName();
 			String emailId = generateRandomTestData.generateRandomEmail();
 			 String payu = PropertyReader.getPropertyForS2S("payu");
