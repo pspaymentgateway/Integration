@@ -55,7 +55,7 @@ public class streetAddress extends baseClass {
 	}
 
 	
-	@Test(dataProvider ="StreetAddressData", dataProviderClass = DataProvidersS2S.class)
+	@Test(dataProvider ="StreetAddressProvider", dataProviderClass = DataProvidersS2S.class)
 	public void purchaseApi(Map<String, String> StreetAddress, Map<String, String> cardData) throws Exception {
 		WebDriver driver = baseClass.getDriver();
 		// Store baseUri for later use
@@ -68,7 +68,6 @@ public class streetAddress extends baseClass {
 		String Expiry = cardData.getOrDefault("Expiry", "");
 		String CVV = cardData.getOrDefault("CVV", "");
 		String PSP = cardData.getOrDefault("PSP", "");
-		String cardRunFlag = cardData.getOrDefault("RunFlag", "");
 		String PaymentMethod = cardData.getOrDefault("PaymentMethod","");
 		String Currency = cardData.getOrDefault("Currency", "");
 		System.err.println(streetAddress +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);

@@ -38,7 +38,7 @@ public class ExcelWriteUtility {
             String psp,
             String paymentMethod) {
 
-        String filePath = getExcelPath("purchaseResults.xlsx");
+        String filePath = getExcelPath("Results.xlsx");
         writeExcel(sheetName, testData, expected, actual, status,
                 transactionId, psp, paymentMethod, filePath);
     }
@@ -53,7 +53,7 @@ public class ExcelWriteUtility {
             String psp,
             String paymentMethod) {
 
-        String filePath = getExcelPath("s2sResults.xlsx");
+        String filePath = getExcelPath("Results.xlsx");
         writeExcel(sheetName, testData, expected, actual, status,
                 transactionId, psp, paymentMethod, filePath);
     }

@@ -41,8 +41,6 @@ public class country extends baseClass {
 	payu3dPage pay;
     String status = "";
     String comment = "";
-	
-	
 	  @BeforeMethod
 	  public void beforeMethod() throws InterruptedException {
 			lp = new loginPage(getDriver());

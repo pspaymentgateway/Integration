@@ -55,7 +55,7 @@ public class currency extends baseClass {
 	}
 
 	
-	@Test(dataProvider ="CurrencyData", dataProviderClass = DataProvidersS2S.class)
+	@Test(dataProvider ="CurrencyProvider", dataProviderClass = DataProvidersS2S.class)
 	public void purchaseApi(Map<String, String> currencyData, Map<String, String> cardData) throws Exception {
 		WebDriver driver = baseClass.getDriver();
 		

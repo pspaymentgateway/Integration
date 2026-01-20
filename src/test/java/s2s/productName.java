@@ -54,7 +54,7 @@ public class productName extends baseClass {
 	}
 
 	
-	@Test(dataProvider ="ProductNameData", dataProviderClass = DataProvidersS2S.class)
+	@Test(dataProvider ="ProductNameProvider", dataProviderClass = DataProvidersS2S.class)
 	public void purchaseApi(Map<String, String> ProductName, Map<String, String> cardData) throws Exception {
 		WebDriver driver = baseClass.getDriver();
 	

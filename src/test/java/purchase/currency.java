@@ -12,7 +12,6 @@ import com.paysecure.utilities.DataProviders;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
-import com.paysecure.utilities.jsonProvider;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;

@@ -47,8 +47,8 @@ public class cashierPageLocators {
 	public static final String zaakpaySubmitButton="//button[text()='Submit']";
 	
 	//euro exchange Integration 
-	public static final String possibleUseCasesEuroExchnage="//select[@id='pucOptions']/option";
-	public static final String statusEuroExchnage="//select[@id='mdStatus']/option";
+	public static final String possibleUseCasesEuroExchnage="//select[@id='pucOptions']";
+	public static final String statusEuroExchnage="//select[@id='mdStatus']";
 	public static final String cvvEuroExchnage="//input[@id='fcavv']";
 	public static final String submitButtonEuroExchnage="//input[@class='btn btn-primary']";
 	
