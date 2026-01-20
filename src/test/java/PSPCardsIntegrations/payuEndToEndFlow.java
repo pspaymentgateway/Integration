@@ -59,12 +59,9 @@ public class payuEndToEndFlow extends baseClass{
 		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
-        String master=PropertyReader.getPropertyForPurchase("Master");
-		String visa=PropertyReader.getPropertyForPurchase("Visa");
+
 		String payu = PropertyReader.getPropertyForS2S("payu");
-		String payUURL=PropertyReader.getPropertyForPurchase("payUURL");
-		String EmailPayu=PropertyReader.getPropertyForPurchase("EmailPayu");
-		String PassPayU=PropertyReader.getPropertyForPurchase("PassPayU");
+
 		
 		String country="IN";
 		String city = "Paris";

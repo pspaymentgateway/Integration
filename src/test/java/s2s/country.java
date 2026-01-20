@@ -51,7 +51,7 @@ public class country extends baseClass {
 	}
 
 	
-	@Test(dataProvider ="CountryData", dataProviderClass = DataProvidersS2S.class)
+	@Test(dataProvider ="CountryProvider", dataProviderClass = DataProvidersS2S.class)
 	public void purchaseApi(Map<String, String> countryData, Map<String, String> cardData) throws Exception {
 		WebDriver driver = baseClass.getDriver();
 		

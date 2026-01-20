@@ -55,7 +55,7 @@ public class stateCode extends baseClass {
 	}
 
 	
-	@Test(dataProvider ="StateCodeData", dataProviderClass = DataProvidersS2S.class)
+	@Test(dataProvider ="StateCodeProvider", dataProviderClass = DataProvidersS2S.class)
 	public void purchaseApi(Map<String, String> StateCode, Map<String, String> cardData) throws Exception {
 		WebDriver driver = baseClass.getDriver();
 		// Store baseUri for later use

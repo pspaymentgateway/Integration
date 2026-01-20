@@ -54,10 +54,10 @@ public class email extends baseClass {
 		otp=new pspOTPPage();
 	}
 
+	
 	@Test(dataProvider = "EmailData", dataProviderClass = DataProviders.class)
 	public void Purchase(Map<String, String> emailData, Map<String, String> cardData) throws InterruptedException {
 
-		//
 		String Email = emailData.getOrDefault("TestData", "");
 		String ExpectedStatus = emailData.getOrDefault("Status", "");
 		
@@ -88,8 +88,6 @@ public class email extends baseClass {
 		String price = generateRandomTestData.generateRandomDoublePrice();
       	String firstName = generateRandomTestData.generateRandomFirstName();
 		String payu = PropertyReader.getPropertyForS2S("payu");
-		String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
-		String zaakpay = PropertyReader.getPropertyForS2S("zaakpay");
 		String country = "IN";
 		String city = "Paris";
 		String stateCode = "QLD";
@@ -97,6 +95,8 @@ public class email extends baseClass {
 		String zipcode = "20001";
 		String productname = "Cricket bat";
 
+		System.out.println("Brand ID :- " +brandId);
+		System.out.println("Token Id :- "+token);
 		System.err.println(baseUri);
 		String requestBody = "{\n" +
 		   "  \"client\": {\n" +

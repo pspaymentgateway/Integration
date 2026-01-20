@@ -84,6 +84,7 @@ public class zipcode extends baseClass{
 		String emailId = generateRandomTestData.generateRandomEmail();
 		String payu = PropertyReader.getPropertyForS2S("payu");
 		String country="IN";
+		
 		String city = "Paris";
 		String stateCode="QLD";
 		String streetAddress = "Main gate";

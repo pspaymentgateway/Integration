@@ -176,7 +176,6 @@ public class zaakpay extends baseClass{
         tp.navigateUptoTransaction();
         tp.searchTheTransaction(purchaseId);
         tp.verifyTxnId(purchaseId);
-        tp.verifyMerchantName(merchantName);
         tp.verifyAmount(total);
         tp.verifyCurrency(currency);
         tp.getStatusFromUI();

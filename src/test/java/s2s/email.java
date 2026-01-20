@@ -53,7 +53,7 @@ public class email extends baseClass {
 	}
 
 	
-	@Test(dataProvider ="Email", dataProviderClass = DataProvidersS2S.class)
+	@Test(dataProvider ="EmailData", dataProviderClass = DataProvidersS2S.class)
 	public void purchaseApi(Map<String, String> emailData, Map<String, String> cardData) throws Exception {
 		WebDriver driver = baseClass.getDriver();
 		

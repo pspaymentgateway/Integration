@@ -55,7 +55,7 @@ public class zipcode extends baseClass {
 	}
 
 	
-	@Test(dataProvider ="ZipCodeData", dataProviderClass = DataProvidersS2S.class)
+	@Test(dataProvider ="ZipCodeProvider", dataProviderClass = DataProvidersS2S.class)
 	public void purchaseApi(Map<String, String> ZipcodeData, Map<String, String> cardData ) throws Exception {
 		WebDriver driver = baseClass.getDriver();
 		
