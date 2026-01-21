@@ -27,6 +27,7 @@ import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
 import com.paysecure.utilities.jsonProvider;
+import com.paysecure.utilities.testData_CreateRoll;
 
 import io.restassured.response.Response;
 
@@ -56,7 +57,9 @@ public class email extends baseClass {
 
 	
 	@Test(dataProvider = "EmailData", dataProviderClass = DataProviders.class)
-	public void Purchase(Map<String, String> emailData, Map<String, String> cardData) throws InterruptedException {
+	pu
+	
+	blic void Purchase(Map<String, String> emailData, Map<String, String> cardData) throws InterruptedException {
 
 		String Email = emailData.getOrDefault("TestData", "");
 		String ExpectedStatus = emailData.getOrDefault("Status", "");
@@ -69,6 +72,12 @@ public class email extends baseClass {
 		String cardRunFlag = cardData.getOrDefault("RunFlag", "");
 		String PaymentMethod=cardData.getOrDefault("PaymentMethod","");
 		String Currency=cardData.getOrDefault("Currency", "");
+		String minAmountStr = cardData.getOrDefault("MinAmount", "");
+		String maxAmountStr = cardData.getOrDefault("MaxAmount", "");
+		String defaultAmountStr = cardData.getOrDefault("DefaultAmount", "");
+		double minAmount = testData_CreateRoll.parseAmount(minAmountStr, 0.0);
+		double maxAmount = testData_CreateRoll.parseAmount(maxAmountStr, 0.0);
+		double defaultAmount = testData_CreateRoll.parseAmount(defaultAmountStr, 100.00);
 
 		System.err.println(Email +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
 
@@ -85,7 +94,7 @@ public class email extends baseClass {
 		RestAssured.baseURI = baseUri;
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
-		String price = generateRandomTestData.generateRandomDoublePrice();
+		String price = generateRandomTestData.generateRandomDoublePrice(minAmount,maxAmount,defaultAmount);
       	String firstName = generateRandomTestData.generateRandomFirstName();
 		String payu = PropertyReader.getPropertyForS2S("payu");
 		String country = "IN";

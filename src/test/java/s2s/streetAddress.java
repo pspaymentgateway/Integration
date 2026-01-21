@@ -13,6 +13,8 @@ import com.paysecure.utilities.DataProvidersS2S;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
+import com.paysecure.utilities.testData_CreateRoll;
+
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -70,6 +72,12 @@ public class streetAddress extends baseClass {
 		String PSP = cardData.getOrDefault("PSP", "");
 		String PaymentMethod = cardData.getOrDefault("PaymentMethod","");
 		String Currency = cardData.getOrDefault("Currency", "");
+		String minAmountStr = cardData.getOrDefault("MinAmount", "");
+		String maxAmountStr = cardData.getOrDefault("MaxAmount", "");
+		String defaultAmountStr = cardData.getOrDefault("DefaultAmount", "");
+		double minAmount = testData_CreateRoll.parseAmount(minAmountStr, 0.0);
+		double maxAmount = testData_CreateRoll.parseAmount(maxAmountStr, 0.0);
+		double defaultAmount = testData_CreateRoll.parseAmount(defaultAmountStr, 100.00);
 		System.err.println(streetAddress +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
 
 		if (streetAddress.isEmpty() || CardNumber.isEmpty()) {
@@ -83,7 +91,7 @@ public class streetAddress extends baseClass {
 		
         String token = PropertyReader.getPropertyForS2S("tokenS2S");
         String BrandID = PropertyReader.getPropertyForS2S("brandIdS2S");
-		String price = generateRandomTestData.generateRandomDoublePrice();
+		String price = generateRandomTestData.generateRandomDoublePrice(minAmount,maxAmount,defaultAmount);
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String country = "IN";
 		String city = "Paris";

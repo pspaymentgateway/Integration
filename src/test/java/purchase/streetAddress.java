@@ -13,6 +13,7 @@ import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
 import com.paysecure.utilities.jsonProvider;
+import com.paysecure.utilities.testData_CreateRoll;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -65,6 +66,12 @@ public class streetAddress extends baseClass{
 				String PSP = cardData.getOrDefault("PSP", "");
 				String PaymentMethod=cardData.getOrDefault("PaymentMethod","");
 				String Currency=cardData.getOrDefault("Currency", "");
+				String minAmountStr = cardData.getOrDefault("MinAmount", "");
+				String maxAmountStr = cardData.getOrDefault("MaxAmount", "");
+				String defaultAmountStr = cardData.getOrDefault("DefaultAmount", "");
+				double minAmount = testData_CreateRoll.parseAmount(minAmountStr, 0.0);
+				double maxAmount = testData_CreateRoll.parseAmount(maxAmountStr, 0.0);
+				double defaultAmount = testData_CreateRoll.parseAmount(defaultAmountStr, 100.00);
 				System.err.println(streetAddress +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
 
 				//Validate data is not empty
@@ -77,7 +84,7 @@ public class streetAddress extends baseClass{
 		RestAssured.baseURI =baseUri;
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
-		String price = generateRandomTestData.generateRandomDoublePrice();
+		String price = generateRandomTestData.generateRandomDoublePrice(minAmount,maxAmount,defaultAmount);
         String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
 		String payu = PropertyReader.getPropertyForS2S("payu");

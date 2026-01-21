@@ -37,46 +37,123 @@ public class generateRandomTestData {
 	        return formattedValue;
 	    }
 	    
-	    public static String generateRandomDoublePrice() {
+	    public static String generateRandomDoublePrice(
+	            double minAmount,
+	            double maxAmount,
+	            double defaultAmount) {
 
 	        Random random = new Random();
 
-	        // Default values
-	        double min = 10.00;
-	        double max = 100.00;
-
-	       
-	        try {
-	            String minProp = PropertyReader.getPropertyForconfigProps("minAmount");
-	            String maxProp =PropertyReader.getPropertyForconfigProps("maxAmount");
-
-	            System.out.println("Min AMount ");
-	            if (minProp != null && maxProp != null) {
-	                min = Double.parseDouble(minProp);
-	                max = Double.parseDouble(maxProp);
-	            }
-	        } catch (Exception e) {
-	            Reporter.log("Invalid amount range in properties. Using default 10–100", true);
-	        }
-
-	        // Validation (important for PSP rules)
-	        if (min <= 0 || max <= min) {
-	            throw new IllegalArgumentException(
-	                "Invalid amount range: min=" + min + ", max=" + max
-	            );
-	        }
-
-	        double value = min + (random.nextDouble() * (max - min));
-	        String formattedValue = String.format("%.2f", value);
-
 	        Reporter.log(
-	            "Generated Amount: " + formattedValue +
-	            " (Range: " + min + " - " + max + ")",
+	            "Input Amounts - Min: " + minAmount +
+	            ", Max: " + maxAmount +
+	            ", Default: " + defaultAmount,
 	            true
 	        );
 
-	        return formattedValue;
+	        /* =====================================================
+	           STEP 1: Validate Range
+	           ===================================================== */
+	        boolean isValidRange = (minAmount > 0 && maxAmount > minAmount);
+
+	        if (!isValidRange) {
+
+	            Reporter.log(
+	                "Invalid range detected. Min=" + minAmount +
+	                ", Max=" + maxAmount,
+	                true
+	            );
+
+	            if (defaultAmount > 0) {
+	                Reporter.log(
+	                    "Provided default amount is used because range is invalid.",
+	                    true
+	                );
+	                return String.format("%.2f", defaultAmount);
+	            }
+
+	            Reporter.log(
+	                "System fallback amount is used because both range and default are invalid.",
+	                true
+	            );
+	            return "100.00";
+	        }
+
+	        /* =====================================================
+	           STEP 2: Boundary Classification Message
+	           ===================================================== */
+	        String boundaryMessage;
+
+	        if (defaultAmount == minAmount) {
+	            boundaryMessage = "Input amount is equal to minimum boundary.";
+	        } else if (defaultAmount == maxAmount) {
+	            boundaryMessage = "Input amount is equal to maximum boundary.";
+	        } else if (defaultAmount < minAmount) {
+	            boundaryMessage = "Input amount is less than minimum boundary.";
+	        } else if (defaultAmount > maxAmount) {
+	            boundaryMessage = "Input amount is greater than maximum boundary.";
+	        } else {
+	            boundaryMessage = "Input amount is within the valid range.";
+	        }
+
+	        Reporter.log(boundaryMessage, true);
+
+	        /* =====================================================
+	           STEP 3: Boundary Intent Check
+	           ===================================================== */
+	        if (defaultAmount == minAmount || defaultAmount == maxAmount) {
+
+	            Reporter.log(
+	                "Boundary value provided by tester. Using default amount directly.",
+	                true
+	            );
+
+	            return String.format("%.2f", defaultAmount);
+	        }
+
+	        /* =====================================================
+	           STEP 4: Validate Default Amount
+	           ===================================================== */
+	        boolean isValidDefault =
+	                defaultAmount > 0 &&
+	                defaultAmount >= minAmount &&
+	                defaultAmount <= maxAmount;
+
+	        /* =====================================================
+	           STEP 5: Decision Logic
+	           ===================================================== */
+	        if (isValidDefault) {
+
+	            Reporter.log(
+	                "Valid range and default detected. Generating random value.",
+	                true
+	            );
+
+	            double value =
+	                    minAmount + random.nextDouble() * (maxAmount - minAmount);
+
+	            value = Math.round(value * 100.0) / 100.0;
+
+	            if (value < minAmount) {
+	                value = minAmount;
+	            }
+
+	            if (value > maxAmount) {
+	                value = maxAmount;
+	            }
+
+	            return String.format("%.2f", value);
+	        }
+
+	        Reporter.log(
+	            "Default amount is outside valid range. Using system fallback value.",
+	            true
+	        );
+
+	        return "100.00";
 	    }
+
+
 
 
 	    
