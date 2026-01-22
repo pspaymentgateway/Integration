@@ -53,7 +53,11 @@ public class EuroExchange extends baseClass{
 	  }
 
 	//String cardHolder, String cardNumber, String expiry, String cvc
+<<<<<<< Updated upstream
   @Test(dataProvider ="EuroExchange",dataProviderClass = DataProvidersEndToEndFlow.class,invocationCount = 1) 
+=======
+  @Test(dataProvider ="EuroExchange",dataProviderClass = DataProvidersEndToEndFlow.class,invocationCount = 3) 
+>>>>>>> Stashed changes
   public void purchase(Map<String, String> data) throws Exception {
       WebDriver driver=baseClass.getDriver();
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
@@ -66,6 +70,7 @@ public class EuroExchange extends baseClass{
         String PSP      =data.get("PSP");
         String paymentMethod=data.get("PaymentMethod");
         String currency=data.get("Currency");
+<<<<<<< Updated upstream
 		String minAmountStr = data.getOrDefault("MinAmount", "");
 		String maxAmountStr = data.getOrDefault("MaxAmount", "");
 		String defaultAmountStr = data.getOrDefault("DefaultAmount", "");
@@ -75,6 +80,12 @@ public class EuroExchange extends baseClass{
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
 		String price = generateRandomTestData.generateRandomDoublePrice(minAmount,maxAmount,defaultAmount);
+=======
+		
+		String brandId = PropertyReader.getPropertyForPurchase("brandId");
+		String token = PropertyReader.getPropertyForPurchase("token");
+		String price = generateRandomTestData.generateRandomDoublePrice();
+>>>>>>> Stashed changes
 
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();

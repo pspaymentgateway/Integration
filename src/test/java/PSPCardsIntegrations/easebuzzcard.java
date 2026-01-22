@@ -67,6 +67,7 @@ public class easebuzzcard extends baseClass{
 	        String PSP      =data.get("PSP");
 	        String paymentMethod=data.get("PaymentMethod");
 	        String currency=data.get("Currency");
+<<<<<<< Updated upstream
 			String minAmountStr = data.getOrDefault("MinAmount", "");
 			String maxAmountStr = data.getOrDefault("MaxAmount", "");
 			String defaultAmountStr = data.getOrDefault("DefaultAmount", "");
@@ -77,6 +78,12 @@ public class easebuzzcard extends baseClass{
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
 		String price = generateRandomTestData.generateRandomDoublePrice(minAmount,maxAmount,defaultAmount);
+=======
+	        
+		String brandId = PropertyReader.getPropertyForPurchase("brandId");
+		String token = PropertyReader.getPropertyForPurchase("token");
+		String price = generateRandomTestData.generateRandomDoublePrice();
+>>>>>>> Stashed changes
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
 		

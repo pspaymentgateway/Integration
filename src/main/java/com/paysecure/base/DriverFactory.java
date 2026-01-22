@@ -33,8 +33,12 @@ public class DriverFactory {
     	        options.addArguments("--window-size=800,600");
     	        options.addArguments("--disable-notifications");
     	        options.addArguments("--no-sandbox");
+<<<<<<< Updated upstream
     	      
     	       // options.addArguments("--headless");
+=======
+    	        options.addArguments("--headless");
+>>>>>>> Stashed changes
     	        options.addArguments("--disable-dev-shm-usage");
 
     	        Map<String, Object> prefs = new HashMap<>();

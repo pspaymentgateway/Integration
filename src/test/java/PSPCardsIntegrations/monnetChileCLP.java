@@ -8,11 +8,9 @@ import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
-import com.paysecure.utilities.DataProvidersEndToEndFlow;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
-import com.paysecure.utilities.testData_CreateRoll;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -20,7 +18,6 @@ import io.restassured.response.Response;
 
 import java.time.Duration;
 import java.util.Arrays;
-import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -30,7 +27,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 
-public class monnetPeru extends baseClass{
+public class monnetChileCLP extends baseClass{
 	private WebDriver driver;
 	loginPage lp;
 	String checkoutUrl;
@@ -50,43 +47,18 @@ public class monnetPeru extends baseClass{
 	  }
 	  
 	//String cardHolder, String cardNumber, String expiry, String cvc
-  @Test(dataProvider ="MonnetPeru",dataProviderClass = DataProvidersEndToEndFlow.class) 
-  public void purchase(Map<String, String> data) throws Exception {
+  @Test(dataProvider ="cardData",dataProviderClass = DataProviders.class) 
+  public void purchase(String ExpectedStatus, String cardHolder, String cardNumber, String expiry, String cvc,String PSP) throws Exception {
       WebDriver driver=baseClass.getDriver();
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
-	    String ExpectedStatus =data.get("ExpectedOutcome");
-	    String cardHolder=data.get("CardholderName");
-	    String cardNumber    = data.get("CardNumber");
-        String expiry   = data.get("Expiry");
-        String cvv      = data.get("CVV");
-        String PSP      =data.get("PSP");
-        String paymentMethod=data.get("PaymentMethod");
-        String currency=data.get("Currency");
-		String minAmountStr = data.getOrDefault("MinAmount", "");
-		String maxAmountStr = data.getOrDefault("MaxAmount", "");
-		String defaultAmountStr = data.getOrDefault("DefaultAmount", "");
-		double minAmount = testData_CreateRoll.parseAmount(minAmountStr, 0.0);
-		double maxAmount = testData_CreateRoll.parseAmount(maxAmountStr, 0.0);
-		double defaultAmount = testData_CreateRoll.parseAmount(defaultAmountStr, 100.00);
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
-<<<<<<< Updated upstream
-		String price = generateRandomTestData.generateRandomDoublePrice(minAmount,maxAmount,defaultAmount);
-		String firstName = generateRandomTestData.generateRandomFirstName();
-		String emailId = generateRandomTestData.generateRandomEmail();
-
-
-=======
 		String price = generateRandomTestData.generateRandomDoublePrice();
-		String currency =PropertyReader.getPropertyForPurchase("currency");
-		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
 		String payu = PropertyReader.getPropertyForS2S("payu");
 
-		
->>>>>>> Stashed changes
 		String country="IN";
 		String city = "Paris";
 		String stateCode="QLD";
@@ -143,10 +115,10 @@ public class monnetPeru extends baseClass{
 		tp.validatePurchaseId(purchaseId);
         // Payment
         driver.get(checkoutUrl);
-
-        mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
+        mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
         
         mcp.clickOnPay();
+
         
         Thread.sleep(4000);
 		 // Wait until parameter appears in URL
@@ -168,7 +140,7 @@ public class monnetPeru extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP,paymentMethod);
+            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP,paymentMethod);
             driver.quit();
             return;
         }
@@ -178,7 +150,7 @@ public class monnetPeru extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP,paymentMethod);
+            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP,paymentMethod);
 
         }
         else {
@@ -187,7 +159,7 @@ public class monnetPeru extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP,paymentMethod);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP,paymentMethod);
 
 
         }
@@ -197,7 +169,6 @@ public class monnetPeru extends baseClass{
         tp.navigateUptoTransaction();
         tp.searchTheTransaction(purchaseId);
         tp.verifyTxnId(purchaseId);
-        tp.verifyMerchantName(merchantName);
         tp.verifyAmount(total);
         tp.verifyCurrency(currency);
         tp.getStatusFromUI();
@@ -205,8 +176,8 @@ public class monnetPeru extends baseClass{
         tp.verifyUsedCardOnUI(cardNumber);
         tp.clickOnTransactionId();
         tp.verifyPurchaseTransactionIDIsNotEmpty();
-		tp.verifyCurrencyOnPaymentInfo();
-		tp.verifyAmountFromPaymentInfo();
+		tp.verifyCurrencyOnPaymentInfoPayU();
+		tp.verifyAmountFromPaymentInfoPayU();
 
   }
 

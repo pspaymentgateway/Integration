@@ -54,6 +54,10 @@ public class email extends baseClass {
 		otp= new pspOTPPage();
 	}
 
+<<<<<<< Updated upstream
+=======
+	
+>>>>>>> Stashed changes
 	@Test(dataProvider ="EmailData", dataProviderClass = DataProvidersS2S.class)
 	public void purchaseApi(Map<String, String> emailData, Map<String, String> cardData) throws Exception {
 		WebDriver driver = baseClass.getDriver();
@@ -90,7 +94,11 @@ public class email extends baseClass {
 		
         String token = PropertyReader.getPropertyForS2S("tokenS2S");
         String BrandID = PropertyReader.getPropertyForS2S("brandIdS2S");
+<<<<<<< Updated upstream
 		String price = generateRandomTestData.generateRandomDoublePrice(minAmount,maxAmount,defaultAmount);
+=======
+		String price = generateRandomTestData.generateRandomDoublePrice();
+>>>>>>> Stashed changes
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String country = "IN";
 		String city = "Paris";

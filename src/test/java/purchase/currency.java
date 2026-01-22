@@ -12,7 +12,10 @@ import com.paysecure.utilities.DataProviders;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
+<<<<<<< Updated upstream
 import com.paysecure.utilities.testData_CreateRoll;
+=======
+>>>>>>> Stashed changes
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -86,7 +89,11 @@ public class currency extends baseClass {
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 	
 		String token = PropertyReader.getPropertyForPurchase("token");
+<<<<<<< Updated upstream
 		String price = generateRandomTestData.generateRandomDoublePrice(minAmount,maxAmount,defaultAmount);
+=======
+		String price = generateRandomTestData.generateRandomDoublePrice();
+>>>>>>> Stashed changes
 	
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();

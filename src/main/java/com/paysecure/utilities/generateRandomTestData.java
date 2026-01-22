@@ -37,6 +37,7 @@ public class generateRandomTestData {
 	        return formattedValue;
 	    }
 	    
+<<<<<<< Updated upstream
 	    public static String generateRandomDoublePrice(
 	            double minAmount,
 	            double maxAmount,
@@ -50,12 +51,43 @@ public class generateRandomTestData {
 	            ", Default: " + defaultAmount,
 	            true
 	        );
+=======
+	    public static String generateRandomDoublePrice() {
+
+	        Random random = new Random();
+
+	        // Default values
+	        double min = 10.00;
+	        double max = 100.00;
+
+	       
+	        try {
+	            String minProp = PropertyReader.getPropertyForconfigProps("minAmount");
+	            String maxProp =PropertyReader.getPropertyForconfigProps("maxAmount");
+
+	            System.out.println("Min AMount ");
+	            if (minProp != null && maxProp != null) {
+	                min = Double.parseDouble(minProp);
+	                max = Double.parseDouble(maxProp);
+	            }
+	        } catch (Exception e) {
+	            Reporter.log("Invalid amount range in properties. Using default 10–100", true);
+	        }
+
+	        // Validation (important for PSP rules)
+	        if (min <= 0 || max <= min) {
+	            throw new IllegalArgumentException(
+	                "Invalid amount range: min=" + min + ", max=" + max
+	            );
+	        }
+>>>>>>> Stashed changes
 
 	        /* =====================================================
 	           STEP 1: Validate Range
 	           ===================================================== */
 	        boolean isValidRange = (minAmount > 0 && maxAmount > minAmount);
 
+<<<<<<< Updated upstream
 	        if (!isValidRange) {
 
 	            Reporter.log(
@@ -151,6 +183,15 @@ public class generateRandomTestData {
 	        );
 
 	        return "100.00";
+=======
+	        Reporter.log(
+	            "Generated Amount: " + formattedValue +
+	            " (Range: " + min + " - " + max + ")",
+	            true
+	        );
+
+	        return formattedValue;
+>>>>>>> Stashed changes
 	    }
 
 

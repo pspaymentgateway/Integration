@@ -95,7 +95,11 @@ public class zipcode extends baseClass {
 		
         String token = PropertyReader.getPropertyForS2S("tokenS2S");
         String BrandID = PropertyReader.getPropertyForS2S("brandIdS2S");
+<<<<<<< Updated upstream
 		String price = generateRandomTestData.generateRandomDoublePrice(minAmount,maxAmount,defaultAmount);
+=======
+		String price = generateRandomTestData.generateRandomDoublePrice();
+>>>>>>> Stashed changes
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String country = "IN";
 		String city = "Paris";

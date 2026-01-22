@@ -57,6 +57,7 @@ public class DataProvidersEndToEndFlow {
 	            "Matrix"        // integration name
 	    );
 	}
+<<<<<<< Updated upstream
 	
 	@DataProvider(name = "MonnetPeru")
 	public Object[][] getMonnetperuData() {
@@ -105,5 +106,8 @@ public class DataProvidersEndToEndFlow {
 	            "zaakpay"        // integration name
 	    );
 	}
+=======
+
+>>>>>>> Stashed changes
 
 }
