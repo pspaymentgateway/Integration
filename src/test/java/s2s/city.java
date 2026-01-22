@@ -52,7 +52,7 @@ public class city extends baseClass {
 		otp= new pspOTPPage();
 	}
 
-	@Test(dataProvider ="CityData", dataProviderClass = DataProvidersS2S.class)
+	@Test(dataProvider ="CityProvider", dataProviderClass = DataProvidersS2S.class)
 	public void purchaseApi(Map<String, String> cityData, Map<String, String> cardData) throws Exception {
 		WebDriver driver = baseClass.getDriver();
 		
@@ -81,7 +81,7 @@ public class city extends baseClass {
 		
         String token = PropertyReader.getPropertyForS2S("tokenS2S");
         String BrandID = PropertyReader.getPropertyForS2S("brandIdS2S");
-		String price = generateRandomTestData.generateRandomDouble();
+		String price = generateRandomTestData.generateRandomDoublePrice();
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
 		

@@ -54,15 +54,13 @@ public class email extends baseClass {
 		otp=new pspOTPPage();
 	}
 
+	
 	@Test(dataProvider = "EmailData", dataProviderClass = DataProviders.class)
 	public void Purchase(Map<String, String> emailData, Map<String, String> cardData) throws InterruptedException {
 
-		//
 		String Email = emailData.getOrDefault("TestData", "");
 		String ExpectedStatus = emailData.getOrDefault("Status", "");
-		String emailRunFlag = emailData.getOrDefault("RunFlag", "");
-
-		//
+		
 		String CardHolder = cardData.getOrDefault("CardholderName", "");
 		String CardNumber = cardData.getOrDefault("CardNumber", "");
 		String Expiry = cardData.getOrDefault("Expiry", "");
@@ -83,18 +81,13 @@ public class email extends baseClass {
 		WebDriver driver = baseClass.getDriver();
 		Reporter.log("Email test case will run for this PSP: " + PSP, true);
 		Reporter.log("Testing Email: " + Email + " with Card: " + CardNumber, true);
-
-	
-
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI = baseUri;
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
-		String price = generateRandomTestData.generateRandomDouble();
+		String price = generateRandomTestData.generateRandomDoublePrice();
       	String firstName = generateRandomTestData.generateRandomFirstName();
 		String payu = PropertyReader.getPropertyForS2S("payu");
-		String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
-		String zaakpay = PropertyReader.getPropertyForS2S("zaakpay");
 		String country = "IN";
 		String city = "Paris";
 		String stateCode = "QLD";
@@ -102,6 +95,8 @@ public class email extends baseClass {
 		String zipcode = "20001";
 		String productname = "Cricket bat";
 
+		System.out.println("Brand ID :- " +brandId);
+		System.out.println("Token Id :- "+token);
 		System.err.println(baseUri);
 		String requestBody = "{\n" +
 		   "  \"client\": {\n" +

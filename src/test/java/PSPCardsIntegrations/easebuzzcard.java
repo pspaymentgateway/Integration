@@ -9,6 +9,7 @@ import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
+import com.paysecure.utilities.DataProvidersEndToEndFlow;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
@@ -19,10 +20,10 @@ import io.restassured.response.Response;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Map;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
@@ -39,6 +40,8 @@ public class easebuzzcard extends baseClass{
 	pspOTPPage otp;
     String status = "";
     String comment = "";
+    
+    
 	  @BeforeMethod
 	  public void beforeMethod() throws InterruptedException {
 			lp = new loginPage(getDriver());
@@ -48,26 +51,27 @@ public class easebuzzcard extends baseClass{
 			pay = new payu3dPage(getDriver());
 			otp= new pspOTPPage();
 	  }
-	  
-	//String cardHolder, String cardNumber, String expiry, String cvc
-  @Test(dataProvider ="cardData",dataProviderClass = DataProviders.class) 
-  public void purchase(String ExpectedStatus, String cardHolder, String cardNumber, String expiry, String cvc,String PSP) throws Exception {
+	 
+  @Test(dataProvider ="EaseBuzzProvider",dataProviderClass = DataProvidersEndToEndFlow.class) 
+  public void purchase(Map<String, String> data) throws Exception {
       WebDriver driver=baseClass.getDriver();
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
+		
+		    String ExpectedStatus =data.get("ExpectedOutcome");
+		    String cardHolder=data.get("CardholderName");
+		    String cardNumber    = data.get("CardNumber");
+	        String expiry   = data.get("Expiry");
+	        String cvv      = data.get("CVV");
+	        String PSP      =data.get("PSP");
+	        String paymentMethod=data.get("PaymentMethod");
+	        String currency=data.get("Currency");
+	        
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
-		String price = generateRandomTestData.generateRandomDouble();
-		String currency =PropertyReader.getPropertyForPurchase("currency");
-		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
+		String price = generateRandomTestData.generateRandomDoublePrice();
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
-        String master=PropertyReader.getPropertyForPurchase("Master");
-		String visa=PropertyReader.getPropertyForPurchase("Visa");
-		String payu = PropertyReader.getPropertyForS2S("payu");
-		String payUURL=PropertyReader.getPropertyForPurchase("payUURL");
-		String EmailPayu=PropertyReader.getPropertyForPurchase("EmailPayu");
-		String PassPayU=PropertyReader.getPropertyForPurchase("PassPayU");
 		
 		String country="IN";
 		String city = "Paris";
@@ -121,18 +125,15 @@ public class easebuzzcard extends baseClass{
 		checkoutUrl = response.jsonPath().getString("checkout_url");
 		purchaseId = response.jsonPath().getString("purchaseId");
 		String merchantName = response.jsonPath().getString("merchantName");
+		System.err.println("merchantName"+merchantName);
 		double total = response.jsonPath().getDouble("purchase.total");
 		tp.validatePurchaseId(purchaseId);
         // Payment
         driver.get(checkoutUrl);
 
-        mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
+        mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
         
         mcp.clickOnPay();
-        
-	    if(payu.equalsIgnoreCase("payu")) {
-	    	pay.payForPayu(currency,purchaseId,ExpectedStatus,paymentMethod);
-	    }
 	    
 	    otp.enterOTP(PSP);
 	    

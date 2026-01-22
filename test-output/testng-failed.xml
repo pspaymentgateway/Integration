@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="s2s.currency">
+      <class name="PSPCardsIntegrations.matrixEndToEndFlow">
         <methods>
-          <include name="purchaseApi" invocation-numbers="1"/>
-          <include name="loadConfig"/>
           <include name="beforeMethod"/>
+          <include name="loadConfig"/>
           <include name="tearDown"/>
           <include name="setup"/>
+          <include name="purchase" invocation-numbers="0"/>
         </methods>
-      </class> <!-- s2s.currency -->
+      </class> <!-- PSPCardsIntegrations.matrixEndToEndFlow -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

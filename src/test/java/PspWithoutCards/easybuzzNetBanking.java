@@ -56,7 +56,7 @@ public class easybuzzNetBanking extends baseClass{
 		RestAssured.baseURI =baseUri;
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
-		String price = generateRandomTestData.generateRandomDouble();
+		String price = generateRandomTestData.generateRandomDoublePrice();
 		String currency =PropertyReader.getPropertyForPurchase("currency");
 		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();
@@ -68,7 +68,9 @@ public class easybuzzNetBanking extends baseClass{
 		String streetAddress = "Main gate";
 		String zipcode = "20001";
 		String productname="Cricket bat";
+
 		String PSP="EasyBuzz-Netbanking";
+
 		
         System.err.println(baseUri);
         String requestBody = "{\n" +

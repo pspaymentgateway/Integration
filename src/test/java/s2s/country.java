@@ -51,7 +51,7 @@ public class country extends baseClass {
 	}
 
 	
-	@Test(dataProvider ="CountryData", dataProviderClass = DataProvidersS2S.class)
+	@Test(dataProvider ="CountryProvider", dataProviderClass = DataProvidersS2S.class)
 	public void purchaseApi(Map<String, String> countryData, Map<String, String> cardData) throws Exception {
 		WebDriver driver = baseClass.getDriver();
 		
@@ -81,7 +81,7 @@ public class country extends baseClass {
 		}
         String token = PropertyReader.getPropertyForS2S("tokenS2S");
         String BrandID = PropertyReader.getPropertyForS2S("brandIdS2S");
-		String price = generateRandomTestData.generateRandomDouble();
+		String price = generateRandomTestData.generateRandomDoublePrice();
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
 	

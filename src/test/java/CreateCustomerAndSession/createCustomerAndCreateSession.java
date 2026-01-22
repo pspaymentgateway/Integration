@@ -25,8 +25,6 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-
-
 public class createCustomerAndCreateSession extends baseClass{
 
 	private WebDriver driver;
@@ -104,11 +102,9 @@ public class createCustomerAndCreateSession extends baseClass{
 		String baseUri = PropertyReader.getPropertyForCreateCustomerSession("baseURICC");
 		String paymentMethod=PropertyReader.getPropertyForCreateCustomerSession("paymentMethods");
 		String price = generateRandomTestData.generateRandomDoublePrice();
-		String payu = PropertyReader.getPropertyForCreateCustomerSession("payu");
-		String payhost = PropertyReader.getPropertyForCreateCustomerSession("payhost");
-	      String payu1 = PropertyReader.getPropertyForS2S("payu");
-	        String easybuzz = PropertyReader.getPropertyForPurchase("easybuzz");
-	        String zaakpay = PropertyReader.getPropertyForPurchase("zaakpayNetBanking");
+
+	    String payu1 = PropertyReader.getPropertyForS2S("payu");
+
 		RestAssured.baseURI = baseUri;
 		
 		String requestBody = "{\n" +

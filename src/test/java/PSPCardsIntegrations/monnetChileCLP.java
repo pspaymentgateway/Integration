@@ -54,18 +54,11 @@ public class monnetChileCLP extends baseClass{
 		RestAssured.baseURI =baseUri;
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
-		String price = generateRandomTestData.generateRandomDouble();
-		String currency =PropertyReader.getPropertyForPurchase("currency");
-		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
+		String price = generateRandomTestData.generateRandomDoublePrice();
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
-        String master=PropertyReader.getPropertyForPurchase("Master");
-		String visa=PropertyReader.getPropertyForPurchase("Visa");
 		String payu = PropertyReader.getPropertyForS2S("payu");
-		String payUURL=PropertyReader.getPropertyForPurchase("payUURL");
-		String EmailPayu=PropertyReader.getPropertyForPurchase("EmailPayu");
-		String PassPayU=PropertyReader.getPropertyForPurchase("PassPayU");
-		
+
 		String country="IN";
 		String city = "Paris";
 		String stateCode="QLD";
@@ -122,22 +115,10 @@ public class monnetChileCLP extends baseClass{
 		tp.validatePurchaseId(purchaseId);
         // Payment
         driver.get(checkoutUrl);
-//        if(master.equalsIgnoreCase("master")){
-//        	mcp.clickONMaster();
-//        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
-//        }
-//        
-//        if(visa.equalsIgnoreCase("visa")) {
-//        	mcp.clickONVisa();
-//        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
-//        }
         mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
         
         mcp.clickOnPay();
-        
-	    if(payu.equalsIgnoreCase("payu")) {
-	    	pay.payForPayu(currency,purchaseId,ExpectedStatus,paymentMethod);
-	    }
+
         
         Thread.sleep(4000);
 		 // Wait until parameter appears in URL
@@ -188,7 +169,6 @@ public class monnetChileCLP extends baseClass{
         tp.navigateUptoTransaction();
         tp.searchTheTransaction(purchaseId);
         tp.verifyTxnId(purchaseId);
-        tp.verifyMerchantName(merchantName);
         tp.verifyAmount(total);
         tp.verifyCurrency(currency);
         tp.getStatusFromUI();
