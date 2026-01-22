@@ -22,6 +22,7 @@ public class pspOTPPage{
 	        case "easybuzz" -> tp.enterOTpEasyBuzz();
 	        case "zaakpay" -> mcp.zaakPayOtpEnterSuccessOrFailure();
 	        case "matrix" -> System.err.println("So there is no switch case for this 'Matrix Integration' ");
+	        case "network_international" -> System.err.println("So there is no switch case for this 'Network_International' ");
 	        case "euroexchange" -> mcp.handlePSPPageForEuroExchange(PossibleUseCases,Status,Cavv);
 	        default -> throw new IllegalArgumentException("Unsupported PSP: " + psp);
 	    }

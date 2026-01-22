@@ -1,5 +1,9 @@
 package com.paysecure.Page;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +19,9 @@ import com.paysecure.locators.cashierPageLocators;
 import com.paysecure.locators.payUPSP;
 import com.paysecure.locators.transactionPageLocators;
 import com.paysecure.utilities.PropertyReader;
-
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class transactionPage {
 
@@ -86,40 +92,40 @@ public class transactionPage {
 	}
 
 	public void navigateUptoTransaction() throws InterruptedException {
-//		String html = driver.getPageSource();
-//	//	System.out.println(html); // print in console
-//
-//		// Define the folder and file name
-//		String folderPath = "C:\\Downloads";
-//		String filePath = folderPath + "\\page.html";
-//
-//		try {
-//		    // Create the folder if it doesn't exist
-//		    File folder = new File(folderPath);
-//		    if (!folder.exists()) {
-//		        folder.mkdirs(); // Create all necessary directories
-//		        System.out.println("Created folder: " + folderPath);
-//		    }
-//
-//		    // Write the HTML content to file
-//		    try (FileWriter writer = new FileWriter(filePath)) {
-//		        writer.write(html);
-//		        System.out.println("HTML saved at: " + filePath);
-//		    }
-//
-//		} catch (IOException e) {
-//		    e.printStackTrace();
-//		}
+		WebDriver driver=baseClass.getDriver();
+		String html = driver.getPageSource();
+	//	System.out.println(html); // print in console
 
-		WebDriver driver = baseClass.getDriver();
+		// Define the folder and file name
+		String folderPath = "C:\\Downloads";
+		String filePath = folderPath + "\\page.html";
 
-// 1920 × 1080
+		try {
+		    // Create the folder if it doesn't exist
+		    File folder = new File(folderPath);
+		    if (!folder.exists()) {
+		        folder.mkdirs(); // Create all necessary directories
+		        System.out.println("Created folder: " + folderPath);
+		    }
+
+		    // Write the HTML content to file
+		    try (FileWriter writer = new FileWriter(filePath)) {
+		        writer.write(html);
+		        System.out.println("HTML saved at: " + filePath);
+		    }
+
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+
+		Thread.sleep(500);
+		driver.manage().window().setSize(new Dimension(1280, 720));// 1920 × 1080
 
 		actionDriver.scrollToElement(analytics);
 		actionDriver.clickUsingJS(report);
 
 		actionDriver.clickUsingJS(transactions);
-
+		// Assert.fail();
 		driver.manage().window().setSize(new Dimension(1920, 1080));
 
 	}
@@ -208,28 +214,62 @@ public class transactionPage {
 		Reporter.log("Merchant name verified successfully", true);
 	}
 
+	 public static double parseUiAmount(String uiAmountText) {
+
+	        if (uiAmountText == null || uiAmountText.trim().isEmpty()) {
+	            throw new IllegalArgumentException("UI amount is null or empty");
+	        }
+
+	        try {
+	            // Remove currency symbols, keep numbers, comma & dot
+	            String sanitized = uiAmountText
+	                    .replaceAll("[^0-9,\\.]", "")
+	                    .trim();
+
+	            NumberFormat format = NumberFormat.getNumberInstance(Locale.US);
+	            Number number = format.parse(sanitized);
+
+	            return number.doubleValue();
+
+	        } catch (ParseException e) {
+	            throw new RuntimeException(
+	                    "Unable to parse UI amount: " + uiAmountText, e);
+	        }
+	    }
 	public double uiAmount;
 
-	public void verifyAmount(Double amount) {
+	public void verifyAmount(Double apiAmount) {
 
-		String totalAmt = actionDriver.getText(transactionTableAmount);
+        String uiAmountText = actionDriver.getText(transactionTableAmount);
 
-		Reporter.log("UI Amount: " + totalAmt, true);
-		Reporter.log("API Amount: " + amount, true);
+        Reporter.log("UI Amount (raw): " + uiAmountText, true);
+        Reporter.log("API Amount: " + apiAmount, true);
 
-		// Convert both to integer for comparison
-		uiAmount = Double.parseDouble(totalAmt.trim());
+        // ✅ Parse UI amount safely
+        uiAmount =parseUiAmount(uiAmountText);
 
-		if (uiAmount == amount) {
-			Reporter.log("currency conversion not applied", true);
-		} else {
-			Reporter.log("currency conversion applied", true);
-		}
+        Reporter.log("UI Amount (parsed): " + uiAmount, true);
 
-		Assert.assertEquals(uiAmount, amount, "Amount mismatch");
+        // ✅ Delta for floating comparison
+        double delta = 0.01;
 
-		Reporter.log("Amount verified successfully", true);
-	}
+        // Informational logging
+        if (Math.abs(uiAmount - apiAmount) < delta) {
+            Reporter.log("Currency conversion NOT applied", true);
+        } else {
+            Reporter.log("Currency conversion APPLIED or mismatch", true);
+        }
+
+        // ✅ Assertion (correct way)
+        Assert.assertEquals(
+                uiAmount,
+                apiAmount,
+                delta,
+                "Amount mismatch between UI and API"
+        );
+
+        Reporter.log("Amount verified successfully", true);
+    }
 
 	public String uiCurrency;
 

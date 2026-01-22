@@ -9,9 +9,11 @@ import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
+import com.paysecure.utilities.DataProvidersEndToEndFlow;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
+import com.paysecure.utilities.testData_CreateRoll;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -19,6 +21,7 @@ import io.restassured.response.Response;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -48,18 +51,31 @@ public class EuroExchange extends baseClass{
 			pay = new payu3dPage(getDriver());
 			otp=new pspOTPPage();
 	  }
-	  
+
 	//String cardHolder, String cardNumber, String expiry, String cvc
-  @Test(dataProvider ="cardData",dataProviderClass = DataProviders.class) 
-  public void purchase( String cardHolder, String cardNumber, String expiry, String cvc,String PSP) throws Exception {
+  @Test(dataProvider ="EuroExchange",dataProviderClass = DataProvidersEndToEndFlow.class,invocationCount = 1) 
+  public void purchase(Map<String, String> data) throws Exception {
       WebDriver driver=baseClass.getDriver();
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
+
+	    String cardHolder=data.get("CardholderName");
+	    String cardNumber    = data.get("CardNumber");
+        String expiry   = data.get("Expiry");
+        String cvv      = data.get("CVV");
+        String PSP      =data.get("PSP");
+        String paymentMethod=data.get("PaymentMethod");
+        String currency=data.get("Currency");
+		String minAmountStr = data.getOrDefault("MinAmount", "");
+		String maxAmountStr = data.getOrDefault("MaxAmount", "");
+		String defaultAmountStr = data.getOrDefault("DefaultAmount", "");
+		double minAmount = testData_CreateRoll.parseAmount(minAmountStr, 0.0);
+		double maxAmount = testData_CreateRoll.parseAmount(maxAmountStr, 0.0);
+		double defaultAmount = testData_CreateRoll.parseAmount(defaultAmountStr, 100.00);
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
-		String price = generateRandomTestData.generateRandomDouble();
-		String currency =PropertyReader.getPropertyForPurchase("currency");
-		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
+		String price = generateRandomTestData.generateRandomDoublePrice(minAmount,maxAmount,defaultAmount);
+
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
 
@@ -120,7 +136,7 @@ public class EuroExchange extends baseClass{
         // Payment
         driver.get(checkoutUrl);
 
-        mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
+        mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
         
         mcp.clickOnPay();
         
@@ -143,30 +159,30 @@ public class EuroExchange extends baseClass{
         if (flag.equalsIgnoreCase("false")) {
             status = "FAIL";
             comment = "Payment Failed";
-            String ExpectedStatus="FAIL";
+            String ExpectedStatus1="FAIL";
             
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,  status, comment,purchaseId,PSP,paymentMethod);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus1,  status, comment,purchaseId,PSP,paymentMethod);
             driver.quit();
             return;
         }
         else if (flag.equalsIgnoreCase("true")) {
             status = "PASS";
             comment = "Payment Successfully";
-            String ExpectedStatus="PASS";
+            String ExpectedStatus1="PASS";
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP,paymentMethod);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus1,    status, comment,purchaseId,PSP,paymentMethod);
 
         }
         else {
             status = "UNKNOWN";
             comment = "URL does not contain expected issucces parameter";
-            String ExpectedStatus="UNKNOWN";
+            String ExpectedStatus1="UNKNOWN";
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus, status, comment,purchaseId,PSP,paymentMethod);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus1, status, comment,purchaseId,PSP,paymentMethod);
 
 
         }
@@ -176,7 +192,6 @@ public class EuroExchange extends baseClass{
         tp.navigateUptoTransaction();
         tp.searchTheTransaction(purchaseId);
         tp.verifyTxnId(purchaseId);
-     //   tp.verifyMerchantName(merchantName);
         tp.verifyAmount(total);
         tp.verifyCurrency(currency);
         tp.getStatusFromUI();

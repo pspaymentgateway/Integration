@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Generated Random Double: 97.15]]>
-    </line>
-    <line>
-      <![CDATA[Generated First Name: john622]]>
-    </line>
-    <line>
-      <![CDATA[Purchase created successfully with ID: 6966230f4f505f9a91fdcec8]]>
-    </line>
-    <line>
       <![CDATA[User enter ID in Username field]]>
     </line>
     <line>
@@ -20,13 +11,55 @@
       <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[S2S call successful on attempt 1]]>
+      <![CDATA[Input Amounts → Min: 10.0, Max: 100.0, Default: 500.0]]>
+    </line>
+    <line>
+      <![CDATA[Generated Amount: 45.75 (Range: 10.0 - 100.0)]]>
+    </line>
+    <line>
+      <![CDATA[Generated First Name: johnd60]]>
+    </line>
+    <line>
+      <![CDATA[Generated Email: nairobiPalermo816ee@gmail.com]]>
+    </line>
+    <line>
+      <![CDATA[purchaseId is not null]]>
+    </line>
+    <line>
+      <![CDATA[purchaseId is not empty]]>
+    </line>
+    <line>
+      <![CDATA[purchaseId format is valid: 69709a13dc3ea4f3be6897a0]]>
+    </line>
+    <line>
+      <![CDATA[purchaseId length is 24]]>
+    </line>
+    <line>
+      <![CDATA[purchaseId validated successfully: 69709a13dc3ea4f3be6897a0]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Holder Name: King Kohli]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Number: 4111111111111111]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card Expiry Date: 07/29]]>
+    </line>
+    <line>
+      <![CDATA[Entered Card CVV: 123]]>
+    </line>
+    <line>
+      <![CDATA[Moved to the Pay button]]>
+    </line>
+    <line>
+      <![CDATA[Clicked on the Pay button to proceed with payment]]>
     </line>
     <line>
       <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
     </line>
     <line>
-      <![CDATA[PASS → Payment succeeded as expected]]>
+      <![CDATA[Payment Successfully]]>
     </line>
     <line>
       <![CDATA[ Opened staging environment in a new browser tab]]>
@@ -41,13 +74,52 @@
       <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[ Entered Transaction ID: 6966230f4f505f9a91fdcec8]]>
+      <![CDATA[ Entered Transaction ID: 69709a13dc3ea4f3be6897a0]]>
     </line>
     <line>
       <![CDATA[ Clicked on Search button]]>
     </line>
     <line>
-      <![CDATA[ Clicked on Search button]]>
+      <![CDATA[UI transaction ID: 69709a13dc3ea4f3be6897a0]]>
+    </line>
+    <line>
+      <![CDATA[API transaction ID: 69709a13dc3ea4f3be6897a0]]>
+    </line>
+    <line>
+      <![CDATA[Transaction ID verified successfully]]>
+    </line>
+    <line>
+      <![CDATA[UI Amount (raw): 45.75]]>
+    </line>
+    <line>
+      <![CDATA[API Amount: 45.75]]>
+    </line>
+    <line>
+      <![CDATA[UI Amount (parsed): 45.75]]>
+    </line>
+    <line>
+      <![CDATA[Currency conversion NOT applied]]>
+    </line>
+    <line>
+      <![CDATA[Amount verified successfully]]>
+    </line>
+    <line>
+      <![CDATA[UI Currency: INR]]>
+    </line>
+    <line>
+      <![CDATA[API Currency: INR]]>
+    </line>
+    <line>
+      <![CDATA[Currency matched correctly]]>
+    </line>
+    <line>
+      <![CDATA[Currency verified successfully]]>
+    </line>
+    <line>
+      <![CDATA[Expected Masked Card: 41111111****1111]]>
+    </line>
+    <line>
+      <![CDATA[UI Masked Card: 41111111****1111]]>
     </line>
     <line>
       <![CDATA[ Clicked on first Transaction ID from list]]>
@@ -56,106 +128,39 @@
       <![CDATA[Purchase Transaction ID is not empty or not null]]>
     </line>
     <line>
-      <![CDATA[zipcode accepted by API: SW1A 1AA]]>
+      <![CDATA[UI Currency: INR]]>
     </line>
     <line>
-      <![CDATA[Generated Random Double: 49.93]]>
+      <![CDATA[Payment Info Currency: INR]]>
     </line>
     <line>
-      <![CDATA[Generated First Name: john573]]>
+      <![CDATA[Currency on Payment Info verified successfully]]>
     </line>
     <line>
-      <![CDATA[Purchase created successfully with ID: 696623534f505f9a91fdd5d4]]>
+      <![CDATA[UI Amount: 45.75]]>
     </line>
     <line>
-      <![CDATA[User enter ID in Username field]]>
+      <![CDATA[Payment Info Amount: 45.75]]>
     </line>
     <line>
-      <![CDATA[User Enter Password in password field]]>
-    </line>
-    <line>
-      <![CDATA[Click on submit button in login page]]>
-    </line>
-    <line>
-      <![CDATA[S2S call successful on attempt 1]]>
-    </line>
-    <line>
-      <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
-    </line>
-    <line>
-      <![CDATA[PASS → Payment succeeded as expected]]>
-    </line>
-    <line>
-      <![CDATA[ Opened staging environment in a new browser tab]]>
-    </line>
-    <line>
-      <![CDATA[User enter ID in Username field]]>
-    </line>
-    <line>
-      <![CDATA[User Enter Password in password field]]>
-    </line>
-    <line>
-      <![CDATA[Click on submit button in login page]]>
-    </line>
-    <line>
-      <![CDATA[ Entered Transaction ID: 696623534f505f9a91fdd5d4]]>
-    </line>
-    <line>
-      <![CDATA[ Clicked on Search button]]>
-    </line>
-    <line>
-      <![CDATA[ Clicked on Search button]]>
-    </line>
-    <line>
-      <![CDATA[ Clicked on first Transaction ID from list]]>
-    </line>
-    <line>
-      <![CDATA[Purchase Transaction ID is not empty or not null]]>
-    </line>
-    <line>
-      <![CDATA[zipcode accepted by API: SW1A 1AA]]>
+      <![CDATA[Amount on Payment Info verified successfully]]>
     </line>
   </reporter-output>
-  <suite started-at="2026-01-13T16:18:29 IST" name="Default suite" finished-at="2026-01-13T16:20:47 IST" duration-ms="137684">
+  <suite started-at="2026-01-21T14:49:02 IST" name="Default suite" finished-at="2026-01-21T14:49:48 IST" duration-ms="46342">
     <groups>
     </groups>
-    <test started-at="2026-01-13T16:18:29 IST" name="Default test" finished-at="2026-01-13T16:20:47 IST" duration-ms="137684">
-      <class name="s2s.zipcode">
-        <test-method is-config="true" signature="loadConfig()[pri:0, instance:s2s.zipcode@30ea8c23]" started-at="2026-01-13T16:18:29 IST" name="loadConfig" finished-at="2026-01-13T16:18:29 IST" duration-ms="32" status="PASS">
+    <test started-at="2026-01-21T14:49:02 IST" name="Default test" finished-at="2026-01-21T14:49:48 IST" duration-ms="46342">
+      <class name="PSPCardsIntegrations.zaakpay">
+        <test-method is-config="true" signature="loadConfig()[pri:0, instance:PSPCardsIntegrations.zaakpay@2cf92cc7]" started-at="2026-01-21T14:49:02 IST" name="loadConfig" finished-at="2026-01-21T14:49:02 IST" duration-ms="17" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loadConfig -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:s2s.zipcode@30ea8c23]" started-at="2026-01-13T16:18:32 IST" name="setup" finished-at="2026-01-13T16:18:44 IST" duration-ms="12399" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:PSPCardsIntegrations.zaakpay@2cf92cc7]" started-at="2026-01-21T14:49:03 IST" name="setup" finished-at="2026-01-21T14:49:09 IST" duration-ms="5996" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:s2s.zipcode@30ea8c23]" started-at="2026-01-13T16:18:44 IST" name="beforeMethod" finished-at="2026-01-13T16:18:44 IST" duration-ms="59" status="PASS">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:PSPCardsIntegrations.zaakpay@2cf92cc7]" started-at="2026-01-21T14:49:09 IST" name="beforeMethod" finished-at="2026-01-21T14:49:17 IST" duration-ms="8349" status="PASS">
           <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method signature="purchaseApi(java.util.Map,java.util.Map)[pri:0, instance:s2s.zipcode@30ea8c23]" started-at="2026-01-13T16:18:44 IST" name="purchaseApi" data-provider="ZipCodeData" finished-at="2026-01-13T16:19:43 IST" duration-ms="58331" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE}]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[{CardholderName=Virat Kohli, CardNumber=5553042241984105, CVV=123, RunFlag=TRUE, Currency=INR, PaymentMethod=MASTER, PSP=Easybuzz, Expiry=07/28}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-            <line>
-              <![CDATA[Generated Random Double: 97.15]]>
-            </line>
-            <line>
-              <![CDATA[Generated First Name: john622]]>
-            </line>
-            <line>
-              <![CDATA[Purchase created successfully with ID: 6966230f4f505f9a91fdcec8]]>
-            </line>
             <line>
               <![CDATA[User enter ID in Username field]]>
             </line>
@@ -165,14 +170,67 @@
             <line>
               <![CDATA[Click on submit button in login page]]>
             </line>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="purchase(java.util.Map)[pri:0, instance:PSPCardsIntegrations.zaakpay@2cf92cc7]" started-at="2026-01-21T14:49:17 IST" name="purchase" data-provider="ZaakPay" finished-at="2026-01-21T14:49:45 IST" duration-ms="28209" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{CardholderName=King Kohli, CardNumber=4111111111111111, CVV=123, RunFlag=TRUE, Currency=INR, MinAmount=10, DefaultAmount=500, PaymentMethod=Visa, PSP=zaakpay, Expiry=07/29, MaxAmount=100, ExpectedOutcome=Pass}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
             <line>
-              <![CDATA[S2S call successful on attempt 1]]>
+              <![CDATA[Input Amounts → Min: 10.0, Max: 100.0, Default: 500.0]]>
+            </line>
+            <line>
+              <![CDATA[Generated Amount: 45.75 (Range: 10.0 - 100.0)]]>
+            </line>
+            <line>
+              <![CDATA[Generated First Name: johnd60]]>
+            </line>
+            <line>
+              <![CDATA[Generated Email: nairobiPalermo816ee@gmail.com]]>
+            </line>
+            <line>
+              <![CDATA[purchaseId is not null]]>
+            </line>
+            <line>
+              <![CDATA[purchaseId is not empty]]>
+            </line>
+            <line>
+              <![CDATA[purchaseId format is valid: 69709a13dc3ea4f3be6897a0]]>
+            </line>
+            <line>
+              <![CDATA[purchaseId length is 24]]>
+            </line>
+            <line>
+              <![CDATA[purchaseId validated successfully: 69709a13dc3ea4f3be6897a0]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Holder Name: King Kohli]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Number: 4111111111111111]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card Expiry Date: 07/29]]>
+            </line>
+            <line>
+              <![CDATA[Entered Card CVV: 123]]>
+            </line>
+            <line>
+              <![CDATA[Moved to the Pay button]]>
+            </line>
+            <line>
+              <![CDATA[Clicked on the Pay button to proceed with payment]]>
             </line>
             <line>
               <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
             </line>
             <line>
-              <![CDATA[PASS → Payment succeeded as expected]]>
+              <![CDATA[Payment Successfully]]>
             </line>
             <line>
               <![CDATA[ Opened staging environment in a new browser tab]]>
@@ -187,13 +245,52 @@
               <![CDATA[Click on submit button in login page]]>
             </line>
             <line>
-              <![CDATA[ Entered Transaction ID: 6966230f4f505f9a91fdcec8]]>
+              <![CDATA[ Entered Transaction ID: 69709a13dc3ea4f3be6897a0]]>
             </line>
             <line>
               <![CDATA[ Clicked on Search button]]>
             </line>
             <line>
-              <![CDATA[ Clicked on Search button]]>
+              <![CDATA[UI transaction ID: 69709a13dc3ea4f3be6897a0]]>
+            </line>
+            <line>
+              <![CDATA[API transaction ID: 69709a13dc3ea4f3be6897a0]]>
+            </line>
+            <line>
+              <![CDATA[Transaction ID verified successfully]]>
+            </line>
+            <line>
+              <![CDATA[UI Amount (raw): 45.75]]>
+            </line>
+            <line>
+              <![CDATA[API Amount: 45.75]]>
+            </line>
+            <line>
+              <![CDATA[UI Amount (parsed): 45.75]]>
+            </line>
+            <line>
+              <![CDATA[Currency conversion NOT applied]]>
+            </line>
+            <line>
+              <![CDATA[Amount verified successfully]]>
+            </line>
+            <line>
+              <![CDATA[UI Currency: INR]]>
+            </line>
+            <line>
+              <![CDATA[API Currency: INR]]>
+            </line>
+            <line>
+              <![CDATA[Currency matched correctly]]>
+            </line>
+            <line>
+              <![CDATA[Currency verified successfully]]>
+            </line>
+            <line>
+              <![CDATA[Expected Masked Card: 41111111****1111]]>
+            </line>
+            <line>
+              <![CDATA[UI Masked Card: 41111111****1111]]>
             </line>
             <line>
               <![CDATA[ Clicked on first Transaction ID from list]]>
@@ -202,114 +299,37 @@
               <![CDATA[Purchase Transaction ID is not empty or not null]]>
             </line>
             <line>
-              <![CDATA[zipcode accepted by API: SW1A 1AA]]>
+              <![CDATA[UI Currency: INR]]>
+            </line>
+            <line>
+              <![CDATA[Payment Info Currency: INR]]>
+            </line>
+            <line>
+              <![CDATA[Currency on Payment Info verified successfully]]>
+            </line>
+            <line>
+              <![CDATA[UI Amount: 45.75]]>
+            </line>
+            <line>
+              <![CDATA[Payment Info Amount: 45.75]]>
+            </line>
+            <line>
+              <![CDATA[Amount on Payment Info verified successfully]]>
             </line>
           </reporter-output>
-        </test-method> <!-- purchaseApi -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:s2s.zipcode@30ea8c23]" started-at="2026-01-13T16:19:43 IST" name="tearDown" finished-at="2026-01-13T16:19:46 IST" duration-ms="3018" status="PASS">
+        </test-method> <!-- purchase -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:PSPCardsIntegrations.zaakpay@2cf92cc7]" started-at="2026-01-21T14:49:45 IST" name="tearDown" finished-at="2026-01-21T14:49:48 IST" duration-ms="3013" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=purchaseApi status=SUCCESS method=zipcode.purchaseApi(java.util.Map,java.util.Map)[pri:0, instance:s2s.zipcode@30ea8c23] output=Generated Random Double: 97.15]]]>
+                <![CDATA[[TestResult name=purchase status=SUCCESS method=zaakpay.purchase(java.util.Map)[pri:0, instance:PSPCardsIntegrations.zaakpay@2cf92cc7] output=Input Amounts → Min: 10.0, Max: 100.0, Default: 500.0]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:s2s.zipcode@30ea8c23]" started-at="2026-01-13T16:19:46 IST" name="setup" finished-at="2026-01-13T16:19:56 IST" duration-ms="10066" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:s2s.zipcode@30ea8c23]" started-at="2026-01-13T16:19:56 IST" name="beforeMethod" finished-at="2026-01-13T16:19:56 IST" duration-ms="2" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method signature="purchaseApi(java.util.Map,java.util.Map)[pri:0, instance:s2s.zipcode@30ea8c23]" started-at="2026-01-13T16:19:56 IST" name="purchaseApi" data-provider="ZipCodeData" finished-at="2026-01-13T16:20:44 IST" duration-ms="47949" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{Status=Pass, TestData=SW1A 1AA, RunFlag=TRUE}]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[{CardholderName=Rohitman Sharma, CardNumber=4012888888881881, CVV=000, RunFlag=TRUE, Currency=EUR, PaymentMethod=VISA, PSP=Matrix, Expiry=10/27}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-            <line>
-              <![CDATA[Generated Random Double: 49.93]]>
-            </line>
-            <line>
-              <![CDATA[Generated First Name: john573]]>
-            </line>
-            <line>
-              <![CDATA[Purchase created successfully with ID: 696623534f505f9a91fdd5d4]]>
-            </line>
-            <line>
-              <![CDATA[User enter ID in Username field]]>
-            </line>
-            <line>
-              <![CDATA[User Enter Password in password field]]>
-            </line>
-            <line>
-              <![CDATA[Click on submit button in login page]]>
-            </line>
-            <line>
-              <![CDATA[S2S call successful on attempt 1]]>
-            </line>
-            <line>
-              <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
-            </line>
-            <line>
-              <![CDATA[PASS → Payment succeeded as expected]]>
-            </line>
-            <line>
-              <![CDATA[ Opened staging environment in a new browser tab]]>
-            </line>
-            <line>
-              <![CDATA[User enter ID in Username field]]>
-            </line>
-            <line>
-              <![CDATA[User Enter Password in password field]]>
-            </line>
-            <line>
-              <![CDATA[Click on submit button in login page]]>
-            </line>
-            <line>
-              <![CDATA[ Entered Transaction ID: 696623534f505f9a91fdd5d4]]>
-            </line>
-            <line>
-              <![CDATA[ Clicked on Search button]]>
-            </line>
-            <line>
-              <![CDATA[ Clicked on Search button]]>
-            </line>
-            <line>
-              <![CDATA[ Clicked on first Transaction ID from list]]>
-            </line>
-            <line>
-              <![CDATA[Purchase Transaction ID is not empty or not null]]>
-            </line>
-            <line>
-              <![CDATA[zipcode accepted by API: SW1A 1AA]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- purchaseApi -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:s2s.zipcode@30ea8c23]" started-at="2026-01-13T16:20:44 IST" name="tearDown" finished-at="2026-01-13T16:20:47 IST" duration-ms="3004" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=purchaseApi status=SUCCESS method=zipcode.purchaseApi(java.util.Map,java.util.Map)[pri:0, instance:s2s.zipcode@30ea8c23] output=Generated Random Double: 49.93]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- s2s.zipcode -->
+      </class> <!-- PSPCardsIntegrations.zaakpay -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
