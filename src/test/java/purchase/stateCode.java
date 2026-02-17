@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
+import com.paysecure.Page.RouteManager;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
@@ -53,9 +54,10 @@ public class stateCode extends baseClass{
 			pay = new payu3dPage(getDriver());
 			otp= new pspOTPPage();
 	  }
-	
+	  
+	  
   @Test(dataProvider = "StateCodeProvider", dataProviderClass = DataProviders.class)
-  public void f(Map<String, String> StateCodeData, Map<String, String> cardData) {
+  public void f(Map<String, String>cardData , Map<String, String>StateCodeData ) throws InterruptedException {
 		WebDriver driver = baseClass.getDriver();
 	      
 			String stateCode = StateCodeData.getOrDefault("TestData", "");
@@ -75,11 +77,28 @@ public class stateCode extends baseClass{
 			double defaultAmount = testData_CreateRoll.parseAmount(defaultAmountStr, 100.00);
 			System.err.println(stateCode +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
 
+		    String Merchant = cardData.getOrDefault("Merchant", "");
+		    String RouteToBankMid = cardData.getOrDefault("RouteToBankMid", "");
+		    String RouteToMidOrBank = cardData.getOrDefault("RouteToMidOrBank", "");
 			//Validate data is not empty
 			if (stateCode.isEmpty() || CardNumber.isEmpty()) {
 				Reporter.log("Skipping test - Empty email or card number", true);
 				throw new SkipException("Empty test data");
 			}
+			
+		    RouteManager.ensureRoute(
+			        getDriver(),
+			        Merchant,
+			        Merchant,
+			        PaymentMethod,
+			        PaymentMethod,
+			        Currency,
+			        Currency,
+			        PSP,
+			        RouteToBankMid,
+			        RouteToMidOrBank
+			    );
+		    
 	    Reporter.log("StateCode test case will run for this PSPCardsIntegrations :- "+PSP, true);
 
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
@@ -127,9 +146,8 @@ public class stateCode extends baseClass{
 		         Response response = RestAssured.given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
 				.body(requestBody).when().post("api/v1/purchases").then().extract().response();
 		         
-				
 		         checkoutUrl = response.jsonPath().getString("checkout_url");
-					purchaseId = response.jsonPath().getString("purchaseId");
+				 purchaseId = response.jsonPath().getString("purchaseId");
 		         
 					Reporter.log("stateCode: " + stateCode + " → Status: " + response.getStatusCode(), true);
 					Reporter.log("Response Body: " + response.getBody().asPrettyString(), true);
@@ -171,7 +189,7 @@ public class stateCode extends baseClass{
 		 				mcp.userEnterCardInformationForPayment( CardHolder, CardNumber, Expiry, CVV);
 		 				 mcp.clickOnPay();
 		 				 
-		 				if (payu.equalsIgnoreCase("payu")) {
+		 				if (PSP.equalsIgnoreCase("payu")) {
 							pay.payForPayu(Currency, purchaseId, ExpectedStatus,PaymentMethod);
 						}
 		                
@@ -275,16 +293,11 @@ public class stateCode extends baseClass{
 		                    PSP                  // PSP name
 		            );
 
-		            // Fail the test in TestNG
 		            Assert.fail(comment, e);
 		 		} finally {
 		 			if (driver != null)
 		 				driver.quit();
 		 		}
-
-         
   }
   
-
-
 }

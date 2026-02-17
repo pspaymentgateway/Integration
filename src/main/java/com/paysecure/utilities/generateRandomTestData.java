@@ -40,123 +40,85 @@ public class generateRandomTestData {
 	    public static String generateRandomDoublePrice(
 	            double minAmount,
 	            double maxAmount,
-	            double defaultAmount) {
-
-	        Random random = new Random();
+	            Double providedAmount   // nullable on purpose
+	    ) {
 
 	        Reporter.log(
-	            "Input Amounts - Min: " + minAmount +
+	            "Amount Inputs → Min: " + minAmount +
 	            ", Max: " + maxAmount +
-	            ", Default: " + defaultAmount,
+	            ", Provided: " + providedAmount,
 	            true
 	        );
 
 	        /* =====================================================
 	           STEP 1: Validate Range
 	           ===================================================== */
-	        boolean isValidRange = (minAmount > 0 && maxAmount > minAmount);
-
-	        if (!isValidRange) {
+	        if (minAmount <= 0 || maxAmount <= minAmount) {
 
 	            Reporter.log(
-	                "Invalid range detected. Min=" + minAmount +
-	                ", Max=" + maxAmount,
+	                "❌ Invalid range configuration. Using system fallback.",
 	                true
 	            );
 
-	            if (defaultAmount > 0) {
-	                Reporter.log(
-	                    "Provided default amount is used because range is invalid.",
-	                    true
-	                );
-	                return String.format("%.2f", defaultAmount);
-	            }
-
-	            Reporter.log(
-	                "System fallback amount is used because both range and default are invalid.",
-	                true
-	            );
 	            return "100.00";
 	        }
 
 	        /* =====================================================
-	           STEP 2: Boundary Classification Message
+	           STEP 2: No Amount Provided
 	           ===================================================== */
-	        String boundaryMessage;
-
-	        if (defaultAmount == minAmount) {
-	            boundaryMessage = "Input amount is equal to minimum boundary.";
-	        } else if (defaultAmount == maxAmount) {
-	            boundaryMessage = "Input amount is equal to maximum boundary.";
-	        } else if (defaultAmount < minAmount) {
-	            boundaryMessage = "Input amount is less than minimum boundary.";
-	        } else if (defaultAmount > maxAmount) {
-	            boundaryMessage = "Input amount is greater than maximum boundary.";
-	        } else {
-	            boundaryMessage = "Input amount is within the valid range.";
-	        }
-
-	        Reporter.log(boundaryMessage, true);
-
-	        /* =====================================================
-	           STEP 3: Boundary Intent Check
-	           ===================================================== */
-	        if (defaultAmount == minAmount || defaultAmount == maxAmount) {
+	        if (providedAmount == null) {
 
 	            Reporter.log(
-	                "Boundary value provided by tester. Using default amount directly.",
+	                "⚠ No amount provided. Using minimum amount.",
 	                true
 	            );
 
-	            return String.format("%.2f", defaultAmount);
+	            return String.format("%.2f", minAmount);
 	        }
 
 	        /* =====================================================
-	           STEP 4: Validate Default Amount
+	           STEP 3: Exact Boundary Values
 	           ===================================================== */
-	        boolean isValidDefault =
-	                defaultAmount > 0 &&
-	                defaultAmount >= minAmount &&
-	                defaultAmount <= maxAmount;
-
-	        /* =====================================================
-	           STEP 5: Decision Logic
-	           ===================================================== */
-	        if (isValidDefault) {
+	        if (providedAmount == minAmount || providedAmount == maxAmount) {
 
 	            Reporter.log(
-	                "Valid range and default detected. Generating random value.",
+	                "✅ Boundary amount provided explicitly: " + providedAmount,
 	                true
 	            );
 
-	            double value =
-	                    minAmount + random.nextDouble() * (maxAmount - minAmount);
-
-	            value = Math.round(value * 100.0) / 100.0;
-
-	            if (value < minAmount) {
-	                value = minAmount;
-	            }
-
-	            if (value > maxAmount) {
-	                value = maxAmount;
-	            }
-
-	            return String.format("%.2f", value);
+	            return String.format("%.2f", providedAmount);
 	        }
 
+	        /* =====================================================
+	           STEP 4: Within Valid Range
+	           ===================================================== */
+	        if (providedAmount > minAmount && providedAmount < maxAmount) {
+
+	            Reporter.log(
+	                "✅ Amount within valid range. Using exact value: " + providedAmount,
+	                true
+	            );
+
+	            return String.format("%.2f", providedAmount);
+	        }
+
+	        /* =====================================================
+	           STEP 5: Outside Range (Fallback)
+	           ===================================================== */
 	        Reporter.log(
-	            "Default amount is outside valid range. Using system fallback value.",
+	            "⚠ Amount outside valid range (" + minAmount + "–" + maxAmount +
+	            "). Provided: " + providedAmount +
+	            ". Using safe fallback value.",
 	            true
 	        );
 
-	        return "100.00";
+	        // Safe fallback inside range (business friendly)
+	        double fallback = minAmount + ((maxAmount - minAmount) / 2);
+
+	        return String.format("%.2f", fallback);
 	    }
 
 
-
-
-	    
 	 // Generates a random Indian mobile number like "9876543210"
 	    public static String generateRandomIndianMobileNumber() {
 	        // Indian mobile numbers start with 6, 7, 8, or 9

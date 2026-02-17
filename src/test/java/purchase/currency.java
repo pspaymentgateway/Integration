@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
+import com.paysecure.Page.RouteManager;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
@@ -52,18 +53,17 @@ public class currency extends baseClass {
 	}
 
 	@Test(dataProvider ="CurrencyProvider", dataProviderClass = DataProviders.class)
-	public void validationForCurrencyField(Map<String, String> CurrencyData, Map<String, String> cardData) {
+	public void validationForCurrencyField(Map<String, String>cardData , Map<String, String>CurrencyData ) throws InterruptedException {
 		WebDriver driver=baseClass.getDriver();
 	      
 			String Currency = CurrencyData.getOrDefault("TestData", "");
 			String ExpectedStatus = CurrencyData.getOrDefault("Status", "");
-			String RunFlag = CurrencyData.getOrDefault("RunFlag", "");
+		
 			String CardHolder = cardData.getOrDefault("CardholderName", "");
 			String CardNumber = cardData.getOrDefault("CardNumber", "");
 			String Expiry = cardData.getOrDefault("Expiry", "");
 			String CVV = cardData.getOrDefault("CVV", "");
 			String PSP = cardData.getOrDefault("PSP", "");
-			String cardRunFlag = cardData.getOrDefault("RunFlag", "");
 			String minAmountStr = cardData.getOrDefault("MinAmount", "");
 			String maxAmountStr = cardData.getOrDefault("MaxAmount", "");
 			String defaultAmountStr = cardData.getOrDefault("DefaultAmount", "");
@@ -72,6 +72,9 @@ public class currency extends baseClass {
 			double defaultAmount = testData_CreateRoll.parseAmount(defaultAmountStr, 100.00);
 			String PaymentMethod=cardData.getOrDefault("PaymentMethod","");
 
+		    String Merchant = cardData.getOrDefault("Merchant", "");
+		    String RouteToBankMid = cardData.getOrDefault("RouteToBankMid", "");
+		    String RouteToMidOrBank = cardData.getOrDefault("RouteToMidOrBank", "");
 			System.err.println(Currency +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
 
 			//Validate data is not empty
@@ -79,6 +82,19 @@ public class currency extends baseClass {
 				Reporter.log("Skipping test - Empty email or card number", true);
 				throw new SkipException("Empty test data");
 			}
+			
+//		    RouteManager.ensureRoute(
+//			        getDriver(),
+//			        Merchant,
+//			        Merchant,
+//			        PaymentMethod,
+//			        PaymentMethod,
+//			        Currency,
+//			        Currency,
+//			        PSP,
+//			        RouteToBankMid,
+//			        RouteToMidOrBank
+//			    );
 			
 			
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
@@ -180,7 +196,7 @@ public class currency extends baseClass {
           
                 mcp.userEnterCardInformationForPayment( CardHolder, CardNumber, Expiry, CVV);
                 mcp.clickOnPay();
-            	if (payu.equalsIgnoreCase("payu")) {
+            	if (PSP.equalsIgnoreCase("payu")) {
 					pay.payForPayu(Currency, purchaseId, ExpectedStatus,PaymentMethod);
 				}
                 

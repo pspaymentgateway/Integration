@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
+import com.paysecure.Page.RouteManager;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
@@ -33,7 +34,6 @@ import org.testng.annotations.BeforeMethod;
 
 public class zipcode extends baseClass {
 
-	private WebDriver driver;
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
@@ -41,11 +41,8 @@ public class zipcode extends baseClass {
 	transactionPage tp;
 	payu3dPage pay;
 	pspOTPPage otp;
-    String status = "";
-    String comment = "";
-   
-    
-    // Store base URI to reuse in S2S call
+	String status = "";
+	String comment = "";
     String baseUri;
     
 	@BeforeMethod
@@ -56,14 +53,9 @@ public class zipcode extends baseClass {
 		otp= new pspOTPPage();
 	}
 
-	
 	@Test(dataProvider ="ZipCodeProvider", dataProviderClass = DataProvidersS2S.class)
-	public void purchaseApi(Map<String, String> ZipcodeData, Map<String, String> cardData ) throws Exception {
+	public void purchaseApi(Map<String, String> cardData , Map<String, String> ZipcodeData ) throws Exception {
 		WebDriver driver = baseClass.getDriver();
-		
-		
-		// Store baseUri for later use
-		// Store baseUri for later use
 		baseUri = PropertyReader.getPropertyForS2S("baseURI");
 		RestAssured.baseURI = baseUri;
 		String zipCode = ZipcodeData.getOrDefault("TestData", "");
@@ -73,15 +65,19 @@ public class zipcode extends baseClass {
 		String Expiry = cardData.getOrDefault("Expiry", "");
 		String CVV = cardData.getOrDefault("CVV", "");
 		String PSP = cardData.getOrDefault("PSP", "");
-		String cardRunFlag = cardData.getOrDefault("RunFlag", "");
 		String PaymentMethod = cardData.getOrDefault("PaymentMethod","");
 		String Currency = cardData.getOrDefault("Currency", "");
+		String Merchant = cardData.getOrDefault("Merchant", "");
+		String RouteToBankMid = cardData.getOrDefault("RouteToBankMid", "");
+		String RouteToMidOrBank = cardData.getOrDefault("RouteToMidOrBank", "");
+
 		String minAmountStr = cardData.getOrDefault("MinAmount", "");
 		String maxAmountStr = cardData.getOrDefault("MaxAmount", "");
 		String defaultAmountStr = cardData.getOrDefault("DefaultAmount", "");
+
 		double minAmount = testData_CreateRoll.parseAmount(minAmountStr, 0.0);
 		double maxAmount = testData_CreateRoll.parseAmount(maxAmountStr, 0.0);
-		double defaultAmount = testData_CreateRoll.parseAmount(defaultAmountStr, 100.00);
+		double defaultAmount = testData_CreateRoll.parseAmount(defaultAmountStr, 100.0);
 		System.err.println(zipCode +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
 
 		if (zipCode.isEmpty() || CardNumber.isEmpty()) {
@@ -89,9 +85,23 @@ public class zipcode extends baseClass {
 			throw new SkipException("Empty test data");
 		}
 
-		if (ExpectedStatus == null || ExpectedStatus.trim().isEmpty()) {
-			ExpectedStatus = "Pass";
-		}
+		// ---------- Login BEFORE RouteManager ----------
+		lp = new loginPage(getDriver());
+		lp.login();
+
+		// ---------- Route Manager Configuration ----------
+		RouteManager.ensureRoute(
+				getDriver(),
+				Merchant,
+				Merchant,
+				PaymentMethod,
+				PaymentMethod,
+				Currency,
+				Currency,
+				PSP,
+				RouteToBankMid,
+				RouteToMidOrBank
+		);
 		
         String token = PropertyReader.getPropertyForS2S("tokenS2S");
         String BrandID = PropertyReader.getPropertyForS2S("brandIdS2S");
@@ -176,28 +186,27 @@ public class zipcode extends baseClass {
 
 	public void s2sMethod(String zipCode, String ExpectedStatus, String PSP, String CardNumber, String Expiry, String CVV,String PaymentMethod) throws Exception {
 
-	    WebDriver driver = baseClass.getDriver();
-	    lp = new loginPage(getDriver());
-	    lp.login();
+		WebDriver driver = baseClass.getDriver();
 
-	    if (purchaseId == null || purchaseId.isEmpty()) {
-	        Reporter.log("Skipping S2S → purchaseId is NULL (purchase failed)", true);
-	        return;
-	    }
+		if (purchaseId == null || purchaseId.isEmpty()) {
+			Reporter.log("Skipping S2S → purchaseId is NULL (purchase failed)", true);
+			status = "FAIL";
+			comment = "Purchase ID is null, cannot proceed with S2S";
+			ExcelWriteUtility.writeResults2s("s2s_Result", zipCode, ExpectedStatus, "FAIL", comment, "N/A", PSP, PaymentMethod);
+			driver.quit();
+			return;
+		}
 
-	    // CRITICAL FIX: Reset RestAssured.baseURI to ensure proper URL construction
-	    RestAssured.baseURI = baseUri;
-	    
-	    // Construct S2S endpoint
+		RestAssured.baseURI = baseUri;
+		
 		String endpoint = "/api/v1/p/" + purchaseId + "?s2s=true";
 		System.err.println("S2S Endpoint: " + endpoint);
 		System.err.println("Full URL: " + baseUri + endpoint);
 
-		// OPTION 1: Use same token as purchase creation (RECOMMENDED)
-		String url=PropertyReader.getPropertyForS2S("url");
-	    String token = PropertyReader.getPropertyForS2S("tokenS2S");
-	    String brandId = PropertyReader.getPropertyForS2S("brandIdS2S");
-	    String payu = PropertyReader.getPropertyForS2S("payu");
+		String url = PropertyReader.getPropertyForS2S("url");
+		String token = PropertyReader.getPropertyForS2S("tokenS2S");
+		String brandId = PropertyReader.getPropertyForS2S("brandIdS2S");
+	  
 	    
 	    
 	    String requestBody =
@@ -219,52 +228,14 @@ public class zipcode extends baseClass {
 	    		"  \"screen_height\": 1080\n" +
 	    		"}";
 
-	    // Add retry logic for S2S call
-	    Response response = null;
-	    int maxRetries = 3;
-	    int retryCount = 0;
-	    boolean success = false;
-	    
-	    while (retryCount < maxRetries && !success) {
-	        try {
-	            response = RestAssured.given()
-	                    .header("Authorization", "Bearer " + token)
-	                    .header("Accept", "application/json")
-	                    .header("brandId", brandId)
-	                    .contentType(ContentType.JSON)
-	                    .body(requestBody)
-	                    .when()
-	                    .post(endpoint)
-	                    .then()
-	                    .log().all()
-	                    .extract()
-	                    .response();
-	            
-	            if (response.statusCode() == 202) {
-	                success = true;
-	                Reporter.log("S2S call successful on attempt " + (retryCount + 1), true);
-	            } else if (response.statusCode() == 400) {
-	                String errorMsg = response.jsonPath().getString("message");
-	                if (errorMsg != null && errorMsg.contains("PurchaseId Not found")) {
-	                    Reporter.log("Retry " + (retryCount + 1) + ": Purchase not yet available", true);
-	                    Thread.sleep(2000); // Wait 2 seconds before retry
-	                    retryCount++;
-	                } else {
-	                    // Different error, don't retry
-	                    break;
-	                }
-	            } else {
-	                // Other error, don't retry
-	                break;
-	            }
-	        } catch (Exception e) {
-	            Reporter.log("Exception on retry " + (retryCount + 1) + ": " + e.getMessage(), true);
-	            retryCount++;
-	            if (retryCount < maxRetries) {
-	                Thread.sleep(2000);
-	            }
-	        }
-	    }
+		Response response = RestAssured.given()
+				.header("Authorization", "Bearer " + token)
+				.header("Accept", "application/json")
+				.header("brandId", brandId)
+				.contentType(ContentType.JSON)
+				.body(requestBody)
+				.post(endpoint);
+
 	    
 	    if (response == null || response.statusCode() != 202) {
 	        status = "FAIL";
@@ -282,18 +253,19 @@ public class zipcode extends baseClass {
 	        Reporter.log("callback_url is NULL → Payment failed due to S2S error", true);
 
 	        status = "FAIL";
-	        comment = "callback_url null for purchaseId " + purchaseId;
+	        comment = "callback_url null for currency " + purchaseId;
 	        ExcelWriteUtility.writeResults2s("s2s_Result", zipCode,ExpectedStatus, status, comment, purchaseId,PSP,PaymentMethod);
 	        driver.quit();
 	        return;
 	    }
 
 	    driver.get(callback_url);
-	    if(payu.equalsIgnoreCase("payu")) {
+	    if(PSP.equalsIgnoreCase("payu")) {
 	    	pay.payForPayu(zipCode,purchaseId,ExpectedStatus,PaymentMethod);
 	    }
 
 	    otp.enterOTP(PSP);
+	    
 	    Thread.sleep(7000);
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.urlContains("issucces"));
@@ -334,6 +306,7 @@ public class zipcode extends baseClass {
                 status = "FAIL"; // Test failed - expected failure but got success
                 comment = "FAIL → Payment succeeded but expected to fail";
             }
+            
 
             Reporter.log(comment, true);
 

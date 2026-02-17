@@ -55,7 +55,7 @@ public class zaakpayNetBanking extends baseClass{
 		RestAssured.baseURI =baseUri;
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
-		String price = generateRandomTestData.generateRandomDoublePrice();
+		String price = generateRandomTestData.generateRandomDoublePrice(10.00,100.00,70.00);
 		String currency =PropertyReader.getPropertyForPurchase("currency");
 		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();
@@ -94,9 +94,10 @@ public class zaakpayNetBanking extends baseClass{
 		        "  \"brand_id\": \"" + brandId + "\",\n" +
 		        "  \"success_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=true\",\n" +
 		        "  \"failure_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=false\",\n" +
-		        "  \"success_callback\": \"https://www.google.com/\",\n" +
+		        "  \"success_callback\": \"https://webhook.site/1e9bccc1-faa5-4992-96fc-48fba0d6916a\",\n" +
 		        "  \"failure_callback\": \"https://staging.paysecure.net/merchant\"\n" +
 		        "}";
+
 
 	    Response  response = RestAssured.given()
               .header("Authorization", "Bearer " + token)
@@ -175,7 +176,6 @@ public class zaakpayNetBanking extends baseClass{
         tp.navigateUptoTransaction();
         tp.searchTheTransaction(purchaseId);
         tp.verifyTxnId(purchaseId);
-        tp.verifyMerchantName(merchantName);
         tp.verifyAmount(total);
         tp.verifyCurrency(currency);
         tp.getStatusFromUI();

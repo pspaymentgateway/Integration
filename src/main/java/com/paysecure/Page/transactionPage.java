@@ -371,6 +371,7 @@ public class transactionPage {
 		Reporter.log("Entering password on PSPCardsIntegrations side", true);
 		actionDriver.enterText(passwordPSP, password);
 
+		
 		Reporter.log("Clicking Sign In button on PSPCardsIntegrations side", true);
 		actionDriver.clickUsingJS(signinButtonPSP);
 

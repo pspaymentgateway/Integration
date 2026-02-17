@@ -2,10 +2,8 @@ package com.paysecure.Page;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.TimeoutException;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -64,6 +62,18 @@ public class CashierPage {
 	private By easybuzzFailureBtn=By.xpath(cashierPageLocators.easybuzzFailureBtn);
 	private By easybuzzSuccessBtn=By.xpath(cashierPageLocators.easybuzzSuccessBtn);
 	
+	//panetics
+	private By paneticsOTP=By.xpath(cashierPageLocators.paneticsOTP);
+	private By paneticsBtn=By.xpath(cashierPageLocators.paneticsBtn);
+	
+	//Telr
+	private By telrEnterOTP=By.xpath(cashierPageLocators.telrEnterOTP);
+	private By telrSumbitButton=By.xpath(cashierPageLocators.telrSumbitButton);
+	
+	//manta pay 
+	private By mantapayOTP=By.xpath(cashierPageLocators.mantapayOTP);
+	private By mantapayBtn=By.xpath(cashierPageLocators.mantapayBtn);
+	
 	private ActionDriver actionDriver;
 	// page factory constructor
 	public CashierPage(WebDriver driver) {
@@ -98,7 +108,7 @@ public class CashierPage {
 	}
 	
 	public void clickOnPay() {
-		actionDriver.scrollToElement(total);
+		actionDriver.scrollToElement(pay);
 		Reporter.log("Moved to the Pay button", true);
 		actionDriver.click(pay);
 		Reporter.log("Clicked on the Pay button to proceed with payment", true);
@@ -118,6 +128,7 @@ public class CashierPage {
 	        System.out.println(" Failed to open staging environment: " + e.getMessage());
 	    }
 	}
+	
 	
 	
 	public boolean isCardNumberInvalid() {
@@ -272,6 +283,12 @@ public class CashierPage {
 	
 	public void zaakpaySubmitButtonOnBankPage() {
 	    actionDriver.click(zaakpaySubmitButton);
+	    Reporter.log("Clicked on submit button on bank page", true);
+	}
+	
+	public void panaticsSubmitButtonOnBankPage() {
+		actionDriver.enterText(paneticsOTP, "123456");
+	    actionDriver.click(paneticsBtn);
 	    Reporter.log("Clicked on ZaakPay submit button on bank page", true);
 	}
 
@@ -300,6 +317,18 @@ public class CashierPage {
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + key);
 		}
+	}
+	
+	public void handleTelrs3dsPage(){
+		//actionDriver.enterText(telrEnterOTP, "1234");
+		
+		actionDriver.sendKeysJS(telrEnterOTP, "1234");
+		actionDriver.click(telrSumbitButton);
+	}
+	
+	public void mantapay3dsPage(String mantapayOtp){
+		actionDriver.sendKeysJS(mantapayOTP, mantapayOtp);
+		actionDriver.click(mantapayBtn);
 	}
 
 	

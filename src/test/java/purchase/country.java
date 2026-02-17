@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
+import com.paysecure.Page.RouteManager;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
@@ -53,7 +54,7 @@ public class country extends baseClass {
 	  }
 	 
   @Test (dataProvider ="CountryProvider", dataProviderClass = DataProviders.class)
-  public void validationForCountryField(Map<String, String> CountryData, Map<String, String> cardData) {
+  public void validationForCountryField(Map<String, String>cardData , Map<String, String> CountryData) throws InterruptedException {
       WebDriver driver=baseClass.getDriver();
       
 		String Country = CountryData.getOrDefault("TestData", "");
@@ -74,11 +75,27 @@ public class country extends baseClass {
 		double defaultAmount = testData_CreateRoll.parseAmount(defaultAmountStr, 100.00);
 		System.err.println(Country +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
 
+	    String Merchant = cardData.getOrDefault("Merchant", "");
+	    String RouteToBankMid = cardData.getOrDefault("RouteToBankMid", "");
+	    String RouteToMidOrBank = cardData.getOrDefault("RouteToMidOrBank", "");
 		//Validate data is not empty
 		if (Country.isEmpty() || CardNumber.isEmpty()) {
 			Reporter.log("Skipping test - Empty email or card number", true);
 			throw new SkipException("Empty test data");
 		}
+		
+	    RouteManager.ensureRoute(
+		        getDriver(),
+		        Merchant,
+		        Merchant,
+		        PaymentMethod,
+		        PaymentMethod,
+		        Currency,
+		        Currency,
+		        PSP,
+		        RouteToBankMid,
+		        RouteToMidOrBank
+		    );
       
       Reporter.log("Email test case will run for this PSPCardsIntegrations :- "+PSP, true);
     
@@ -178,7 +195,7 @@ public class country extends baseClass {
 	                
 	                mcp.userEnterCardInformationForPayment(CardHolder, CardNumber, Expiry, CVV);
 	                mcp.clickOnPay();
-	            	if (payu.equalsIgnoreCase("payu")) {
+	            	if (PSP.equalsIgnoreCase("payu")) {
 						pay.payForPayu(Currency, purchaseId, ExpectedStatus,PaymentMethod);
 					}
 	                

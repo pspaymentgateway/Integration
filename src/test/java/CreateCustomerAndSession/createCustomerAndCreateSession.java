@@ -2,246 +2,257 @@ package CreateCustomerAndSession;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
+import com.paysecure.Page.RouteManager;
+import com.paysecure.Page.loginPage;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.pspOTPPage;
+import com.paysecure.Page.routeManagerCC;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
-import com.paysecure.utilities.DataProviders;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
+import com.paysecure.utilities.dataProvidersForCC;
 import com.paysecure.utilities.generateRandomTestData;
+import com.paysecure.utilities.testData_CreateRoll;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-public class createCustomerAndCreateSession extends baseClass{
+public class createCustomerAndCreateSession extends baseClass {
 
-	private WebDriver driver;
-	loginPage lp;
-	String checkoutUrl;
-	//String purchaseId;
-	CashierPage mcp;
-	transactionPage tp;
-	payu3dPage pay;
-	String stateCode;
-	String customerId;
-	String	sessionId;
-	String	sessionUrl;
-	pspOTPPage otp;
-    String status = "";
-    String comment = "";
-    String city;
-    
-    // Store base URI to reuse in S2S call
-    String baseUri;
-    
-	@BeforeMethod
-	public void beforeMethod() throws InterruptedException {
-		lp = new loginPage(getDriver());
-		mcp = new CashierPage(getDriver());
-		tp = new transactionPage(getDriver());
-		pay=new payu3dPage(getDriver());
-		otp= new pspOTPPage();
-	
-	}
-	
-	@Test
-	public void createCustomer() {
-		String brandId =PropertyReader.getPropertyForCreateCustomerSession("BrandIDCC");
-		String token =PropertyReader.getPropertyForCreateCustomerSession("TokenCC");
-		String firstName = generateRandomTestData.generateRandomFirstName();
-		
-		String emailId = generateRandomTestData.generateRandomEmail();
-		String mobileNumber=generateRandomTestData.generateRandomIndianMobileNumber();
-		String merchantCSID=generateRandomTestData.generateRandomMerchantCustomerId();
-		
-		baseUri = PropertyReader.getPropertyForCreateCustomerSession("baseURICC");
-		String country="IN";
-		RestAssured.baseURI = baseUri;
-		String requestBody = "{\n" +
-				"  \"merchantCustomerId\": \""+merchantCSID+"\",\n" +
-				"  \"fullName\": \""+firstName+"\",\n" +
-				"  \"emailId\": \""+emailId+"\",\n" +
-				"  \"phoneNo\": \""+mobileNumber+"\",\n" +
-				"  \"city\": \"juneau\",\n" +
-				"  \"stateCode\": \"MH\",\n" +
-				"  \"zipCode\": \"99812\",\n" +
-				"  \"country\": \""+country+"\",\n" +
-				"  \"custRegDate\": \"2024-11-23\",\n" +
-				"  \"successTrans\": \"23\",\n" +
-				"  \"extraParam\": {}\n" +
-				"}";
-		
-		Response response = RestAssured.given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
-				.body(requestBody).when().post("api/v1/customer").then().log().all().statusCode(202).extract()
-				.response();
-		
-		customerId = response.jsonPath().getString("customerId");
-		System.out.println(customerId);
-	}
-	
-	
-	
-	@Test(dependsOnMethods ="createCustomer",invocationCount = 3,dataProvider = "CreateCCCardData", dataProviderClass = DataProviders.class)
-	public void createSession(String cardHolder, String cardNumber, String expiry, String cvv,String PSP) throws Exception {
-		WebDriver driver=baseClass.getDriver();
-		String brandId =PropertyReader.getPropertyForCreateCustomerSession("BrandIDCC");
-		String currency =PropertyReader.getPropertyForCreateCustomerSession("currencyCC");
-		String token =PropertyReader.getPropertyForCreateCustomerSession("TokenCC");
-		String baseUri = PropertyReader.getPropertyForCreateCustomerSession("baseURICC");
-		String paymentMethod=PropertyReader.getPropertyForCreateCustomerSession("paymentMethods");
-		String price = generateRandomTestData.generateRandomDoublePrice();
+    private WebDriver driver;
+    private loginPage lp;
+    private CashierPage mcp;
+    private transactionPage tp;
+    private pspOTPPage otp;
+    private payu3dPage pay;
 
-	    String payu1 = PropertyReader.getPropertyForS2S("payu");
+    private String customerId;
 
-		RestAssured.baseURI = baseUri;
-		
-		String requestBody = "{\n" +
-		        "  \"customerId\": \"" + customerId + "\",\n" +
-		        "  \"spei_clabe\": \"646180110400000007\",\n" +
-		        "  \"spei_debitCard\": \"4189143173884480\",\n" +
-		        "  \"spei_mobileNo\": \"8180833954\",\n" +
-		    
-		        "  \"tax_number\": \"39933551809\",\n" +
-		        "  \"currency\": \"" + currency + "\",\n" +
-		        "  \"totalAmount\": \"" + price + "\",\n" +
-		        "  \"paymentMethod\": \"" + paymentMethod + "\",\n" +
-		        "  \"success_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=true\",\n" +
-		        "  \"failure_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=false\"\n" +
-		        "}";
+    private String status = "";
+    private String comment = "";
 
-		
-		Response response = 
-				RestAssured.given().header("Authorization", "Bearer " + token)
-				
-				.header("brandId", brandId)
-				.contentType(ContentType.JSON)
-				.body(requestBody).when().post("api/v1/createSession").then().log().all().statusCode(200).extract()
-				.response();
-		
-		// Assign to global variables
-		sessionUrl = response.jsonPath().getString("sessionUrl");
-		sessionId = response.jsonPath().getString("sessionId");
+    // ========================= CLEAR ROUTE CACHE =========================
+    @BeforeSuite
+    public void clearRouteCache() {
+        RouteManager.clearCache();
+    }
 
-		// Log API response details
-		Reporter.log("Purchase API call successful", true);
-		Reporter.log("Purchase ID: " + sessionId, true);
-		Reporter.log("Checkout URL received: " + sessionUrl, true);
+    // ========================= SETUP =========================
+    @BeforeMethod
+    public void beforeMethod() throws InterruptedException {
+        driver = getDriver();
+        lp = new loginPage(driver);
+        mcp = new CashierPage(driver);
+        tp = new transactionPage(driver);
+        pay = new payu3dPage(driver);
+        otp = new pspOTPPage();
+        lp.login();
+    }
 
-		// Navigate to checkout page
-		driver.get(sessionUrl);
-		Reporter.log("Navigated to checkout page URL successfully", true);
-	
-	       mcp.userEnterCardInformationForPayment( cardHolder, cardNumber, expiry, cvv);
-           mcp.clickOnPay();
+    // ========================= CREATE CUSTOMER =========================
+    @Test
+    public void createCustomer() {
 
-           if (payu1.equalsIgnoreCase("payu")) {
-               pay.payForPayu(currency, sessionId, paymentMethod,paymentMethod);
-           }
+        String baseUri = PropertyReader.getPropertyForCreateCustomerSession("baseURICC");
+        String token = PropertyReader.getPropertyForCreateCustomerSession("TokenCC");
 
-           otp.enterOTP(PSP);
-           
-           if (mcp.isCardNumberInvalid()) {
-        	   status = "FAIL";
-        	   String ExpectedStatus="Fail";
-               comment = "Payment Failed Cause Of Luhn ";
-          Reporter.log("Invalid card number → Luhn check failed", true);
-          ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency,ExpectedStatus, status, comment,sessionId,PSP,paymentMethod);
-              
-             //  driver.quit();
-               return;
-           }
-           
-           // Wait until parameter appears in URL
-           WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-           wait.until(ExpectedConditions.urlContains("issucces"));
+        RestAssured.baseURI = baseUri;
 
-           String redirectUrl = driver.getCurrentUrl();
-           Reporter.log("Redirected URL: " + redirectUrl, true);
+        String requestBody = "{\n" +
+                "  \"merchantCustomerId\": \"" + generateRandomTestData.generateRandomMerchantCustomerId() + "\",\n" +
+                "  \"fullName\": \"" + generateRandomTestData.generateRandomFirstName() + "\",\n" +
+                "  \"emailId\": \"" + generateRandomTestData.generateRandomEmail() + "\",\n" +
+                "  \"phoneNo\": \"" + generateRandomTestData.generateRandomIndianMobileNumber() + "\",\n" +
+                "  \"city\": \"juneau\",\n" +
+                "  \"stateCode\": \"MH\",\n" +
+                "  \"zipCode\": \"99812\",\n" +
+                "  \"country\": \"IN\"\n" +
+                "}";
 
-           String flag = Arrays.stream(redirectUrl.split("\\?")[1].split("&"))
-                   .filter(p -> p.startsWith("issucces="))
-                   .map(p -> p.split("=")[1])
-                   .findFirst().orElse("");
+        Response response = RestAssured.given()
+                .header("Authorization", "Bearer " + token)
+                .contentType(ContentType.JSON)
+                .body(requestBody)
+                .post("api/v1/customer")
+                .then()
+                .extract()
+                .response();
 
-           
-           if (flag.equalsIgnoreCase("false")) {
-               status = "FAIL";
-             String ExpectedStatus="Fail";
-               comment = "Payment Failed";
+        Reporter.log(response.asPrettyString(), true);
 
-               Reporter.log(comment, true);
+        customerId = response.jsonPath().getString("customerId");
+        Assert.assertNotNull(customerId, "Customer ID should not be null");
 
-               ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency,ExpectedStatus, status, comment,sessionId,PSP,paymentMethod);
-             //  driver.quit();
-               return;
-           }
-           else if (flag.equalsIgnoreCase("true")) {
-               status = "PASS";
-               String ExpectedStatus="Pass";
-               comment = "Payment Successfully";
+        Reporter.log("Customer created successfully → " + customerId, true);
+    }
 
-               Reporter.log(comment, true);
+    // ========================= CREATE SESSION + PAYMENT =========================
+    @Test(
+            dependsOnMethods = "createCustomer",
+            dataProvider = "RoutingData",
+            dataProviderClass = dataProvidersForCC.class
+    )
+    public void createSession(Map<String, String> data) throws Exception {
 
-               ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency,ExpectedStatus, status, comment,sessionId,PSP,paymentMethod);
+        if (!data.getOrDefault("RunFlag", "TRUE").equalsIgnoreCase("TRUE")) {
+            Reporter.log("Skipping due to RunFlag = FALSE", true);
+            return;
+        }
 
-           }
-           else {
-               status = "UNKNOWN";
-               String ExpectedStatus="UNKNOWN";
-               comment = "URL does not contain expected issucces parameter";
+        // ---------- TEST DATA ----------
+        String PSP = data.get("PSP");
+        String PaymentMethod = data.get("PaymentMethod");
+        String Currency = data.get("Currency");
 
-               Reporter.log(comment, true);
+        String cardHolder = data.get("CardholderName");
+        String cardNumber = data.get("CardNumber");
+        String expiry = data.get("Expiry");
+        String cvv = data.get("CVV");
 
-               ExcelWriteUtility.writeResult("CreateCustomerAndSession",currency ,ExpectedStatus, status, comment,sessionId,PSP,paymentMethod);
+        String Merchant = data.get("Merchant");
+        String RouteToMidOrBank = data.get("RouteToMidOrBank");
+        String RouteToBankMid = data.get("RouteToBankMid");
+
+        double minAmount = testData_CreateRoll.parseAmount(data.get("MinAmount"), 0.0);
+        double maxAmount = testData_CreateRoll.parseAmount(data.get("MaxAmount"), 0.0);
+        double defaultAmount = testData_CreateRoll.parseAmount(data.get("DefaultAmount"), 5.0);
+
+        data.forEach((k, v) -> Reporter.log(k + " = " + v, true));
+
+        // ========================= ROUTE MANAGER =========================
+        routeManagerCC.ensureRoute(
+                driver,
+                Merchant,
+                Merchant,
+                PaymentMethod,
+                PaymentMethod,
+                Currency,
+                Currency,
+                PSP,
+                RouteToBankMid,
+                RouteToMidOrBank
+        );
+
+        // ========================= CREATE SESSION API =========================
+        String baseUri = PropertyReader.getPropertyForCreateCustomerSession("baseURICC");
+        String token = PropertyReader.getPropertyForCreateCustomerSession("TokenCC");
+        String brandId = PropertyReader.getPropertyForCreateCustomerSession("BrandIDCC");
+
+        String price = generateRandomTestData.generateRandomDoublePrice(
+                minAmount, maxAmount, defaultAmount
+        );
+
+        RestAssured.baseURI = baseUri;
+
+        String requestBody = "{\n" +
+                "  \"customerId\": \"" + customerId + "\",\n" +
+                "  \"currency\": \"" + Currency + "\",\n" +
+                "  \"totalAmount\": \"" + price + "\",\n" +
+                "  \"paymentMethod\": \"" + PaymentMethod + "\",\n" +
+                "  \"success_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=true\",\n" +
+                "  \"failure_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=false\"\n" +
+                "}";
+
+        Response response = RestAssured.given()
+                .header("Authorization", "Bearer " + token)
+                .header("brandId", brandId)
+                .contentType(ContentType.JSON)
+                .body(requestBody)
+                .post("api/v1/createSession")
+                .then()
+                .extract()
+                .response();
+
+        Reporter.log(response.asPrettyString(), true);
+
+        String sessionId = response.jsonPath().getString("sessionId");
+        String sessionUrl = response.jsonPath().getString("sessionUrl");
+
+        Assert.assertNotNull(sessionUrl, "Session URL is null");
+
+        // ========================= UI PAYMENT =========================
+        driver.get(sessionUrl);
+
+        mcp.userEnterCardInformationForPayment(
+                cardHolder, cardNumber, expiry, cvv
+        );
+        mcp.clickOnPay();
+
+        if ("payu".equalsIgnoreCase(PSP)) {
+            pay.payForPayu(Currency, sessionId, PaymentMethod, PaymentMethod);
+        }
+
+        otp.enterOTP(PSP);
+
+        // ========================= RESULT CHECK (TRUE / FALSE / UNKNOWN) =========================
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.urlContains("issucces"));
+
+        String redirectUrl = driver.getCurrentUrl();
+        Reporter.log("Redirect URL → " + redirectUrl, true);
+
+        String flag = Arrays.stream(redirectUrl.split("\\?")[1].split("&"))
+                .filter(p -> p.startsWith("issucces="))
+                .map(p -> p.split("=")[1])
+                .findFirst()
+                .orElse("");
+
+        Boolean isSuccess;
+        String actualOutcome;
+
+        if (flag.equalsIgnoreCase("true")) {
+            isSuccess = true;
+            actualOutcome = "PASS";
+            status = "PASS";
+            comment = "Payment succeeded";
+            ExcelWriteUtility.writeResult(
+                    "CreateCustomerAndSession", Currency,status,actualOutcome,comment,sessionId,PSP,PaymentMethod
+            );
+
+        } else if (flag.equalsIgnoreCase("false")) {
+            isSuccess = false;
+            actualOutcome = "FAIL";
+            status = "FAIL";
+            comment = "Payment failed";
+            ExcelWriteUtility.writeResult(
+                    "CreateCustomerAndSession", Currency,status,actualOutcome,comment,sessionId,PSP,PaymentMethod
+            );
+
+        } else {
+            isSuccess = null; // UNKNOWN
+            actualOutcome = "UNKNOWN";
+            status = "FAIL";
+            comment = "Unknown result → issucces flag missing";
+            ExcelWriteUtility.writeResult(
+                    "CreateCustomerAndSession", Currency,status,actualOutcome,comment,sessionId,PSP,PaymentMethod
+            );
+        }
+
+        Reporter.log(comment, true);
 
 
-           }
-
-
-           // Login + Transaction check
-           mcp.openBrowserForStaging(driver,baseUri);
-           lp.login();
-           tp.navigateUptoTransaction();
-           tp.searchTheTransaction(sessionId);
-           tp.searchTheTransaction( sessionId);
-           tp.searchButton();
-           tp.clickOnTransactionId();
-           tp.verifyPurchaseTransactionIDIsNotEmpty();
-           Thread.sleep(4000);
-           
-
-	}
-	
+        // ========================= TRANSACTION VERIFICATION =========================
+        if (Boolean.TRUE.equals(isSuccess)) {
+            mcp.openBrowserForStaging(driver, baseUri);
+            lp.login();
+            tp.navigateUptoTransaction();
+            tp.searchTheTransaction(sessionId);
+            tp.clickOnTransactionId();
+            tp.verifyPurchaseTransactionIDIsNotEmpty();
+        }
+    }
 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
-	
-	
-

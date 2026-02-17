@@ -57,4 +57,18 @@ public class cashierPageLocators {
 	public static final String easybuzzFailureBtn="//input[@class='btn alert']";
 	public static final String easybuzzSuccessBtn="//input[@class='btn success']";
 	
+	//panetics
+	public static final String paneticsOTP="//input[@id='password']";
+	public static final String paneticsBtn="//button[text()='Submit']";
+	
+	//Telr
+	public static final String telrEnterOTP=""
+			+ "";
+	public static final String telrSumbitButton="//input[@value='SUBMIT']";
+	
+	//manta pay card 
+	
+	public static final String mantapayOTP="//input[@name='PaRes']";
+	public static final String mantapayBtn="//input[@value='Continue']";
+	
 }

@@ -2,255 +2,267 @@ package com.paysecure.utilities;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.poi.ss.usermodel.*;
 
 public class ExcelUtils {
 
     /* =========================================================
-       CARTESIAN DATA (Email × PSPCards)
+       CARTESIAN DATA PROVIDER
+       (PSP/Cards × City/Email/TestData)
        ========================================================= */
 
-	 public static Object[][] getCartesianData(
-	            String emailFilePath,
-	            String emailSheet,
-	            String cardFilePath,
-	            String cardSheet) {
+	public static Object[][] getCartesianData(
+	        String outerFilePath,
+	        String outerSheet,
+	        String innerFilePath,
+	        String innerSheet) {
 
-	        // Email data → NO RunFlag
-	        List<Map<String, String>> emailData =
-	                getAllRows(emailFilePath, emailSheet);
+	    List<Map<String, String>> outerData =
+	            readSheet(outerFilePath, outerSheet, true);
 
-	        // PSP Cards → RunFlag = TRUE
-	        List<Map<String, String>> cardData =
-	                getRunnableRows(cardFilePath, cardSheet);
+	    List<Map<String, String>> innerData =
+	            readSheet(innerFilePath, innerSheet, false);
 
-	        List<Object[]> finalData = new ArrayList<>();
+	    List<Object[]> finalData = new ArrayList<>();
 
-	        for (Map<String, String> emailRow : emailData) {
-	            for (Map<String, String> cardRow : cardData) {
-	                finalData.add(new Object[]{emailRow, cardRow});
-	            }
+	    
+	    System.out.println("\n===== CARTESIAN DATA PROVIDER =====");
+	    System.out.println("Card Data  rows: " + outerData.size());
+	    System.out.println("Test Data rows: " + innerData.size());
+
+	    for (Map<String, String> outerRow : outerData) {
+
+	        System.out.println("\n--- Outer Row ---");
+
+	        for (Map<String, String> innerRow : innerData) {
+
+	            finalData.add(new Object[]{outerRow, innerRow});
+
+	            System.out.println("  --> "
+	                    + outerRow + " + " + innerRow);
 	        }
-
-	        return finalData.toArray(new Object[0][0]);
-	    }
-
-	    /* =========================================================
-	       READ ALL ROWS (NO RUNFLAG) → EMAIL SHEET
-	       ========================================================= */
-
-	    private static List<Map<String, String>> getAllRows(
-	            String filePath,
-	            String sheetName) {
-
-	        List<Map<String, String>> allData = new ArrayList<>();
-
-	        try (FileInputStream fis = new FileInputStream(new File(filePath));
-	             Workbook workbook = WorkbookFactory.create(fis)) {
-
-	            Sheet sheet = workbook.getSheet(sheetName);
-	            if (sheet == null) {
-	                throw new RuntimeException("Sheet not found: " + sheetName);
-	            }
-
-	            Row headerRow = sheet.getRow(0);
-
-	            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
-	                Row row = sheet.getRow(i);
-
-	                if (row == null || isRowEmpty(row)) {
-	                    continue;
-	                }
-
-	                Map<String, String> dataMap = new HashMap<>();
-
-	                for (int j = 0; j < headerRow.getLastCellNum(); j++) {
-	                    String key = getCellValueAsString(headerRow.getCell(j));
-	                    String value = getCellValueAsString(row.getCell(j));
-	                    dataMap.put(key, value);
-	                }
-
-	                allData.add(dataMap);
-	            }
-
-	        } catch (Exception e) {
-	            throw new RuntimeException(
-	                    "Error reading Email sheet: " + sheetName, e);
-	        }
-
-	        return allData;
-	    }
-
-	    /* =========================================================
-	       READ ONLY RUNFLAG = TRUE → PSPCARDS SHEET
-	       ========================================================= */
-
-	    private static List<Map<String, String>> getRunnableRows(
-	            String filePath,
-	            String sheetName) {
-
-	        List<Map<String, String>> runnableData = new ArrayList<>();
-
-	        try (FileInputStream fis = new FileInputStream(new File(filePath));
-	             Workbook workbook = WorkbookFactory.create(fis)) {
-
-	            Sheet sheet = workbook.getSheet(sheetName);
-	            if (sheet == null) {
-	                throw new RuntimeException("Sheet not found: " + sheetName);
-	            }
-
-	            Row headerRow = sheet.getRow(0);
-
-	            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
-	                Row row = sheet.getRow(i);
-
-	                if (row == null || isRowEmpty(row)) {
-	                    continue;
-	                }
-
-	                Map<String, String> dataMap = new HashMap<>();
-
-	                for (int j = 0; j < headerRow.getLastCellNum(); j++) {
-	                    String key = getCellValueAsString(headerRow.getCell(j));
-	                    String value = getCellValueAsString(row.getCell(j));
-	                    dataMap.put(key, value);
-	                }
-
-	                // ✅ RunFlag check ONLY here
-	                String runFlag = dataMap
-	                        .getOrDefault("RunFlag", "")
-	                        .trim();
-
-	                if ("TRUE".equalsIgnoreCase(runFlag)) {
-	                    runnableData.add(dataMap);
-	                }
-	            }
-
-	        } catch (Exception e) {
-	            throw new RuntimeException(
-	                    "Error reading PSPCards sheet: " + sheetName, e);
-	        }
-
-	        return runnableData;
 	    }
 	    
-	    public static Object[][] getIntegrationData(
-	            String filePath,
-	            String sheetName,
-	            String integrationName) {
 
-	        List<Object[]> data = new ArrayList<>();
+	    System.out.println("\n===== TOTAL TEST CASES: "
+	            + finalData.size() + " =====\n");
 
-	        try (FileInputStream fis = new FileInputStream(new File(filePath));
-	             Workbook workbook = WorkbookFactory.create(fis)) {
-
-	            Sheet sheet = workbook.getSheet(sheetName);
-	            if (sheet == null) {
-	                throw new RuntimeException("Sheet not found: " + sheetName);
-	            }
-
-	            Row headerRow = sheet.getRow(0);
-
-	            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
-	                Row row = sheet.getRow(i);
-
-	                if (row == null || isRowEmpty(row)) {
-	                    continue;
-	                }
-
-	                Map<String, String> dataMap = new HashMap<>();
-
-	                for (int j = 0; j < headerRow.getLastCellNum(); j++) {
-	                    String key = getCellValueAsString(headerRow.getCell(j));
-	                    String value = getCellValueAsString(row.getCell(j));
-	                    dataMap.put(key, value);
-	                }
-
-	                // ✅ Integration filter
-	                String integration = dataMap
-	                        .getOrDefault("PSP", "")
-	                        .trim();
-
-	                // ✅ RunFlag filter
-	                String runFlag = dataMap
-	                        .getOrDefault("RunFlag", "")
-	                        .trim();
-
-	                if (integration.equalsIgnoreCase(integrationName)
-	                        && "TRUE".equalsIgnoreCase(runFlag)) {
-
-	                    data.add(new Object[]{dataMap});
-	                }
-	            }
-
-	        } catch (Exception e) {
-	            throw new RuntimeException(
-	                    "Error reading data for integration: " + integrationName, e);
-	        }
-
-	        return data.toArray(new Object[0][0]);
-	    }
+	    return finalData.toArray(new Object[0][0]);
+	}
 
 
-	    /* =========================================================
-	       UTILITY METHODS
-	       ========================================================= */
+    /* =========================================================
+       INTEGRATION-SPECIFIC DATA
+       ========================================================= */
 
-	    private static String getCellValueAsString(Cell cell) {
-	        if (cell == null) return "";
+    public static Object[][] getIntegrationData(
+            String filePath,
+            String sheetName,
+            String integrationName) {
 
-	        switch (cell.getCellType()) {
+        List<Object[]> data = new ArrayList<>();
 
-	            case STRING:
-	                return cell.getStringCellValue().trim();
+        for (Map<String, String> row :
+                readSheet(filePath, sheetName, true)) {
 
-	            case NUMERIC:
-	                if (DateUtil.isCellDateFormatted(cell)) {
-	                    return cell.getDateCellValue().toString();
-	                }
-	                double num = cell.getNumericCellValue();
-	                return (num == (long) num)
-	                        ? String.valueOf((long) num)
-	                        : String.valueOf(num);
+            if (integrationName.equalsIgnoreCase(
+                    row.getOrDefault("PSP", "").trim())) {
+                data.add(new Object[]{row});
+            }
+        }
+        return data.toArray(new Object[0][0]);
+    }
 
-	            case BOOLEAN:
-	                return String.valueOf(cell.getBooleanCellValue())
-	                        .toUpperCase();
+    public static Object[][] getAllIntegrationData(
+            String filePath,
+            String sheetName) {
 
-	            case FORMULA:
-	                try {
-	                    FormulaEvaluator evaluator =
-	                            cell.getSheet()
-	                                .getWorkbook()
-	                                .getCreationHelper()
-	                                .createFormulaEvaluator();
-	                    return getCellValueAsString(
-	                            evaluator.evaluateInCell(cell));
-	                } catch (Exception e) {
-	                    return "";
-	                }
+        List<Object[]> data = new ArrayList<>();
 
-	            default:
-	                return "";
-	        }
-	    }
+        for (Map<String, String> row :
+                readSheet(filePath, sheetName, true)) {
+            data.add(new Object[]{row});
+        }
+        return data.toArray(new Object[0][0]);
+    }
 
-	    private static boolean isRowEmpty(Row row) {
-	        for (int i = row.getFirstCellNum();
-	             i < row.getLastCellNum();
-	             i++) {
+    /* =========================================================
+       CORE EXCEL READER
+       ========================================================= */
 
-	            Cell cell = row.getCell(i);
-	            if (cell != null &&
-	                !getCellValueAsString(cell).isEmpty()) {
-	                return false;
-	            }
-	        }
-	        return true;
-	    }
+    private static List<Map<String, String>> readSheet(
+            String filePath,
+            String sheetName,
+            boolean runFlagRequired) {
+
+        List<Map<String, String>> rows = new ArrayList<>();
+
+        try (FileInputStream fis = new FileInputStream(new File(filePath));
+             Workbook workbook = WorkbookFactory.create(fis)) {
+
+            Sheet sheet = workbook.getSheet(sheetName);
+            if (sheet == null) {
+                throw new RuntimeException(
+                        "Sheet not found: " + sheetName);
+            }
+
+            Row headerRow = sheet.getRow(0);
+            if (headerRow == null) {
+                throw new RuntimeException(
+                        "Header row missing in sheet: " + sheetName);
+            }
+
+            FormulaEvaluator evaluator =
+                    workbook.getCreationHelper()
+                            .createFormulaEvaluator();
+
+            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+
+                Row row = sheet.getRow(i);
+                if (row == null || isRowEmpty(row, evaluator)) {
+                    continue;
+                }
+
+                Map<String, String> dataMap =
+                        readRow(row, headerRow, evaluator);
+
+                // Debug (optional)
+                // System.out.println("HEADERS = " + dataMap.keySet());
+                // System.out.println("RunFlag = [" + dataMap.get("RunFlag") + "]");
+
+                if (!runFlagRequired || isRunnable(dataMap)) {
+                    rows.add(dataMap);
+                }
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(
+                    "Error reading sheet: " + sheetName, e);
+        }
+
+        return rows;
+    }
+
+    /* =========================================================
+       ROW & CELL HELPERS
+       ========================================================= */
+
+    private static Map<String, String> readRow(
+            Row row,
+            Row headerRow,
+            FormulaEvaluator evaluator) {
+
+        Map<String, String> map = new HashMap<>();
+
+        for (int i = 0; i < headerRow.getLastCellNum(); i++) {
+            String key = getCellValue(headerRow.getCell(i), evaluator);
+            String value = getCellValue(row.getCell(i), evaluator);
+            map.put(key, value);
+        }
+        return map;
+    }
+
+    private static boolean isRunnable(Map<String, String> row) {
+
+        for (Map.Entry<String, String> entry : row.entrySet()) {
+
+            String header = entry.getKey()
+                                 .replaceAll("\\s+", "")
+                                 .trim();
+
+            String value = entry.getValue() == null
+                    ? ""
+                    : entry.getValue().trim();
+
+            if (header.equalsIgnoreCase("RunFlag")
+                    && value.equalsIgnoreCase("TRUE")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    private static String getCellValue(
+            Cell cell,
+            FormulaEvaluator evaluator) {
+
+        if (cell == null) return "";
+
+        switch (cell.getCellType()) {
+
+            case STRING:
+                return cell.getStringCellValue().trim();
+
+            case NUMERIC:
+                if (DateUtil.isCellDateFormatted(cell)) {
+                    return cell.getDateCellValue().toString();
+                }
+                double num = cell.getNumericCellValue();
+                return (num == (long) num)
+                        ? String.valueOf((long) num)
+                        : String.valueOf(num);
+
+            case BOOLEAN:
+                return String.valueOf(cell.getBooleanCellValue())
+                        .toUpperCase();
+
+            case FORMULA:
+                return getCellValue(
+                        evaluator.evaluateInCell(cell), evaluator);
+
+            default:
+                return "";
+        }
+    }
+
+    private static boolean isRowEmpty(
+            Row row,
+            FormulaEvaluator evaluator) {
+
+        for (int i = 0; i < row.getLastCellNum(); i++) {
+            if (!getCellValue(row.getCell(i), evaluator).isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public static List<Map<String, String>> readSheetAsMap(
+            String filePath,
+            String sheetName) {
+
+        List<Map<String, String>> dataList = new ArrayList<>();
+
+        try (FileInputStream fis = new FileInputStream(filePath);
+             Workbook workbook = WorkbookFactory.create(fis)) {
+
+            Sheet sheet = workbook.getSheet(sheetName);
+            Row headerRow = sheet.getRow(0);
+
+            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                Row row = sheet.getRow(i);
+                if (row == null) continue;
+
+                Map<String, String> rowData = new LinkedHashMap<>();
+
+                for (int j = 0; j < headerRow.getLastCellNum(); j++) {
+                    String key = headerRow.getCell(j).getStringCellValue();
+                    String value = row.getCell(j) == null
+                            ? ""
+                            : row.getCell(j).toString();
+
+                    rowData.put(key, value);
+                }
+                dataList.add(rowData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dataList;
+    }
+
+
 }

@@ -1,6 +1,8 @@
 package com.paysecure.utilities;
 
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.Map;
 
 import org.testng.annotations.DataProvider;
 
@@ -23,38 +25,38 @@ public class DataProvidersS2S {
 	    ).toString();
 
 	    return ExcelUtils.getCartesianData(
-	            emailPath,     // OLD excel
-	            "EmailData",   // Email sheet
-	            pspCardPath,   // NEW excel
-	            "Cards"     // PSP sheet
+	            pspCardPath,
+	            "Cards",
+	            emailPath,
+	            "EmailData" 
 	    );
 	}
+
 
 	
 	@DataProvider(name = "CityProvider")
 	public Object[][] getCityProvider() {
 
-	    String emailPath = Paths.get(
+	    String cityPath = Paths.get(
 	            System.getProperty("user.dir"),
 	            "src", "test", "resources", "ExcelResultsFolder",
-	            "TestData.xlsx"     // OLD Excel
+	            "TestData.xlsx"
 	    ).toString();
 
-	    String pspCardPath = Paths.get(
+	    String cardPath = Paths.get(
 	            System.getProperty("user.dir"),
 	            "src", "test", "resources", "ExcelResultsFolder",
-	            "Cards.xlsx"             // NEW Excel
+	            "Cards.xlsx"
 	    ).toString();
 
 	    return ExcelUtils.getCartesianData(
-	            emailPath,   // OLD Excel path
-	            "City",      // Sheet from OLD Excel
-	            pspCardPath, // NEW Excel path
-	            "Cards"   // Sheet from NEW Excel
+	        cardPath,   // outer = Cards
+	        "Cards",
+	        cityPath,   // inner = City
+	        "City"
 	    );
 	}
 
-	
 	@DataProvider(name = "CountryProvider")
 	public Object[][] getCountryProvider() {
 
@@ -71,10 +73,11 @@ public class DataProvidersS2S {
 	    ).toString();
 
 	    return ExcelUtils.getCartesianData(
+	    		  pspCardPath, // NEW Excel path
+		            "Cards" ,
 	            emailPath,   // OLD Excel path
-	            "Country",   // Sheet from OLD Excel
-	            pspCardPath, // NEW Excel path
-	            "Cards"   // Sheet from NEW Excel
+	            "Country"   // Sheet from OLD Excel
+	            // Sheet from NEW Excel
 	    );
 	}
 
@@ -94,10 +97,11 @@ public class DataProvidersS2S {
 	    ).toString();
 
 	    return ExcelUtils.getCartesianData(
-	            emailPath,          // OLD Excel path
-	            "StreetAddress",    // Sheet from OLD Excel
+	         // Sheet from OLD Excel
 	            pspCardPath,        // NEW Excel path
-	            "Cards"          // PSP sheet
+	            "Cards"  ,
+	            emailPath,          // OLD Excel path
+	            "StreetAddress"// PSP sheet
 	    );
 	}
 
@@ -118,10 +122,11 @@ public class DataProvidersS2S {
 	    ).toString();
 
 	    return ExcelUtils.getCartesianData(
+	    		   pspCardPath,  // NEW Excel path
+		            "Cards",
 	            emailPath,    // OLD Excel path
-	            "ZipCode",    // Sheet from OLD Excel
-	            pspCardPath,  // NEW Excel path
-	            "Cards"    // PSP sheet
+	            "ZipCode"    // Sheet from OLD Excel
+	            // PSP sheet
 	    );
 	}
 
@@ -142,10 +147,11 @@ public class DataProvidersS2S {
 	    ).toString();
 
 	    return ExcelUtils.getCartesianData(
-	            dataPath,      // OLD Excel path
-	            "Currency",    // Sheet from OLD Excel
-	            pspCardPath,   // NEW Excel path
-	            "Cards"     // PSPCards sheet
+	    		  pspCardPath,   // NEW Excel path
+		            "Cards" ,
+	            dataPath  ,    // OLD Excel path
+	            "Currency"   // Sheet from OLD Excel
+	              // PSPCards sheet
 	    );
 	}
 
@@ -166,10 +172,11 @@ public class DataProvidersS2S {
 	    ).toString();
 
 	    return ExcelUtils.getCartesianData(
+	    	    pspCardPath,       // NEW Excel
+	            "Cards" ,
 	            dataPath,          // OLD Excel
-	            "ProductName",     // Sheet name
-	            pspCardPath,       // NEW Excel
-	            "Cards"         // PSP sheet
+	            "ProductName"    // Sheet name
+	                // PSP sheet
 	    );
 	}
 
@@ -190,10 +197,11 @@ public class DataProvidersS2S {
 	    ).toString();
 
 	    return ExcelUtils.getCartesianData(
+	    		  pspCardPath,     // NEW Excel
+		            "Cards" ,
 	            dataPath,        // OLD Excel
-	            "StateCode",     // Sheet name
-	            pspCardPath,     // NEW Excel
-	            "Cards"       // PSP sheet
+	            "StateCode"     // Sheet name
+	                // PSP sheet
 	    );
 	}
 	

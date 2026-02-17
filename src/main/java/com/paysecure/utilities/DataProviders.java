@@ -9,10 +9,6 @@ import org.testng.annotations.DataProvider;
 
 public class DataProviders {
 
-//	@DataProvider(name = "cardsData")
-//	public Object[][] cardsData() {
-//		return new Object[][] { { "4444444444444448" } };
-//	}
 
 	@DataProvider(name = "cardData")
 	public Object[][] cardData() {
@@ -49,10 +45,11 @@ public class DataProviders {
 	    ).toString();
 
 	    return ExcelUtils.getCartesianData(
+	    		   pspCardPath,   // NEW excel
+		            "Cards"  ,
 	            emailPath,     // OLD excel
-	            "EmailData",   // Email sheet
-	            pspCardPath,   // NEW excel
-	            "Cards"     // PSP sheet
+	            "EmailData"   // Email sheet
+	            // PSP sheet
 	    );
 	}
 
@@ -73,10 +70,11 @@ public class DataProviders {
 	    ).toString();
 
 	    return ExcelUtils.getCartesianData(
+	    		  pspCardPath, // NEW Excel path
+		            "Cards" ,
 	            emailPath,   // OLD Excel path
-	            "City",      // Sheet from OLD Excel
-	            pspCardPath, // NEW Excel path
-	            "Cards"   // Sheet from NEW Excel
+	            "City"      // Sheet from OLD Excel
+	            // Sheet from NEW Excel
 	    );
 	}
 
@@ -97,10 +95,11 @@ public class DataProviders {
 	    ).toString();
 
 	    return ExcelUtils.getCartesianData(
+	    		 pspCardPath, // NEW Excel path
+		            "Cards",
 	            emailPath,   // OLD Excel path
-	            "Country",   // Sheet from OLD Excel
-	            pspCardPath, // NEW Excel path
-	            "Cards"   // Sheet from NEW Excel
+	            "Country"   // Sheet from OLD Excel
+	              // Sheet from NEW Excel
 	    );
 	}
 
@@ -120,10 +119,11 @@ public class DataProviders {
 	    ).toString();
 
 	    return ExcelUtils.getCartesianData(
+	    	    pspCardPath,        // NEW Excel path
+	            "Cards" ,
 	            emailPath,          // OLD Excel path
-	            "StreetAddress",    // Sheet from OLD Excel
-	            pspCardPath,        // NEW Excel path
-	            "Cards"          // PSP sheet
+	            "StreetAddress"   // Sheet from OLD Excel
+	                 // PSP sheet
 	    );
 	}
 
@@ -144,10 +144,11 @@ public class DataProviders {
 	    ).toString();
 
 	    return ExcelUtils.getCartesianData(
+	    		   pspCardPath,  // NEW Excel path
+		            "Cards",
 	            emailPath,    // OLD Excel path
-	            "ZipCode",    // Sheet from OLD Excel
-	            pspCardPath,  // NEW Excel path
-	            "Cards"    // PSP sheet
+	            "ZipCode"    // Sheet from OLD Excel
+	             // PSP sheet
 	    );
 	}
 
@@ -168,10 +169,11 @@ public class DataProviders {
 	    ).toString();
 
 	    return ExcelUtils.getCartesianData(
+	    		  pspCardPath,   // NEW Excel path
+		            "Cards" ,
 	            dataPath,      // OLD Excel path
-	            "Currency",    // Sheet from OLD Excel
-	            pspCardPath,   // NEW Excel path
-	            "Cards"     // PSPCards sheet
+	            "Currency"    // Sheet from OLD Excel
+	              // PSPCards sheet
 	    );
 	}
 
@@ -192,10 +194,11 @@ public class DataProviders {
 	    ).toString();
 
 	    return ExcelUtils.getCartesianData(
+	    		  pspCardPath,       // NEW Excel
+		            "Cards",
 	            dataPath,          // OLD Excel
-	            "ProductName",     // Sheet name
-	            pspCardPath,       // NEW Excel
-	            "Cards"         // PSP sheet
+	            "ProductName"     // Sheet name
+	                   // PSP sheet
 	    );
 	}
 
@@ -216,33 +219,13 @@ public class DataProviders {
 	    ).toString();
 
 	    return ExcelUtils.getCartesianData(
+	    	    pspCardPath,     // NEW Excel
+	            "Cards" ,
 	            dataPath,        // OLD Excel
-	            "StateCode",     // Sheet name
-	            pspCardPath,     // NEW Excel
-	            "Cards"       // PSP sheet
+	            "StateCode"     // Sheet name
+	              // PSP sheet
 	    );
 	}
 
-	
-	 @DataProvider(name = "emailValidationData")
-	    public Object[][] emailValidationData() {
 
-	        return new Object[][] {
-
-	            // ✅ VALID EMAILS
-	        	 {"test@gmail.com", "Pass", "Matrix"},
-	             {"user.name@yahoo.com", "Pass", "Matrix"},
-	             {"user_123@outlook.com", "Pass", "Matrix"},
-	             {"user-name@domain.co.in", "Pass", "Matrix"},
-
-	             // ❌ INVALID EMAILS
-	             {"testgmail.com", "Fail", "Matrix"},     // missing @
-	             {"@gmail.com", "Fail", "Matrix"},        // missing username
-	             {"test@gmail", "Fail", "Matrix"},        // missing domain
-	             {"test@ gmail.com", "Fail", "Matrix"},   // space in email
-	             {"test@domain@com", "Fail", "Matrix"},   // multiple @
-	             {"", "Fail", "Matrix"},                  // empty
-	             {null, "Fail", "Matrix"}                   // null
-	        };
-	    }
 }
