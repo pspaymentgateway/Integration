@@ -345,7 +345,6 @@ RestAssured.baseURI = baseUri;
 			ExcelWriteUtility.writeResults2s("s2s_Result", Email, ExpectedStatus, actualOutcome, comment, purchaseId, PSP, PaymentMethod);
 		}
 
-
 		mcp.openBrowserForStaging(driver, url);
 		lp.login();
 		tp.navigateUptoTransaction();
@@ -353,9 +352,7 @@ RestAssured.baseURI = baseUri;
 		tp.searchButton();
 		tp.clickOnTransactionId();
 		tp.verifyPurchaseTransactionIDIsNotEmpty();
-		
 	
-		
 		driver.quit();
 	}
 }

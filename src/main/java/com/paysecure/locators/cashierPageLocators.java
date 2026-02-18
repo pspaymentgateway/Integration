@@ -62,8 +62,7 @@ public class cashierPageLocators {
 	public static final String paneticsBtn="//button[text()='Submit']";
 	
 	//Telr
-	public static final String telrEnterOTP=""
-			+ "";
+	public static final String telrEnterOTP="//input[@class='input-field']";
 	public static final String telrSumbitButton="//input[@value='SUBMIT']";
 	
 	//manta pay card 

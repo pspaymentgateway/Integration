@@ -322,7 +322,7 @@ public class CashierPage {
 	public void handleTelrs3dsPage(){
 		//actionDriver.enterText(telrEnterOTP, "1234");
 		
-		actionDriver.sendKeysJS(telrEnterOTP, "1234");
+		actionDriver.enterText(telrEnterOTP, "1234");
 		actionDriver.click(telrSumbitButton);
 	}
 	

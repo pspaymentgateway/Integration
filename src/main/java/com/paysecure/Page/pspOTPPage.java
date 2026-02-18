@@ -27,7 +27,7 @@ public class pspOTPPage{
 	        case "network_international" -> System.err.println("So there is no switch case for this 'Network_International' ");
 	        case "euroexchange" -> mcp.handlePSPPageForEuroExchange(PossibleUseCases,Status,Cvv);
 	        case "paynetics" -> mcp.panaticsSubmitButtonOnBankPage();
-	        case "telr" -> mcp.handleTelrs3dsPage(); 
+	      //  case "telr" -> mcp.handleTelrs3dsPage(); 
 	        case "mantapay" -> mcp.mantapay3dsPage(mantapayOtp); 
 	        case "pxp" -> System.err.println("So there is no switch case for this 'PXP Integration' ");
 	        default -> throw new IllegalArgumentException("Unsupported PSP: " + psp);

@@ -14,7 +14,6 @@ import org.testng.Reporter;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
@@ -28,7 +27,6 @@ import com.paysecure.utilities.DataProviders;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
-import com.paysecure.utilities.jsonProvider;
 import com.paysecure.utilities.testData_CreateRoll;
 
 import io.restassured.response.Response;
@@ -36,7 +34,7 @@ import io.restassured.response.Response;
 import io.restassured.RestAssured;
 
 public class email extends baseClass {
-	private WebDriver driver;
+
 	loginPage lp;
 	String checkoutUrl;
 	String purchaseId;
@@ -146,7 +144,6 @@ public class email extends baseClass {
 	            "      {\n" +
 	            "        \"name\": \"" + productname + "\",\n" +
 	            "        \"price\":" + price + "\n" +
-	       
 	            "      }\n" +
 	            "    ]\n" +
 	            "  },\n" +

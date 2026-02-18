@@ -23,8 +23,8 @@ public class limitAndCHarges extends baseClass{
 	  public void setLimitAndCHarges() throws InterruptedException {
 
 		 ml.navigateUptoLimitAndCharges();
-		 ml.selectMerchant("Tokyo","Tokyo");
-		 ml.selectCurrency("USD","USD");
+		 ml.selectMerchant("Nairobi","Nairobi");
+		 ml.selectCurrency("AED","AED");
 		 ml.selectPaymentMethod("VISA","VISA");
 		 ml.getDetailsForLimitAndCharges();
 		 ml.fillAllTextboxesWithTab();
