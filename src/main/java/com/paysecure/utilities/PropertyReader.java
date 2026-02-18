@@ -6,32 +6,34 @@ import java.util.Properties;
 
 public class PropertyReader {
 
-    private static Properties configProps = new Properties();
-    private static Properties s2sProps = new Properties();
-    private static Properties createCustomerAndSession = new Properties();
-    private static Properties purchase = new Properties();
+    private static final Properties configProps = new Properties();
+    private static final Properties s2sProps = new Properties();
+    private static final Properties createCustomerAndSession = new Properties();
+    private static final Properties purchase = new Properties();
 
     static {
         try {
-            loadProperties("propertiesFolder/config.properties", configProps);
-            loadProperties("propertiesFolder/s2s.properties", s2sProps);
-            loadProperties("propertiesFolder/createCustomerAndSession.properties", createCustomerAndSession);
-            loadProperties("propertiesFolder/purchase.properties", purchase);
+            load("propertiesFolder/config.properties", configProps);
+            load("propertiesFolder/s2s.properties", s2sProps);
+            load("propertiesFolder/createCustomerAndSession.properties", createCustomerAndSession);
+            load("propertiesFolder/purchase.properties", purchase);
         } catch (IOException e) {
-            throw new RuntimeException("Failed to load property files", e);
+            throw new RuntimeException("❌ Failed to load property files from classpath", e);
         }
     }
 
-    private static void loadProperties(String fileName, Properties props) throws IOException {
-        InputStream input = PropertyReader.class
+    private static void load(String fileName, Properties props) throws IOException {
+
+        try (InputStream input = PropertyReader.class
                 .getClassLoader()
-                .getResourceAsStream(fileName);
+                .getResourceAsStream(fileName)) {
 
-        if (input == null) {
-            throw new RuntimeException("Property file not found: " + fileName);
+            if (input == null) {
+                throw new RuntimeException("❌ Property file not found in classpath: " + fileName);
+            }
+
+            props.load(input);
         }
-
-        props.load(input);
     }
 
     public static String getPropertyForconfigProps(String key) {
