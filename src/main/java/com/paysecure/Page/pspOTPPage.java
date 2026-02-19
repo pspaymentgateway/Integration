@@ -23,13 +23,14 @@ public class pspOTPPage{
 	    switch (normalizedPsp) {
 	        case "easybuzz" -> tp.enterOTpEasyBuzz();
 	        case "zaakpay" -> mcp.zaakPayOtpEnterSuccessOrFailure();
-	        case "matrix" -> System.err.println("So there is no switch case for this 'Matrix Integration' ");
+	        case "matrix" -> System.err.println("So there is no 3ds page for this 'Matrix Integration' ");
 	        case "network_international" -> System.err.println("So there is no switch case for this 'Network_International' ");
 	        case "euroexchange" -> mcp.handlePSPPageForEuroExchange(PossibleUseCases,Status,Cvv);
 	        case "paynetics" -> mcp.panaticsSubmitButtonOnBankPage();
 	      //  case "telr" -> mcp.handleTelrs3dsPage(); 
 	        case "mantapay" -> mcp.mantapay3dsPage(mantapayOtp); 
-	        case "pxp" -> System.err.println("So there is no switch case for this 'PXP Integration' ");
+	        case "pxp" -> System.err.println("So there is no 3ds page for this 'PXP Integration' ");
+	        case "payin" -> System.err.println("So there is no 3ds page for this 'PXP Integration' ");
 	        default -> throw new IllegalArgumentException("Unsupported PSP: " + psp);
 	    }
 	}

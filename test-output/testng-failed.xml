@@ -3,15 +3,16 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="PSPCardsIntegrations.zaakpay">
+      <class name="purchase.email">
         <methods>
           <include name="loadConfig"/>
-          <include name="purchase" invocation-numbers="1"/>
+          <include name="clearOnce"/>
+          <include name="Purchase" invocation-numbers="0"/>
+          <include name="beforeMethod"/>
           <include name="tearDown"/>
           <include name="setup"/>
-          <include name="beforeMethod"/>
         </methods>
-      </class> <!-- PSPCardsIntegrations.zaakpay -->
+      </class> <!-- purchase.email -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

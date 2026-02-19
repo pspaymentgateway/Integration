@@ -67,26 +67,26 @@ public class email extends baseClass {
 	    
 	    WebDriver driver = baseClass.getDriver();
 	    
-	    String Email = emailData.getOrDefault("TestData", "");
-	    String ExpectedStatus = emailData.getOrDefault("Status", "");
-	    String CardHolder = cardData.getOrDefault("CardholderName", "");
-	    String CardNumber = cardData.getOrDefault("CardNumber", "");
-	    String Expiry = cardData.getOrDefault("Expiry", "");
-	    String CVV = cardData.getOrDefault("CVV", "");
-	    String PSP = cardData.getOrDefault("PSP", "");
-	    String PaymentMethod = cardData.getOrDefault("PaymentMethod", "");
-	    String Currency = cardData.getOrDefault("Currency", "");
-	    String minAmountStr = cardData.getOrDefault("MinAmount", "");
-	    String maxAmountStr = cardData.getOrDefault("MaxAmount", "");
-	    String defaultAmountStr = cardData.getOrDefault("DefaultAmount", "");
+	    String Email = emailData.getOrDefault("TestData", "").trim();
+	    String ExpectedStatus = emailData.getOrDefault("Status", "").trim();
+	    String CardHolder = cardData.getOrDefault("CardholderName", "").trim();
+	    String CardNumber = cardData.getOrDefault("CardNumber", "").trim();
+	    String Expiry = cardData.getOrDefault("Expiry", "").trim();
+	    String CVV = cardData.getOrDefault("CVV", "").trim();
+	    String PSP = cardData.getOrDefault("PSP", "").trim();
+	    String PaymentMethod = cardData.getOrDefault("PaymentMethod", "").trim();
+	    String Currency = cardData.getOrDefault("Currency", "").trim();
+	    String minAmountStr = cardData.getOrDefault("MinAmount", "").trim();
+	    String maxAmountStr = cardData.getOrDefault("MaxAmount", "").trim();
+	    String defaultAmountStr = cardData.getOrDefault("DefaultAmount", "").trim();
 	    
 	    double minAmount = testData_CreateRoll.parseAmount(minAmountStr, 0.0);
 	    double maxAmount = testData_CreateRoll.parseAmount(maxAmountStr, 0.0);
 	    double defaultAmount = testData_CreateRoll.parseAmount(defaultAmountStr, 5.6);
 	    
-	    String Merchant = cardData.getOrDefault("Merchant", "");
-	    String RouteToBankMid = cardData.getOrDefault("RouteToBankMid", "");
-	    String RouteToMidOrBank = cardData.getOrDefault("RouteToMidOrBank", "");
+	    String Merchant = cardData.getOrDefault("Merchant", "").trim();
+	    String RouteToBankMid = cardData.getOrDefault("RouteToBankMid", "").trim();
+	    String RouteToMidOrBank = cardData.getOrDefault("RouteToMidOrBank", "").trim();
 
 	    System.err.println(Email + " " + ExpectedStatus + " " + CardHolder + " " + CardNumber + " " + Expiry + " " + CVV + " " + PSP);
 
@@ -171,8 +171,6 @@ public class email extends baseClass {
 	    Reporter.log("Purchase ID: " + purchaseId, true);
 	    Reporter.log("Checkout URL: " + checkoutUrl, true);
 	    Reporter.log("Email: " + Email + " → HTTP Status: " + response.getStatusCode(), true);
-
-	    
 
 	    Reporter.log("Response Body: " + response.getBody().asPrettyString(), true);
 

@@ -56,9 +56,6 @@ public class productName extends baseClass {
 		otp= new pspOTPPage();
 	}
 
-	
-	
-	
 	@Test(dataProvider = "ProductNameProvider", dataProviderClass = DataProviders.class)
 	public void validateForProductNameField(Map<String, String>cardData , Map<String, String>ProductNameData ) throws InterruptedException {
 
@@ -142,7 +139,7 @@ public class productName extends baseClass {
 		        "      }\n" +
 		        "    ]\n" +
 		        "  },\n" +
-		     //   "  \"paymentMethod\": \""+PaymentMethod+"\",\n" +
+		        "  \"paymentMethod\": \""+PaymentMethod+"\",\n" +
 		        "  \"brand_id\": \"" + brandId + "\",\n" +
 		        "  \"success_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=true\",\n" +
 		        "  \"failure_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=false\",\n" +

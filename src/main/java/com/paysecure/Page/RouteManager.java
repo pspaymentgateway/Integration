@@ -36,9 +36,9 @@ public class RouteManager {
         
         //  Log what's happening
         if (routeCache.containsKey(routeKey)) {
-            System.out.println(" Route CHANGE: " + routeKey + " (from " + routeCache.get(routeKey) + " to " + psp + ")");
+            System.err.println(" Route CHANGE: " + routeKey + " (from " + routeCache.get(routeKey) + " to " + psp + ")");
         } else {
-            System.out.println(" Route NEW: Configuring " + psp);
+            System.err.println(" Route NEW: Configuring " + psp);
         }
         
         MerchantRoutingPageLimitAndCharges routingPage = new MerchantRoutingPageLimitAndCharges(driver);
