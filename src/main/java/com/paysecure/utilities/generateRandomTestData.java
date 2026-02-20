@@ -9,21 +9,21 @@ public class generateRandomTestData {
 
 	
 	  public static String generateRandomFirstName() {
-	        String firstName = "john" + UUID.randomUUID().toString().substring(0, 3);
+	        String firstName = "div" + UUID.randomUUID().toString().substring(0, 3);
 	        Reporter.log("Generated First Name: " + firstName, true);
 	        return firstName;
 	    }
 
 	    // Generates a random last name like "Doexyz"
 	    public static String generateRandomLastName() {
-	        String lastName = "Doe" + UUID.randomUUID().toString().substring(0, 3);
+	        String lastName = "yash" + UUID.randomUUID().toString().substring(0, 3);
 	        Reporter.log("Generated Last Name: " + lastName, true);
 	        return lastName;
 	    }
 
 	    // Generates a random email like "johnDoeab@mail.com"
 	    public static String generateRandomEmail() {
-	        String email = "nairobiPalermo" + UUID.randomUUID().toString().substring(0, 5) + "@gmail.com";
+	        String email = "yashdiv" + UUID.randomUUID().toString().substring(0, 5) + "@gmail.com";
 	        Reporter.log("Generated Email: " +email, true);
 	        return email;
 	    }
