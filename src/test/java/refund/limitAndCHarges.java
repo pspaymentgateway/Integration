@@ -19,17 +19,17 @@ public class limitAndCHarges extends baseClass{
 			
 	  }
 	  
-	  @Test
-	  public void setLimitAndCHarges() throws InterruptedException {
+	  @Test  
+	public void setLimitAndCHarges() throws InterruptedException {
 
 		 ml.navigateUptoLimitAndCharges();
-		 ml.selectMerchant("Nairobi","Nairobi");
-		 ml.selectCurrency("AED","AED");
+		 ml.selectMerchant("SuhasM","SuhasM");
+		 ml.selectCurrency("GBP","GBP");
 		 ml.selectPaymentMethod("VISA","VISA");
 		 ml.getDetailsForLimitAndCharges();
 		 ml.fillAllTextboxesWithTab();
 		 ml.selectRouteTo("Route to Mid");
-		 ml.selectRoutePoint("telr");
+		 ml.selectRoutePoint("trustpayments-network-token");
 		 ml.saveButton();
 		 ml.finalsaveButton();
 	  }

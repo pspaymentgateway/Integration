@@ -118,7 +118,7 @@ public class email extends baseClass {
 	    String token = PropertyReader.getPropertyForPurchase("token");
 	    String price = generateRandomTestData.generateRandomDoublePrice(minAmount, maxAmount, defaultAmount);
 	    String firstName = generateRandomTestData.generateRandomFirstName();
-	    String country = "IN";
+	    String country = "US";
 	    String city = "Paris";
 	    String stateCode = "QLD";
 	    String streetAddress = "Main gate";

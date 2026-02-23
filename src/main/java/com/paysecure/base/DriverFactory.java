@@ -78,17 +78,32 @@ public class DriverFactory {
             options.addArguments("--disable-dev-shm-usage");
             return new FirefoxDriver(options);
 
-        } else if (browser.equalsIgnoreCase("edge")) {
-            WebDriverManager.edgedriver().setup();
-            EdgeOptions options = new EdgeOptions();
-            options.addArguments("--disable-gpu");
-            options.addArguments("--window-size=1920,1080");
-            options.addArguments("--disable-notifications");
-            options.addArguments("--no-sandbox");
-            options.addArguments("--disable-dev-shm-usage");
-            return new EdgeDriver(options);
+        }
+            //else if (browser.equalsIgnoreCase("edge")) {
+//            WebDriverManager.edgedriver().setup();
+//            EdgeOptions options = new EdgeOptions();
+//            options.addArguments("--disable-gpu");
+//            options.addArguments("--window-size=1920,1080");
+//            options.addArguments("--disable-notifications");
+//            options.addArguments("--no-sandbox");
+//            options.addArguments("--disable-dev-shm-usage");
+//            return new EdgeDriver(options);
+        	else if (browser.equalsIgnoreCase("edge")) {
 
-        } else {
+        	    // 🔹 OPTION 1: Use manual driver (Recommended for your case)
+        	    System.setProperty("webdriver.edge.driver", "C:\\WebDrivers\\msedgedriver.exe");
+
+        	    EdgeOptions options = new EdgeOptions();
+        	    options.addArguments("--start-maximized");
+        	    options.addArguments("--disable-notifications");
+        	    options.addArguments("--disable-gpu");
+        	    options.addArguments("--no-sandbox");
+        	    options.addArguments("--disable-dev-shm-usage");
+
+        	    return new EdgeDriver(options);
+        	}
+
+        else {
             throw new IllegalArgumentException("Browser Not Supported: " + browser);
         }
     }
