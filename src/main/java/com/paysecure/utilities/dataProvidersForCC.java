@@ -17,7 +17,6 @@ public class dataProvidersForCC {
 	    return ExcelUtils.getAllIntegrationData(
 	        testDataPath,
 	        "CC"
-	        
 	    );
 	}
 

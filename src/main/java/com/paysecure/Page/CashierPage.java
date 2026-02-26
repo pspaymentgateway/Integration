@@ -85,10 +85,9 @@ public class CashierPage {
 	public void userEnterCardInformationForPayment(
 			String cardHolder, String cardNumber,String expiry, String cvv) throws InterruptedException {
 		WebDriver driver=baseClass.getDriver();
-//		Thread.sleep(500);
-//		driver.manage().window().setSize(new Dimension(1280, 720));
+		Thread.sleep(500);
+		//driver.manage().window().setSize(new Dimension(1280, 720));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		
 		js.executeScript("document.body.style.zoom='65%';");
 		actionDriver.enterText(cardHolderName, cardHolder);
 		Reporter.log("Entered Card Holder Name: " + cardHolder, true);
