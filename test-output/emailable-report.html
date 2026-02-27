@@ -9,17 +9,17 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">306,719</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Default test</a></td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">233,126</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="3">purchase.email</td><td><a href="#m0">Purchase</a></td><td rowspan="3">1772098827330</td><td rowspan="3">72577</td></tr><tr class="passedeven"><td><a href="#m1">Purchase</a></td></tr><tr class="passedeven"><td><a href="#m2">Purchase</a></td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="3">purchase.email</td><td><a href="#m0">Purchase</a></td><td rowspan="3">1772110190752</td><td rowspan="3">43358</td></tr><tr class="passedeven"><td><a href="#m1">Purchase</a></td></tr><tr class="passedeven"><td><a href="#m2">Purchase</a></td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">purchase.email#Purchase</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>{CardNumber=4900490000000543, CVV=123, RunFlag=TRUE, RouteToMidOrBank=trustpayments-network-token, PartialMerchant=Suhas, PSP=trustpayments, MaxAmount=900, CardholderName=Rohitman Sharma, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=GBP, MinAmount=100, DefaultAmount=569, PaymentMethod=VISA, Expiry=02/29}</td><td>{Status=Pass, TestData=test@example.com}</td></tr><tr><th colspan="2">Messages</th></tr><tr><td colspan="2"><div class="messages">Email test case will run for this PSP: trustpayments<br/>Amount Inputs → Min: 100.0, Max: 900.0, Provided: 569.0<br/>✅ Amount within valid range. Using exact value: 569.0<br/>Generated First Name: div9af<br/>Purchase ID: 69a0150e594162c32cce9d1f<br/>Checkout URL: https://test4.paymentsclub.net/payments/57413d73961c8e671438a721f5e0a33f/<br/>Email: test@example.com → HTTP Status: 202<br/>Response Body: {
-    "purchaseId": "69a0150e594162c32cce9d1f",
+<h2>Default test</h2><h3 id="m0">purchase.email#Purchase</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>{CardNumber=4900490000000626, CVV=123, RunFlag=TRUE, RouteToMidOrBank=trustpayments-network-token, PartialMerchant=Suhas, PSP=trustpayments, MaxAmount=900, CardholderName=Rohitman Sharma, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=GBP, MinAmount=100, DefaultAmount=569, PaymentMethod=VISA, Expiry=02/29}</td><td>{Status=Pass, TestData=test@example.com}</td></tr><tr><th colspan="2">Messages</th></tr><tr><td colspan="2"><div class="messages">Email test case will run for this PSP: trustpayments<br/>Amount Inputs → Min: 100.0, Max: 900.0, Provided: 569.0<br/>✅ Amount within valid range. Using exact value: 569.0<br/>Generated First Name: div1ad<br/>Purchase ID: 69a0416f43623aac1e06e00a<br/>Checkout URL: https://test4.paymentsclub.net/payments/b031cd4965ef66727f7e310e12c816a6/<br/>Email: test@example.com → HTTP Status: 202<br/>Response Body: {
+    "purchaseId": "69a0416f43623aac1e06e00a",
     "client": {
         "customerId": "NA",
         "email": "test@example.com",
         "phone": "+1111111111",
-        "full_name": "div9af",
+        "full_name": "div1ad",
         "street_address": "Main gate",
         "country": "US",
         "city": "Paris",
@@ -32,15 +32,15 @@
         ],
         "stateCode": "QLD"
     },
-    "updated_on": 1772098830,
+    "updated_on": 1772110191,
     "type": "purchase",
     "paymentMethod": "VISA",
     "amountUnit": "MAJOR",
     "errorMsg": "",
     "errorCode": "NA",
     "force_recurring": false,
-    "created_on": 1772098830,
-    "merchantRef": "69a0150e594162c32cce9d1f",
+    "created_on": 1772110191,
+    "merchantRef": "69a0416f43623aac1e06e00a",
     "purchase": {
         "currency": "GBP",
         "products": [
@@ -96,7 +96,7 @@
     "status_history": [
         {
             "status": "created",
-            "timestamp": 1772098830
+            "timestamp": 1772110191
         }
     ],
     "is_test": false,
@@ -104,9 +104,9 @@
     "send_receipt": false,
     "is_recurring_token": false,
     "skip_capture": false,
-    "reference_generated": "PS9068",
+    "reference_generated": "PS9423",
     "issued": "2026-02-26",
-    "due": 1772098830,
+    "due": 1772110191,
     "refund_upto": 0,
     "cc_descriptor": "",
     "fraudScore": "NA",
@@ -127,17 +127,17 @@
     "failure_callback": "https://staging.paysecure.net/merchant",
     "platform": "API",
     "created_from_ip": "103.80.161.238",
-    "checkout_url": "https://test4.paymentsclub.net/payments/57413d73961c8e671438a721f5e0a33f/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69a0150e594162c32cce9d1f/",
+    "checkout_url": "https://test4.paymentsclub.net/payments/b031cd4965ef66727f7e310e12c816a6/",
+    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69a0416f43623aac1e06e00a/",
     "payoutProcess": false
-}<br/>Email accepted by API: test@example.com<br/>✓ Transaction status OK → proceeding with payment flow<br/>Entered Card Holder Name: Rohitman Sharma<br/>Entered Card Number: 4900490000000543<br/>Entered Card Expiry Date: 02/29<br/>Entered Card CVV: 123<br/>Moved to the Pay button<br/>Clicked on the Pay button to proceed with payment<br/>Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true<br/>PASS → Payment outcome matched expectation<br/> Opened staging environment in a new browser tab<br/>User enter ID in Username field<br/>User Enter Password in password field<br/>Click on submit button in login page<br/> Entered Transaction ID: 69a0150e594162c32cce9d1f<br/> Clicked on Search button<br/> Clicked on Search button<br/> Clicked on first Transaction ID from list<br/>Purchase Transaction ID is not empty or not null</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">purchase.email#Purchase</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>{CardNumber=4900490000000576, CVV=123, RunFlag=TRUE, RouteToMidOrBank=trustpayments-network-token, PartialMerchant=Suhas, PSP=trustpayments, MaxAmount=900, CardholderName=Sikandar raza, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=GBP, MinAmount=100, DefaultAmount=569, PaymentMethod=VISA, Expiry=02/29}</td><td>{Status=Pass, TestData=test@example.com}</td></tr><tr><th colspan="2">Messages</th></tr><tr><td colspan="2"><div class="messages">Email test case will run for this PSP: trustpayments<br/>Amount Inputs → Min: 100.0, Max: 900.0, Provided: 569.0<br/>✅ Amount within valid range. Using exact value: 569.0<br/>Generated First Name: divbec<br/>Purchase ID: 69a015c1594162c32ccea660<br/>Checkout URL: https://test4.paymentsclub.net/payments/66a0c6f51f23fe789c8f197cf497c1fc/<br/>Email: test@example.com → HTTP Status: 202<br/>Response Body: {
-    "purchaseId": "69a015c1594162c32ccea660",
+}<br/>Email accepted by API: test@example.com<br/>✓ Transaction status OK → proceeding with payment flow<br/>Entered Card Holder Name: Rohitman Sharma<br/>Entered Card Number: 4900490000000626<br/>Entered Card Expiry Date: 02/29<br/>Entered Card CVV: 123<br/>Moved to the Pay button<br/>Clicked on the Pay button to proceed with payment<br/>Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=false<br/>FAIL → Payment outcome did not match expectation</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">purchase.email#Purchase</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>{CardNumber=4900490000000543, CVV=123, RunFlag=TRUE, RouteToMidOrBank=trustpayments-network-token, PartialMerchant=Suhas, PSP=trustpayments, MaxAmount=900, CardholderName=Rohitman Sharma, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=GBP, MinAmount=100, DefaultAmount=569, PaymentMethod=VISA, Expiry=02/29}</td><td>{Status=Pass, TestData=test@example.com}</td></tr><tr><th colspan="2">Messages</th></tr><tr><td colspan="2"><div class="messages">select merchant name :- SuhasM<br/>select merchant name :- GBP<br/>select merchant name :- VISA<br/>Fetching details for Limit and Charges<br/>Details fetched successfully<br/>Email test case will run for this PSP: trustpayments<br/>Amount Inputs → Min: 100.0, Max: 900.0, Provided: 569.0<br/>✅ Amount within valid range. Using exact value: 569.0<br/>Generated First Name: div0a3<br/>Purchase ID: 69a0412e43623aac1e06dcc8<br/>Checkout URL: https://test4.paymentsclub.net/payments/79fe9e51e0bff3b3078f6390f64dbbe7/<br/>Email: test@example.com → HTTP Status: 202<br/>Response Body: {
+    "purchaseId": "69a0412e43623aac1e06dcc8",
     "client": {
         "customerId": "NA",
         "email": "test@example.com",
         "phone": "+1111111111",
-        "full_name": "divbec",
+        "full_name": "div0a3",
         "street_address": "Main gate",
         "country": "US",
         "city": "Paris",
@@ -150,15 +150,15 @@
         ],
         "stateCode": "QLD"
     },
-    "updated_on": 1772099009,
+    "updated_on": 1772110126,
     "type": "purchase",
     "paymentMethod": "VISA",
     "amountUnit": "MAJOR",
     "errorMsg": "",
     "errorCode": "NA",
     "force_recurring": false,
-    "created_on": 1772099009,
-    "merchantRef": "69a015c1594162c32ccea660",
+    "created_on": 1772110126,
+    "merchantRef": "69a0412e43623aac1e06dcc8",
     "purchase": {
         "currency": "GBP",
         "products": [
@@ -214,7 +214,7 @@
     "status_history": [
         {
             "status": "created",
-            "timestamp": 1772099009
+            "timestamp": 1772110126
         }
     ],
     "is_test": false,
@@ -222,9 +222,9 @@
     "send_receipt": false,
     "is_recurring_token": false,
     "skip_capture": false,
-    "reference_generated": "PS9070",
+    "reference_generated": "PS9421",
     "issued": "2026-02-26",
-    "due": 1772099009,
+    "due": 1772110126,
     "refund_upto": 0,
     "cc_descriptor": "",
     "fraudScore": "NA",
@@ -245,17 +245,17 @@
     "failure_callback": "https://staging.paysecure.net/merchant",
     "platform": "API",
     "created_from_ip": "103.80.161.238",
-    "checkout_url": "https://test4.paymentsclub.net/payments/66a0c6f51f23fe789c8f197cf497c1fc/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69a015c1594162c32ccea660/",
+    "checkout_url": "https://test4.paymentsclub.net/payments/79fe9e51e0bff3b3078f6390f64dbbe7/",
+    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69a0412e43623aac1e06dcc8/",
     "payoutProcess": false
-}<br/>Email accepted by API: test@example.com<br/>✓ Transaction status OK → proceeding with payment flow<br/>Entered Card Holder Name: Sikandar raza<br/>Entered Card Number: 4900490000000576<br/>Entered Card Expiry Date: 02/29<br/>Entered Card CVV: 123<br/>Moved to the Pay button<br/>Clicked on the Pay button to proceed with payment<br/>Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true<br/>PASS → Payment outcome matched expectation<br/> Opened staging environment in a new browser tab<br/>User enter ID in Username field<br/>User Enter Password in password field<br/>Click on submit button in login page<br/> Entered Transaction ID: 69a015c1594162c32ccea660<br/> Clicked on Search button<br/> Clicked on Search button<br/> Clicked on first Transaction ID from list<br/>Purchase Transaction ID is not empty or not null</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">purchase.email#Purchase</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>{CardNumber=4900490000000626, CVV=123, RunFlag=TRUE, RouteToMidOrBank=trustpayments-network-token, PartialMerchant=Suhas, PSP=trustpayments, MaxAmount=900, CardholderName=Rohitman Sharma, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=GBP, MinAmount=100, DefaultAmount=569, PaymentMethod=VISA, Expiry=02/29}</td><td>{Status=Pass, TestData=test@example.com}</td></tr><tr><th colspan="2">Messages</th></tr><tr><td colspan="2"><div class="messages">Email test case will run for this PSP: trustpayments<br/>Amount Inputs → Min: 100.0, Max: 900.0, Provided: 569.0<br/>✅ Amount within valid range. Using exact value: 569.0<br/>Generated First Name: dive98<br/>Purchase ID: 69a0156c594162c32ccea08d<br/>Checkout URL: https://test4.paymentsclub.net/payments/b0adbcb14e4ecc4776dce4113ba143c3/<br/>Email: test@example.com → HTTP Status: 202<br/>Response Body: {
-    "purchaseId": "69a0156c594162c32ccea08d",
+}<br/>Email accepted by API: test@example.com<br/>✓ Transaction status OK → proceeding with payment flow<br/>Entered Card Holder Name: Rohitman Sharma<br/>Entered Card Number: 4900490000000543<br/>Entered Card Expiry Date: 02/29<br/>Entered Card CVV: 123<br/>Moved to the Pay button<br/>Clicked on the Pay button to proceed with payment<br/>Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=false<br/>FAIL → Payment outcome did not match expectation</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">purchase.email#Purchase</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>{CardNumber=4900490000000576, CVV=123, RunFlag=TRUE, RouteToMidOrBank=trustpayments-network-token, PartialMerchant=Suhas, PSP=trustpayments, MaxAmount=900, CardholderName=Sikandar raza, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=GBP, MinAmount=100, DefaultAmount=569, PaymentMethod=VISA, Expiry=02/29}</td><td>{Status=Pass, TestData=test@example.com}</td></tr><tr><th colspan="2">Messages</th></tr><tr><td colspan="2"><div class="messages">Email test case will run for this PSP: trustpayments<br/>Amount Inputs → Min: 100.0, Max: 900.0, Provided: 569.0<br/>✅ Amount within valid range. Using exact value: 569.0<br/>Generated First Name: div9c7<br/>Purchase ID: 69a041b143623aac1e06e667<br/>Checkout URL: https://test4.paymentsclub.net/payments/d0c00c417115bd5730b536d4a46cd957/<br/>Email: test@example.com → HTTP Status: 202<br/>Response Body: {
+    "purchaseId": "69a041b143623aac1e06e667",
     "client": {
         "customerId": "NA",
         "email": "test@example.com",
         "phone": "+1111111111",
-        "full_name": "dive98",
+        "full_name": "div9c7",
         "street_address": "Main gate",
         "country": "US",
         "city": "Paris",
@@ -268,15 +268,15 @@
         ],
         "stateCode": "QLD"
     },
-    "updated_on": 1772098924,
+    "updated_on": 1772110257,
     "type": "purchase",
     "paymentMethod": "VISA",
     "amountUnit": "MAJOR",
     "errorMsg": "",
     "errorCode": "NA",
     "force_recurring": false,
-    "created_on": 1772098924,
-    "merchantRef": "69a0156c594162c32ccea08d",
+    "created_on": 1772110257,
+    "merchantRef": "69a041b143623aac1e06e667",
     "purchase": {
         "currency": "GBP",
         "products": [
@@ -332,7 +332,7 @@
     "status_history": [
         {
             "status": "created",
-            "timestamp": 1772098924
+            "timestamp": 1772110257
         }
     ],
     "is_test": false,
@@ -340,9 +340,9 @@
     "send_receipt": false,
     "is_recurring_token": false,
     "skip_capture": false,
-    "reference_generated": "PS9069",
+    "reference_generated": "PS9425",
     "issued": "2026-02-26",
-    "due": 1772098924,
+    "due": 1772110257,
     "refund_upto": 0,
     "cc_descriptor": "",
     "fraudScore": "NA",
@@ -363,9 +363,9 @@
     "failure_callback": "https://staging.paysecure.net/merchant",
     "platform": "API",
     "created_from_ip": "103.80.161.238",
-    "checkout_url": "https://test4.paymentsclub.net/payments/b0adbcb14e4ecc4776dce4113ba143c3/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69a0156c594162c32ccea08d/",
+    "checkout_url": "https://test4.paymentsclub.net/payments/d0c00c417115bd5730b536d4a46cd957/",
+    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69a041b143623aac1e06e667/",
     "payoutProcess": false
-}<br/>Email accepted by API: test@example.com<br/>✓ Transaction status OK → proceeding with payment flow<br/>Entered Card Holder Name: Rohitman Sharma<br/>Entered Card Number: 4900490000000626<br/>Entered Card Expiry Date: 02/29<br/>Entered Card CVV: 123<br/>Moved to the Pay button<br/>Clicked on the Pay button to proceed with payment<br/>Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true<br/>PASS → Payment outcome matched expectation<br/> Opened staging environment in a new browser tab<br/>User enter ID in Username field<br/>User Enter Password in password field<br/>Click on submit button in login page<br/> Entered Transaction ID: 69a0156c594162c32ccea08d<br/> Clicked on Search button<br/> Clicked on Search button<br/> Clicked on first Transaction ID from list<br/>Purchase Transaction ID is not empty or not null</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+}<br/>Email accepted by API: test@example.com<br/>✓ Transaction status OK → proceeding with payment flow<br/>Entered Card Holder Name: Sikandar raza<br/>Entered Card Number: 4900490000000576<br/>Entered Card Expiry Date: 02/29<br/>Entered Card CVV: 123<br/>Moved to the Pay button<br/>Clicked on the Pay button to proceed with payment<br/>Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=false<br/>FAIL → Payment outcome did not match expectation</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

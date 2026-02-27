@@ -53,6 +53,7 @@ public class zipcode extends baseClass{
 			pay = new payu3dPage(getDriver());
 			otp= new pspOTPPage();
 	  }
+	  
 	 
   @Test(dataProvider ="ZipCodeProvider", dataProviderClass = DataProviders.class)
   public void validationForZipcodeField(Map<String, String>cardData , Map<String, String> zipcodeData) throws InterruptedException {

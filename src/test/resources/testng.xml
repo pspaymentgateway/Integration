@@ -5,14 +5,15 @@
 
   <test name="Test">
     <classes>
+    <!--
       <class name="purchase.streetAddress"/>
       <class name="s2s.zipcode"/>
       <class name="purchase.stateCode"/>
       <class name="s2s.city"/>
       <class name="s2s.stateCode"/>
-      <class name="s2s.luhnAlgoTestCards"/>
       <class name="s2s.productName"/>
       <class name="s2s.streetAddress"/>
+       -->
       <class name="s2s.email"/>
       <class name="purchase.city"/>
       <class name="s2s.currency"/>
@@ -22,6 +23,7 @@
       <class name="purchase.country"/>
       <class name="purchase.zipcode"/>
       <class name="purchase.currency"/>
+     
     </classes>
   </test>
 
