@@ -120,13 +120,12 @@ public class transactionPage {
 
 		Thread.sleep(500);
 		driver.manage().window().setSize(new Dimension(1280, 720));// 1920 × 1080
-	//	actionDriver.scrollToElement(report);
+		actionDriver.scrollToElement(report);
 		actionDriver.click(report);
 
 		actionDriver.scrollToElement(transactions);
 		actionDriver.click(transactions);
-		// Assert.fail();
-		//driver.manage().window().setSize(new Dimension(1920, 1080));
+		driver.manage().window().setSize(new Dimension(1920, 1080));
 
 	}
 
@@ -134,10 +133,10 @@ public class transactionPage {
 
 		actionDriver.enterText(searchPurchaseID, transactionID);
 		Reporter.log(" Entered Transaction ID: " + transactionID, true);
-		//Thread.sleep(200);
+		Thread.sleep(200);
 		actionDriver.clickUsingJS(searchButton);
 		Reporter.log(" Clicked on Search button", true);
-		//Thread.sleep(1200);
+		Thread.sleep(1200);
 
 	}
 
