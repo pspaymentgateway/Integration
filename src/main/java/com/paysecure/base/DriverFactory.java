@@ -25,34 +25,40 @@ public class DriverFactory {
     public static WebDriver createInstance(String browser) {
     	
     	if (browser.equalsIgnoreCase("chrome")) {
-
     	    WebDriverManager.chromedriver().setup();
     	    ChromeOptions options = new ChromeOptions();
 
+    	    // Core headless setup
     	    options.addArguments("--headless");
     	    options.addArguments("--no-sandbox");
     	    options.addArguments("--disable-dev-shm-usage");
     	    options.addArguments("--disable-gpu");
-    	    options.addArguments("--window-size=1920,1080");
+    	    options.addArguments("--window-size=1920,1080");  // bigger size recommended
     	    options.addArguments("--remote-allow-origins=*");
     	    options.addArguments("--disable-notifications");
 
+    	    // Handles dialogs/popups that Robot was trying to dismiss
+    	    options.addArguments("--ignore-certificate-errors");
+    	    options.addArguments("--disable-popup-blocking");
+    	    options.addArguments("--disable-extensions");
+    	    options.addArguments("--disable-infobars");
+
     	    Map<String, Object> prefs = new HashMap<>();
-
-    	    if (OSType.LINUX == SystemUtil.getOperatingSystemType()) {
-    	        prefs.put("download.default_directory", "/home/ubuntu/Downloads");
-    	        options.setBinary("/usr/bin/google-chrome");
-    	    } else {
-    	        prefs.put("download.default_directory", "C:\\Downloads");
-    	    }
-
+    	    prefs.put("download.default_directory", "/home/ec2-user/downloads"); // Linux path for AWS
     	    prefs.put("download.prompt_for_download", false);
     	    prefs.put("plugins.always_open_pdf_externally", true);
+    	    prefs.put("credentials_enable_service", false);
+    	    prefs.put("profile.password_manager_enabled", false);
 
     	    options.setExperimentalOption("prefs", prefs);
+    	    options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+    	    options.setExperimentalOption("useAutomationExtension", false);
 
-    	    return new ChromeDriver(options);
-    
+    	    if (OSType.LINUX == SystemUtil.getOperatingSystemType()) {
+    	        options.setBinary("/usr/bin/google-chrome");
+    	    }
+
+    	    return new ChromeDriver(options);  // No Robot needed
     	}
             else if (browser.equalsIgnoreCase("firefox")) {
             WebDriverManager.firefoxdriver().setup();
