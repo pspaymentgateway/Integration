@@ -23,7 +23,7 @@ public class limitAndCharges {
 	public static final String routingPoint="//select[@id='routeToValue']";
 	
 	//enter -1
-	public static final String minus="(//input[@type='number'])[1]";
+	public static final String minus="//input[@id='cust_hourly']";
 	
 	//save button
 	public static final String save1="//button[@id='btnFinalSave']";

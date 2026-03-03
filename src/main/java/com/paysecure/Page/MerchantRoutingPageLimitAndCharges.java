@@ -62,7 +62,7 @@ public class MerchantRoutingPageLimitAndCharges {
 	public void navigateUptoLimitAndCharges() throws InterruptedException {
 		WebDriver driver = baseClass.getDriver();
 		Thread.sleep(500);
-		//driver.manage().window().setSize(new Dimension(1280, 720));// 1920 × 1080
+		driver.manage().window().setSize(new Dimension(1280, 720));// 1920 × 1080
 
 		actionDriver.click(merchants);
 		actionDriver.scrollToElement(limitCharges);
@@ -211,6 +211,7 @@ public class MerchantRoutingPageLimitAndCharges {
 	        for (int i = 0; i < 28; i++) {
 	            // Get currently focused element
 	            WebElement activeElement = driver.switchTo().activeElement();
+	            
 	            
 	            // Clear and enter -1
 	            activeElement.clear();
