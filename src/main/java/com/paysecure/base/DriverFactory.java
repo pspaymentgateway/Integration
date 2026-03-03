@@ -24,48 +24,35 @@ public class DriverFactory {
 
     public static WebDriver createInstance(String browser) {
     	
-    	    if (browser.equalsIgnoreCase("chrome")) {
-    	        WebDriverManager.chromedriver().setup();
-    	        ChromeOptions options = new ChromeOptions();
+    	if (browser.equalsIgnoreCase("chrome")) {
 
-    	        options.addArguments("--remote-allow-origins=*");
-    	        options.addArguments("--disable-gpu");
-    	        options.addArguments("--window-size=800,600");
-    	        options.addArguments("--disable-notifications");
-    	        options.addArguments("--no-sandbox");
-    	        
-    	        options.addArguments("--headless");
-    	        options.addArguments("--disable-dev-shm-usage");
-    	        
-    	    
-    	        Map<String, Object> prefs = new HashMap<>();
+    	    WebDriverManager.chromedriver().setup();
+    	    ChromeOptions options = new ChromeOptions();
+
+    	    options.addArguments("--headless");
+    	    options.addArguments("--no-sandbox");
+    	    options.addArguments("--disable-dev-shm-usage");
+    	    options.addArguments("--disable-gpu");
+    	    options.addArguments("--window-size=1920,1080");
+    	    options.addArguments("--remote-allow-origins=*");
+    	    options.addArguments("--disable-notifications");
+
+    	    Map<String, Object> prefs = new HashMap<>();
+
+    	    if (OSType.LINUX == SystemUtil.getOperatingSystemType()) {
+    	        prefs.put("download.default_directory", "/home/ubuntu/Downloads");
+    	        options.setBinary("/usr/bin/google-chrome");
+    	    } else {
     	        prefs.put("download.default_directory", "C:\\Downloads");
-    	        prefs.put("download.prompt_for_download", false);
-    	        prefs.put("plugins.always_open_pdf_externally", true);
-    	        prefs.put("credentials_enable_service", false);
-    	        prefs.put("profile.password_manager_enabled", false);
+    	    }
 
-    	        options.setExperimentalOption("prefs", prefs);
-    	        options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-    	        options.setExperimentalOption("useAutomationExtension", false);
+    	    prefs.put("download.prompt_for_download", false);
+    	    prefs.put("plugins.always_open_pdf_externally", true);
 
-    	        if (OSType.LINUX == SystemUtil.getOperatingSystemType()) {
-    	            options.setBinary("/usr/bin/google-chrome");
-    	        }
+    	    options.setExperimentalOption("prefs", prefs);
 
-    	        WebDriver driver = new ChromeDriver(options);
-
+    	    return new ChromeDriver(options);
     
-    	        try {
-    	            Robot robot = new Robot();
-    	            robot.keyPress(KeyEvent.VK_ENTER);
-    	            robot.keyRelease(KeyEvent.VK_ENTER);
-    	        } catch (AWTException e) {
-    	            e.printStackTrace();
-    	        }
-
-    	        return driver;
-    	   
     	}
             else if (browser.equalsIgnoreCase("firefox")) {
             WebDriverManager.firefoxdriver().setup();
