@@ -125,7 +125,7 @@ public class transactionPage {
 
 		actionDriver.scrollToElement(transactions);
 		actionDriver.click(transactions);
-		driver.manage().window().setSize(new Dimension(1920, 1080));
+	//	driver.manage().window().setSize(new Dimension(1920, 1080));
 
 	}
 
