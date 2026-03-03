@@ -1,15 +1,19 @@
 package com.paysecure.Page;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
@@ -42,6 +46,11 @@ public class MerchantRoutingPageLimitAndCharges {
 	private By selectClassMerchant=By.xpath(limitAndCharges.selectClassMerchant);
 	private By selectClassCurrency=By.xpath(limitAndCharges.selectClassCurrency);
 	private By selectClassPaymentMethod=By.xpath(limitAndCharges.selectClassPaymentMethod);
+	
+	private By navigateUpto=By.xpath(limitAndCharges.navigateUpto);
+	private By getButton=By.xpath(limitAndCharges.getButton);
+	
+	@FindBy(xpath="//select[@id='routeToValue']") private WebElement routeValue;
 
 	private ActionDriver actionDriver;
 	public MerchantRoutingPageLimitAndCharges(WebDriver driver) {
@@ -53,9 +62,10 @@ public class MerchantRoutingPageLimitAndCharges {
 	public void navigateUptoLimitAndCharges() throws InterruptedException {
 		WebDriver driver = baseClass.getDriver();
 		Thread.sleep(500);
-		driver.manage().window().setSize(new Dimension(1280, 720));// 1920 × 1080
+		//driver.manage().window().setSize(new Dimension(1280, 720));// 1920 × 1080
 
 		actionDriver.click(merchants);
+		actionDriver.scrollToElement(limitCharges);
 		actionDriver.click(limitCharges);
 		
 
@@ -144,7 +154,8 @@ public class MerchantRoutingPageLimitAndCharges {
 	}
 	
 	public void selectRoutePoint(String routingValue) {
-		actionDriver.selectByVisibleText(routingPoint, routingValue);
+
+		actionDriver.selectByValue(routingPoint, "1093");
 	}
 
 	
@@ -157,9 +168,39 @@ public class MerchantRoutingPageLimitAndCharges {
 	public void finalsaveButton() {
 		actionDriver.moveToElement(FinalSave);
 		actionDriver.click(FinalSave);
-		
+		actionDriver.click(OK2);
 	}
 	
+	public void getButton() {
+
+	    WebDriver driver = baseClass.getDriver();
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+	    // 1️ Click
+	    actionDriver.click(getButton);
+
+	    // 2️ Scroll
+	    actionDriver.scrollToElement(navigateUpto);
+
+	    // 3️ Wait until dropdown is present
+	    wait.until(ExpectedConditions.presenceOfElementLocated(routingPoint));
+
+	    // 4️⃣ Wait until options are loaded (VERY IMPORTANT)
+	    wait.until(driver1 ->
+	            new Select(driver1.findElement(routingPoint))
+	                    .getOptions().size() > 1);
+
+	    
+	    // 5 Re-locate fresh element
+	    WebElement dropdown = driver.findElement(routingPoint);
+
+	    Select select = new Select(dropdown);
+
+	   WebElement ddcdc = select.getFirstSelectedOption();
+	   System.err.println(ddcdc.getText());
+
+	   // System.out.println("Total options found: " + optionsText.size());
+	}
 
 	 public void fillAllTextboxesWithTab() throws InterruptedException {
 	        WebDriver driver = baseClass.getDriver();

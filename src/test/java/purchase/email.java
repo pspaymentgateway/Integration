@@ -96,18 +96,18 @@ public class email extends baseClass {
 	        throw new SkipException("Empty test data");
 	    }
 
-//	    RouteManager.ensureRoute(
-//	        getDriver(),
-//	        Merchant,
-//	        Merchant,
-//	        PaymentMethod,
-//	        PaymentMethod,
-//	        Currency,
-//	        Currency,
-//	        PSP,
-//	        RouteToBankMid,
-//	        RouteToMidOrBank
-//	    );
+	    RouteManager.ensureRoute(
+	        getDriver(),
+	        Merchant,
+	        Merchant,
+	        PaymentMethod,
+	        PaymentMethod,
+	        Currency,
+	        Currency,
+	        PSP,
+	        RouteToBankMid,
+	        RouteToMidOrBank
+	    );
 
 	    Reporter.log("Email test case will run for this PSP: " + PSP, true);
 	 //   Reporter.log("Testing Email: " + uniqueEmail + " with Card: " + CardNumber, true);
@@ -121,6 +121,8 @@ public class email extends baseClass {
 	    String country = "US";
 	    String city = "Paris";
 	    String stateCode = "QLD";
+	    
+	    
 	    String streetAddress = "Main gate";
 	    String zipcode = "20001";
 	    String productname = "Cricket bat";
@@ -257,7 +259,8 @@ public class email extends baseClass {
 	            ExcelWriteUtility.writeResult("Purchase_Result", Email, ExpectedStatus, actualOutcome, comment, purchaseId, PSP, PaymentMethod);
 
 	            if (isActualSuccess) {
-	                mcp.openBrowserForStaging(driver, baseUri);
+	            	String URl = PropertyReader.getPropertyForconfigProps("url");
+	                mcp.openBrowserForStaging(driver, URl);
 	                lp.login();
 	                tp.navigateUptoTransaction();
 	                tp.searchTheTransaction(purchaseId);

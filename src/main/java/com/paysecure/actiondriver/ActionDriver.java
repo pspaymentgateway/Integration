@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -457,7 +458,44 @@ public class ActionDriver {
 	    }
 	}
 
-    
+	public void selectByVisibleTexts(By by, String value) {
+
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+	    try {
+
+	        // 1️⃣ Wait for presence (not clickable)
+	        wait.until(ExpectedConditions.presenceOfElementLocated(by));
+
+	        // 2️⃣ Re-locate element fresh (important for React)
+	        WebElement dropdown = driver.findElement(by);
+
+	        // 3️⃣ Wait until options are loaded
+	        wait.until(driver -> dropdown.findElements(By.tagName("option")).size() > 1);
+
+	        // 4️⃣ Create Select object
+	        Select select = new Select(dropdown);
+
+	        // 5️⃣ Select
+	        select.selectByVisibleText(value);
+
+	        // 6️⃣ Verify selection
+	        wait.until(driver ->
+	                select.getFirstSelectedOption().getText().equals(value));
+
+	        log.info("Successfully selected: " + value);
+
+	    } catch (StaleElementReferenceException e) {
+
+	        // Retry once (very important for React)
+	        WebElement dropdown = driver.findElement(by);
+	        new Select(dropdown).selectByVisibleText(value);
+
+	    } catch (Exception e) {
+	        log.error("Dropdown selection failed for: " + value, e);
+	        throw e;
+	    }
+	}
     // Method to select a dropdown by value
 	public void selectByValue(By by, String value) {
 	    try {

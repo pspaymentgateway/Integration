@@ -31,7 +31,9 @@ public class pspOTPPage{
 	        case "mantapay" -> mcp.mantapay3dsPage(mantapayOtp); 
 	        case "pxp" -> System.err.println("So there is no 3ds page for this 'PXP Integration' ");
 	        case "payerworld_payin" -> System.err.println("So there is no 3ds page for this 'PXP Integration' ");
-	        case "trustpayments" -> System.err.println("So there is no 3ds page for this 'PXP Integration' ");
+	        case "trustpayments" -> System.err.println("So there is no 3ds page for this 'trustpayments Integration' ");
+	        case "unicornpayment" -> System.err.println("So there is no 3ds page for this 'unicornpayment Integration' ");
+	        case "unicornpayment3ds" -> System.err.println("So there is no 3ds page for this 'unicornpayment3ds Integration' ");
 	        default -> throw new IllegalArgumentException("Unsupported PSP: " + psp);
 	    }
 	}

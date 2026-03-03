@@ -2,8 +2,8 @@ package com.paysecure.locators;
 
 public class limitAndCharges {
 
-	public static final String merchant="//span[text()='Merchant']";
-	public static final String LimitsCharges="//span[text()='Limits/Charges']";
+	public static final String merchant="//p[text()='Merchant']";
+	public static final String LimitsCharges="//p[text()='Limits/Charges']";
 	
 	public static final String sm="//span[text()='Select Merchant']";
 	public static final String searchMerchant="//input[@class='select2-search__field']";
@@ -29,4 +29,10 @@ public class limitAndCharges {
 	public static final String save1="//button[@id='btnFinalSave']";
 	public static final String OK2="//button[text()='OK']";
 	public static final String FinalSave="//button[@id='btnSaveChanges']";
+	
+	//check dropdown values 
+	public static final String navigateUpto="//div[@id='currentRouteInfo']";
+	public static final String getButton="//button[text()='GET']";
+	
+	
 }

@@ -24,12 +24,12 @@ public class limitAndCHarges extends baseClass{
 
 		 ml.navigateUptoLimitAndCharges();
 		 ml.selectMerchant("SuhasM","SuhasM");
-		 ml.selectCurrency("GBP","GBP");
+		 ml.selectCurrency("USD","USD");
 		 ml.selectPaymentMethod("VISA","VISA");
 		 ml.getDetailsForLimitAndCharges();
 		 ml.fillAllTextboxesWithTab();
 		 ml.selectRouteTo("Route to Mid");
-		 ml.selectRoutePoint("trustpayments-network-token");
+		 ml.selectRoutePoint("unicornpayment");
 		 ml.saveButton();
 		 ml.finalsaveButton();
 	  }

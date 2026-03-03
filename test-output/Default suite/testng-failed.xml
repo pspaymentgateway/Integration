@@ -7,7 +7,7 @@
         <methods>
           <include name="loadConfig"/>
           <include name="clearOnce"/>
-          <include name="Purchase"/>
+          <include name="Purchase" invocation-numbers="0"/>
           <include name="beforeMethod"/>
           <include name="tearDown"/>
           <include name="setup"/>
