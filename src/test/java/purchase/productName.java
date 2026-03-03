@@ -267,7 +267,8 @@ public class productName extends baseClass {
                 }
 
 				// Login + Transaction check
-				mcp.openBrowserForStaging(driver,baseUri);
+                String URl = PropertyReader.getPropertyForconfigProps("url");
+				mcp.openBrowserForStaging(driver,URl);
 				lp.login();
 				tp.navigateUptoTransaction();
 				tp.searchTheTransaction(purchaseId);

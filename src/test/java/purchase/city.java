@@ -269,7 +269,8 @@ public class city extends baseClass {
 
                 // Continue with transaction verification only if payment succeeded
                 if (flag.equalsIgnoreCase("true")) {
-                    mcp.openBrowserForStaging(driver, baseUri);
+                	String URl = PropertyReader.getPropertyForconfigProps("url");
+                    mcp.openBrowserForStaging(driver, URl);
                     lp.login();
                     tp.navigateUptoTransaction();
                     tp.searchTheTransaction(purchaseId);

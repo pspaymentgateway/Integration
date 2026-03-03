@@ -120,13 +120,13 @@ public class transactionPage {
 
 		Thread.sleep(500);
 		driver.manage().window().setSize(new Dimension(1280, 720));// 1920 × 1080
-		actionDriver.scrollToElement(report);
+	//	actionDriver.scrollToElement(report);
 		actionDriver.click(report);
 
 		actionDriver.scrollToElement(transactions);
 		actionDriver.click(transactions);
 		// Assert.fail();
-		driver.manage().window().setSize(new Dimension(1920, 1080));
+		//driver.manage().window().setSize(new Dimension(1920, 1080));
 
 	}
 
@@ -142,7 +142,7 @@ public class transactionPage {
 	}
 
 	public void clickOnTransactionId() {
-
+		
 		actionDriver.click(firstTransactionID);
 		Reporter.log(" Clicked on first Transaction ID from list", true);
 
