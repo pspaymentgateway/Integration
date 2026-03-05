@@ -4,10 +4,12 @@ import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -74,6 +76,12 @@ public class CashierPage {
 	private By mantapayOTP=By.xpath(cashierPageLocators.mantapayOTP);
 	private By mantapayBtn=By.xpath(cashierPageLocators.mantapayBtn);
 	
+	//unicorn 3ds page
+	private By unicornOTP=By.xpath(cashierPageLocators.unicornOTP);
+	private By unicornBtn=By.xpath(cashierPageLocators.unicornBtn);
+	
+	//@FindBy(xpath="//input[@name='password']") private WebElement unicornOTP;
+	
 	private ActionDriver actionDriver;
 	// page factory constructor
 	public CashierPage(WebDriver driver) {
@@ -86,7 +94,7 @@ public class CashierPage {
 			String cardHolder, String cardNumber,String expiry, String cvv) throws InterruptedException {
 		WebDriver driver=baseClass.getDriver();
 		Thread.sleep(500);
-		//driver.manage().window().setSize(new Dimension(1280, 720));
+		driver.manage().window().setSize(new Dimension(1080, 720));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("document.body.style.zoom='65%';");
 		actionDriver.enterText(cardHolderName, cardHolder);
@@ -328,6 +336,30 @@ public class CashierPage {
 	public void mantapay3dsPage(String mantapayOtp){
 		actionDriver.sendKeysJS(mantapayOTP, mantapayOtp);
 		actionDriver.click(mantapayBtn);
+	}
+	
+	
+	public void unicorn3dsPage() throws InterruptedException {
+         Thread.sleep(18000);
+		WebDriver driver=baseClass.getDriver();
+		driver.manage().window().setSize(new Dimension(1920, 1080));
+//	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+//
+//	    // Wait for OTP field to be visible
+//	    WebElement otpField = wait.until(
+//	            ExpectedConditions.visibilityOf(unicornOTP));
+//
+//	  //  otpField.clear();
+//	    otpField.sendKeys("123456");
+
+	    // Wait for button to be clickable
+//	    WebElement submitBtn = wait.until(
+//	            ExpectedConditions.elementToBeClickable(unicornBtn)
+//	    );
+
+		driver.switchTo().frame(0);
+		actionDriver.enterText(unicornOTP, "123456");
+	   actionDriver.click(unicornBtn);
 	}
 
 	

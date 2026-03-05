@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
 </tr><tr>
-<td>Started on:</td><td>Tue Mar 03 14:08:48 IST 2026</td>
+<td>Started on:</td><td>Thu Mar 05 14:45:17 IST 2026</td>
 </tr>
-<tr><td>Total time:</td><td>169 seconds (169760 ms)</td>
+<tr><td>Total time:</td><td>441 seconds (441371 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,30 +76,30 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='purchase.email.Purchase()'><b>Purchase</b><br>Test class: purchase.email<br>Parameters: {CardNumber=4100000000005000, CVV=196, RunFlag=TRUE, RouteToMidOrBank=unicornpayment, PartialMerchant=Suhas, PSP=unicornpayment, MaxAmount=900, CardholderName=Brian Bennet, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=USD, MinAmount=100, DefaultAmount=569, PaymentMethod=VISA, Expiry=08/27}, {Status=Pass, TestData=test123@example.com}<br/>
-<a href="#Output-875678495" onClick='toggleBox("Output-875678495", this, "Show output", "Hide output");'>Show output</a>
+<td title='purchase.email.Purchase()'><b>Purchase</b><br>Test class: purchase.email<br>Parameters: {CardNumber=4100000000005000, CVV=196, RunFlag=TRUE, RouteToMidOrBank=unicornpayment, PartialMerchant=Suhas, PSP=unicornpaymentds, MaxAmount=900, CardholderName=Brian Bennet, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=USD, MinAmount=100, DefaultAmount=569, PaymentMethod=VISA, Expiry=08/27}, {Status=Pass, TestData=test123@example.com}<br/>
+<a href="#Output-270945456" onClick='toggleBox("Output-270945456", this, "Show output", "Hide output");'>Show output</a>
 
-<a href="#Output-875678495" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-875678495">
+<a href="#Output-270945456" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-270945456">
 select merchant name :- SuhasM<br/>
 select merchant name :- USD<br/>
 select merchant name :- VISA<br/>
 Fetching details for Limit and Charges<br/>
 Details fetched successfully<br/>
-Email test case will run for this PSP: unicornpayment<br/>
+Email test case will run for this PSP: unicornpaymentds<br/>
 Amount Inputs → Min: 100.0, Max: 900.0, Provided: 569.0<br/>
 ✅ Amount within valid range. Using exact value: 569.0<br/>
-Generated First Name: dive10<br/>
-Purchase ID: 69a69e6ac46935d1717dcd1b<br/>
-Checkout URL: https://test4.paymentsclub.net/payments/0406396b2632c5a9412ad4fb1d3d55e8/<br/>
+Generated First Name: diveff<br/>
+Purchase ID: 69a949dc7f44d55471699f91<br/>
+Checkout URL: https://test4.paymentsclub.net/payments/5875bc63a2bb01263d9389c0e7fd9c79/<br/>
 Email: test123@example.com → HTTP Status: 202<br/>
 Response Body: {
-    "purchaseId": "69a69e6ac46935d1717dcd1b",
+    "purchaseId": "69a949dc7f44d55471699f91",
     "client": {
         "customerId": "NA",
         "email": "test123@example.com",
         "phone": "+1111111111",
-        "full_name": "dive10",
+        "full_name": "diveff",
         "street_address": "Main gate",
         "country": "US",
         "city": "Paris",
@@ -112,15 +112,15 @@ Response Body: {
         ],
         "stateCode": "QLD"
     },
-    "updated_on": 1772527210,
+    "updated_on": 1772702172,
     "type": "purchase",
     "paymentMethod": "VISA",
     "amountUnit": "MAJOR",
     "errorMsg": "",
     "errorCode": "NA",
     "force_recurring": false,
-    "created_on": 1772527210,
-    "merchantRef": "69a69e6ac46935d1717dcd1b",
+    "created_on": 1772702172,
+    "merchantRef": "69a949dc7f44d55471699f91",
     "purchase": {
         "currency": "USD",
         "products": [
@@ -176,7 +176,7 @@ Response Body: {
     "status_history": [
         {
             "status": "created",
-            "timestamp": 1772527210
+            "timestamp": 1772702172
         }
     ],
     "is_test": false,
@@ -184,9 +184,9 @@ Response Body: {
     "send_receipt": false,
     "is_recurring_token": false,
     "skip_capture": false,
-    "reference_generated": "PS9467",
-    "issued": "2026-03-03",
-    "due": 1772527210,
+    "reference_generated": "PS9698",
+    "issued": "2026-03-05",
+    "due": 1772702172,
     "refund_upto": 0,
     "cc_descriptor": "",
     "fraudScore": "NA",
@@ -206,34 +206,29 @@ Response Body: {
     "success_callback": "https://www.google.com/",
     "failure_callback": "https://staging.paysecure.net/merchant",
     "platform": "API",
-    "created_from_ip": "110.235.229.195",
-    "checkout_url": "https://test4.paymentsclub.net/payments/0406396b2632c5a9412ad4fb1d3d55e8/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69a69e6ac46935d1717dcd1b/",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://test4.paymentsclub.net/payments/5875bc63a2bb01263d9389c0e7fd9c79/",
+    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69a949dc7f44d55471699f91/",
     "payoutProcess": false
 }<br/>
 Email accepted by API: test123@example.com<br/>
-✓ Transaction status OK → proceeding with payment flow<br/>
+Transaction status OK → proceeding with payment flow<br/>
 Entered Card Holder Name: Brian Bennet<br/>
 Entered Card Number: 4100000000005000<br/>
 Entered Card Expiry Date: 08/27<br/>
 Entered Card CVV: 196<br/>
 Moved to the Pay button<br/>
 Clicked on the Pay button to proceed with payment<br/>
-Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true<br/>
-PASS → Payment outcome matched expectation<br/>
- Opened staging environment in a new browser tab<br/>
-User enter ID in Username field<br/>
-User Enter Password in password field<br/>
-Click on submit button in login page<br/>
- Entered Transaction ID: 69a69e6ac46935d1717dcd1b<br/>
- Clicked on Search button<br/>
- Clicked on Search button<br/>
- Clicked on first Transaction ID from list<br/>
-Purchase Transaction ID is not empty or not null<br/>
+FAIL → Exception: Expected condition failed: waiting for url to contain "issucces". Current url: "https://quickpay.ugpayments.ch/threedauthentication" (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.39.0', revision: '126f156aee'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.117, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\LENOVO\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:61890}, goog:processID: 35528, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:61890/devtoo..., se:cdpVersion: 145.0.7632.117, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: adc5ac6d38e2fc93c3cebc7c02808de7<br/>
 </div>
 </td>
 <td></td>
-<td>136</td>
+<td>421</td>
 <td>purchase.email@5ac86ba5</td></tr>
 </table><p>
 </body>

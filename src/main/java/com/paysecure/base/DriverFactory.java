@@ -24,41 +24,48 @@ public class DriverFactory {
 
     public static WebDriver createInstance(String browser) {
     	
-    	if (browser.equalsIgnoreCase("chrome")) {
-    	    WebDriverManager.chromedriver().setup();
-    	    ChromeOptions options = new ChromeOptions();
+    	    if (browser.equalsIgnoreCase("chrome")) {
+    	        WebDriverManager.chromedriver().setup();
+    	        ChromeOptions options = new ChromeOptions();
 
-    	    // Core headless setup
-    	    options.addArguments("--headless");
-    	    options.addArguments("--no-sandbox");
-    	    options.addArguments("--disable-dev-shm-usage");
-    	    options.addArguments("--disable-gpu");
-    	    options.addArguments("--window-size=1920,1080");  // bigger size recommended
-    	    options.addArguments("--remote-allow-origins=*");
-    	    options.addArguments("--disable-notifications");
+    	        options.addArguments("--remote-allow-origins=*");
+    	        options.addArguments("--disable-gpu");
+    	        options.addArguments("--window-size=800,600");
+    	        options.addArguments("--disable-notifications");
+    	        options.addArguments("--no-sandbox");
+    	        
+    	        options.addArguments("--headless");
+    	        options.addArguments("--disable-dev-shm-usage");
+    	        
+    	    
+    	        Map<String, Object> prefs = new HashMap<>();
+    	        prefs.put("download.default_directory", "/home/ec2-user/downloads");
+    	        prefs.put("download.prompt_for_download", false);
+    	        prefs.put("plugins.always_open_pdf_externally", true);
+    	        prefs.put("credentials_enable_service", false);
+    	        prefs.put("profile.password_manager_enabled", false);
 
-    	    // Handles dialogs/popups that Robot was trying to dismiss
-    	    options.addArguments("--ignore-certificate-errors");
-    	    options.addArguments("--disable-popup-blocking");
-    	    options.addArguments("--disable-extensions");
-    	    options.addArguments("--disable-infobars");
+    	        options.setExperimentalOption("prefs", prefs);
+    	        options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+    	        options.setExperimentalOption("useAutomationExtension", false);
 
-    	    Map<String, Object> prefs = new HashMap<>();
-    	    prefs.put("download.default_directory", "/home/ec2-user/downloads"); // Linux path for AWS
-    	    prefs.put("download.prompt_for_download", false);
-    	    prefs.put("plugins.always_open_pdf_externally", true);
-    	    prefs.put("credentials_enable_service", false);
-    	    prefs.put("profile.password_manager_enabled", false);
+    	        if (OSType.LINUX == SystemUtil.getOperatingSystemType()) {
+    	            options.setBinary("/usr/bin/google-chrome");
+    	        }
 
-    	    options.setExperimentalOption("prefs", prefs);
-    	    options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-    	    options.setExperimentalOption("useAutomationExtension", false);
+    	        WebDriver driver = new ChromeDriver(options);
 
-    	    if (OSType.LINUX == SystemUtil.getOperatingSystemType()) {
-    	        options.setBinary("/usr/bin/google-chrome");
-    	    }
+    
+    	        try {
+    	            Robot robot = new Robot();
+    	            robot.keyPress(KeyEvent.VK_ENTER);
+    	            robot.keyRelease(KeyEvent.VK_ENTER);
+    	        } catch (AWTException e) {
+    	            e.printStackTrace();
+    	        }
 
-    	    return new ChromeDriver(options);  // No Robot needed
+    	        return driver;
+    	   
     	}
             else if (browser.equalsIgnoreCase("firefox")) {
             WebDriverManager.firefoxdriver().setup();

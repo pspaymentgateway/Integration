@@ -70,4 +70,9 @@ public class cashierPageLocators {
 	public static final String mantapayOTP="//input[@name='PaRes']";
 	public static final String mantapayBtn="//input[@value='Continue']";
 	
+	//unicorn 3ds page 
+	
+	public static final String unicornOTP="//input[@name='password']";
+	public static final String unicornBtn="//button[text()='SUBMIT']";
+	
 }

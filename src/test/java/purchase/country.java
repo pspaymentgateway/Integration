@@ -204,7 +204,7 @@ public class country extends baseClass {
 	      
 	     			   status = "FAIL";
 	                    comment = "Payment Failed Cause Of Luhn ";
-                 Reporter.log("Invalid card number → Luhn check failed", true);
+                  Reporter.log("Invalid card number → Luhn check failed", true);
                   Reporter.log("Invalid card number → Luhn check failed", true);
                   ExcelWriteUtility.writeResult("Purchase_Result", Country,ExpectedStatus,    status, comment,purchaseId,PSP,PaymentMethod);
 	                    driver.quit();
