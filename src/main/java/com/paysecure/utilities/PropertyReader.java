@@ -18,7 +18,7 @@ public class PropertyReader {
             load("propertiesFolder/createCustomerAndSession.properties", createCustomerAndSession);
             load("propertiesFolder/purchase.properties", purchase);
         } catch (IOException e) {
-            throw new RuntimeException("❌ Failed to load property files from classpath", e);
+            throw new RuntimeException(" Failed to load property files from classpath", e);
         }
     }
 
@@ -29,7 +29,7 @@ public class PropertyReader {
                 .getResourceAsStream(fileName)) {
 
             if (input == null) {
-                throw new RuntimeException("❌ Property file not found in classpath: " + fileName);
+                throw new RuntimeException(" Property file not found in classpath: " + fileName);
             }
 
             props.load(input);

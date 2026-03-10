@@ -75,4 +75,9 @@ public class cashierPageLocators {
 	public static final String unicornOTP="//input[@name='password']";
 	public static final String unicornBtn="//button[text()='SUBMIT']";
 	
+	//cc avenue
+	public static final String ccavenueSelectClass="//select[@id='selectAuthResult']";
+	public static final String ccavenueSubmitButton="//input[@id='acssubmit']";
+	
+	
 }

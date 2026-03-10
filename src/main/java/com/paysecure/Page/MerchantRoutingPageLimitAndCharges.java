@@ -155,7 +155,7 @@ public class MerchantRoutingPageLimitAndCharges {
 	
 	public void selectRoutePoint(String routingValue) {
 
-		actionDriver.selectByValue(routingPoint, "1093");
+		actionDriver.selectByVisibleText(routingPoint,routingValue);
 	}
 
 	
@@ -165,8 +165,9 @@ public class MerchantRoutingPageLimitAndCharges {
 		actionDriver.click(OK2);
 	}
 	
-	public void finalsaveButton() {
+	public void finalsaveButton() throws InterruptedException {
 		actionDriver.moveToElement(FinalSave);
+		Thread.sleep(2000);
 		actionDriver.click(FinalSave);
 		actionDriver.click(OK2);
 	}

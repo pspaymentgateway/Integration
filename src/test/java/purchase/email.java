@@ -209,6 +209,10 @@ public class email extends baseClass {
 	            if(PSP.equalsIgnoreCase("telr")) {
 	            	Thread.sleep(8500);
 	            }
+	            
+	            if(PSP.equalsIgnoreCase("unicornpaymentds")) {
+	            	Thread.sleep(20000);
+	            }
 	            otp.enterOTP(PSP);
 
 	            if (mcp.isCardNumberInvalid()) {
