@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\LENOVO\AppData\Local\Temp\testng-eclipse-391025338\testng-customsuite.xml</span>
+                    <span>C:\Users\LENOVO\AppData\Local\Temp\testng-eclipse--1322856825\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -92,7 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">2 methods,   2 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -103,7 +103,12 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="purchase.email" class="method navigator-link" hash-for-method="Purchase({CardNumber=5123450000000008, CVV=100, RunFlag=TRUE, RouteToMidOrBank=ccavenue_mid, PartialMerchant=...)">Purchase({CardNumber=5123450000000008, CVV=100, RunFlag=TRUE, RouteToMidOrBank=ccavenue_mid, PartialMerchant=...)</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="S2sForLiveCo.purchaseWithS2S" class="method navigator-link" hash-for-method="purchase">purchase</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="S2sForLiveCo.purchaseWithS2S" class="method navigator-link" hash-for-method="superS2S">superS2S</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -121,15 +126,21 @@
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">purchase.email</span>
+              <span class="class-name">S2sForLiveCo.purchaseWithS2S</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="Purchase({CardNumber=5123450000000008, CVV=100, RunFlag=TRUE, RouteToMidOrBank=ccavenue_mid, PartialMerchant=...)">
-                  </a> <!-- Purchase({CardNumber=5123450000000008, CVV=100, RunFlag=TRUE, RouteToMidOrBank=ccavenue_mid, PartialMerchant=...) -->
-                  <span class="method-name">Purchase</span>
-                  <span class="parameters">({CardNumber=5123450000000008, CVV=100, RunFlag=TRUE, RouteToMidOrBank=ccavenue_mid, PartialMerchant=Suhas, PSP=ccavenue, MaxAmount=900, CardholderName=ak bihari sab pe bhari, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=AED, MinAmount=100, DefaultAmount=369, PaymentMethod=MASTER, Expiry=01/39},{Status=Pass, TestData=test123@example.com})</span>
+                  <a name="purchase">
+                  </a> <!-- purchase -->
+                  <span class="method-name">purchase</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="superS2S">
+                  </a> <!-- superS2S -->
+                  <span class="method-name">superS2S</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -137,7 +148,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\LENOVO\AppData\Local\Temp\testng-eclipse-391025338\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\LENOVO\AppData\Local\Temp\testng-eclipse--1322856825\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -146,11 +157,12 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;purchase.email&quot;&gt;
+      &lt;class name=&quot;S2sForLiveCo.purchaseWithS2S&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;Purchase&quot;/&gt;
+          &lt;include name=&quot;superS2S&quot;/&gt;
+          &lt;include name=&quot;purchase&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- purchase.email --&gt;
+      &lt;/class&gt; &lt;!-- S2sForLiveCo.purchaseWithS2S --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -190,16 +202,20 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(2);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'Purchase')
-data.setCell(0, 2, 'purchase.email')
-data.setCell(0, 3, 122361);
+data.setCell(0, 1, 'superS2S')
+data.setCell(0, 2, 'S2sForLiveCo.purchaseWithS2S')
+data.setCell(0, 3, 2495);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'purchase')
+data.setCell(1, 2, 'S2sForLiveCo.purchaseWithS2S')
+data.setCell(1, 3, 2329);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 2 minutes</span>
+              <span class="suite-total-time">Total running time: 4 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -211,157 +227,12 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="reporter-method-div">
-              <span class="reporter-method-name">Purchase({CardNumber=5123450000000008, CVV=100, RunFlag=TRUE, RouteToMidOrBank=ccavenue_mid, PartialMerchant=...)</span>
+              <span class="reporter-method-name">purchase</span>
               <div class="reporter-method-output-div">
-                <span class="reporter-method-output">select merchant name :- SuhasM</span>
-                <span class="reporter-method-output">select merchant name :- AED</span>
-                <span class="reporter-method-output">select merchant name :- MASTER</span>
-                <span class="reporter-method-output">Fetching details for Limit and Charges</span>
-                <span class="reporter-method-output">Details fetched successfully</span>
-                <span class="reporter-method-output">Email test case will run for this PSP: ccavenue</span>
-                <span class="reporter-method-output">Amount Inputs → Min: 100.0, Max: 900.0, Provided: 369.0</span>
-                <span class="reporter-method-output">✅ Amount within valid range. Using exact value: 369.0</span>
-                <span class="reporter-method-output">Generated First Name: div7e9</span>
-                <span class="reporter-method-output">Purchase ID: 69afc81aba1acbaab1c95d5f</span>
-                <span class="reporter-method-output">Checkout URL: https://test4.paymentsclub.net/payments/9408823595241091896b1e97676d9228/</span>
-                <span class="reporter-method-output">Email: test123@example.com → HTTP Status: 202</span>
-                <span class="reporter-method-output">Response Body: {
-    "purchaseId": "69afc81aba1acbaab1c95d5f",
-    "client": {
-        "customerId": "NA",
-        "email": "test123@example.com",
-        "phone": "+1111111111",
-        "full_name": "div7e9",
-        "street_address": "Main gate",
-        "country": "US",
-        "city": "Paris",
-        "zip_code": "20001",
-        "cc": [
-            
-        ],
-        "bcc": [
-            
-        ],
-        "stateCode": "QLD"
-    },
-    "updated_on": 1773127706,
-    "type": "purchase",
-    "paymentMethod": "MASTER",
-    "amountUnit": "MAJOR",
-    "errorMsg": "",
-    "errorCode": "NA",
-    "force_recurring": false,
-    "created_on": 1773127706,
-    "merchantRef": "69afc81aba1acbaab1c95d5f",
-    "purchase": {
-        "currency": "AED",
-        "products": [
-            {
-                "name": "Cricket bat",
-                "quantity": 1.0,
-                "price": 369.0,
-                "discount": 0,
-                "tax_percent": "0.00"
-            }
-        ],
-        "total": 369.0,
-        "requestAmount": 369.0,
-        "language": "en",
-        "notes": "",
-        "debt": 0,
-        "total_formatted": 1.0,
-        "taxAmount": 0.0,
-        "taxPercent": 0.0,
-        "request_client_details": [
-            
-        ],
-        "email_message": ""
-    },
-    "issuer_details": {
-        "website": "",
-        "legal_street_address": "",
-        "legal_country": "",
-        "legal_city": "",
-        "legal_zip_code": "",
-        "bank_accounts": [
-            {
-                
-            }
-        ],
-        "legal_name": "practice",
-        "brand_name": "practice",
-        "registration_number": "",
-        "tax_number": ""
-    },
-    "transaction_data": {
-        "payment_method": "",
-        "flow": "payform",
-        "extra": {
-            
-        },
-        "country": "",
-        "attempts": [
-            
-        ]
-    },
-    "status": "CREATED",
-    "status_history": [
-        {
-            "status": "created",
-            "timestamp": 1773127706
-        }
-    ],
-    "is_test": false,
-    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
-    "send_receipt": false,
-    "is_recurring_token": false,
-    "skip_capture": false,
-    "reference_generated": "PS9845",
-    "issued": "2026-03-10",
-    "due": 1773127706,
-    "refund_upto": 0,
-    "cc_descriptor": "",
-    "fraudScore": "NA",
-    "trustScore": "NA",
-    "extraFee": "0",
-    "paidOn": 0,
-    "receivedAmt": 0.0,
-    "taxAmount": 0.0,
-    "surcharge": 0.0,
-    "surchargeType": "",
-    "sessionId": "",
-    "refund_availability": "NONE",
-    "refundable_amount": 0.0,
-    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
-    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
-    "cancel_redirect": "",
-    "success_callback": "https://www.google.com/",
-    "failure_callback": "https://staging.paysecure.net/merchant",
-    "platform": "API",
-    "created_from_ip": "103.80.161.238",
-    "checkout_url": "https://test4.paymentsclub.net/payments/9408823595241091896b1e97676d9228/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69afc81aba1acbaab1c95d5f/",
-    "payoutProcess": false
-}</span>
-                <span class="reporter-method-output">Email accepted by API: test123@example.com</span>
-                <span class="reporter-method-output">Transaction status OK → proceeding with payment flow</span>
-                <span class="reporter-method-output">Entered Card Holder Name: ak bihari sab pe bhari</span>
-                <span class="reporter-method-output">Entered Card Number: 5123450000000008</span>
-                <span class="reporter-method-output">Entered Card Expiry Date: 01/39</span>
-                <span class="reporter-method-output">Entered Card CVV: 100</span>
-                <span class="reporter-method-output">Moved to the Pay button</span>
-                <span class="reporter-method-output">Clicked on the Pay button to proceed with payment</span>
-                <span class="reporter-method-output">Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true</span>
-                <span class="reporter-method-output">PASS → Payment outcome matched expectation</span>
-                <span class="reporter-method-output"> Opened staging environment in a new browser tab</span>
-                <span class="reporter-method-output">User enter ID in Username field</span>
-                <span class="reporter-method-output">User Enter Password in password field</span>
-                <span class="reporter-method-output">Click on submit button in login page</span>
-                <span class="reporter-method-output"> Entered Transaction ID: 69afc81aba1acbaab1c95d5f</span>
-                <span class="reporter-method-output"> Clicked on Search button</span>
-                <span class="reporter-method-output"> Clicked on Search button</span>
-                <span class="reporter-method-output"> Clicked on first Transaction ID from list</span>
-                <span class="reporter-method-output">Purchase Transaction ID is not empty or not null</span>
+                <span class="reporter-method-output">Amount Inputs → Min: 10.0, Max: 100.0, Provided: 50.0</span>
+                <span class="reporter-method-output">✅ Amount within valid range. Using exact value: 50.0</span>
+                <span class="reporter-method-output">Generated First Name: div9d6</span>
+                <span class="reporter-method-output">Generated Email: yashdiv215a2@gmail.com</span>
               </div> <!-- reporter-method-output-div -->
             </div> <!-- reporter-method-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -379,30 +250,34 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">purchase.email</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">S2sForLiveCo.purchaseWithS2S</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">loadConfig</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
-              <div class="configuration-suite before">
-                <span class="method-name">clearOnce</span>
-                <span class="method-start">19 ms</span>
-              </div> <!-- configuration-suite before -->
               <div class="configuration-method before">
                 <span class="method-name">setup</span>
-                <span class="method-start">818 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="configuration-method before">
-                <span class="method-name">beforeMethod</span>
-                <span class="method-start">10975 ms</span>
+                <span class="method-start">58 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">Purchase({CardNumber=5123450000000008, CVV=100, RunFlag=TRUE, RouteToMidOrBank=ccavenue_mid, PartialMerchant=...)</span>
-                <span class="method-start">17054 ms</span>
+                <span class="method-name">purchase</span>
+                <span class="method-start">8699 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">tearDown([TestResult name=Purchase status=SUCCESS method=email.Purchase(java.util.Map,java.util.Map)[pri:0, i...)</span>
-                <span class="method-start">139440 ms</span>
+                <span class="method-name">tearDown([TestResult name=purchase status=SUCCESS method=purchaseWithS2S.purchase()[pri:0, instance:S2sForLiv...)</span>
+                <span class="method-start">11037 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">15790 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">superS2S</span>
+                <span class="method-start">23277 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=superS2S status=SUCCESS method=purchaseWithS2S.superS2S()[pri:0, instance:S2sForLiv...)</span>
+                <span class="method-start">25776 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
