@@ -35,7 +35,7 @@ public class pspOTPPage{
 	        case "unicornpayment" -> System.err.println("So there is no 3ds page for this 'unicornpayment Integration' ");
 	        case "ccavenue" -> mcp.thirdPartyPageForCCAvenue("AUTHENTICATED");
 	        case "unicornpaymentds" -> mcp.unicorn3dsPage();
-	       
+	        case "exactly" -> System.err.println("So there is no 3ds page for this 'Exactly' ");
 	        default -> throw new IllegalArgumentException("Unsupported PSP: " + psp);
 	    }
 	}
