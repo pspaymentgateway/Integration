@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
 </tr><tr>
-<td>Started on:</td><td>Thu Mar 12 11:01:50 IST 2026</td>
+<td>Started on:</td><td>Fri Mar 13 14:07:53 IST 2026</td>
 </tr>
-<tr><td>Total time:</td><td>137 seconds (137090 ms)</td>
+<tr><td>Total time:</td><td>90 seconds (90480 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,30 +76,30 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='purchase.email.Purchase()'><b>Purchase</b><br>Test class: purchase.email<br>Parameters: {CardNumber=4000000000003220, CVV=100, RunFlag=TRUE, RouteToMidOrBank=exactlypay-mid, PartialMerchant=Suhas, PSP=exactly, MaxAmount=2500, CardholderName=Varun chakravarti, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=EUR, MinAmount=1, DefaultAmount=999, PaymentMethod=VISA, Expiry=01/39}, {Status=Pass, TestData=test123@example.com}<br/>
-<a href="#Output-551319099" onClick='toggleBox("Output-551319099", this, "Show output", "Hide output");'>Show output</a>
+<td title='purchase.email.Purchase()'><b>Purchase</b><br>Test class: purchase.email<br>Parameters: {CardNumber=4100000000000100, CVV=196, RunFlag=TRUE, RouteToMidOrBank=unicornpayment, PartialMerchant=Suhas, PSP=unicornpayment, MaxAmount=900, CardholderName=Brian Bennet, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=USD, MinAmount=100, DefaultAmount=569, PaymentMethod=VISA, Expiry=08/27}, {Status=Pass, TestData=test123@example.com}<br/>
+<a href="#Output-431283552" onClick='toggleBox("Output-431283552", this, "Show output", "Hide output");'>Show output</a>
 
-<a href="#Output-551319099" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-551319099">
+<a href="#Output-431283552" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-431283552">
 select merchant name :- SuhasM<br/>
-select merchant name :- EUR<br/>
+select merchant name :- USD<br/>
 select merchant name :- VISA<br/>
 Fetching details for Limit and Charges<br/>
 Details fetched successfully<br/>
-Email test case will run for this PSP: exactly<br/>
-Amount Inputs → Min: 1.0, Max: 2500.0, Provided: 999.0<br/>
-✅ Amount within valid range. Using exact value: 999.0<br/>
-Generated First Name: divba0<br/>
-Purchase ID: 69b2500bf36bd5f2176f86cc<br/>
-Checkout URL: https://test4.paymentsclub.net/payments/bfee574e450c7c60bb51984aa69581d8/<br/>
+Email test case will run for this PSP: unicornpayment<br/>
+Amount Inputs → Min: 100.0, Max: 900.0, Provided: 569.0<br/>
+✅ Amount within valid range. Using exact value: 569.0<br/>
+Generated First Name: div3a3<br/>
+Purchase ID: 69b3cd0ff25c5f9cc3a0952a<br/>
+Checkout URL: https://test4.paymentsclub.net/payments/464a19fe6698dfff1441607a693ad5d8/<br/>
 Email: test123@example.com → HTTP Status: 202<br/>
 Response Body: {
-    "purchaseId": "69b2500bf36bd5f2176f86cc",
+    "purchaseId": "69b3cd0ff25c5f9cc3a0952a",
     "client": {
         "customerId": "NA",
         "email": "test123@example.com",
         "phone": "+1111111111",
-        "full_name": "divba0",
+        "full_name": "div3a3",
         "street_address": "Main gate",
         "country": "US",
         "city": "Paris",
@@ -112,28 +112,28 @@ Response Body: {
         ],
         "stateCode": "QLD"
     },
-    "updated_on": 1773293579,
+    "updated_on": 1773391119,
     "type": "purchase",
     "paymentMethod": "VISA",
     "amountUnit": "MAJOR",
     "errorMsg": "",
     "errorCode": "NA",
     "force_recurring": false,
-    "created_on": 1773293579,
-    "merchantRef": "69b2500bf36bd5f2176f86cc",
+    "created_on": 1773391119,
+    "merchantRef": "69b3cd0ff25c5f9cc3a0952a",
     "purchase": {
-        "currency": "EUR",
+        "currency": "USD",
         "products": [
             {
                 "name": "Cricket bat",
                 "quantity": 1.0,
-                "price": 999.0,
+                "price": 569.0,
                 "discount": 0,
                 "tax_percent": "0.00"
             }
         ],
-        "total": 999.0,
-        "requestAmount": 999.0,
+        "total": 569.0,
+        "requestAmount": 569.0,
         "language": "en",
         "notes": "",
         "debt": 0,
@@ -156,8 +156,8 @@ Response Body: {
                 
             }
         ],
-        "legal_name": "practice",
-        "brand_name": "practice",
+        "legal_name": "tokyo",
+        "brand_name": "tokyo",
         "registration_number": "",
         "tax_number": ""
     },
@@ -176,7 +176,7 @@ Response Body: {
     "status_history": [
         {
             "status": "created",
-            "timestamp": 1773293579
+            "timestamp": 1773391119
         }
     ],
     "is_test": false,
@@ -184,9 +184,9 @@ Response Body: {
     "send_receipt": false,
     "is_recurring_token": false,
     "skip_capture": false,
-    "reference_generated": "PS9916",
-    "issued": "2026-03-12",
-    "due": 1773293579,
+    "reference_generated": "PS10019",
+    "issued": "2026-03-13",
+    "due": 1773391119,
     "refund_upto": 0,
     "cc_descriptor": "",
     "fraudScore": "NA",
@@ -207,28 +207,24 @@ Response Body: {
     "failure_callback": "https://staging.paysecure.net/merchant",
     "platform": "API",
     "created_from_ip": "110.235.229.171",
-    "checkout_url": "https://test4.paymentsclub.net/payments/bfee574e450c7c60bb51984aa69581d8/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69b2500bf36bd5f2176f86cc/",
+    "checkout_url": "https://test4.paymentsclub.net/payments/464a19fe6698dfff1441607a693ad5d8/",
+    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69b3cd0ff25c5f9cc3a0952a/",
     "payoutProcess": false
 }<br/>
 Email accepted by API: test123@example.com<br/>
 Transaction status OK → proceeding with payment flow<br/>
-Entered Card Holder Name: Varun chakravarti<br/>
-Entered Card Number: 4000000000003220<br/>
-Entered Card Expiry Date: 01/39<br/>
-Entered Card CVV: 100<br/>
+Entered Card Holder Name: Brian Bennet<br/>
+Entered Card Number: 4100000000000100<br/>
+Entered Card Expiry Date: 08/27<br/>
+Entered Card CVV: 196<br/>
 Moved to the Pay button<br/>
 Clicked on the Pay button to proceed with payment<br/>
-FAIL → Exception: Expected condition failed: waiting for url to contain "issucces". Current url: "https://test4.paymentsclub.net/payments/bfee574e450c7c60bb51984aa69581d8/" (tried for 15 second(s) with 500 milliseconds interval)
-Build info: version: '4.39.0', revision: '126f156aee'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.160, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\LENOVO\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56359}, goog:processID: 24328, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56359/devtoo..., se:cdpVersion: 145.0.7632.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: ef5c3f3142968795560c40f0de46b72f<br/>
+Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=false<br/>
+FAIL → Payment outcome did not match expectation<br/>
 </div>
 </td>
 <td></td>
-<td>115</td>
+<td>73</td>
 <td>purchase.email@5ac86ba5</td></tr>
 </table><p>
 </body>

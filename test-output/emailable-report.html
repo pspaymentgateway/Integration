@@ -9,17 +9,17 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">137,090</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Default test</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">90,480</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">purchase.email</td><td><a href="#m0">Purchase</a></td><td rowspan="1">1773293529046</td><td rowspan="1">115519</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">purchase.email</td><td><a href="#m0">Purchase</a></td><td rowspan="1">1773391087165</td><td rowspan="1">73401</td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">purchase.email#Purchase</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>{CardNumber=4000000000003220, CVV=100, RunFlag=TRUE, RouteToMidOrBank=exactlypay-mid, PartialMerchant=Suhas, PSP=exactly, MaxAmount=2500, CardholderName=Varun chakravarti, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=EUR, MinAmount=1, DefaultAmount=999, PaymentMethod=VISA, Expiry=01/39}</td><td>{Status=Pass, TestData=test123@example.com}</td></tr><tr><th colspan="2">Messages</th></tr><tr><td colspan="2"><div class="messages">select merchant name :- SuhasM<br/>select merchant name :- EUR<br/>select merchant name :- VISA<br/>Fetching details for Limit and Charges<br/>Details fetched successfully<br/>Email test case will run for this PSP: exactly<br/>Amount Inputs → Min: 1.0, Max: 2500.0, Provided: 999.0<br/>✅ Amount within valid range. Using exact value: 999.0<br/>Generated First Name: divba0<br/>Purchase ID: 69b2500bf36bd5f2176f86cc<br/>Checkout URL: https://test4.paymentsclub.net/payments/bfee574e450c7c60bb51984aa69581d8/<br/>Email: test123@example.com → HTTP Status: 202<br/>Response Body: {
-    "purchaseId": "69b2500bf36bd5f2176f86cc",
+<h2>Default test</h2><h3 id="m0">purchase.email#Purchase</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>{CardNumber=4100000000000100, CVV=196, RunFlag=TRUE, RouteToMidOrBank=unicornpayment, PartialMerchant=Suhas, PSP=unicornpayment, MaxAmount=900, CardholderName=Brian Bennet, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=USD, MinAmount=100, DefaultAmount=569, PaymentMethod=VISA, Expiry=08/27}</td><td>{Status=Pass, TestData=test123@example.com}</td></tr><tr><th colspan="2">Messages</th></tr><tr><td colspan="2"><div class="messages">select merchant name :- SuhasM<br/>select merchant name :- USD<br/>select merchant name :- VISA<br/>Fetching details for Limit and Charges<br/>Details fetched successfully<br/>Email test case will run for this PSP: unicornpayment<br/>Amount Inputs → Min: 100.0, Max: 900.0, Provided: 569.0<br/>✅ Amount within valid range. Using exact value: 569.0<br/>Generated First Name: div3a3<br/>Purchase ID: 69b3cd0ff25c5f9cc3a0952a<br/>Checkout URL: https://test4.paymentsclub.net/payments/464a19fe6698dfff1441607a693ad5d8/<br/>Email: test123@example.com → HTTP Status: 202<br/>Response Body: {
+    "purchaseId": "69b3cd0ff25c5f9cc3a0952a",
     "client": {
         "customerId": "NA",
         "email": "test123@example.com",
         "phone": "+1111111111",
-        "full_name": "divba0",
+        "full_name": "div3a3",
         "street_address": "Main gate",
         "country": "US",
         "city": "Paris",
@@ -32,28 +32,28 @@
         ],
         "stateCode": "QLD"
     },
-    "updated_on": 1773293579,
+    "updated_on": 1773391119,
     "type": "purchase",
     "paymentMethod": "VISA",
     "amountUnit": "MAJOR",
     "errorMsg": "",
     "errorCode": "NA",
     "force_recurring": false,
-    "created_on": 1773293579,
-    "merchantRef": "69b2500bf36bd5f2176f86cc",
+    "created_on": 1773391119,
+    "merchantRef": "69b3cd0ff25c5f9cc3a0952a",
     "purchase": {
-        "currency": "EUR",
+        "currency": "USD",
         "products": [
             {
                 "name": "Cricket bat",
                 "quantity": 1.0,
-                "price": 999.0,
+                "price": 569.0,
                 "discount": 0,
                 "tax_percent": "0.00"
             }
         ],
-        "total": 999.0,
-        "requestAmount": 999.0,
+        "total": 569.0,
+        "requestAmount": 569.0,
         "language": "en",
         "notes": "",
         "debt": 0,
@@ -76,8 +76,8 @@
                 
             }
         ],
-        "legal_name": "practice",
-        "brand_name": "practice",
+        "legal_name": "tokyo",
+        "brand_name": "tokyo",
         "registration_number": "",
         "tax_number": ""
     },
@@ -96,7 +96,7 @@
     "status_history": [
         {
             "status": "created",
-            "timestamp": 1773293579
+            "timestamp": 1773391119
         }
     ],
     "is_test": false,
@@ -104,9 +104,9 @@
     "send_receipt": false,
     "is_recurring_token": false,
     "skip_capture": false,
-    "reference_generated": "PS9916",
-    "issued": "2026-03-12",
-    "due": 1773293579,
+    "reference_generated": "PS10019",
+    "issued": "2026-03-13",
+    "due": 1773391119,
     "refund_upto": 0,
     "cc_descriptor": "",
     "fraudScore": "NA",
@@ -127,14 +127,9 @@
     "failure_callback": "https://staging.paysecure.net/merchant",
     "platform": "API",
     "created_from_ip": "110.235.229.171",
-    "checkout_url": "https://test4.paymentsclub.net/payments/bfee574e450c7c60bb51984aa69581d8/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69b2500bf36bd5f2176f86cc/",
+    "checkout_url": "https://test4.paymentsclub.net/payments/464a19fe6698dfff1441607a693ad5d8/",
+    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69b3cd0ff25c5f9cc3a0952a/",
     "payoutProcess": false
-}<br/>Email accepted by API: test123@example.com<br/>Transaction status OK → proceeding with payment flow<br/>Entered Card Holder Name: Varun chakravarti<br/>Entered Card Number: 4000000000003220<br/>Entered Card Expiry Date: 01/39<br/>Entered Card CVV: 100<br/>Moved to the Pay button<br/>Clicked on the Pay button to proceed with payment<br/>FAIL → Exception: Expected condition failed: waiting for url to contain "issucces". Current url: "https://test4.paymentsclub.net/payments/bfee574e450c7c60bb51984aa69581d8/" (tried for 15 second(s) with 500 milliseconds interval)
-Build info: version: '4.39.0', revision: '126f156aee'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.160, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\LENOVO\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56359}, goog:processID: 24328, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56359/devtoo..., se:cdpVersion: 145.0.7632.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: ef5c3f3142968795560c40f0de46b72f</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+}<br/>Email accepted by API: test123@example.com<br/>Transaction status OK → proceeding with payment flow<br/>Entered Card Holder Name: Brian Bennet<br/>Entered Card Number: 4100000000000100<br/>Entered Card Expiry Date: 08/27<br/>Entered Card CVV: 196<br/>Moved to the Pay button<br/>Clicked on the Pay button to proceed with payment<br/>Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=false<br/>FAIL → Payment outcome did not match expectation</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

@@ -95,18 +95,18 @@ public class email extends baseClass {
 	        throw new SkipException("Empty test data");
 	    }
 
-	    RouteManager.ensureRoute(
-	        getDriver(),
-	        Merchant,
-	        Merchant,
-	        PaymentMethod,
-	        PaymentMethod,
-	        Currency,
-	        Currency,
-	        PSP,
-	        RouteToBankMid,
-	        RouteToMidOrBank
-	    );
+//	    RouteManager.ensureRoute(
+//	        getDriver(),
+//	        Merchant,
+//	        Merchant,
+//	        PaymentMethod,
+//	        PaymentMethod,
+//	        Currency,
+//	        Currency,
+//	        PSP,
+//	        RouteToBankMid,
+//	        RouteToMidOrBank
+//	    );
 
 	    Reporter.log("Email test case will run for this PSP: " + PSP, true);
 	 //   Reporter.log("Testing Email: " + uniqueEmail + " with Card: " + CardNumber, true);
@@ -210,9 +210,9 @@ public class email extends baseClass {
 	            	Thread.sleep(8500);
 	            }
 	            
-	            if(PSP.equalsIgnoreCase("unicornpaymentds")) {
-	            	Thread.sleep(20000);
-	            }
+//	            if(PSP.equalsIgnoreCase("unicornpaymentds")) {
+//	            	Thread.sleep(20000);
+//	            }
 	            otp.enterOTP(PSP);
 
 	            if (mcp.isCardNumberInvalid()) {
