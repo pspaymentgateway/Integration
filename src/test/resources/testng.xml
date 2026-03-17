@@ -16,9 +16,10 @@
       <class name="s2s.email"/>
           <class name="purchase.currency"/>
               <class name="s2s.currency"/>
+               <class name="purchase.email"/>
       <class name="s2s.country"/>
        -->
-       <class name="purchase.email"/>
+      
       <class name="purchase.city"/>
       <class name="purchase.streetAddress"/>
       <class name="purchase.stateCode"/>
