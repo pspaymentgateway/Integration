@@ -14,7 +14,7 @@
       <class name="s2s.productName"/>
       <class name="s2s.streetAddress"/>
       <class name="s2s.email"/>
-       
+          <class name="purchase.currency"/>
               <class name="s2s.currency"/>
       <class name="s2s.country"/>
        -->
@@ -25,7 +25,7 @@
       <class name="purchase.productName"/>
       <class name="purchase.country"/>
       <class name="purchase.zipcode"/>
-      <class name="purchase.currency"/>
+   
      
     </classes>
   </test>

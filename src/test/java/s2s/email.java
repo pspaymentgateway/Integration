@@ -222,7 +222,7 @@ public class email extends baseClass {
 			return;
 		}
 
-RestAssured.baseURI = baseUri;
+        RestAssured.baseURI = baseUri;
 		
 		String endpoint = "/api/v1/p/" + purchaseId + "?s2s=true";
 		System.err.println("S2S Endpoint: " + endpoint);

@@ -88,6 +88,13 @@ public class CashierPage {
 	private By ccavenueSubmitButton=By.xpath(cashierPageLocators.ccavenueSubmitButton);
 	@FindBy(xpath="//input[@name='password']") private WebElement unicornOTP;
 	
+	
+	//Shift 4 
+	private By shift4Otp=By.xpath(cashierPageLocators.shift4Otp);
+	private By shift4payButton=By.xpath(cashierPageLocators.shift4payButton);
+	
+	
+	
 	private ActionDriver actionDriver;
 	// page factory constructor
 	public CashierPage(WebDriver driver) {
@@ -491,6 +498,11 @@ public class CashierPage {
 	        driver.switchTo().defaultContent();
 	        System.out.println("✓ Returned to default content");
 	    }
+	}
+	
+	public void handleShift4Otp() {
+		actionDriver.enterText(shift4Otp, "0101");
+		actionDriver.click(shift4payButton);
 	}
 
 	

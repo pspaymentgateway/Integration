@@ -79,5 +79,15 @@ public class cashierPageLocators {
 	public static final String ccavenueSelectClass="//select[@id='selectAuthResult']";
 	public static final String ccavenueSubmitButton="//input[@id='acssubmit']";
 	
+	//Shift 4 
+	
+	public static final String shift4Otp="//input[@id='otp']";
+	public static final String shift4payButton="//button[text()='Pay']";
+	
+	
+	
+	
+	
+	
 	
 }
