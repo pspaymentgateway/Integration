@@ -37,7 +37,6 @@ public class DriverFactory {
     	        options.addArguments("--headless");
     	        options.addArguments("--disable-dev-shm-usage");
     	        
-    	    
     	        Map<String, Object> prefs = new HashMap<>();
     	        prefs.put("download.default_directory", "/home/ec2-user/downloads");
     	        prefs.put("download.prompt_for_download", false);
