@@ -1,0 +1,46 @@
+name: Backup Selected Repositories
+
+on:
+  push:
+    branches:
+      - '**'
+  create:
+  delete:
+  workflow_dispatch:
+
+jobs:
+  backup:
+    if: github.repository_owner == 'pspaymentgateway'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Sync Selected Repositories
+        env:
+          BACKUP_TOKEN: ${{ secrets.BACKUP_TOKEN }}
+        run: |
+          PRIMARY_USER="pspaymentgateway"
+          BACKUP_USER="PaysecureMicroServices"
+
+          #REPOS=("Integration")   # start with 1 repo for testing
+          repo="${{ github.event.repository.name }}"
+          echo "Processing $repo"
+  
+          # Mirror clone (includes ALL branches, tags, refs)
+          git clone --mirror https://$BACKUP_TOKEN@github.com/$PRIMARY_USER/$repo.git
+          cd $repo.git
+    
+          # Add backup remote
+          git remote add backup https://$BACKUP_TOKEN@github.com/$BACKUP_USER/$repo.git
+    
+          # Push only branches
+          git push backup 'refs/heads/*:refs/heads/*' --prune
+          
+          # Push only tags
+          git push backup 'refs/tags/*:refs/tags/*'
+  
+          echo "Sync completed"
+          
+          # Push only tags
+          git push backup 'refs/tags/*:refs/tags/*'
+  
+          echo "Sync completed"
