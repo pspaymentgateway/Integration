@@ -86,18 +86,18 @@ public class stateCode extends baseClass{
 				throw new SkipException("Empty test data");
 			}
 			
-		    RouteManager.ensureRoute(
-			        getDriver(),
-			        Merchant,
-			        Merchant,
-			        PaymentMethod,
-			        PaymentMethod,
-			        Currency,
-			        Currency,
-			        PSP,
-			        RouteToBankMid,
-			        RouteToMidOrBank
-			    );
+//		    RouteManager.ensureRoute(
+//			        getDriver(),
+//			        Merchant,
+//			        Merchant,
+//			        PaymentMethod,
+//			        PaymentMethod,
+//			        Currency,
+//			        Currency,
+//			        PSP,
+//			        RouteToBankMid,
+//			        RouteToMidOrBank
+//			    );
 		    
 	    Reporter.log("StateCode test case will run for this PSPCardsIntegrations :- "+PSP, true);
 
