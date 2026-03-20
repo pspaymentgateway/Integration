@@ -84,8 +84,9 @@ public class cashierPageLocators {
 	public static final String shift4Otp="//input[@id='otp']";
 	public static final String shift4payButton="//button[text()='Pay']";
 	
-	
-	
+	//payaza-card
+	public static final String payazaDropdown="//select[@id='selectAuthResult']";
+	public static final String payazaSubmitBtn="//input[@id='acssubmit']";
 	
 	
 	

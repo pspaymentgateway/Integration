@@ -93,6 +93,9 @@ public class CashierPage {
 	private By shift4Otp=By.xpath(cashierPageLocators.shift4Otp);
 	private By shift4payButton=By.xpath(cashierPageLocators.shift4payButton);
 	
+	//payaza card
+	private By payazaDropdown=By.xpath(cashierPageLocators.payazaDropdown);
+	private By payazaSubmitBtn=By.xpath(cashierPageLocators.payazaSubmitBtn);
 	
 	
 	private ActionDriver actionDriver;
@@ -503,6 +506,11 @@ public class CashierPage {
 	public void handleShift4Otp() {
 		actionDriver.enterText(shift4Otp, "0101");
 		actionDriver.click(shift4payButton);
+	}
+	
+	public void handleForPayazaCard() {
+		actionDriver.selectByValue(payazaDropdown, "AUTHENTICATED");
+		actionDriver.click(payazaSubmitBtn);
 	}
 
 	

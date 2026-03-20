@@ -38,7 +38,7 @@ public class pspOTPPage{
 	        case "exactly" -> System.err.println("So there is no 3ds page for this 'Exactly' ");
 	        case "shift4" -> mcp.handleShift4Otp();
 	        case "shift4Frictionless" -> System.err.println("So there is no 3ds page for this 'trustpayments Integration' ");
-	        case "payaza-card" -> mcp.thirdPartyPageForCCAvenue("AUTHENTICATED");
+	        case "payaza-card" -> mcp.handleForPayazaCard();
 	        default -> throw new IllegalArgumentException("Unsupported PSP: " + psp);
 	    }
 	}

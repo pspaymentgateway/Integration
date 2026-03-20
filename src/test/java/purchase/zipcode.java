@@ -54,6 +54,9 @@ public class zipcode extends baseClass{
 			otp= new pspOTPPage();
 	  }
 	  
+	  
+	  
+	  
 	 
   @Test(dataProvider ="ZipCodeProvider", dataProviderClass = DataProviders.class)
   public void validationForZipcodeField(Map<String, String>cardData , Map<String, String> zipcodeData) throws InterruptedException {

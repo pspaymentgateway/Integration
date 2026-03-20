@@ -20,8 +20,8 @@
       <class name="s2s.country"/>
        <class name="purchase.city"/>
        -->
-      
-     
+       <class name="s2s.email"/>
+       <class name="purchase.email"/>
       <class name="purchase.streetAddress"/>
       <class name="purchase.stateCode"/>
       <class name="purchase.productName"/>
