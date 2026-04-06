@@ -83,6 +83,14 @@ public class transactionPage {
 	private By easyDelayedFailure = By.xpath(cashierPageLocators.easyDelayedFailure);
 	
 
+	//yaspa
+	private By YaspaTestBank = By.xpath(cashierPageLocators.YaspaTestBank);
+	private By ccYaspa = By.xpath(cashierPageLocators.ccYaspa);
+	private By urlYaspa = By.xpath(cashierPageLocators.urlYaspa);
+	private By approve = By.xpath(cashierPageLocators.approve);
+	private By returnToPayse = By.xpath(cashierPageLocators.returnToPayse);
+	
+	
 	private ActionDriver actionDriver;
 
 	// page factory constructor
@@ -602,6 +610,20 @@ public class transactionPage {
 public	String LastSTatus;
 public String getLastSTtaus() {
 	return LastSTatus= actionDriver.getText(lastStatusFromTxnPage);
+}
+
+
+public void handleForYASPA() {
+	actionDriver.scrollToElement(YaspaTestBank);
+	actionDriver.click(YaspaTestBank);
+	actionDriver.scrollToElement(ccYaspa);
+	actionDriver.click(ccYaspa);
+	actionDriver.scrollToElement(urlYaspa);
+	actionDriver.click(urlYaspa);
+	actionDriver.scrollToElement(approve);
+	actionDriver.click(approve);
+	actionDriver.scrollToElement(returnToPayse);
+	actionDriver.click(returnToPayse);
 }
 
 

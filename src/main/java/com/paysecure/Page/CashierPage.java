@@ -97,7 +97,8 @@ public class CashierPage {
 	private By payazaDropdown=By.xpath(cashierPageLocators.payazaDropdown);
 	private By payazaSubmitBtn=By.xpath(cashierPageLocators.payazaSubmitBtn);
 	
-	
+	private By sbxPayaEnterOTP=By.xpath(cashierPageLocators.sbxPayaEnterOTP);
+	private By sbxSubmitBtn=By.xpath(cashierPageLocators.sbxSubmitBtn);
 	private ActionDriver actionDriver;
 	// page factory constructor
 	public CashierPage(WebDriver driver) {
@@ -509,8 +510,13 @@ public class CashierPage {
 	}
 	
 	public void handleForPayazaCard() {
-		actionDriver.selectByValue(payazaDropdown, "AUTHENTICATED");
+		actionDriver.selectByIndex(payazaDropdown, 0);
 		actionDriver.click(payazaSubmitBtn);
+	}
+	
+	public void handleForPayableSBX() {
+		actionDriver.enterText(sbxPayaEnterOTP, "test");
+		actionDriver.click(sbxSubmitBtn);
 	}
 
 	

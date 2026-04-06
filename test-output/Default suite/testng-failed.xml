@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="S2sForLiveCo.purchaseWithS2S">
+      <class name="PspWithoutCards.yaspaNetbanking">
         <methods>
-          <include name="superS2S"/>
+          <include name="beforeMethod"/>
           <include name="loadConfig"/>
-          <include name="purchase"/>
           <include name="tearDown"/>
+          <include name="purchase"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- S2sForLiveCo.purchaseWithS2S -->
+      </class> <!-- PspWithoutCards.yaspaNetbanking -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

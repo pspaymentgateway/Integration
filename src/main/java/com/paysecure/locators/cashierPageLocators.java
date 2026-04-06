@@ -88,7 +88,15 @@ public class cashierPageLocators {
 	public static final String payazaDropdown="//select[@id='selectAuthResult']";
 	public static final String payazaSubmitBtn="//input[@id='acssubmit']";
 	
+	//payable-sbx
+	public static final String sbxPayaEnterOTP="//input[@name='password']";
+	public static final String sbxSubmitBtn="//button[@type='submit']";
 	
 	
-	
+	//yaspa - netbanking 
+	public static final String YaspaTestBank="(//span[text()='Yaspa Test Bank'])[1]";
+	public static final String ccYaspa="//div[text()='Confirm and continue']";
+	public static final String urlYaspa="//button[text()='Or continue on your bank website']";
+	public static final String approve="//button[text()='Approve']";
+	public static final String returnToPayse="//button[text()='Return to PAYSECURE TECHNOLOGY LIMITED']";
 }

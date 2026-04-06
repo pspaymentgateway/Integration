@@ -24,12 +24,12 @@ public class limitAndCHarges extends baseClass{
 
 		 ml.navigateUptoLimitAndCharges();
 		 ml.selectMerchant("SuhasM","SuhasM");
-		 ml.selectCurrency("NGN","NGN");
-		 ml.selectPaymentMethod("VISA","VISA");
+		 ml.selectCurrency("GBP","GBP");
+		 ml.selectPaymentMethod("yaspa_openbanking_sbx","yaspa_openbanking_sbx");
 		 ml.getDetailsForLimitAndCharges();
 		 ml.fillAllTextboxesWithTab();
 		 ml.selectRouteTo("Route to Mid");
-		 ml.selectRoutePoint("payaza-card");
+		 ml.selectRoutePoint("webcheque_payout");
 		 ml.saveButton();
 		 ml.finalsaveButton();
 	  }

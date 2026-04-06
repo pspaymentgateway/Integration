@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
 </tr><tr>
-<td>Started on:</td><td>Fri Mar 20 10:39:09 IST 2026</td>
+<td>Started on:</td><td>Mon Apr 06 18:21:03 IST 2026</td>
 </tr>
-<tr><td>Total time:</td><td>55 seconds (55561 ms)</td>
+<tr><td>Total time:</td><td>75 seconds (75386 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,21 +76,151 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='refund.limitAndCHarges.setLimitAndCHarges()'><b>setLimitAndCHarges</b><br>Test class: refund.limitAndCHarges<br/>
-<a href="#Output-729787591" onClick='toggleBox("Output-729787591", this, "Show output", "Hide output");'>Show output</a>
+<td title='purchase.email.Purchase()'><b>Purchase</b><br>Test class: purchase.email<br>Parameters: {CardNumber=4149011500000147, CVV=100, RunFlag=TRUE, RouteToMidOrBank=shift4-mid, PartialMerchant=Suhas, PSP=payable-pix, MaxAmount=2500, CardholderName=Hazma Sher A Baloch, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=EUR, MinAmount=1, DefaultAmount=999, PaymentMethod=VISA, Expiry=01/39}, {Status=Pass, TestData=test123@example.com}<br/>
+<a href="#Output-1025197016" onClick='toggleBox("Output-1025197016", this, "Show output", "Hide output");'>Show output</a>
 
-<a href="#Output-729787591" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-729787591">
-select merchant name :- SuhasM<br/>
-select merchant name :- NGN<br/>
-select merchant name :- VISA<br/>
-Fetching details for Limit and Charges<br/>
-Details fetched successfully<br/>
+<a href="#Output-1025197016" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1025197016">
+Email test case will run for this PSP: payable-pix<br/>
+Amount Inputs → Min: 1.0, Max: 2500.0, Provided: 999.0<br/>
+✅ Amount within valid range. Using exact value: 999.0<br/>
+Generated First Name: div0c7<br/>
+Purchase ID: 69d3ac478519a511548f7dd2<br/>
+Checkout URL: https://test4.paymentsclub.net/payments/6708cc79a34827437f5a9d34eeb63a14/<br/>
+Email: test123@example.com → HTTP Status: 202<br/>
+Response Body: {
+    "purchaseId": "69d3ac478519a511548f7dd2",
+    "client": {
+        "customerId": "NA",
+        "email": "test123@example.com",
+        "phone": "+1111111111",
+        "full_name": "div0c7",
+        "street_address": "Main gate",
+        "country": "US",
+        "city": "Paris",
+        "zip_code": "20001",
+        "cc": [
+            
+        ],
+        "bcc": [
+            
+        ],
+        "stateCode": "QLD"
+    },
+    "updated_on": 1775479879,
+    "type": "purchase",
+    "paymentMethod": "VISA",
+    "amountUnit": "MAJOR",
+    "errorMsg": "",
+    "errorCode": "NA",
+    "force_recurring": false,
+    "created_on": 1775479879,
+    "merchantRef": "69d3ac478519a511548f7dd2",
+    "purchase": {
+        "currency": "EUR",
+        "products": [
+            {
+                "name": "Cricket bat",
+                "quantity": 1.0,
+                "price": 999.0,
+                "discount": 0,
+                "tax_percent": "0.00"
+            }
+        ],
+        "total": 999.0,
+        "requestAmount": 999.0,
+        "language": "en",
+        "notes": "",
+        "debt": 0,
+        "total_formatted": 1.0,
+        "taxAmount": 0.0,
+        "taxPercent": 0.0,
+        "request_client_details": [
+            
+        ],
+        "email_message": ""
+    },
+    "issuer_details": {
+        "website": "",
+        "legal_street_address": "",
+        "legal_country": "",
+        "legal_city": "",
+        "legal_zip_code": "",
+        "bank_accounts": [
+            {
+                
+            }
+        ],
+        "legal_name": "tokyo",
+        "brand_name": "tokyo",
+        "registration_number": "",
+        "tax_number": ""
+    },
+    "transaction_data": {
+        "payment_method": "",
+        "flow": "payform",
+        "extra": {
+            
+        },
+        "country": "",
+        "attempts": [
+            
+        ]
+    },
+    "status": "CREATED",
+    "status_history": [
+        {
+            "status": "created",
+            "timestamp": 1775479879
+        }
+    ],
+    "is_test": false,
+    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "send_receipt": false,
+    "is_recurring_token": false,
+    "skip_capture": false,
+    "reference_generated": "PS11358",
+    "issued": "2026-04-06",
+    "due": 1775479879,
+    "refund_upto": 0,
+    "cc_descriptor": "",
+    "fraudScore": "NA",
+    "trustScore": "NA",
+    "extraFee": "0",
+    "paidOn": 0,
+    "receivedAmt": 0.0,
+    "taxAmount": 0.0,
+    "surcharge": 0.0,
+    "surchargeType": "",
+    "sessionId": "",
+    "refund_availability": "NONE",
+    "refundable_amount": 0.0,
+    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
+    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
+    "cancel_redirect": "",
+    "success_callback": "https://www.google.com/",
+    "failure_callback": "https://staging.paysecure.net/merchant",
+    "platform": "API",
+    "created_from_ip": "103.80.161.238",
+    "checkout_url": "https://test4.paymentsclub.net/payments/6708cc79a34827437f5a9d34eeb63a14/",
+    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69d3ac478519a511548f7dd2/",
+    "payoutProcess": false
+}<br/>
+Email accepted by API: test123@example.com<br/>
+Transaction status OK → proceeding with payment flow<br/>
+Entered Card Holder Name: Hazma Sher A Baloch<br/>
+Entered Card Number: 4149011500000147<br/>
+Entered Card Expiry Date: 01/39<br/>
+Entered Card CVV: 100<br/>
+Moved to the Pay button<br/>
+Clicked on the Pay button to proceed with payment<br/>
+Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=false<br/>
+FAIL → Payment outcome did not match expectation<br/>
 </div>
 </td>
 <td></td>
-<td>39</td>
-<td>refund.limitAndCHarges@41a90fa8</td></tr>
+<td>59</td>
+<td>purchase.email@172ca72b</td></tr>
 </table><p>
 </body>
 </html>
