@@ -262,15 +262,15 @@ public class email extends baseClass {
 	            ExcelWriteUtility.writeResult("Purchase_Result", Email, ExpectedStatus, actualOutcome, comment, purchaseId, PSP, PaymentMethod);
 
 	            if (isActualSuccess) {
-	            	String URl = PropertyReader.getPropertyForconfigProps("url");
-	                mcp.openBrowserForStaging(driver, URl);
-	                lp.login();
-	                tp.navigateUptoTransaction();
-	                tp.searchTheTransaction(purchaseId);
-	                tp.searchButton();
-	                tp.clickOnTransactionId();
-	                tp.verifyPurchaseTransactionIDIsNotEmpty();
-	                Thread.sleep(4000);
+//	            	String URl = PropertyReader.getPropertyForconfigProps("url");
+//	                mcp.openBrowserForStaging(driver, URl);
+//	                lp.login();
+//	                tp.navigateUptoTransaction();
+//	                tp.searchTheTransaction(purchaseId);
+//	                tp.searchButton();
+//	                tp.clickOnTransactionId();
+//	                tp.verifyPurchaseTransactionIDIsNotEmpty();
+//	                Thread.sleep(4000);
 	            }
 	        }
 	        

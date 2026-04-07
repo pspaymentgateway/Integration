@@ -23,13 +23,13 @@ public class limitAndCHarges extends baseClass{
 	public void setLimitAndCHarges() throws InterruptedException {
 
 		 ml.navigateUptoLimitAndCharges();
-		 ml.selectMerchant("SuhasM","SuhasM");
-		 ml.selectCurrency("GBP","GBP");
-		 ml.selectPaymentMethod("yaspa_openbanking_sbx","yaspa_openbanking_sbx");
+		 ml.selectMerchant("Denver","Denver");
+		 ml.selectCurrency("EUR","EUR");
+		 ml.selectPaymentMethod("VISA","VISA");
 		 ml.getDetailsForLimitAndCharges();
 		 ml.fillAllTextboxesWithTab();
 		 ml.selectRouteTo("Route to Mid");
-		 ml.selectRoutePoint("webcheque_payout");
+		 ml.selectRoutePoint("Payable-SBX");
 		 ml.saveButton();
 		 ml.finalsaveButton();
 	  }

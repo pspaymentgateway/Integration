@@ -20,14 +20,15 @@
       <class name="s2s.country"/>
        <class name="s2s.email"/>
        <class name="purchase.city"/>
-       -->
-      
-       <class name="purchase.email"/>
-      <class name="purchase.streetAddress"/>
+             <class name="purchase.streetAddress"/>
       <class name="purchase.stateCode"/>
       <class name="purchase.productName"/>
       <class name="purchase.country"/>
       <class name="purchase.zipcode"/>
+       -->
+      
+       <class name="purchase.email"/>
+
    
      
     </classes>

@@ -9,17 +9,17 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">75,386</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Default test</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">367,492</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">purchase.email</td><td><a href="#m0">Purchase</a></td><td rowspan="1">1775479876282</td><td rowspan="1">59838</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">purchase.email</td><td><a href="#m0">Purchase</a></td><td rowspan="1">1775543559839</td><td rowspan="1">349091</td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">purchase.email#Purchase</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>{CardNumber=4149011500000147, CVV=100, RunFlag=TRUE, RouteToMidOrBank=shift4-mid, PartialMerchant=Suhas, PSP=payable-pix, MaxAmount=2500, CardholderName=Hazma Sher A Baloch, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=EUR, MinAmount=1, DefaultAmount=999, PaymentMethod=VISA, Expiry=01/39}</td><td>{Status=Pass, TestData=test123@example.com}</td></tr><tr><th colspan="2">Messages</th></tr><tr><td colspan="2"><div class="messages">Email test case will run for this PSP: payable-pix<br/>Amount Inputs → Min: 1.0, Max: 2500.0, Provided: 999.0<br/>✅ Amount within valid range. Using exact value: 999.0<br/>Generated First Name: div0c7<br/>Purchase ID: 69d3ac478519a511548f7dd2<br/>Checkout URL: https://test4.paymentsclub.net/payments/6708cc79a34827437f5a9d34eeb63a14/<br/>Email: test123@example.com → HTTP Status: 202<br/>Response Body: {
-    "purchaseId": "69d3ac478519a511548f7dd2",
+<h2>Default test</h2><h3 id="m0">purchase.email#Purchase</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>{CardNumber=4012001037484447, CVV=123, RunFlag=TRUE, RouteToMidOrBank=payable-pix, PartialMerchant=Suhas, PSP=payable-pix, MaxAmount=2500, CardholderName=Hamza Sher A Baloch, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=EUR, MinAmount=1, DefaultAmount=249, PaymentMethod=VISA, Expiry=12/30}</td><td>{Status=Pass, TestData=test123@example.com}</td></tr><tr><th colspan="2">Messages</th></tr><tr><td colspan="2"><div class="messages">Email test case will run for this PSP: payable-pix<br/>Amount Inputs → Min: 1.0, Max: 2500.0, Provided: 249.0<br/>✅ Amount within valid range. Using exact value: 249.0<br/>Generated First Name: div385<br/>Purchase ID: 69d4a50c8519a51154903e42<br/>Checkout URL: https://test4.paymentsclub.net/payments/967224f298aa974e494b177f46b62b15/<br/>Email: test123@example.com → HTTP Status: 202<br/>Response Body: {
+    "purchaseId": "69d4a50c8519a51154903e42",
     "client": {
         "customerId": "NA",
         "email": "test123@example.com",
         "phone": "+1111111111",
-        "full_name": "div0c7",
+        "full_name": "div385",
         "street_address": "Main gate",
         "country": "US",
         "city": "Paris",
@@ -32,28 +32,28 @@
         ],
         "stateCode": "QLD"
     },
-    "updated_on": 1775479879,
+    "updated_on": 1775543564,
     "type": "purchase",
     "paymentMethod": "VISA",
     "amountUnit": "MAJOR",
     "errorMsg": "",
     "errorCode": "NA",
     "force_recurring": false,
-    "created_on": 1775479879,
-    "merchantRef": "69d3ac478519a511548f7dd2",
+    "created_on": 1775543564,
+    "merchantRef": "69d4a50c8519a51154903e42",
     "purchase": {
         "currency": "EUR",
         "products": [
             {
                 "name": "Cricket bat",
                 "quantity": 1.0,
-                "price": 999.0,
+                "price": 249.0,
                 "discount": 0,
                 "tax_percent": "0.00"
             }
         ],
-        "total": 999.0,
-        "requestAmount": 999.0,
+        "total": 249.0,
+        "requestAmount": 249.0,
         "language": "en",
         "notes": "",
         "debt": 0,
@@ -76,8 +76,8 @@
                 
             }
         ],
-        "legal_name": "tokyo",
-        "brand_name": "tokyo",
+        "legal_name": "denver",
+        "brand_name": "denver",
         "registration_number": "",
         "tax_number": ""
     },
@@ -96,17 +96,17 @@
     "status_history": [
         {
             "status": "created",
-            "timestamp": 1775479879
+            "timestamp": 1775543564
         }
     ],
     "is_test": false,
-    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "brand_id": "b3fa5988-af84-4494-b36d-41595221a666",
     "send_receipt": false,
     "is_recurring_token": false,
     "skip_capture": false,
-    "reference_generated": "PS11358",
-    "issued": "2026-04-06",
-    "due": 1775479879,
+    "reference_generated": "PS1009",
+    "issued": "2026-04-07",
+    "due": 1775543564,
     "refund_upto": 0,
     "cc_descriptor": "",
     "fraudScore": "NA",
@@ -127,9 +127,9 @@
     "failure_callback": "https://staging.paysecure.net/merchant",
     "platform": "API",
     "created_from_ip": "103.80.161.238",
-    "checkout_url": "https://test4.paymentsclub.net/payments/6708cc79a34827437f5a9d34eeb63a14/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69d3ac478519a511548f7dd2/",
+    "checkout_url": "https://test4.paymentsclub.net/payments/967224f298aa974e494b177f46b62b15/",
+    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69d4a50c8519a51154903e42/",
     "payoutProcess": false
-}<br/>Email accepted by API: test123@example.com<br/>Transaction status OK → proceeding with payment flow<br/>Entered Card Holder Name: Hazma Sher A Baloch<br/>Entered Card Number: 4149011500000147<br/>Entered Card Expiry Date: 01/39<br/>Entered Card CVV: 100<br/>Moved to the Pay button<br/>Clicked on the Pay button to proceed with payment<br/>Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=false<br/>FAIL → Payment outcome did not match expectation</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+}<br/>Email accepted by API: test123@example.com<br/>Transaction status OK → proceeding with payment flow<br/>Entered Card Holder Name: Hamza Sher A Baloch<br/>Entered Card Number: 4012001037484447<br/>Entered Card Expiry Date: 12/30<br/>Entered Card CVV: 123<br/>Moved to the Pay button<br/>Clicked on the Pay button to proceed with payment<br/>Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=false<br/>FAIL → Payment outcome did not match expectation</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>
