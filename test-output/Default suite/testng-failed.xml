@@ -3,15 +3,16 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="PspWithoutCards.yaspaNetbanking">
+      <class name="purchase.email">
         <methods>
-          <include name="beforeMethod"/>
           <include name="loadConfig"/>
+          <include name="clearOnce"/>
+          <include name="Purchase"/>
+          <include name="beforeMethod"/>
           <include name="tearDown"/>
-          <include name="purchase"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- PspWithoutCards.yaspaNetbanking -->
+      </class> <!-- purchase.email -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

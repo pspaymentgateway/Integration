@@ -98,18 +98,18 @@ public class email extends baseClass {
 		lp.login();
 
 		// ---------- Route Manager Configuration ----------
-		RouteManager.ensureRoute(
-				getDriver(),
-				Merchant,
-				Merchant,
-				PaymentMethod,
-				PaymentMethod,
-				Currency,
-				Currency,
-				PSP,
-				RouteToBankMid,
-				RouteToMidOrBank
-		);
+//		RouteManager.ensureRoute(
+//				getDriver(),
+//				Merchant,
+//				Merchant,
+//				PaymentMethod,
+//				PaymentMethod,
+//				Currency,
+//				Currency,
+//				PSP,
+//				RouteToBankMid,
+//				RouteToMidOrBank
+//		);
 
 		Reporter.log("Routing applied → PSP: " + PSP + ", RouteTo: " + RouteToMidOrBank, true);
 

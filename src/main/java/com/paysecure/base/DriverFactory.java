@@ -32,9 +32,9 @@ public class DriverFactory {
     	        options.addArguments("--disable-gpu");
     	        options.addArguments("--window-size=800,600");
     	        options.addArguments("--disable-notifications");
-    	        options.addArguments("--no-sandbox");
+           options.addArguments("--no-sandbox");
     	        
-    	        options.addArguments("--headless");
+    	     //   options.addArguments("--headless");
     	        options.addArguments("--disable-dev-shm-usage");
     	        
     	        Map<String, Object> prefs = new HashMap<>();

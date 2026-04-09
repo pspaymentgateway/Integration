@@ -261,7 +261,7 @@ public class email extends baseClass {
 	            Reporter.log(comment, true);
 	            ExcelWriteUtility.writeResult("Purchase_Result", Email, ExpectedStatus, actualOutcome, comment, purchaseId, PSP, PaymentMethod);
 
-	            if (isActualSuccess) {
+	     //       if (isActualSuccess) {
 //	            	String URl = PropertyReader.getPropertyForconfigProps("url");
 //	                mcp.openBrowserForStaging(driver, URl);
 //	                lp.login();
@@ -271,7 +271,7 @@ public class email extends baseClass {
 //	                tp.clickOnTransactionId();
 //	                tp.verifyPurchaseTransactionIDIsNotEmpty();
 //	                Thread.sleep(4000);
-	            }
+	           // }
 	        }
 	        
 	    } catch (Exception e) {
