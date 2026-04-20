@@ -90,7 +90,8 @@ public class transactionPage {
 	private By approve = By.xpath(cashierPageLocators.approve);
 	private By returnToPayse = By.xpath(cashierPageLocators.returnToPayse);
 	
-	
+	//yoya pay payin 
+
 	private ActionDriver actionDriver;
 
 	// page factory constructor
@@ -625,6 +626,8 @@ public void handleForYASPA() {
 	actionDriver.scrollToElement(returnToPayse);
 	actionDriver.click(returnToPayse);
 }
+
+
 
 
 }

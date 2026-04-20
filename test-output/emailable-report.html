@@ -9,253 +9,17 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">203,623</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Default test</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">56,480</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="3">purchase.email</td><td><a href="#m0">Purchase</a></td><td rowspan="3">1775717351415</td><td rowspan="3">55849</td></tr><tr class="passedeven"><td><a href="#m1">Purchase</a></td></tr><tr class="passedeven"><td><a href="#m2">Purchase</a></td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">purchase.email</td><td><a href="#m0">Purchase</a></td><td rowspan="1">1776679822401</td><td rowspan="1">42660</td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">purchase.email#Purchase</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>{CardNumber=4149011500000147, CVV=123, RunFlag=TRUE, RouteToMidOrBank=payable-pix, PartialMerchant=Suhas, PSP=payable-pix, MaxAmount=2500, CardholderName=Hamza Sher A Baloch, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=EUR, MinAmount=1, DefaultAmount=999, PaymentMethod=VISA, Expiry=02/29}</td><td>{Status=Pass, TestData=user@example.co.in}</td></tr><tr><th colspan="2">Messages</th></tr><tr><td colspan="2"><div class="messages">Email test case will run for this PSP: payable-pix<br/>Amount Inputs → Min: 1.0, Max: 2500.0, Provided: 999.0<br/>✅ Amount within valid range. Using exact value: 999.0<br/>Generated First Name: div2b3<br/>Purchase ID: 69d74be7ead38b2473c4b61e<br/>Checkout URL: https://test4.paymentsclub.net/payments/e7f318138e9884f0dae49e15eb7cab04/<br/>Email: user@example.co.in → HTTP Status: 202<br/>Response Body: {
-    "purchaseId": "69d74be7ead38b2473c4b61e",
-    "client": {
-        "customerId": "NA",
-        "email": "user@example.co.in",
-        "phone": "+1111111111",
-        "full_name": "div2b3",
-        "street_address": "Main gate",
-        "country": "US",
-        "city": "Paris",
-        "zip_code": "20001",
-        "cc": [
-            
-        ],
-        "bcc": [
-            
-        ],
-        "stateCode": "QLD"
-    },
-    "updated_on": 1775717351,
-    "type": "purchase",
-    "paymentMethod": "VISA",
-    "amountUnit": "MAJOR",
-    "errorMsg": "",
-    "errorCode": "NA",
-    "force_recurring": false,
-    "created_on": 1775717351,
-    "merchantRef": "69d74be7ead38b2473c4b61e",
-    "purchase": {
-        "currency": "EUR",
-        "products": [
-            {
-                "name": "Cricket bat",
-                "quantity": 1.0,
-                "price": 999.0,
-                "discount": 0,
-                "tax_percent": "0.00"
-            }
-        ],
-        "total": 999.0,
-        "requestAmount": 999.0,
-        "language": "en",
-        "notes": "",
-        "debt": 0,
-        "total_formatted": 1.0,
-        "taxAmount": 0.0,
-        "taxPercent": 0.0,
-        "request_client_details": [
-            
-        ],
-        "email_message": ""
-    },
-    "issuer_details": {
-        "website": "",
-        "legal_street_address": "",
-        "legal_country": "",
-        "legal_city": "",
-        "legal_zip_code": "",
-        "bank_accounts": [
-            {
-                
-            }
-        ],
-        "legal_name": "tokyo",
-        "brand_name": "tokyo",
-        "registration_number": "",
-        "tax_number": ""
-    },
-    "transaction_data": {
-        "payment_method": "",
-        "flow": "payform",
-        "extra": {
-            
-        },
-        "country": "",
-        "attempts": [
-            
-        ]
-    },
-    "status": "CREATED",
-    "status_history": [
-        {
-            "status": "created",
-            "timestamp": 1775717351
-        }
-    ],
-    "is_test": false,
-    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
-    "send_receipt": false,
-    "is_recurring_token": false,
-    "skip_capture": false,
-    "reference_generated": "PS11407",
-    "issued": "2026-04-09",
-    "due": 1775717351,
-    "refund_upto": 0,
-    "cc_descriptor": "",
-    "fraudScore": "NA",
-    "trustScore": "NA",
-    "extraFee": "0",
-    "paidOn": 0,
-    "receivedAmt": 0.0,
-    "taxAmount": 0.0,
-    "surcharge": 0.0,
-    "surchargeType": "",
-    "sessionId": "",
-    "refund_availability": "NONE",
-    "refundable_amount": 0.0,
-    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
-    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
-    "cancel_redirect": "",
-    "success_callback": "https://www.google.com/",
-    "failure_callback": "https://staging.paysecure.net/merchant",
-    "platform": "API",
-    "created_from_ip": "110.235.229.6",
-    "checkout_url": "https://test4.paymentsclub.net/payments/e7f318138e9884f0dae49e15eb7cab04/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69d74be7ead38b2473c4b61e/",
-    "payoutProcess": false
-}<br/>Email accepted by API: user@example.co.in<br/>Transaction status OK → proceeding with payment flow<br/>Entered Card Holder Name: Hamza Sher A Baloch<br/>Entered Card Number: 4149011500000147<br/>Entered Card Expiry Date: 02/29<br/>Entered Card CVV: 123<br/>Moved to the Pay button<br/>Clicked on the Pay button to proceed with payment<br/>Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true<br/>PASS → Payment outcome matched expectation</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">purchase.email#Purchase</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>{CardNumber=4149011500000147, CVV=123, RunFlag=TRUE, RouteToMidOrBank=payable-pix, PartialMerchant=Suhas, PSP=payable-pix, MaxAmount=2500, CardholderName=Hamza Sher A Baloch, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=EUR, MinAmount=1, DefaultAmount=999, PaymentMethod=VISA, Expiry=02/29}</td><td>{Status=Pass, TestData=user@mail.example.com}</td></tr><tr><th colspan="2">Messages</th></tr><tr><td colspan="2"><div class="messages">Email test case will run for this PSP: payable-pix<br/>Amount Inputs → Min: 1.0, Max: 2500.0, Provided: 999.0<br/>✅ Amount within valid range. Using exact value: 999.0<br/>Generated First Name: div447<br/>Purchase ID: 69d74baaead38b2473c4b183<br/>Checkout URL: https://test4.paymentsclub.net/payments/b32f5d5346c4cde66b4103d7ad66c8d2/<br/>Email: user@mail.example.com → HTTP Status: 202<br/>Response Body: {
-    "purchaseId": "69d74baaead38b2473c4b183",
-    "client": {
-        "customerId": "NA",
-        "email": "user@mail.example.com",
-        "phone": "+1111111111",
-        "full_name": "div447",
-        "street_address": "Main gate",
-        "country": "US",
-        "city": "Paris",
-        "zip_code": "20001",
-        "cc": [
-            
-        ],
-        "bcc": [
-            
-        ],
-        "stateCode": "QLD"
-    },
-    "updated_on": 1775717290,
-    "type": "purchase",
-    "paymentMethod": "VISA",
-    "amountUnit": "MAJOR",
-    "errorMsg": "",
-    "errorCode": "NA",
-    "force_recurring": false,
-    "created_on": 1775717290,
-    "merchantRef": "69d74baaead38b2473c4b183",
-    "purchase": {
-        "currency": "EUR",
-        "products": [
-            {
-                "name": "Cricket bat",
-                "quantity": 1.0,
-                "price": 999.0,
-                "discount": 0,
-                "tax_percent": "0.00"
-            }
-        ],
-        "total": 999.0,
-        "requestAmount": 999.0,
-        "language": "en",
-        "notes": "",
-        "debt": 0,
-        "total_formatted": 1.0,
-        "taxAmount": 0.0,
-        "taxPercent": 0.0,
-        "request_client_details": [
-            
-        ],
-        "email_message": ""
-    },
-    "issuer_details": {
-        "website": "",
-        "legal_street_address": "",
-        "legal_country": "",
-        "legal_city": "",
-        "legal_zip_code": "",
-        "bank_accounts": [
-            {
-                
-            }
-        ],
-        "legal_name": "tokyo",
-        "brand_name": "tokyo",
-        "registration_number": "",
-        "tax_number": ""
-    },
-    "transaction_data": {
-        "payment_method": "",
-        "flow": "payform",
-        "extra": {
-            
-        },
-        "country": "",
-        "attempts": [
-            
-        ]
-    },
-    "status": "CREATED",
-    "status_history": [
-        {
-            "status": "created",
-            "timestamp": 1775717290
-        }
-    ],
-    "is_test": false,
-    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
-    "send_receipt": false,
-    "is_recurring_token": false,
-    "skip_capture": false,
-    "reference_generated": "PS11406",
-    "issued": "2026-04-09",
-    "due": 1775717290,
-    "refund_upto": 0,
-    "cc_descriptor": "",
-    "fraudScore": "NA",
-    "trustScore": "NA",
-    "extraFee": "0",
-    "paidOn": 0,
-    "receivedAmt": 0.0,
-    "taxAmount": 0.0,
-    "surcharge": 0.0,
-    "surchargeType": "",
-    "sessionId": "",
-    "refund_availability": "NONE",
-    "refundable_amount": 0.0,
-    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
-    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
-    "cancel_redirect": "",
-    "success_callback": "https://www.google.com/",
-    "failure_callback": "https://staging.paysecure.net/merchant",
-    "platform": "API",
-    "created_from_ip": "110.235.229.6",
-    "checkout_url": "https://test4.paymentsclub.net/payments/b32f5d5346c4cde66b4103d7ad66c8d2/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69d74baaead38b2473c4b183/",
-    "payoutProcess": false
-}<br/>Email accepted by API: user@mail.example.com<br/>Transaction status OK → proceeding with payment flow<br/>Entered Card Holder Name: Hamza Sher A Baloch<br/>Entered Card Number: 4149011500000147<br/>Entered Card Expiry Date: 02/29<br/>Entered Card CVV: 123<br/>Moved to the Pay button<br/>Clicked on the Pay button to proceed with payment<br/>Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true<br/>PASS → Payment outcome matched expectation</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">purchase.email#Purchase</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>{CardNumber=4149011500000147, CVV=123, RunFlag=TRUE, RouteToMidOrBank=payable-pix, PartialMerchant=Suhas, PSP=payable-pix, MaxAmount=2500, CardholderName=Hamza Sher A Baloch, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=EUR, MinAmount=1, DefaultAmount=999, PaymentMethod=VISA, Expiry=02/29}</td><td>{Status=Pass, TestData=test123@example.com}</td></tr><tr><th colspan="2">Messages</th></tr><tr><td colspan="2"><div class="messages">Email test case will run for this PSP: payable-pix<br/>Amount Inputs → Min: 1.0, Max: 2500.0, Provided: 999.0<br/>✅ Amount within valid range. Using exact value: 999.0<br/>Generated First Name: div955<br/>Purchase ID: 69d74b65ead38b2473c4ace3<br/>Checkout URL: https://test4.paymentsclub.net/payments/7908efdb07a319fa17a93302dd3fec8c/<br/>Email: test123@example.com → HTTP Status: 202<br/>Response Body: {
-    "purchaseId": "69d74b65ead38b2473c4ace3",
+<h2>Default test</h2><h3 id="m0">purchase.email#Purchase</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>{CardNumber=4111111111111111, CVV=123, RunFlag=TRUE, RouteToMidOrBank=yoyapayPayin, PartialMerchant=Suhas, PSP=yoyapayPayin, MaxAmount=2500, CardholderName=Test Test, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=EUR, MinAmount=1, DefaultAmount=123, PaymentMethod=VISA, Expiry=12/30}</td><td>{Status=Pass, TestData=test123@example.com}</td></tr><tr><th colspan="2">Messages</th></tr><tr><td colspan="2"><div class="messages">Email test case will run for this PSP: yoyapayPayin<br/>Amount Inputs → Min: 1.0, Max: 2500.0, Provided: 123.0<br/>✅ Amount within valid range. Using exact value: 123.0<br/>Generated First Name: div71f<br/>Purchase ID: 69e5fb9044765c8e82cddd5b<br/>Checkout URL: https://staging.paysecure.net/payments/eb0997ccf025ca7e0db8ecde5038ee0f/<br/>Email: test123@example.com → HTTP Status: 202<br/>Response Body: {
+    "purchaseId": "69e5fb9044765c8e82cddd5b",
     "client": {
         "customerId": "NA",
         "email": "test123@example.com",
         "phone": "+1111111111",
-        "full_name": "div955",
+        "full_name": "div71f",
         "street_address": "Main gate",
         "country": "US",
         "city": "Paris",
@@ -268,28 +32,28 @@
         ],
         "stateCode": "QLD"
     },
-    "updated_on": 1775717221,
+    "updated_on": 1776679824,
     "type": "purchase",
     "paymentMethod": "VISA",
     "amountUnit": "MAJOR",
     "errorMsg": "",
     "errorCode": "NA",
     "force_recurring": false,
-    "created_on": 1775717221,
-    "merchantRef": "69d74b65ead38b2473c4ace3",
+    "created_on": 1776679824,
+    "merchantRef": "69e5fb9044765c8e82cddd5b",
     "purchase": {
         "currency": "EUR",
         "products": [
             {
                 "name": "Cricket bat",
                 "quantity": 1.0,
-                "price": 999.0,
+                "price": 123.0,
                 "discount": 0,
                 "tax_percent": "0.00"
             }
         ],
-        "total": 999.0,
-        "requestAmount": 999.0,
+        "total": 123.0,
+        "requestAmount": 123.0,
         "language": "en",
         "notes": "",
         "debt": 0,
@@ -312,8 +76,8 @@
                 
             }
         ],
-        "legal_name": "tokyo",
-        "brand_name": "tokyo",
+        "legal_name": "Money",
+        "brand_name": "Money",
         "registration_number": "",
         "tax_number": ""
     },
@@ -332,17 +96,17 @@
     "status_history": [
         {
             "status": "created",
-            "timestamp": 1775717221
+            "timestamp": 1776679824
         }
     ],
     "is_test": false,
-    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "brand_id": "3b5082a1-990f-4bcf-a201-6fa2572842b2",
     "send_receipt": false,
     "is_recurring_token": false,
     "skip_capture": false,
-    "reference_generated": "PS11405",
-    "issued": "2026-04-09",
-    "due": 1775717221,
+    "reference_generated": "PS1304",
+    "issued": "2026-04-20",
+    "due": 1776679824,
     "refund_upto": 0,
     "cc_descriptor": "",
     "fraudScore": "NA",
@@ -362,10 +126,10 @@
     "success_callback": "https://www.google.com/",
     "failure_callback": "https://staging.paysecure.net/merchant",
     "platform": "API",
-    "created_from_ip": "110.235.229.6",
-    "checkout_url": "https://test4.paymentsclub.net/payments/7908efdb07a319fa17a93302dd3fec8c/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69d74b65ead38b2473c4ace3/",
+    "created_from_ip": "110.235.229.28",
+    "checkout_url": "https://staging.paysecure.net/payments/eb0997ccf025ca7e0db8ecde5038ee0f/",
+    "direct_post_url": "https://staging.paysecure.net/api/v1/p/69e5fb9044765c8e82cddd5b/",
     "payoutProcess": false
-}<br/>Email accepted by API: test123@example.com<br/>Transaction status OK → proceeding with payment flow<br/>Entered Card Holder Name: Hamza Sher A Baloch<br/>Entered Card Number: 4149011500000147<br/>Entered Card Expiry Date: 02/29<br/>Entered Card CVV: 123<br/>Moved to the Pay button<br/>Clicked on the Pay button to proceed with payment<br/>Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true<br/>PASS → Payment outcome matched expectation</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+}<br/>Email accepted by API: test123@example.com<br/>Transaction status OK → proceeding with payment flow<br/>Entered Card Holder Name: Test Test<br/>Entered Card Number: 4111111111111111<br/>Entered Card Expiry Date: 12/30<br/>Entered Card CVV: 123<br/>Moved to the Pay button<br/>Clicked on the Pay button to proceed with payment<br/>Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true<br/>PASS → Payment outcome matched expectation</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

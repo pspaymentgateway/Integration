@@ -99,6 +99,15 @@ public class CashierPage {
 	
 	private By sbxPayaEnterOTP=By.xpath(cashierPageLocators.sbxPayaEnterOTP);
 	private By sbxSubmitBtn=By.xpath(cashierPageLocators.sbxSubmitBtn);
+	
+	private By confirmPurchases=By.xpath(cashierPageLocators.confirmPurchases);
+	private By confirmSubmit=By.xpath(cashierPageLocators.confirmSubmit);
+	private By remConsent=By.xpath(cashierPageLocators.remConsent);
+	private By confirmConsent=By.xpath(cashierPageLocators.confirmConsent);
+	
+	private By confirmYoya = By.xpath(cashierPageLocators.confirmYoya);
+	private By enterPassYoya = By.xpath(cashierPageLocators.enterPassYoya);
+	
 	private ActionDriver actionDriver;
 	// page factory constructor
 	public CashierPage(WebDriver driver) {
@@ -111,7 +120,7 @@ public class CashierPage {
 			String cardHolder, String cardNumber,String expiry, String cvv) throws InterruptedException {
 		WebDriver driver=baseClass.getDriver();
 		Thread.sleep(500);
-		driver.manage().window().setSize(new Dimension(1080, 720));
+		driver.manage().window().setSize(new Dimension(1080, 800));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("document.body.style.zoom='65%';");
 		actionDriver.enterText(cardHolderName, cardHolder);
@@ -138,7 +147,22 @@ public class CashierPage {
 		Reporter.log("Clicked on the Pay button to proceed with payment", true);
 	}
 	
+	public void rememberConsent() {
+		actionDriver.scrollToElement(remConsent);
+		actionDriver.click(remConsent);
+		actionDriver.click(confirmConsent);
+	}
 	
+	public void confirmPurchase() {
+		actionDriver.scrollToElement(confirmPurchases);
+		actionDriver.click(confirmPurchases);
+		
+		actionDriver.scrollToElement(confirmSubmit);
+		actionDriver.click(confirmSubmit);
+		
+		actionDriver.scrollToElement(confirmSubmit);
+		actionDriver.click(confirmSubmit);
+	}
 	
 	public void openBrowserForStaging(WebDriver driver,String url) {
 	    try {
@@ -518,6 +542,13 @@ public class CashierPage {
 		actionDriver.enterText(sbxPayaEnterOTP, "test");
 		actionDriver.click(sbxSubmitBtn);
 	}
+	
+	public void OtpForYoya() {
+		actionDriver.click(enterPassYoya);
+		actionDriver.sendKeysJS(enterPassYoya,"1234");
+		actionDriver.clickUsingJS(confirmYoya);
+	}
 
+	
 	
 }

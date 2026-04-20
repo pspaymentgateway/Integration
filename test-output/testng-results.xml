@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
       <![CDATA[User enter ID in Username field]]>
@@ -11,34 +11,34 @@
       <![CDATA[Click on submit button in login page]]>
     </line>
     <line>
-      <![CDATA[Email test case will run for this PSP: payable-pix]]>
+      <![CDATA[Email test case will run for this PSP: yoyapayPayin]]>
     </line>
     <line>
-      <![CDATA[Amount Inputs → Min: 1.0, Max: 2500.0, Provided: 999.0]]>
+      <![CDATA[Amount Inputs → Min: 1.0, Max: 2500.0, Provided: 123.0]]>
     </line>
     <line>
-      <![CDATA[✅ Amount within valid range. Using exact value: 999.0]]>
+      <![CDATA[✅ Amount within valid range. Using exact value: 123.0]]>
     </line>
     <line>
-      <![CDATA[Generated First Name: div955]]>
+      <![CDATA[Generated First Name: div71f]]>
     </line>
     <line>
-      <![CDATA[Purchase ID: 69d74b65ead38b2473c4ace3]]>
+      <![CDATA[Purchase ID: 69e5fb9044765c8e82cddd5b]]>
     </line>
     <line>
-      <![CDATA[Checkout URL: https://test4.paymentsclub.net/payments/7908efdb07a319fa17a93302dd3fec8c/]]>
+      <![CDATA[Checkout URL: https://staging.paysecure.net/payments/eb0997ccf025ca7e0db8ecde5038ee0f/]]>
     </line>
     <line>
       <![CDATA[Email: test123@example.com → HTTP Status: 202]]>
     </line>
     <line>
       <![CDATA[Response Body: {
-    "purchaseId": "69d74b65ead38b2473c4ace3",
+    "purchaseId": "69e5fb9044765c8e82cddd5b",
     "client": {
         "customerId": "NA",
         "email": "test123@example.com",
         "phone": "+1111111111",
-        "full_name": "div955",
+        "full_name": "div71f",
         "street_address": "Main gate",
         "country": "US",
         "city": "Paris",
@@ -51,28 +51,28 @@
         ],
         "stateCode": "QLD"
     },
-    "updated_on": 1775717221,
+    "updated_on": 1776679824,
     "type": "purchase",
     "paymentMethod": "VISA",
     "amountUnit": "MAJOR",
     "errorMsg": "",
     "errorCode": "NA",
     "force_recurring": false,
-    "created_on": 1775717221,
-    "merchantRef": "69d74b65ead38b2473c4ace3",
+    "created_on": 1776679824,
+    "merchantRef": "69e5fb9044765c8e82cddd5b",
     "purchase": {
         "currency": "EUR",
         "products": [
             {
                 "name": "Cricket bat",
                 "quantity": 1.0,
-                "price": 999.0,
+                "price": 123.0,
                 "discount": 0,
                 "tax_percent": "0.00"
             }
         ],
-        "total": 999.0,
-        "requestAmount": 999.0,
+        "total": 123.0,
+        "requestAmount": 123.0,
         "language": "en",
         "notes": "",
         "debt": 0,
@@ -95,8 +95,8 @@
                 
             }
         ],
-        "legal_name": "tokyo",
-        "brand_name": "tokyo",
+        "legal_name": "Money",
+        "brand_name": "Money",
         "registration_number": "",
         "tax_number": ""
     },
@@ -115,17 +115,17 @@
     "status_history": [
         {
             "status": "created",
-            "timestamp": 1775717221
+            "timestamp": 1776679824
         }
     ],
     "is_test": false,
-    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "brand_id": "3b5082a1-990f-4bcf-a201-6fa2572842b2",
     "send_receipt": false,
     "is_recurring_token": false,
     "skip_capture": false,
-    "reference_generated": "PS11405",
-    "issued": "2026-04-09",
-    "due": 1775717221,
+    "reference_generated": "PS1304",
+    "issued": "2026-04-20",
+    "due": 1776679824,
     "refund_upto": 0,
     "cc_descriptor": "",
     "fraudScore": "NA",
@@ -145,9 +145,9 @@
     "success_callback": "https://www.google.com/",
     "failure_callback": "https://staging.paysecure.net/merchant",
     "platform": "API",
-    "created_from_ip": "110.235.229.6",
-    "checkout_url": "https://test4.paymentsclub.net/payments/7908efdb07a319fa17a93302dd3fec8c/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69d74b65ead38b2473c4ace3/",
+    "created_from_ip": "110.235.229.28",
+    "checkout_url": "https://staging.paysecure.net/payments/eb0997ccf025ca7e0db8ecde5038ee0f/",
+    "direct_post_url": "https://staging.paysecure.net/api/v1/p/69e5fb9044765c8e82cddd5b/",
     "payoutProcess": false
 }]]>
     </line>
@@ -158,373 +158,13 @@
       <![CDATA[Transaction status OK → proceeding with payment flow]]>
     </line>
     <line>
-      <![CDATA[Entered Card Holder Name: Hamza Sher A Baloch]]>
+      <![CDATA[Entered Card Holder Name: Test Test]]>
     </line>
     <line>
-      <![CDATA[Entered Card Number: 4149011500000147]]>
+      <![CDATA[Entered Card Number: 4111111111111111]]>
     </line>
     <line>
-      <![CDATA[Entered Card Expiry Date: 02/29]]>
-    </line>
-    <line>
-      <![CDATA[Entered Card CVV: 123]]>
-    </line>
-    <line>
-      <![CDATA[Moved to the Pay button]]>
-    </line>
-    <line>
-      <![CDATA[Clicked on the Pay button to proceed with payment]]>
-    </line>
-    <line>
-      <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
-    </line>
-    <line>
-      <![CDATA[PASS → Payment outcome matched expectation]]>
-    </line>
-    <line>
-      <![CDATA[User enter ID in Username field]]>
-    </line>
-    <line>
-      <![CDATA[User Enter Password in password field]]>
-    </line>
-    <line>
-      <![CDATA[Click on submit button in login page]]>
-    </line>
-    <line>
-      <![CDATA[Email test case will run for this PSP: payable-pix]]>
-    </line>
-    <line>
-      <![CDATA[Amount Inputs → Min: 1.0, Max: 2500.0, Provided: 999.0]]>
-    </line>
-    <line>
-      <![CDATA[✅ Amount within valid range. Using exact value: 999.0]]>
-    </line>
-    <line>
-      <![CDATA[Generated First Name: div447]]>
-    </line>
-    <line>
-      <![CDATA[Purchase ID: 69d74baaead38b2473c4b183]]>
-    </line>
-    <line>
-      <![CDATA[Checkout URL: https://test4.paymentsclub.net/payments/b32f5d5346c4cde66b4103d7ad66c8d2/]]>
-    </line>
-    <line>
-      <![CDATA[Email: user@mail.example.com → HTTP Status: 202]]>
-    </line>
-    <line>
-      <![CDATA[Response Body: {
-    "purchaseId": "69d74baaead38b2473c4b183",
-    "client": {
-        "customerId": "NA",
-        "email": "user@mail.example.com",
-        "phone": "+1111111111",
-        "full_name": "div447",
-        "street_address": "Main gate",
-        "country": "US",
-        "city": "Paris",
-        "zip_code": "20001",
-        "cc": [
-            
-        ],
-        "bcc": [
-            
-        ],
-        "stateCode": "QLD"
-    },
-    "updated_on": 1775717290,
-    "type": "purchase",
-    "paymentMethod": "VISA",
-    "amountUnit": "MAJOR",
-    "errorMsg": "",
-    "errorCode": "NA",
-    "force_recurring": false,
-    "created_on": 1775717290,
-    "merchantRef": "69d74baaead38b2473c4b183",
-    "purchase": {
-        "currency": "EUR",
-        "products": [
-            {
-                "name": "Cricket bat",
-                "quantity": 1.0,
-                "price": 999.0,
-                "discount": 0,
-                "tax_percent": "0.00"
-            }
-        ],
-        "total": 999.0,
-        "requestAmount": 999.0,
-        "language": "en",
-        "notes": "",
-        "debt": 0,
-        "total_formatted": 1.0,
-        "taxAmount": 0.0,
-        "taxPercent": 0.0,
-        "request_client_details": [
-            
-        ],
-        "email_message": ""
-    },
-    "issuer_details": {
-        "website": "",
-        "legal_street_address": "",
-        "legal_country": "",
-        "legal_city": "",
-        "legal_zip_code": "",
-        "bank_accounts": [
-            {
-                
-            }
-        ],
-        "legal_name": "tokyo",
-        "brand_name": "tokyo",
-        "registration_number": "",
-        "tax_number": ""
-    },
-    "transaction_data": {
-        "payment_method": "",
-        "flow": "payform",
-        "extra": {
-            
-        },
-        "country": "",
-        "attempts": [
-            
-        ]
-    },
-    "status": "CREATED",
-    "status_history": [
-        {
-            "status": "created",
-            "timestamp": 1775717290
-        }
-    ],
-    "is_test": false,
-    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
-    "send_receipt": false,
-    "is_recurring_token": false,
-    "skip_capture": false,
-    "reference_generated": "PS11406",
-    "issued": "2026-04-09",
-    "due": 1775717290,
-    "refund_upto": 0,
-    "cc_descriptor": "",
-    "fraudScore": "NA",
-    "trustScore": "NA",
-    "extraFee": "0",
-    "paidOn": 0,
-    "receivedAmt": 0.0,
-    "taxAmount": 0.0,
-    "surcharge": 0.0,
-    "surchargeType": "",
-    "sessionId": "",
-    "refund_availability": "NONE",
-    "refundable_amount": 0.0,
-    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
-    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
-    "cancel_redirect": "",
-    "success_callback": "https://www.google.com/",
-    "failure_callback": "https://staging.paysecure.net/merchant",
-    "platform": "API",
-    "created_from_ip": "110.235.229.6",
-    "checkout_url": "https://test4.paymentsclub.net/payments/b32f5d5346c4cde66b4103d7ad66c8d2/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69d74baaead38b2473c4b183/",
-    "payoutProcess": false
-}]]>
-    </line>
-    <line>
-      <![CDATA[Email accepted by API: user@mail.example.com]]>
-    </line>
-    <line>
-      <![CDATA[Transaction status OK → proceeding with payment flow]]>
-    </line>
-    <line>
-      <![CDATA[Entered Card Holder Name: Hamza Sher A Baloch]]>
-    </line>
-    <line>
-      <![CDATA[Entered Card Number: 4149011500000147]]>
-    </line>
-    <line>
-      <![CDATA[Entered Card Expiry Date: 02/29]]>
-    </line>
-    <line>
-      <![CDATA[Entered Card CVV: 123]]>
-    </line>
-    <line>
-      <![CDATA[Moved to the Pay button]]>
-    </line>
-    <line>
-      <![CDATA[Clicked on the Pay button to proceed with payment]]>
-    </line>
-    <line>
-      <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
-    </line>
-    <line>
-      <![CDATA[PASS → Payment outcome matched expectation]]>
-    </line>
-    <line>
-      <![CDATA[User enter ID in Username field]]>
-    </line>
-    <line>
-      <![CDATA[User Enter Password in password field]]>
-    </line>
-    <line>
-      <![CDATA[Click on submit button in login page]]>
-    </line>
-    <line>
-      <![CDATA[Email test case will run for this PSP: payable-pix]]>
-    </line>
-    <line>
-      <![CDATA[Amount Inputs → Min: 1.0, Max: 2500.0, Provided: 999.0]]>
-    </line>
-    <line>
-      <![CDATA[✅ Amount within valid range. Using exact value: 999.0]]>
-    </line>
-    <line>
-      <![CDATA[Generated First Name: div2b3]]>
-    </line>
-    <line>
-      <![CDATA[Purchase ID: 69d74be7ead38b2473c4b61e]]>
-    </line>
-    <line>
-      <![CDATA[Checkout URL: https://test4.paymentsclub.net/payments/e7f318138e9884f0dae49e15eb7cab04/]]>
-    </line>
-    <line>
-      <![CDATA[Email: user@example.co.in → HTTP Status: 202]]>
-    </line>
-    <line>
-      <![CDATA[Response Body: {
-    "purchaseId": "69d74be7ead38b2473c4b61e",
-    "client": {
-        "customerId": "NA",
-        "email": "user@example.co.in",
-        "phone": "+1111111111",
-        "full_name": "div2b3",
-        "street_address": "Main gate",
-        "country": "US",
-        "city": "Paris",
-        "zip_code": "20001",
-        "cc": [
-            
-        ],
-        "bcc": [
-            
-        ],
-        "stateCode": "QLD"
-    },
-    "updated_on": 1775717351,
-    "type": "purchase",
-    "paymentMethod": "VISA",
-    "amountUnit": "MAJOR",
-    "errorMsg": "",
-    "errorCode": "NA",
-    "force_recurring": false,
-    "created_on": 1775717351,
-    "merchantRef": "69d74be7ead38b2473c4b61e",
-    "purchase": {
-        "currency": "EUR",
-        "products": [
-            {
-                "name": "Cricket bat",
-                "quantity": 1.0,
-                "price": 999.0,
-                "discount": 0,
-                "tax_percent": "0.00"
-            }
-        ],
-        "total": 999.0,
-        "requestAmount": 999.0,
-        "language": "en",
-        "notes": "",
-        "debt": 0,
-        "total_formatted": 1.0,
-        "taxAmount": 0.0,
-        "taxPercent": 0.0,
-        "request_client_details": [
-            
-        ],
-        "email_message": ""
-    },
-    "issuer_details": {
-        "website": "",
-        "legal_street_address": "",
-        "legal_country": "",
-        "legal_city": "",
-        "legal_zip_code": "",
-        "bank_accounts": [
-            {
-                
-            }
-        ],
-        "legal_name": "tokyo",
-        "brand_name": "tokyo",
-        "registration_number": "",
-        "tax_number": ""
-    },
-    "transaction_data": {
-        "payment_method": "",
-        "flow": "payform",
-        "extra": {
-            
-        },
-        "country": "",
-        "attempts": [
-            
-        ]
-    },
-    "status": "CREATED",
-    "status_history": [
-        {
-            "status": "created",
-            "timestamp": 1775717351
-        }
-    ],
-    "is_test": false,
-    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
-    "send_receipt": false,
-    "is_recurring_token": false,
-    "skip_capture": false,
-    "reference_generated": "PS11407",
-    "issued": "2026-04-09",
-    "due": 1775717351,
-    "refund_upto": 0,
-    "cc_descriptor": "",
-    "fraudScore": "NA",
-    "trustScore": "NA",
-    "extraFee": "0",
-    "paidOn": 0,
-    "receivedAmt": 0.0,
-    "taxAmount": 0.0,
-    "surcharge": 0.0,
-    "surchargeType": "",
-    "sessionId": "",
-    "refund_availability": "NONE",
-    "refundable_amount": 0.0,
-    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
-    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
-    "cancel_redirect": "",
-    "success_callback": "https://www.google.com/",
-    "failure_callback": "https://staging.paysecure.net/merchant",
-    "platform": "API",
-    "created_from_ip": "110.235.229.6",
-    "checkout_url": "https://test4.paymentsclub.net/payments/e7f318138e9884f0dae49e15eb7cab04/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69d74be7ead38b2473c4b61e/",
-    "payoutProcess": false
-}]]>
-    </line>
-    <line>
-      <![CDATA[Email accepted by API: user@example.co.in]]>
-    </line>
-    <line>
-      <![CDATA[Transaction status OK → proceeding with payment flow]]>
-    </line>
-    <line>
-      <![CDATA[Entered Card Holder Name: Hamza Sher A Baloch]]>
-    </line>
-    <line>
-      <![CDATA[Entered Card Number: 4149011500000147]]>
-    </line>
-    <line>
-      <![CDATA[Entered Card Expiry Date: 02/29]]>
+      <![CDATA[Entered Card Expiry Date: 12/30]]>
     </line>
     <line>
       <![CDATA[Entered Card CVV: 123]]>
@@ -542,24 +182,24 @@
       <![CDATA[PASS → Payment outcome matched expectation]]>
     </line>
   </reporter-output>
-  <suite started-at="2026-04-09T12:16:47 IST" name="Default suite" finished-at="2026-04-09T12:20:10 IST" duration-ms="203623">
+  <suite started-at="2026-04-20T15:40:11 IST" name="Default suite" finished-at="2026-04-20T15:41:08 IST" duration-ms="56480">
     <groups>
     </groups>
-    <test started-at="2026-04-09T12:16:47 IST" name="Default test" finished-at="2026-04-09T12:20:10 IST" duration-ms="203623">
+    <test started-at="2026-04-20T15:40:11 IST" name="Default test" finished-at="2026-04-20T15:41:08 IST" duration-ms="56480">
       <class name="purchase.email">
-        <test-method is-config="true" signature="loadConfig()[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-09T12:16:47 IST" name="loadConfig" finished-at="2026-04-09T12:16:47 IST" duration-ms="14" status="PASS">
+        <test-method is-config="true" signature="loadConfig()[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-20T15:40:11 IST" name="loadConfig" finished-at="2026-04-20T15:40:11 IST" duration-ms="19" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loadConfig -->
-        <test-method is-config="true" signature="clearOnce()[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-09T12:16:47 IST" name="clearOnce" finished-at="2026-04-09T12:16:47 IST" depends-on-methods="com.paysecure.base.baseClass.loadConfig" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="clearOnce()[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-20T15:40:11 IST" name="clearOnce" finished-at="2026-04-20T15:40:11 IST" depends-on-methods="com.paysecure.base.baseClass.loadConfig" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clearOnce -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-09T12:16:47 IST" name="setup" finished-at="2026-04-09T12:16:54 IST" duration-ms="6033" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-20T15:40:12 IST" name="setup" finished-at="2026-04-20T15:40:19 IST" duration-ms="7153" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-09T12:16:54 IST" name="beforeMethod" finished-at="2026-04-09T12:16:58 IST" duration-ms="4598" status="PASS">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-20T15:40:19 IST" name="beforeMethod" finished-at="2026-04-20T15:40:22 IST" duration-ms="2564" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[User enter ID in Username field]]>
@@ -572,11 +212,11 @@
             </line>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="Purchase(java.util.Map,java.util.Map)[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-09T12:16:58 IST" name="Purchase" data-provider="EmailData" finished-at="2026-04-09T12:17:58 IST" duration-ms="60016" status="PASS">
+        <test-method signature="Purchase(java.util.Map,java.util.Map)[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-20T15:40:22 IST" name="Purchase" data-provider="EmailData" finished-at="2026-04-20T15:41:05 IST" duration-ms="42660" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[{CardNumber=4149011500000147, CVV=123, RunFlag=TRUE, RouteToMidOrBank=payable-pix, PartialMerchant=Suhas, PSP=payable-pix, MaxAmount=2500, CardholderName=Hamza Sher A Baloch, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=EUR, MinAmount=1, DefaultAmount=999, PaymentMethod=VISA, Expiry=02/29}]]>
+                <![CDATA[{CardNumber=4111111111111111, CVV=123, RunFlag=TRUE, RouteToMidOrBank=yoyapayPayin, PartialMerchant=Suhas, PSP=yoyapayPayin, MaxAmount=2500, CardholderName=Test Test, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=EUR, MinAmount=1, DefaultAmount=123, PaymentMethod=VISA, Expiry=12/30}]]>
               </value>
             </param>
             <param index="1">
@@ -587,34 +227,34 @@
           </params>
           <reporter-output>
             <line>
-              <![CDATA[Email test case will run for this PSP: payable-pix]]>
+              <![CDATA[Email test case will run for this PSP: yoyapayPayin]]>
             </line>
             <line>
-              <![CDATA[Amount Inputs → Min: 1.0, Max: 2500.0, Provided: 999.0]]>
+              <![CDATA[Amount Inputs → Min: 1.0, Max: 2500.0, Provided: 123.0]]>
             </line>
             <line>
-              <![CDATA[✅ Amount within valid range. Using exact value: 999.0]]>
+              <![CDATA[✅ Amount within valid range. Using exact value: 123.0]]>
             </line>
             <line>
-              <![CDATA[Generated First Name: div955]]>
+              <![CDATA[Generated First Name: div71f]]>
             </line>
             <line>
-              <![CDATA[Purchase ID: 69d74b65ead38b2473c4ace3]]>
+              <![CDATA[Purchase ID: 69e5fb9044765c8e82cddd5b]]>
             </line>
             <line>
-              <![CDATA[Checkout URL: https://test4.paymentsclub.net/payments/7908efdb07a319fa17a93302dd3fec8c/]]>
+              <![CDATA[Checkout URL: https://staging.paysecure.net/payments/eb0997ccf025ca7e0db8ecde5038ee0f/]]>
             </line>
             <line>
               <![CDATA[Email: test123@example.com → HTTP Status: 202]]>
             </line>
             <line>
               <![CDATA[Response Body: {
-    "purchaseId": "69d74b65ead38b2473c4ace3",
+    "purchaseId": "69e5fb9044765c8e82cddd5b",
     "client": {
         "customerId": "NA",
         "email": "test123@example.com",
         "phone": "+1111111111",
-        "full_name": "div955",
+        "full_name": "div71f",
         "street_address": "Main gate",
         "country": "US",
         "city": "Paris",
@@ -627,28 +267,28 @@
         ],
         "stateCode": "QLD"
     },
-    "updated_on": 1775717221,
+    "updated_on": 1776679824,
     "type": "purchase",
     "paymentMethod": "VISA",
     "amountUnit": "MAJOR",
     "errorMsg": "",
     "errorCode": "NA",
     "force_recurring": false,
-    "created_on": 1775717221,
-    "merchantRef": "69d74b65ead38b2473c4ace3",
+    "created_on": 1776679824,
+    "merchantRef": "69e5fb9044765c8e82cddd5b",
     "purchase": {
         "currency": "EUR",
         "products": [
             {
                 "name": "Cricket bat",
                 "quantity": 1.0,
-                "price": 999.0,
+                "price": 123.0,
                 "discount": 0,
                 "tax_percent": "0.00"
             }
         ],
-        "total": 999.0,
-        "requestAmount": 999.0,
+        "total": 123.0,
+        "requestAmount": 123.0,
         "language": "en",
         "notes": "",
         "debt": 0,
@@ -671,8 +311,8 @@
                 
             }
         ],
-        "legal_name": "tokyo",
-        "brand_name": "tokyo",
+        "legal_name": "Money",
+        "brand_name": "Money",
         "registration_number": "",
         "tax_number": ""
     },
@@ -691,17 +331,17 @@
     "status_history": [
         {
             "status": "created",
-            "timestamp": 1775717221
+            "timestamp": 1776679824
         }
     ],
     "is_test": false,
-    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
+    "brand_id": "3b5082a1-990f-4bcf-a201-6fa2572842b2",
     "send_receipt": false,
     "is_recurring_token": false,
     "skip_capture": false,
-    "reference_generated": "PS11405",
-    "issued": "2026-04-09",
-    "due": 1775717221,
+    "reference_generated": "PS1304",
+    "issued": "2026-04-20",
+    "due": 1776679824,
     "refund_upto": 0,
     "cc_descriptor": "",
     "fraudScore": "NA",
@@ -721,9 +361,9 @@
     "success_callback": "https://www.google.com/",
     "failure_callback": "https://staging.paysecure.net/merchant",
     "platform": "API",
-    "created_from_ip": "110.235.229.6",
-    "checkout_url": "https://test4.paymentsclub.net/payments/7908efdb07a319fa17a93302dd3fec8c/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69d74b65ead38b2473c4ace3/",
+    "created_from_ip": "110.235.229.28",
+    "checkout_url": "https://staging.paysecure.net/payments/eb0997ccf025ca7e0db8ecde5038ee0f/",
+    "direct_post_url": "https://staging.paysecure.net/api/v1/p/69e5fb9044765c8e82cddd5b/",
     "payoutProcess": false
 }]]>
             </line>
@@ -734,228 +374,13 @@
               <![CDATA[Transaction status OK → proceeding with payment flow]]>
             </line>
             <line>
-              <![CDATA[Entered Card Holder Name: Hamza Sher A Baloch]]>
+              <![CDATA[Entered Card Holder Name: Test Test]]>
             </line>
             <line>
-              <![CDATA[Entered Card Number: 4149011500000147]]>
+              <![CDATA[Entered Card Number: 4111111111111111]]>
             </line>
             <line>
-              <![CDATA[Entered Card Expiry Date: 02/29]]>
-            </line>
-            <line>
-              <![CDATA[Entered Card CVV: 123]]>
-            </line>
-            <line>
-              <![CDATA[Moved to the Pay button]]>
-            </line>
-            <line>
-              <![CDATA[Clicked on the Pay button to proceed with payment]]>
-            </line>
-            <line>
-              <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
-            </line>
-            <line>
-              <![CDATA[PASS → Payment outcome matched expectation]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- Purchase -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-09T12:17:58 IST" name="tearDown" finished-at="2026-04-09T12:18:02 IST" duration-ms="3293" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=Purchase status=SUCCESS method=email.Purchase(java.util.Map,java.util.Map)[pri:0, instance:purchase.email@172ca72b] output=Email test case will run for this PSP: payable-pix]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-09T12:18:02 IST" name="setup" finished-at="2026-04-09T12:18:06 IST" duration-ms="4704" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-09T12:18:06 IST" name="beforeMethod" finished-at="2026-04-09T12:18:09 IST" duration-ms="2786" status="PASS">
-          <reporter-output>
-            <line>
-              <![CDATA[User enter ID in Username field]]>
-            </line>
-            <line>
-              <![CDATA[User Enter Password in password field]]>
-            </line>
-            <line>
-              <![CDATA[Click on submit button in login page]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method signature="Purchase(java.util.Map,java.util.Map)[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-09T12:18:09 IST" name="Purchase" data-provider="EmailData" finished-at="2026-04-09T12:19:00 IST" duration-ms="51238" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{CardNumber=4149011500000147, CVV=123, RunFlag=TRUE, RouteToMidOrBank=payable-pix, PartialMerchant=Suhas, PSP=payable-pix, MaxAmount=2500, CardholderName=Hamza Sher A Baloch, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=EUR, MinAmount=1, DefaultAmount=999, PaymentMethod=VISA, Expiry=02/29}]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[{Status=Pass, TestData=user@mail.example.com}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-            <line>
-              <![CDATA[Email test case will run for this PSP: payable-pix]]>
-            </line>
-            <line>
-              <![CDATA[Amount Inputs → Min: 1.0, Max: 2500.0, Provided: 999.0]]>
-            </line>
-            <line>
-              <![CDATA[✅ Amount within valid range. Using exact value: 999.0]]>
-            </line>
-            <line>
-              <![CDATA[Generated First Name: div447]]>
-            </line>
-            <line>
-              <![CDATA[Purchase ID: 69d74baaead38b2473c4b183]]>
-            </line>
-            <line>
-              <![CDATA[Checkout URL: https://test4.paymentsclub.net/payments/b32f5d5346c4cde66b4103d7ad66c8d2/]]>
-            </line>
-            <line>
-              <![CDATA[Email: user@mail.example.com → HTTP Status: 202]]>
-            </line>
-            <line>
-              <![CDATA[Response Body: {
-    "purchaseId": "69d74baaead38b2473c4b183",
-    "client": {
-        "customerId": "NA",
-        "email": "user@mail.example.com",
-        "phone": "+1111111111",
-        "full_name": "div447",
-        "street_address": "Main gate",
-        "country": "US",
-        "city": "Paris",
-        "zip_code": "20001",
-        "cc": [
-            
-        ],
-        "bcc": [
-            
-        ],
-        "stateCode": "QLD"
-    },
-    "updated_on": 1775717290,
-    "type": "purchase",
-    "paymentMethod": "VISA",
-    "amountUnit": "MAJOR",
-    "errorMsg": "",
-    "errorCode": "NA",
-    "force_recurring": false,
-    "created_on": 1775717290,
-    "merchantRef": "69d74baaead38b2473c4b183",
-    "purchase": {
-        "currency": "EUR",
-        "products": [
-            {
-                "name": "Cricket bat",
-                "quantity": 1.0,
-                "price": 999.0,
-                "discount": 0,
-                "tax_percent": "0.00"
-            }
-        ],
-        "total": 999.0,
-        "requestAmount": 999.0,
-        "language": "en",
-        "notes": "",
-        "debt": 0,
-        "total_formatted": 1.0,
-        "taxAmount": 0.0,
-        "taxPercent": 0.0,
-        "request_client_details": [
-            
-        ],
-        "email_message": ""
-    },
-    "issuer_details": {
-        "website": "",
-        "legal_street_address": "",
-        "legal_country": "",
-        "legal_city": "",
-        "legal_zip_code": "",
-        "bank_accounts": [
-            {
-                
-            }
-        ],
-        "legal_name": "tokyo",
-        "brand_name": "tokyo",
-        "registration_number": "",
-        "tax_number": ""
-    },
-    "transaction_data": {
-        "payment_method": "",
-        "flow": "payform",
-        "extra": {
-            
-        },
-        "country": "",
-        "attempts": [
-            
-        ]
-    },
-    "status": "CREATED",
-    "status_history": [
-        {
-            "status": "created",
-            "timestamp": 1775717290
-        }
-    ],
-    "is_test": false,
-    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
-    "send_receipt": false,
-    "is_recurring_token": false,
-    "skip_capture": false,
-    "reference_generated": "PS11406",
-    "issued": "2026-04-09",
-    "due": 1775717290,
-    "refund_upto": 0,
-    "cc_descriptor": "",
-    "fraudScore": "NA",
-    "trustScore": "NA",
-    "extraFee": "0",
-    "paidOn": 0,
-    "receivedAmt": 0.0,
-    "taxAmount": 0.0,
-    "surcharge": 0.0,
-    "surchargeType": "",
-    "sessionId": "",
-    "refund_availability": "NONE",
-    "refundable_amount": 0.0,
-    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
-    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
-    "cancel_redirect": "",
-    "success_callback": "https://www.google.com/",
-    "failure_callback": "https://staging.paysecure.net/merchant",
-    "platform": "API",
-    "created_from_ip": "110.235.229.6",
-    "checkout_url": "https://test4.paymentsclub.net/payments/b32f5d5346c4cde66b4103d7ad66c8d2/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69d74baaead38b2473c4b183/",
-    "payoutProcess": false
-}]]>
-            </line>
-            <line>
-              <![CDATA[Email accepted by API: user@mail.example.com]]>
-            </line>
-            <line>
-              <![CDATA[Transaction status OK → proceeding with payment flow]]>
-            </line>
-            <line>
-              <![CDATA[Entered Card Holder Name: Hamza Sher A Baloch]]>
-            </line>
-            <line>
-              <![CDATA[Entered Card Number: 4149011500000147]]>
-            </line>
-            <line>
-              <![CDATA[Entered Card Expiry Date: 02/29]]>
+              <![CDATA[Entered Card Expiry Date: 12/30]]>
             </line>
             <line>
               <![CDATA[Entered Card CVV: 123]]>
@@ -974,226 +399,11 @@
             </line>
           </reporter-output>
         </test-method> <!-- Purchase -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-09T12:19:00 IST" name="tearDown" finished-at="2026-04-09T12:19:04 IST" duration-ms="3254" status="PASS">
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-20T15:41:05 IST" name="tearDown" finished-at="2026-04-20T15:41:08 IST" duration-ms="3016" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=Purchase status=SUCCESS method=email.Purchase(java.util.Map,java.util.Map)[pri:0, instance:purchase.email@172ca72b] output=Email test case will run for this PSP: payable-pix]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-09T12:19:04 IST" name="setup" finished-at="2026-04-09T12:19:08 IST" duration-ms="4711" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-09T12:19:08 IST" name="beforeMethod" finished-at="2026-04-09T12:19:11 IST" duration-ms="2598" status="PASS">
-          <reporter-output>
-            <line>
-              <![CDATA[User enter ID in Username field]]>
-            </line>
-            <line>
-              <![CDATA[User Enter Password in password field]]>
-            </line>
-            <line>
-              <![CDATA[Click on submit button in login page]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method signature="Purchase(java.util.Map,java.util.Map)[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-09T12:19:11 IST" name="Purchase" data-provider="EmailData" finished-at="2026-04-09T12:20:07 IST" duration-ms="55849" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{CardNumber=4149011500000147, CVV=123, RunFlag=TRUE, RouteToMidOrBank=payable-pix, PartialMerchant=Suhas, PSP=payable-pix, MaxAmount=2500, CardholderName=Hamza Sher A Baloch, Merchant=SuhasM, RouteToBankMid=Route to Mid, Currency=EUR, MinAmount=1, DefaultAmount=999, PaymentMethod=VISA, Expiry=02/29}]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[{Status=Pass, TestData=user@example.co.in}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-            <line>
-              <![CDATA[Email test case will run for this PSP: payable-pix]]>
-            </line>
-            <line>
-              <![CDATA[Amount Inputs → Min: 1.0, Max: 2500.0, Provided: 999.0]]>
-            </line>
-            <line>
-              <![CDATA[✅ Amount within valid range. Using exact value: 999.0]]>
-            </line>
-            <line>
-              <![CDATA[Generated First Name: div2b3]]>
-            </line>
-            <line>
-              <![CDATA[Purchase ID: 69d74be7ead38b2473c4b61e]]>
-            </line>
-            <line>
-              <![CDATA[Checkout URL: https://test4.paymentsclub.net/payments/e7f318138e9884f0dae49e15eb7cab04/]]>
-            </line>
-            <line>
-              <![CDATA[Email: user@example.co.in → HTTP Status: 202]]>
-            </line>
-            <line>
-              <![CDATA[Response Body: {
-    "purchaseId": "69d74be7ead38b2473c4b61e",
-    "client": {
-        "customerId": "NA",
-        "email": "user@example.co.in",
-        "phone": "+1111111111",
-        "full_name": "div2b3",
-        "street_address": "Main gate",
-        "country": "US",
-        "city": "Paris",
-        "zip_code": "20001",
-        "cc": [
-            
-        ],
-        "bcc": [
-            
-        ],
-        "stateCode": "QLD"
-    },
-    "updated_on": 1775717351,
-    "type": "purchase",
-    "paymentMethod": "VISA",
-    "amountUnit": "MAJOR",
-    "errorMsg": "",
-    "errorCode": "NA",
-    "force_recurring": false,
-    "created_on": 1775717351,
-    "merchantRef": "69d74be7ead38b2473c4b61e",
-    "purchase": {
-        "currency": "EUR",
-        "products": [
-            {
-                "name": "Cricket bat",
-                "quantity": 1.0,
-                "price": 999.0,
-                "discount": 0,
-                "tax_percent": "0.00"
-            }
-        ],
-        "total": 999.0,
-        "requestAmount": 999.0,
-        "language": "en",
-        "notes": "",
-        "debt": 0,
-        "total_formatted": 1.0,
-        "taxAmount": 0.0,
-        "taxPercent": 0.0,
-        "request_client_details": [
-            
-        ],
-        "email_message": ""
-    },
-    "issuer_details": {
-        "website": "",
-        "legal_street_address": "",
-        "legal_country": "",
-        "legal_city": "",
-        "legal_zip_code": "",
-        "bank_accounts": [
-            {
-                
-            }
-        ],
-        "legal_name": "tokyo",
-        "brand_name": "tokyo",
-        "registration_number": "",
-        "tax_number": ""
-    },
-    "transaction_data": {
-        "payment_method": "",
-        "flow": "payform",
-        "extra": {
-            
-        },
-        "country": "",
-        "attempts": [
-            
-        ]
-    },
-    "status": "CREATED",
-    "status_history": [
-        {
-            "status": "created",
-            "timestamp": 1775717351
-        }
-    ],
-    "is_test": false,
-    "brand_id": "04199342-5d84-4e17-a53e-5c3d6b03ebd4",
-    "send_receipt": false,
-    "is_recurring_token": false,
-    "skip_capture": false,
-    "reference_generated": "PS11407",
-    "issued": "2026-04-09",
-    "due": 1775717351,
-    "refund_upto": 0,
-    "cc_descriptor": "",
-    "fraudScore": "NA",
-    "trustScore": "NA",
-    "extraFee": "0",
-    "paidOn": 0,
-    "receivedAmt": 0.0,
-    "taxAmount": 0.0,
-    "surcharge": 0.0,
-    "surchargeType": "",
-    "sessionId": "",
-    "refund_availability": "NONE",
-    "refundable_amount": 0.0,
-    "success_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=true",
-    "failure_redirect": "https://staging.paysecure.net/getResponse.jsp?issucces=false",
-    "cancel_redirect": "",
-    "success_callback": "https://www.google.com/",
-    "failure_callback": "https://staging.paysecure.net/merchant",
-    "platform": "API",
-    "created_from_ip": "110.235.229.6",
-    "checkout_url": "https://test4.paymentsclub.net/payments/e7f318138e9884f0dae49e15eb7cab04/",
-    "direct_post_url": "https://test4.paymentsclub.net/api/v1/p/69d74be7ead38b2473c4b61e/",
-    "payoutProcess": false
-}]]>
-            </line>
-            <line>
-              <![CDATA[Email accepted by API: user@example.co.in]]>
-            </line>
-            <line>
-              <![CDATA[Transaction status OK → proceeding with payment flow]]>
-            </line>
-            <line>
-              <![CDATA[Entered Card Holder Name: Hamza Sher A Baloch]]>
-            </line>
-            <line>
-              <![CDATA[Entered Card Number: 4149011500000147]]>
-            </line>
-            <line>
-              <![CDATA[Entered Card Expiry Date: 02/29]]>
-            </line>
-            <line>
-              <![CDATA[Entered Card CVV: 123]]>
-            </line>
-            <line>
-              <![CDATA[Moved to the Pay button]]>
-            </line>
-            <line>
-              <![CDATA[Clicked on the Pay button to proceed with payment]]>
-            </line>
-            <line>
-              <![CDATA[Redirected URL: https://staging.paysecure.net/getResponse.jsp?issucces=true]]>
-            </line>
-            <line>
-              <![CDATA[PASS → Payment outcome matched expectation]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- Purchase -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:purchase.email@172ca72b]" started-at="2026-04-09T12:20:07 IST" name="tearDown" finished-at="2026-04-09T12:20:10 IST" duration-ms="3540" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=Purchase status=SUCCESS method=email.Purchase(java.util.Map,java.util.Map)[pri:0, instance:purchase.email@172ca72b] output=Email test case will run for this PSP: payable-pix]]]>
+                <![CDATA[[TestResult name=Purchase status=SUCCESS method=email.Purchase(java.util.Map,java.util.Map)[pri:0, instance:purchase.email@172ca72b] output=Email test case will run for this PSP: yoyapayPayin]]]>
               </value>
             </param>
           </params>

@@ -28,7 +28,10 @@
        -->
       
        <class name="purchase.email"/>
-
+      <class name="purchase.stateCode"/>
+      <class name="purchase.productName"/>
+      <class name="purchase.country"/>
+      <class name="purchase.zipcode"/>
    
      
     </classes>

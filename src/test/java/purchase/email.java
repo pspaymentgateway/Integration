@@ -33,7 +33,7 @@ import io.restassured.response.Response;
 
 import io.restassured.RestAssured;
 
-public class email extends baseClass {
+public class email extends baseClass{
 
 	loginPage lp;
 	String checkoutUrl;

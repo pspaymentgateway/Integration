@@ -23,13 +23,13 @@ public class limitAndCHarges extends baseClass{
 	public void setLimitAndCHarges() throws InterruptedException {
 
 		 ml.navigateUptoLimitAndCharges();
-		 ml.selectMerchant("Denver","Denver");
-		 ml.selectCurrency("EUR","EUR");
-		 ml.selectPaymentMethod("VISA","VISA");
+		 ml.selectMerchant("SuhasM","SuhasM");
+		 ml.selectCurrency("MXN","MXN");
+		 ml.selectPaymentMethod("PAYOUT-SPEI","PAYOUT-SPEI");
 		 ml.getDetailsForLimitAndCharges();
 		 ml.fillAllTextboxesWithTab();
 		 ml.selectRouteTo("Route to Mid");
-		 ml.selectRoutePoint("Payable-SBX");
+		 ml.selectRoutePoint("BitsoMidSpeiPayoutLive");
 		 ml.saveButton();
 		 ml.finalsaveButton();
 	  }

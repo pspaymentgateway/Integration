@@ -3,16 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="purchase.email">
+      <class name="Payout.payout">
         <methods>
-          <include name="loadConfig"/>
-          <include name="clearOnce"/>
-          <include name="Purchase"/>
           <include name="beforeMethod"/>
+          <include name="loadConfig"/>
           <include name="tearDown"/>
           <include name="setup"/>
+          <include name="payoutMethod"/>
         </methods>
-      </class> <!-- purchase.email -->
+      </class> <!-- Payout.payout -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
