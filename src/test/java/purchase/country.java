@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
+import com.paysecure.Page.RouteManager;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
@@ -13,6 +14,7 @@ import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
 import com.paysecure.utilities.jsonProvider;
+import com.paysecure.utilities.testData_CreateRoll;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -52,7 +54,7 @@ public class country extends baseClass {
 	  }
 	 
   @Test (dataProvider ="CountryProvider", dataProviderClass = DataProviders.class)
-  public void validationForCountryField(Map<String, String> CountryData, Map<String, String> cardData) {
+  public void validationForCountryField(Map<String, String>cardData , Map<String, String> CountryData) throws InterruptedException {
       WebDriver driver=baseClass.getDriver();
       
 		String Country = CountryData.getOrDefault("TestData", "");
@@ -65,13 +67,35 @@ public class country extends baseClass {
 		String PSP = cardData.getOrDefault("PSP", "");
 		String PaymentMethod=cardData.getOrDefault("PaymentMethod","");
 		String Currency=cardData.getOrDefault("Currency", "");
+		String minAmountStr = cardData.getOrDefault("MinAmount", "");
+		String maxAmountStr = cardData.getOrDefault("MaxAmount", "");
+		String defaultAmountStr = cardData.getOrDefault("DefaultAmount", "");
+		double minAmount = testData_CreateRoll.parseAmount(minAmountStr, 0.0);
+		double maxAmount = testData_CreateRoll.parseAmount(maxAmountStr, 0.0);
+		double defaultAmount = testData_CreateRoll.parseAmount(defaultAmountStr, 100.00);
 		System.err.println(Country +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
 
+	    String Merchant = cardData.getOrDefault("Merchant", "");
+	    String RouteToBankMid = cardData.getOrDefault("RouteToBankMid", "");
+	    String RouteToMidOrBank = cardData.getOrDefault("RouteToMidOrBank", "");
 		//Validate data is not empty
 		if (Country.isEmpty() || CardNumber.isEmpty()) {
 			Reporter.log("Skipping test - Empty email or card number", true);
 			throw new SkipException("Empty test data");
 		}
+		
+//	    RouteManager.ensureRoute(
+//		        getDriver(),
+//		        Merchant,
+//		        Merchant,
+//		        PaymentMethod,
+//		        PaymentMethod,
+//		        Currency,
+//		        Currency,
+//		        PSP,
+//		        RouteToBankMid,
+//		        RouteToMidOrBank
+//		    );
       
       Reporter.log("Email test case will run for this PSPCardsIntegrations :- "+PSP, true);
     
@@ -79,7 +103,7 @@ public class country extends baseClass {
 		RestAssured.baseURI =baseUri;
 			String brandId = PropertyReader.getPropertyForPurchase("brandId");
 			String token = PropertyReader.getPropertyForPurchase("token");
-			String price = generateRandomTestData.generateRandomDoublePrice();
+			String price = generateRandomTestData.generateRandomDoublePrice(minAmount,maxAmount,defaultAmount);
 			String firstName = generateRandomTestData.generateRandomFirstName();
 			String emailId = generateRandomTestData.generateRandomEmail();
 			 String payu = PropertyReader.getPropertyForS2S("payu");
@@ -171,7 +195,7 @@ public class country extends baseClass {
 	                
 	                mcp.userEnterCardInformationForPayment(CardHolder, CardNumber, Expiry, CVV);
 	                mcp.clickOnPay();
-	            	if (payu.equalsIgnoreCase("payu")) {
+	            	if (PSP.equalsIgnoreCase("payu")) {
 						pay.payForPayu(Currency, purchaseId, ExpectedStatus,PaymentMethod);
 					}
 	                
@@ -180,7 +204,7 @@ public class country extends baseClass {
 	      
 	     			   status = "FAIL";
 	                    comment = "Payment Failed Cause Of Luhn ";
-                 Reporter.log("Invalid card number → Luhn check failed", true);
+                  Reporter.log("Invalid card number → Luhn check failed", true);
                   Reporter.log("Invalid card number → Luhn check failed", true);
                   ExcelWriteUtility.writeResult("Purchase_Result", Country,ExpectedStatus,    status, comment,purchaseId,PSP,PaymentMethod);
 	                    driver.quit();
@@ -246,7 +270,8 @@ public class country extends baseClass {
 
 	                }
 	                // Login + Transaction check
-	                mcp.openBrowserForStaging(driver,baseUri);
+	                String URl = PropertyReader.getPropertyForconfigProps("url");
+	                mcp.openBrowserForStaging(driver,URl);
 	                lp.login();
 	                tp.navigateUptoTransaction();
 	                tp.searchTheTransaction(purchaseId);

@@ -52,5 +52,14 @@ public class testData_CreateRoll {
     }
 
 	
-	
+    public static double parseAmount(String value, double fallback) {
+        try {
+            if (value == null || value.trim().isEmpty()) {
+                return fallback;
+            }
+            return Double.parseDouble(value.trim());
+        } catch (NumberFormatException e) {
+            return fallback;
+        }
+    }
 }

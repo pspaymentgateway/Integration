@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
+import com.paysecure.Page.RouteManager;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
@@ -13,6 +14,7 @@ import com.paysecure.utilities.DataProvidersEndToEndFlow;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
+import com.paysecure.utilities.testData_CreateRoll;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -64,14 +66,38 @@ public class easebuzzcard extends baseClass{
 	        String expiry   = data.get("Expiry");
 	        String cvv      = data.get("CVV");
 	        String PSP      =data.get("PSP");
-	        String paymentMethod=data.get("PaymentMethod");
-	        String currency=data.get("Currency");
+		    String PaymentMethod = data.getOrDefault("PaymentMethod", "");
+		    String Currency = data.getOrDefault("Currency", "");
+		    String minAmountStr = data.getOrDefault("MinAmount", "");
+		    String maxAmountStr = data.getOrDefault("MaxAmount", "");
+		    String defaultAmountStr = data.getOrDefault("DefaultAmount", "");
+		    
+		    double minAmount = testData_CreateRoll.parseAmount(minAmountStr, 0.0);
+		    double maxAmount = testData_CreateRoll.parseAmount(maxAmountStr, 0.0);
+		    double defaultAmount = testData_CreateRoll.parseAmount(defaultAmountStr, 5.6);
+		    
+		    String Merchant = data.getOrDefault("Merchant", "");
+		    String RouteToBankMid = data.getOrDefault("RouteToBankMid", "");
+		    String RouteToMidOrBank = data.getOrDefault("RouteToMidOrBank", "");
 	        
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
-		String price = generateRandomTestData.generateRandomDoublePrice();
+		String price = generateRandomTestData.generateRandomDoublePrice(minAmount,maxAmount,defaultAmount);
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
+		
+	    RouteManager.ensureRoute(
+		        getDriver(),
+		        Merchant,
+		        Merchant,
+		        PaymentMethod,
+		        PaymentMethod,
+		        Currency,
+		        Currency,
+		        PSP,
+		        RouteToBankMid,
+		        RouteToMidOrBank
+		    );
 		
 		String country="IN";
 		String city = "Paris";
@@ -94,7 +120,7 @@ public class easebuzzcard extends baseClass{
 		        "    \"phone\": \"+1111111111\"\n" +
 		        "  },\n" +
 		        "  \"purchase\": {\n" +
-		        "    \"currency\": \""+currency+"\",\n" +
+		        "    \"currency\": \""+Currency+"\",\n" +
 		        "    \"products\": [\n" +
 		        "      {\n" +
 		        "        \"name\": \""+productname+"\",\n" +
@@ -102,7 +128,7 @@ public class easebuzzcard extends baseClass{
 		        "      }\n" +
 		        "    ]\n" +
 		        "  },\n" +
-		        "  \"paymentMethod\": \""+paymentMethod+"\",\n" +
+		        "  \"paymentMethod\": \""+PaymentMethod+"\",\n" +
 		        "  \"brand_id\": \"" + brandId + "\",\n" +
 		        "  \"success_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=true\",\n" +
 		        "  \"failure_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=false\",\n" +
@@ -157,7 +183,7 @@ public class easebuzzcard extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,  status, comment,purchaseId,PSP,paymentMethod);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",Currency +" "+PaymentMethod,ExpectedStatus,  status, comment,purchaseId,PSP,PaymentMethod);
             driver.quit();
             return;
         }
@@ -167,7 +193,7 @@ public class easebuzzcard extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP,paymentMethod);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",Currency +" "+PaymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP,PaymentMethod);
 
         }
         else {
@@ -176,7 +202,7 @@ public class easebuzzcard extends baseClass{
 
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP,paymentMethod);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",Currency +" "+PaymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP,PaymentMethod);
 
 
         }
@@ -187,7 +213,7 @@ public class easebuzzcard extends baseClass{
         tp.searchTheTransaction(purchaseId);
         tp.verifyTxnId(purchaseId);
         tp.verifyAmount(total);
-        tp.verifyCurrency(currency);
+        tp.verifyCurrency(Currency);
         tp.getStatusFromUI();
         tp.maskCardForCashier(cardNumber);
         tp.verifyUsedCardOnUI(cardNumber);

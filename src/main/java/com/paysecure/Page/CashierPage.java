@@ -2,16 +2,18 @@ package com.paysecure.Page;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.TimeoutException;
 
+import org.jspecify.annotations.Nullable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
@@ -64,6 +66,48 @@ public class CashierPage {
 	private By easybuzzFailureBtn=By.xpath(cashierPageLocators.easybuzzFailureBtn);
 	private By easybuzzSuccessBtn=By.xpath(cashierPageLocators.easybuzzSuccessBtn);
 	
+	//panetics
+	private By paneticsOTP=By.xpath(cashierPageLocators.paneticsOTP);
+	private By paneticsBtn=By.xpath(cashierPageLocators.paneticsBtn);
+	
+	//Telr
+	private By telrEnterOTP=By.xpath(cashierPageLocators.telrEnterOTP);
+	private By telrSumbitButton=By.xpath(cashierPageLocators.telrSumbitButton);
+	
+	//manta pay 
+	private By mantapayOTP=By.xpath(cashierPageLocators.mantapayOTP);
+	private By mantapayBtn=By.xpath(cashierPageLocators.mantapayBtn);
+	
+	//unicorn 3ds page
+	//private By unicornOTP=By.xpath(cashierPageLocators.unicornOTP);
+	private By unicornBtn=By.xpath(cashierPageLocators.unicornBtn);
+	
+	//cc avenue 
+	private By selectClassCCAvenue=By.xpath(cashierPageLocators.ccavenueSelectClass);
+	@FindBy (xpath="//select[@id='selectAuthResult']") private WebElement selectClassCCAvnue;
+	private By ccavenueSubmitButton=By.xpath(cashierPageLocators.ccavenueSubmitButton);
+	@FindBy(xpath="//input[@name='password']") private WebElement unicornOTP;
+	
+	
+	//Shift 4 
+	private By shift4Otp=By.xpath(cashierPageLocators.shift4Otp);
+	private By shift4payButton=By.xpath(cashierPageLocators.shift4payButton);
+	
+	//payaza card
+	private By payazaDropdown=By.xpath(cashierPageLocators.payazaDropdown);
+	private By payazaSubmitBtn=By.xpath(cashierPageLocators.payazaSubmitBtn);
+	
+	private By sbxPayaEnterOTP=By.xpath(cashierPageLocators.sbxPayaEnterOTP);
+	private By sbxSubmitBtn=By.xpath(cashierPageLocators.sbxSubmitBtn);
+	
+	private By confirmPurchases=By.xpath(cashierPageLocators.confirmPurchases);
+	private By confirmSubmit=By.xpath(cashierPageLocators.confirmSubmit);
+	private By remConsent=By.xpath(cashierPageLocators.remConsent);
+	private By confirmConsent=By.xpath(cashierPageLocators.confirmConsent);
+	
+	private By confirmYoya = By.xpath(cashierPageLocators.confirmYoya);
+	private By enterPassYoya = By.xpath(cashierPageLocators.enterPassYoya);
+	
 	private ActionDriver actionDriver;
 	// page factory constructor
 	public CashierPage(WebDriver driver) {
@@ -75,10 +119,9 @@ public class CashierPage {
 	public void userEnterCardInformationForPayment(
 			String cardHolder, String cardNumber,String expiry, String cvv) throws InterruptedException {
 		WebDriver driver=baseClass.getDriver();
-//		Thread.sleep(500);
-//		driver.manage().window().setSize(new Dimension(1280, 720));
+		Thread.sleep(500);
+		driver.manage().window().setSize(new Dimension(1080, 800));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		
 		js.executeScript("document.body.style.zoom='65%';");
 		actionDriver.enterText(cardHolderName, cardHolder);
 		Reporter.log("Entered Card Holder Name: " + cardHolder, true);
@@ -98,13 +141,28 @@ public class CashierPage {
 	}
 	
 	public void clickOnPay() {
-		actionDriver.scrollToElement(total);
+		actionDriver.scrollToElement(pay);
 		Reporter.log("Moved to the Pay button", true);
 		actionDriver.click(pay);
 		Reporter.log("Clicked on the Pay button to proceed with payment", true);
 	}
 	
+	public void rememberConsent() {
+		actionDriver.scrollToElement(remConsent);
+		actionDriver.click(remConsent);
+		actionDriver.click(confirmConsent);
+	}
 	
+	public void confirmPurchase() {
+		actionDriver.scrollToElement(confirmPurchases);
+		actionDriver.click(confirmPurchases);
+		
+		actionDriver.scrollToElement(confirmSubmit);
+		actionDriver.click(confirmSubmit);
+		
+		actionDriver.scrollToElement(confirmSubmit);
+		actionDriver.click(confirmSubmit);
+	}
 	
 	public void openBrowserForStaging(WebDriver driver,String url) {
 	    try {
@@ -118,6 +176,7 @@ public class CashierPage {
 	        System.out.println(" Failed to open staging environment: " + e.getMessage());
 	    }
 	}
+	
 	
 	
 	public boolean isCardNumberInvalid() {
@@ -272,6 +331,12 @@ public class CashierPage {
 	
 	public void zaakpaySubmitButtonOnBankPage() {
 	    actionDriver.click(zaakpaySubmitButton);
+	    Reporter.log("Clicked on submit button on bank page", true);
+	}
+	
+	public void panaticsSubmitButtonOnBankPage() {
+		actionDriver.enterText(paneticsOTP, "123456");
+	    actionDriver.click(paneticsBtn);
 	    Reporter.log("Clicked on ZaakPay submit button on bank page", true);
 	}
 
@@ -301,6 +366,189 @@ public class CashierPage {
 			throw new IllegalArgumentException("Unexpected value: " + key);
 		}
 	}
+	
+	public void handleTelrs3dsPage(){
+		//actionDriver.enterText(telrEnterOTP, "1234");
+		
+		actionDriver.enterText(telrEnterOTP, "1234");
+		actionDriver.click(telrSumbitButton);
+	}
+	
+	public void mantapay3dsPage(String mantapayOtp){
+		actionDriver.sendKeysJS(mantapayOTP, mantapayOtp);
+		actionDriver.click(mantapayBtn);
+	}
+	
+	
+	public void unicorn3dsPage() throws InterruptedException {
 
+	    WebDriver driver = baseClass.getDriver();
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+
+	    // 1️ Wait for 3DS URL
+	    wait.until(ExpectedConditions.urlContains("threed"));
+
+	    // 2️ Wait for page to fully load (fixes the 20-22 sec delay issue)
+	    wait.until(webDriver -> ((JavascriptExecutor) webDriver)
+	            .executeScript("return document.readyState").equals("complete"));
+
+	    // 3️ Small buffer after page ready (3DS pages often load content after readyState)
+	    Thread.sleep(2000);
+
+	    // 4️ Check for iframe
+	    List<WebElement> frames = driver.findElements(By.tagName("iframe"));
+	    System.out.println("Iframe count: " + frames.size());
+
+	    if (frames.size() > 0) {
+	        // Wait until iframe is available AND switch into it (don't do both wait + switchTo manually)
+	        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.tagName("iframe")));
+	        System.out.println("Switched to 3DS iframe");
+	    } else {
+	        System.out.println("No iframe found, continuing on main page");
+	    }
+
+	    // 5️ Wait for OTP field
+	    WebElement otpField = wait.until(
+	            ExpectedConditions.visibilityOf(unicornOTP));
+	    otpField.clear();
+	    otpField.sendKeys("123456");
+
+	    // 6️ Click submit
+	    wait.until(ExpectedConditions.elementToBeClickable(unicornBtn)).click();
+
+	    // 7️ Switch back to main page
+	    driver.switchTo().defaultContent();
+	}
+	
+	public void thirdPartyPageForCCAvenue(String authResult) {
+
+	    WebDriver driver = baseClass.getDriver();
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+
+	    System.out.println("CCAvenue 3DS page loaded");
+
+	    try {
+	        driver.switchTo().defaultContent();
+
+	        // ✅ Try direct iframe switch first
+	        boolean dropdownFound = false;
+
+	        // Attempt 1: Switch directly by ID
+	        try {
+	            System.out.println("Attempt 1: Switching to challengeFrame by ID...");
+	            wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("challengeFrame")));
+	            
+	            if (!driver.findElements(By.id("selectAuthResult")).isEmpty()) {
+	                dropdownFound = true;
+	                System.out.println("✓ Dropdown found inside challengeFrame");
+	            }
+	        } catch (Exception e) {
+	            System.out.println("Attempt 1 failed: " + e.getMessage());
+	            driver.switchTo().defaultContent();
+	        }
+
+	        // Attempt 2: Loop through ALL iframes on page
+	        if (!dropdownFound) {
+	            System.out.println("Attempt 2: Looping through all iframes...");
+	            driver.switchTo().defaultContent();
+
+	            List<WebElement> allIframes = driver.findElements(By.tagName("iframe"));
+	            System.out.println("Total iframes found: " + allIframes.size());
+
+	            for (int i = 0; i < allIframes.size(); i++) {
+	                try {
+	                    driver.switchTo().defaultContent();
+	                    driver.switchTo().frame(i); // Switch by index (more stable)
+	                    System.out.println("Checking iframe index: " + i);
+
+	                    if (!driver.findElements(By.id("selectAuthResult")).isEmpty()) {
+	                        dropdownFound = true;
+	                        System.out.println("✓ Dropdown found in iframe index: " + i);
+	                        break;
+	                    }
+
+	                    // Check nested iframes inside this iframe
+	                    List<WebElement> nestedIframes = driver.findElements(By.tagName("iframe"));
+	                    for (int j = 0; j < nestedIframes.size(); j++) {
+	                        try {
+	                            driver.switchTo().frame(j);
+	                            System.out.println("Checking nested iframe index: " + j);
+
+	                            if (!driver.findElements(By.id("selectAuthResult")).isEmpty()) {
+	                                dropdownFound = true;
+	                                System.out.println("✓ Dropdown found in nested iframe [" + i + "][" + j + "]");
+	                                break;
+	                            }
+	                        } catch (Exception ex) {
+	                            driver.switchTo().parentFrame(); // Go back up one level
+	                        }
+	                    }
+
+	                    if (dropdownFound) break;
+
+	                } catch (Exception e) {
+	                    System.out.println("Error checking iframe " + i + ": " + e.getMessage());
+	                }
+	            }
+	        }
+
+	        if (!dropdownFound) {
+	            throw new RuntimeException("✗ selectAuthResult dropdown NOT found in any iframe!");
+	        }
+
+	        // ✅ Now we are inside the correct iframe — interact with elements
+	        WebElement dropdown = wait.until(
+	                ExpectedConditions.visibilityOfElementLocated(By.id("selectAuthResult"))
+	        );
+	        Select select = new Select(dropdown);
+	        select.selectByValue(authResult);
+	        System.out.println("✓ Selected authResult: " + authResult);
+
+	        // Click submit button
+	        WebElement submitButton = wait.until(
+	                ExpectedConditions.elementToBeClickable(By.id("acssubmit"))
+	        );
+
+	        try {
+	            submitButton.click();
+	            System.out.println("✓ Submit clicked (normal)");
+	        } catch (Exception e) {
+	            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitButton);
+	            System.out.println("✓ Submit clicked (JS fallback)");
+	        }
+
+	    } catch (Exception e) {
+	        System.out.println("✗ Exception: " + e.getMessage());
+	        e.printStackTrace();
+	        throw new RuntimeException(e);
+
+	    } finally {
+	        driver.switchTo().defaultContent();
+	        System.out.println("✓ Returned to default content");
+	    }
+	}
+	
+	public void handleShift4Otp() {
+		actionDriver.enterText(shift4Otp, "0101");
+		actionDriver.click(shift4payButton);
+	}
+	
+	public void handleForPayazaCard() {
+		actionDriver.selectByIndex(payazaDropdown, 0);
+		actionDriver.click(payazaSubmitBtn);
+	}
+	
+	public void handleForPayableSBX() {
+		actionDriver.enterText(sbxPayaEnterOTP, "test");
+		actionDriver.click(sbxSubmitBtn);
+	}
+	
+	public void OtpForYoya() {
+		actionDriver.click(enterPassYoya);
+		actionDriver.sendKeysJS(enterPassYoya,"1234");
+		actionDriver.clickUsingJS(confirmYoya);
+	}
+
+	
 	
 }

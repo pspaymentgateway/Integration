@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
+import com.paysecure.Page.RouteManager;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
@@ -13,6 +14,7 @@ import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
 import com.paysecure.utilities.jsonProvider;
+import com.paysecure.utilities.testData_CreateRoll;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -51,9 +53,13 @@ public class zipcode extends baseClass{
 			pay = new payu3dPage(getDriver());
 			otp= new pspOTPPage();
 	  }
+	  
+	  
+	  
+	  
 	 
   @Test(dataProvider ="ZipCodeProvider", dataProviderClass = DataProviders.class)
-  public void validationForZipcodeField(Map<String, String> zipcodeData, Map<String, String> cardData) {
+  public void validationForZipcodeField(Map<String, String>cardData , Map<String, String> zipcodeData) throws InterruptedException {
 		WebDriver driver=baseClass.getDriver();
 	    
 				String zipcode = zipcodeData.getOrDefault("TestData", "");
@@ -66,6 +72,16 @@ public class zipcode extends baseClass{
 				String PSP = cardData.getOrDefault("PSP", "");
 				String PaymentMethod=cardData.getOrDefault("PaymentMethod","");
 				String Currency=cardData.getOrDefault("Currency", "");
+				String minAmountStr = cardData.getOrDefault("MinAmount", "");
+				String maxAmountStr = cardData.getOrDefault("MaxAmount", "");
+				String defaultAmountStr = cardData.getOrDefault("DefaultAmount", "");
+				double minAmount = testData_CreateRoll.parseAmount(minAmountStr, 0.0);
+				double maxAmount = testData_CreateRoll.parseAmount(maxAmountStr, 0.0);
+				double defaultAmount = testData_CreateRoll.parseAmount(defaultAmountStr, 100.00);
+				
+			    String Merchant = cardData.getOrDefault("Merchant", "");
+			    String RouteToBankMid = cardData.getOrDefault("RouteToBankMid", "");
+			    String RouteToMidOrBank = cardData.getOrDefault("RouteToMidOrBank", "");
 				System.err.println(zipcode +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
 
 				//Validate data is not empty
@@ -73,13 +89,26 @@ public class zipcode extends baseClass{
 					Reporter.log("Skipping test - Empty email or card number", true);
 					throw new SkipException("Empty test data");
 				}
+				
+//			    RouteManager.ensureRoute(
+//				        getDriver(),
+//				        Merchant,
+//				        Merchant,
+//				        PaymentMethod,
+//				        PaymentMethod,
+//				        Currency,
+//				        Currency,
+//				        PSP,
+//				        RouteToBankMid,
+//				        RouteToMidOrBank
+//				    );
 		    Reporter.log("StateCode test case will run for this PSPCardsIntegrations :- "+PSP, true);
 		 String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 	
 		String token = PropertyReader.getPropertyForPurchase("token");
-		String price = generateRandomTestData.generateRandomDoublePrice();
+		String price = generateRandomTestData.generateRandomDoublePrice(minAmount,maxAmount,defaultAmount);
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
 		String payu = PropertyReader.getPropertyForS2S("payu");
@@ -174,7 +203,7 @@ public class zipcode extends baseClass{
                 mcp.userEnterCardInformationForPayment( CardHolder, CardNumber, Expiry, CVV);
                 mcp.clickOnPay();
                 
-            	if (payu.equalsIgnoreCase("payu")) {
+            	if (PSP.equalsIgnoreCase("payu")) {
 					pay.payForPayu(Currency, purchaseId, ExpectedStatus,PaymentMethod);
 				}
                 
@@ -251,7 +280,8 @@ public class zipcode extends baseClass{
                 }
 
                 // Login + Transaction check
-                mcp.openBrowserForStaging(driver,baseUri);
+                String URl = PropertyReader.getPropertyForconfigProps("url");
+                mcp.openBrowserForStaging(driver,URl);
                 lp.login();
                 tp.navigateUptoTransaction();
                 tp.searchTheTransaction(purchaseId);

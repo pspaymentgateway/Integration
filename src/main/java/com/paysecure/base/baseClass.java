@@ -49,7 +49,7 @@ public class baseClass {
 		prop = new Properties();
 
 		// Try to load from classpath first (for JAR deployment)
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("propertiesFolder\\\\config.properties");
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("propertiesFolder/config.properties");
 
 		if (inputStream != null) {
 			// Load from classpath
@@ -58,7 +58,7 @@ public class baseClass {
 			log.info("config.properties loaded from classpath");
 		} else {
 			// Fallback to file system (for development)
-			String configPath = ResourcePathUtil.getResourcePath("propertiesFolder\\config.properties");
+			String configPath = ResourcePathUtil.getResourcePath("propertiesFolder/config.properties");
 			FileInputStream fis = new FileInputStream(configPath);
 			prop.load(fis);
 			fis.close();
@@ -135,7 +135,7 @@ public class baseClass {
 		if (getDriver() != null) {
 			try {
 				Thread.sleep(3000);
-			//	getDriver().quit();
+				getDriver().quit();
 			} catch (Exception e) {
 				log.warn("Unable to quit the driver", e);
 			}

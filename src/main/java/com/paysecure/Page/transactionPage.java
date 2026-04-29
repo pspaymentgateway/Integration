@@ -83,6 +83,15 @@ public class transactionPage {
 	private By easyDelayedFailure = By.xpath(cashierPageLocators.easyDelayedFailure);
 	
 
+	//yaspa
+	private By YaspaTestBank = By.xpath(cashierPageLocators.YaspaTestBank);
+	private By ccYaspa = By.xpath(cashierPageLocators.ccYaspa);
+	private By urlYaspa = By.xpath(cashierPageLocators.urlYaspa);
+	private By approve = By.xpath(cashierPageLocators.approve);
+	private By returnToPayse = By.xpath(cashierPageLocators.returnToPayse);
+	
+	//yoya pay payin 
+
 	private ActionDriver actionDriver;
 
 	// page factory constructor
@@ -120,13 +129,12 @@ public class transactionPage {
 
 		Thread.sleep(500);
 		driver.manage().window().setSize(new Dimension(1280, 720));// 1920 × 1080
+		actionDriver.scrollToElement(report);
+		actionDriver.click(report);
 
-		actionDriver.scrollToElement(analytics);
-		actionDriver.clickUsingJS(report);
-
-		actionDriver.clickUsingJS(transactions);
-		// Assert.fail();
-		driver.manage().window().setSize(new Dimension(1920, 1080));
+		actionDriver.scrollToElement(transactions);
+		actionDriver.click(transactions);
+	//	driver.manage().window().setSize(new Dimension(1920, 1080));
 
 	}
 
@@ -142,7 +150,7 @@ public class transactionPage {
 	}
 
 	public void clickOnTransactionId() {
-
+		
 		actionDriver.click(firstTransactionID);
 		Reporter.log(" Clicked on first Transaction ID from list", true);
 
@@ -371,6 +379,7 @@ public class transactionPage {
 		Reporter.log("Entering password on PSPCardsIntegrations side", true);
 		actionDriver.enterText(passwordPSP, password);
 
+		
 		Reporter.log("Clicking Sign In button on PSPCardsIntegrations side", true);
 		actionDriver.clickUsingJS(signinButtonPSP);
 
@@ -603,6 +612,22 @@ public	String LastSTatus;
 public String getLastSTtaus() {
 	return LastSTatus= actionDriver.getText(lastStatusFromTxnPage);
 }
+
+
+public void handleForYASPA() {
+	actionDriver.scrollToElement(YaspaTestBank);
+	actionDriver.click(YaspaTestBank);
+	actionDriver.scrollToElement(ccYaspa);
+	actionDriver.click(ccYaspa);
+	actionDriver.scrollToElement(urlYaspa);
+	actionDriver.click(urlYaspa);
+	actionDriver.scrollToElement(approve);
+	actionDriver.click(approve);
+	actionDriver.scrollToElement(returnToPayse);
+	actionDriver.click(returnToPayse);
+}
+
+
 
 
 }

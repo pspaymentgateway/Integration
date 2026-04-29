@@ -32,12 +32,13 @@ public class DriverFactory {
     	        options.addArguments("--disable-gpu");
     	        options.addArguments("--window-size=800,600");
     	        options.addArguments("--disable-notifications");
-    	        options.addArguments("--no-sandbox");
+           options.addArguments("--no-sandbox");
+    	        
     	        options.addArguments("--headless");
     	        options.addArguments("--disable-dev-shm-usage");
-
+    	        
     	        Map<String, Object> prefs = new HashMap<>();
-    	        prefs.put("download.default_directory", "C:\\Downloads");
+    	        prefs.put("download.default_directory", "/home/ec2-user/downloads");
     	        prefs.put("download.prompt_for_download", false);
     	        prefs.put("plugins.always_open_pdf_externally", true);
     	        prefs.put("credentials_enable_service", false);
@@ -77,17 +78,32 @@ public class DriverFactory {
             options.addArguments("--disable-dev-shm-usage");
             return new FirefoxDriver(options);
 
-        } else if (browser.equalsIgnoreCase("edge")) {
-            WebDriverManager.edgedriver().setup();
-            EdgeOptions options = new EdgeOptions();
-            options.addArguments("--disable-gpu");
-            options.addArguments("--window-size=1920,1080");
-            options.addArguments("--disable-notifications");
-            options.addArguments("--no-sandbox");
-            options.addArguments("--disable-dev-shm-usage");
-            return new EdgeDriver(options);
+        }
+            //else if (browser.equalsIgnoreCase("edge")) {
+//            WebDriverManager.edgedriver().setup();
+//            EdgeOptions options = new EdgeOptions();
+//            options.addArguments("--disable-gpu");
+//            options.addArguments("--window-size=1920,1080");
+//            options.addArguments("--disable-notifications");
+//            options.addArguments("--no-sandbox");
+//            options.addArguments("--disable-dev-shm-usage");
+//            return new EdgeDriver(options);
+        	else if (browser.equalsIgnoreCase("edge")) {
 
-        } else {
+        	    // 🔹 OPTION 1: Use manual driver (Recommended for your case)
+        	    System.setProperty("webdriver.edge.driver", "C:\\WebDrivers\\msedgedriver.exe");
+
+        	    EdgeOptions options = new EdgeOptions();
+        	    options.addArguments("--start-maximized");
+        	    options.addArguments("--disable-notifications");
+        	    options.addArguments("--disable-gpu");
+        	    options.addArguments("--no-sandbox");
+        	    options.addArguments("--disable-dev-shm-usage");
+
+        	    return new EdgeDriver(options);
+        	}
+
+        else {
             throw new IllegalArgumentException("Browser Not Supported: " + browser);
         }
     }

@@ -3,6 +3,7 @@ package purchase;
 import org.testng.annotations.Test;
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
+import com.paysecure.Page.RouteManager;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
@@ -12,6 +13,8 @@ import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
 import com.paysecure.utilities.jsonProvider;
+import com.paysecure.utilities.testData_CreateRoll;
+
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -50,9 +53,8 @@ public class city extends baseClass {
     }
 
     @Test(dataProvider ="CityProvider", dataProviderClass = DataProviders.class)
-    public void validationForCityField(Map<String, String> cityData, Map<String, String> cardData) {
+    public void validationForCityField(Map<String, String>cardData , Map<String, String> cityData ) throws InterruptedException {
         WebDriver driver = baseClass.getDriver();
-        //
 		String City = cityData.getOrDefault("TestData", "");
 		String ExpectedStatus = cityData.getOrDefault("Status", "");
 		String CardHolder = cardData.getOrDefault("CardholderName", "");
@@ -63,13 +65,37 @@ public class city extends baseClass {
 		String cardRunFlag = cardData.getOrDefault("RunFlag", "");
 		String PaymentMethod=cardData.getOrDefault("PaymentMethod","");
 		String Currency=cardData.getOrDefault("Currency", "");
-		System.err.println(City +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
+		String minAmountStr = cardData.getOrDefault("MinAmount", "");
+		String maxAmountStr = cardData.getOrDefault("MaxAmount", "");
+		String defaultAmountStr = cardData.getOrDefault("DefaultAmount", "");
+		double minAmount = testData_CreateRoll.parseAmount(minAmountStr, 0.0);
+		double maxAmount = testData_CreateRoll.parseAmount(maxAmountStr, 0.0);
+		double defaultAmount = testData_CreateRoll.parseAmount(defaultAmountStr, 100.00);
 
+	    String Merchant = cardData.getOrDefault("Merchant", "");
+	    String RouteToBankMid = cardData.getOrDefault("RouteToBankMid", "");
+	    String RouteToMidOrBank = cardData.getOrDefault("RouteToMidOrBank", "");
+		
+		System.err.println(City +" "+ExpectedStatus+" "+CardHolder +" "+ CardNumber +" "+ Expiry +" "+ CVV +" "+ PSP);
+		
 		//Validate data is not empty
 		if (City.isEmpty() || CardNumber.isEmpty()) {
 			Reporter.log("Skipping test - Empty email or card number", true);
 			throw new SkipException("Empty test data");
 		}
+		
+	    RouteManager.ensureRoute(
+		        getDriver(),
+		        Merchant,
+		        Merchant,
+		        PaymentMethod,
+		        PaymentMethod,
+		        Currency,
+		        Currency,
+		        PSP,
+		        RouteToBankMid,
+		        RouteToMidOrBank
+		    );
 
 		
 		Reporter.log("Email test case will run for this PSP: " + PSP, true);
@@ -81,10 +107,10 @@ public class city extends baseClass {
         RestAssured.baseURI = baseUri;
         String brandId = PropertyReader.getPropertyForPurchase("brandId");
         String token = PropertyReader.getPropertyForPurchase("token");
-        String price = generateRandomTestData.generateRandomDoublePrice();
+        String price = generateRandomTestData.generateRandomDoublePrice(minAmount,maxAmount,defaultAmount);
         String firstName = generateRandomTestData.generateRandomFirstName();
         String emailId = generateRandomTestData.generateRandomEmail();
-        String payu = PropertyReader.getPropertyForS2S("payu");
+ 
  
         String country = "IN";
         String city = City;
@@ -166,9 +192,10 @@ public class city extends baseClass {
                 driver.get(checkoutUrl);
 
                 mcp.userEnterCardInformationForPayment(CardHolder, CardNumber, Expiry, CVV);
+                Thread.sleep(2000);
                 mcp.clickOnPay();
 
-            	if (payu.equalsIgnoreCase("payu")) {
+            	if (PSP.equalsIgnoreCase("payu")) {
 					pay.payForPayu(Currency, purchaseId, ExpectedStatus,PaymentMethod);
 				}
                 
@@ -242,7 +269,8 @@ public class city extends baseClass {
 
                 // Continue with transaction verification only if payment succeeded
                 if (flag.equalsIgnoreCase("true")) {
-                    mcp.openBrowserForStaging(driver, baseUri);
+                	String URl = PropertyReader.getPropertyForconfigProps("url");
+                    mcp.openBrowserForStaging(driver, URl);
                     lp.login();
                     tp.navigateUptoTransaction();
                     tp.searchTheTransaction(purchaseId);

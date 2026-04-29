@@ -9,21 +9,21 @@ public class generateRandomTestData {
 
 	
 	  public static String generateRandomFirstName() {
-	        String firstName = "john" + UUID.randomUUID().toString().substring(0, 3);
+	        String firstName = "div" + UUID.randomUUID().toString().substring(0, 3);
 	        Reporter.log("Generated First Name: " + firstName, true);
 	        return firstName;
 	    }
 
 	    // Generates a random last name like "Doexyz"
 	    public static String generateRandomLastName() {
-	        String lastName = "Doe" + UUID.randomUUID().toString().substring(0, 3);
+	        String lastName = "yash" + UUID.randomUUID().toString().substring(0, 3);
 	        Reporter.log("Generated Last Name: " + lastName, true);
 	        return lastName;
 	    }
 
 	    // Generates a random email like "johnDoeab@mail.com"
 	    public static String generateRandomEmail() {
-	        String email = "nairobiPalermo" + UUID.randomUUID().toString().substring(0, 5) + "@gmail.com";
+	        String email = "yashdiv" + UUID.randomUUID().toString().substring(0, 5) + "@gmail.com";
 	        Reporter.log("Generated Email: " +email, true);
 	        return email;
 	    }
@@ -37,49 +37,88 @@ public class generateRandomTestData {
 	        return formattedValue;
 	    }
 	    
-	    public static String generateRandomDoublePrice() {
-
-	        Random random = new Random();
-
-	        // Default values
-	        double min = 10.00;
-	        double max = 100.00;
-
-	       
-	        try {
-	            String minProp = PropertyReader.getPropertyForconfigProps("minAmount");
-	            String maxProp =PropertyReader.getPropertyForconfigProps("maxAmount");
-
-	            System.out.println("Min AMount ");
-	            if (minProp != null && maxProp != null) {
-	                min = Double.parseDouble(minProp);
-	                max = Double.parseDouble(maxProp);
-	            }
-	        } catch (Exception e) {
-	            Reporter.log("Invalid amount range in properties. Using default 10–100", true);
-	        }
-
-	        // Validation (important for PSP rules)
-	        if (min <= 0 || max <= min) {
-	            throw new IllegalArgumentException(
-	                "Invalid amount range: min=" + min + ", max=" + max
-	            );
-	        }
-
-	        double value = min + (random.nextDouble() * (max - min));
-	        String formattedValue = String.format("%.2f", value);
+	    public static String generateRandomDoublePrice(
+	            double minAmount,
+	            double maxAmount,
+	            Double providedAmount   // nullable on purpose
+	    ) {
 
 	        Reporter.log(
-	            "Generated Amount: " + formattedValue +
-	            " (Range: " + min + " - " + max + ")",
+	            "Amount Inputs → Min: " + minAmount +
+	            ", Max: " + maxAmount +
+	            ", Provided: " + providedAmount,
 	            true
 	        );
 
-	        return formattedValue;
+	        /* =====================================================
+	           STEP 1: Validate Range
+	           ===================================================== */
+	        if (minAmount <= 0 || maxAmount <= minAmount) {
+
+	            Reporter.log(
+	                "❌ Invalid range configuration. Using system fallback.",
+	                true
+	            );
+
+	            return "100.00";
+	        }
+
+	        /* =====================================================
+	           STEP 2: No Amount Provided
+	           ===================================================== */
+	        if (providedAmount == null) {
+
+	            Reporter.log(
+	                "⚠ No amount provided. Using minimum amount.",
+	                true
+	            );
+
+	            return String.format("%.2f", minAmount);
+	        }
+
+	        /* =====================================================
+	           STEP 3: Exact Boundary Values
+	           ===================================================== */
+	        if (providedAmount == minAmount || providedAmount == maxAmount) {
+
+	            Reporter.log(
+	                "✅ Boundary amount provided explicitly: " + providedAmount,
+	                true
+	            );
+
+	            return String.format("%.2f", providedAmount);
+	        }
+
+	        /* =====================================================
+	           STEP 4: Within Valid Range
+	           ===================================================== */
+	        if (providedAmount > minAmount && providedAmount < maxAmount) {
+
+	            Reporter.log(
+	                "✅ Amount within valid range. Using exact value: " + providedAmount,
+	                true
+	            );
+
+	            return String.format("%.2f", providedAmount);
+	        }
+
+	        /* =====================================================
+	           STEP 5: Outside Range (Fallback)
+	           ===================================================== */
+	        Reporter.log(
+	            "⚠ Amount outside valid range (" + minAmount + "–" + maxAmount +
+	            "). Provided: " + providedAmount +
+	            ". Using safe fallback value.",
+	            true
+	        );
+
+	        // Safe fallback inside range (business friendly)
+	        double fallback = minAmount + ((maxAmount - minAmount) / 2);
+
+	        return String.format("%.2f", fallback);
 	    }
 
 
-	    
 	 // Generates a random Indian mobile number like "9876543210"
 	    public static String generateRandomIndianMobileNumber() {
 	        // Indian mobile numbers start with 6, 7, 8, or 9

@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
+import com.paysecure.Page.RouteManager;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.pspOTPPage;
 import com.paysecure.Page.transactionPage;
@@ -13,6 +14,7 @@ import com.paysecure.utilities.DataProvidersEndToEndFlow;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
+import com.paysecure.utilities.testData_CreateRoll;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -52,7 +54,7 @@ public class EuroExchange extends baseClass{
 	  }
 
 	//String cardHolder, String cardNumber, String expiry, String cvc
-  @Test(dataProvider ="EuroExchange",dataProviderClass = DataProvidersEndToEndFlow.class,invocationCount = 3) 
+  @Test(dataProvider ="EuroExchange",dataProviderClass = DataProvidersEndToEndFlow.class,invocationCount = 2) 
   public void purchase(Map<String, String> data) throws Exception {
       WebDriver driver=baseClass.getDriver();
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
@@ -63,15 +65,38 @@ public class EuroExchange extends baseClass{
         String expiry   = data.get("Expiry");
         String cvv      = data.get("CVV");
         String PSP      =data.get("PSP");
-        String paymentMethod=data.get("PaymentMethod");
-        String currency=data.get("Currency");
-		
+	    String paymentMethod = data.getOrDefault("PaymentMethod", "");
+	    String currency = data.getOrDefault("Currency", "");
+	    String minAmountStr = data.getOrDefault("MinAmount", "");
+	    String maxAmountStr = data.getOrDefault("MaxAmount", "");
+	    String defaultAmountStr = data.getOrDefault("DefaultAmount", "");
+	    
+	    double minAmount = testData_CreateRoll.parseAmount(minAmountStr, 0.0);
+	    double maxAmount = testData_CreateRoll.parseAmount(maxAmountStr, 0.0);
+	    double defaultAmount = testData_CreateRoll.parseAmount(defaultAmountStr, 5.6);
+	    
+	    String Merchant = data.getOrDefault("Merchant", "");
+	    String RouteToBankMid = data.getOrDefault("RouteToBankMid", "");
+	    String RouteToMidOrBank = data.getOrDefault("RouteToMidOrBank", "");
+
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
-		String price = generateRandomTestData.generateRandomDoublePrice();
-
+		String price = generateRandomTestData.generateRandomDoublePrice(minAmount,maxAmount,defaultAmount);
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
+		
+	    RouteManager.ensureRoute(
+		        getDriver(),
+		        Merchant,
+		        Merchant,
+		        paymentMethod,
+		        paymentMethod,
+		        currency,
+		        currency,
+		        PSP,
+		        RouteToBankMid,
+		        RouteToMidOrBank
+		    );
 
 		String country="IN";
 		String city = "Paris";

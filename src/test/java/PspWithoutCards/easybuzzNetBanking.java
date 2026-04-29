@@ -47,6 +47,9 @@ public class easybuzzNetBanking extends baseClass{
 			
 	  }
 	  
+	  
+	  
+	  
   @Test() 
   public void purchase() throws Exception {
       WebDriver driver=baseClass.getDriver();
@@ -54,7 +57,7 @@ public class easybuzzNetBanking extends baseClass{
 		RestAssured.baseURI =baseUri;
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
-		String price = generateRandomTestData.generateRandomDoublePrice();
+		String price = generateRandomTestData.generateRandomDoublePrice(10,100,70.00);
 		String currency =PropertyReader.getPropertyForPurchase("currency");
 		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();

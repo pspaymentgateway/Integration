@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,6 +27,7 @@ import org.testng.Reporter;
 
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.ExtentManager;
+
 
 
 
@@ -93,6 +95,63 @@ public class ActionDriver {
 	        log.error(String.format("Unable to enter the value on " + elementDescription + ": " + e.getMessage(), e));
 	    }
 	}
+	
+	public void sendKeysJS(By by, String value) {
+
+	    String elementDescription = getElementDescription(by);
+
+	    try {
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	        WebElement element = wait.until(
+	                ExpectedConditions.visibilityOfElementLocated(by)
+	        );
+
+	        applyBorder(by, "green");
+
+	        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+	        // Focus the element
+	        js.executeScript("arguments[0].focus();", element);
+
+	        // Clear existing value
+	        js.executeScript("arguments[0].value = '';", element);
+
+	        // Set value
+	        js.executeScript("arguments[0].value = arguments[1];", element, value);
+
+	        // Trigger events (VERY IMPORTANT for React / Angular)
+	        js.executeScript(
+	            "arguments[0].dispatchEvent(new Event('input', { bubbles: true }));" +
+	            "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));",
+	            element
+	        );
+
+	        log.info("Entered text (JS) on " + elementDescription + " --> " + value);
+
+	    } catch (Exception e) {
+	        applyBorder(by, "red");
+	        log.error("Unable to enter value using JS on " + elementDescription, e);
+	    }
+	}
+
+	
+	public void sendKeys(By by, Keys key) {
+	    String elementDescription = getElementDescription(by);
+	    try {
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+
+	        applyBorder(by, "green");
+
+	        element.sendKeys(key);
+
+	        log.info("Sent key [" + key.name() + "] on " + elementDescription);
+	    } catch (Exception e) {
+	        applyBorder(by, "red");
+	        log.error("Unable to send key on " + elementDescription + " : " + e.getMessage(), e);
+	    }
+	}
+
 
 	
 
@@ -399,7 +458,44 @@ public class ActionDriver {
 	    }
 	}
 
-    
+	public void selectByVisibleTexts(By by, String value) {
+
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+	    try {
+
+	        // 1️⃣ Wait for presence (not clickable)
+	        wait.until(ExpectedConditions.presenceOfElementLocated(by));
+
+	        // 2️⃣ Re-locate element fresh (important for React)
+	        WebElement dropdown = driver.findElement(by);
+
+	        // 3️⃣ Wait until options are loaded
+	        wait.until(driver -> dropdown.findElements(By.tagName("option")).size() > 1);
+
+	        // 4️⃣ Create Select object
+	        Select select = new Select(dropdown);
+
+	        // 5️⃣ Select
+	        select.selectByVisibleText(value);
+
+	        // 6️⃣ Verify selection
+	        wait.until(driver ->
+	                select.getFirstSelectedOption().getText().equals(value));
+
+	        log.info("Successfully selected: " + value);
+
+	    } catch (StaleElementReferenceException e) {
+
+	        // Retry once (very important for React)
+	        WebElement dropdown = driver.findElement(by);
+	        new Select(dropdown).selectByVisibleText(value);
+
+	    } catch (Exception e) {
+	        log.error("Dropdown selection failed for: " + value, e);
+	        throw e;
+	    }
+	}
     // Method to select a dropdown by value
 	public void selectByValue(By by, String value) {
 	    try {

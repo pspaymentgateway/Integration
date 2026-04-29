@@ -7,8 +7,8 @@ public class transactionPageLocators {
 
 
     // report
-    public static final String report = "(//span[text()='Report'])[2]";
-    public static final String transactions ="//span[text()='Transactions']";
+    public static final String report = "//p[text()='Reports']";
+    public static final String transactions ="//p[text()='Transactions']";
 
     // filter transaction through select status
     public static final String selectStatus= "//select[@id='status']";

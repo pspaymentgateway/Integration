@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Suite" parallel="classes" thread-count="1">
+
+  <test name="Test">
+    <classes>
+    <!--
+     
+      <class name="s2s.zipcode"/>
+     
+      <class name="s2s.city"/>
+      <class name="s2s.stateCode"/>
+      <class name="s2s.productName"/>
+      <class name="s2s.streetAddress"/>
+      <class name="s2s.email"/>
+          <class name="purchase.currency"/>
+              <class name="s2s.currency"/>
+               <class name="purchase.email"/>
+      <class name="s2s.country"/>
+       <class name="s2s.email"/>
+       <class name="purchase.city"/>
+             <class name="purchase.streetAddress"/>
+      <class name="purchase.stateCode"/>
+      <class name="purchase.productName"/>
+      <class name="purchase.country"/>
+      <class name="purchase.zipcode"/>
+       -->
+      
+       <class name="purchase.email"/>
+      <class name="purchase.stateCode"/>
+      <class name="purchase.productName"/>
+      <class name="purchase.country"/>
+      <class name="purchase.zipcode"/>
+   
+     
+    </classes>
+  </test>
+
+</suite>

@@ -57,6 +57,53 @@ public class DataProvidersEndToEndFlow {
 	            "Matrix"        // integration name
 	    );
 	}
+	
+	@DataProvider(name = "MonnetPeru")
+	public Object[][] getMonnetperuData() {
 
+	    String cardsPath = Paths.get(
+	            System.getProperty("user.dir"),
+	            "src", "test", "resources", "ExcelResultsFolder",
+	            "Cards.xlsx"
+	    ).toString();
+
+	    return ExcelUtils.getIntegrationData(
+	            cardsPath,
+	            "CardDataForEndtoEndFlow",//Sheet name
+	            "MonnetPeru"        // integration name
+	    );
+	}
+
+	@DataProvider(name = "Payu")
+	public Object[][] getPayuData() {
+
+	    String cardsPath = Paths.get(
+	            System.getProperty("user.dir"),
+	            "src", "test", "resources", "ExcelResultsFolder",
+	            "Cards.xlsx"
+	    ).toString();
+
+	    return ExcelUtils.getIntegrationData(
+	            cardsPath,
+	            "CardDataForEndtoEndFlow",//Sheet name
+	            "Payu"        // integration name
+	    );
+	}
+	
+	@DataProvider(name = "ZaakPay")
+	public Object[][] getZaakPayData() {
+
+	    String cardsPath = Paths.get(
+	            System.getProperty("user.dir"),
+	            "src", "test", "resources", "ExcelResultsFolder",
+	            "Cards.xlsx"
+	    ).toString();
+
+	    return ExcelUtils.getIntegrationData(
+	            cardsPath,
+	            "CardDataForEndtoEndFlow",//Sheet name
+	            "zaakpay"        // integration name
+	    );
+	}
 
 }

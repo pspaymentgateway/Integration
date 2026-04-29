@@ -4,13 +4,16 @@ import org.testng.annotations.Test;
 
 import com.paysecure.Page.loginPage;
 import com.paysecure.Page.CashierPage;
+import com.paysecure.Page.RouteManager;
 import com.paysecure.Page.payu3dPage;
 import com.paysecure.Page.transactionPage;
 import com.paysecure.base.baseClass;
 import com.paysecure.utilities.DataProviders;
+import com.paysecure.utilities.DataProvidersEndToEndFlow;
 import com.paysecure.utilities.ExcelWriteUtility;
 import com.paysecure.utilities.PropertyReader;
 import com.paysecure.utilities.generateRandomTestData;
+import com.paysecure.utilities.testData_CreateRoll;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -18,6 +21,7 @@ import io.restassured.response.Response;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -47,21 +51,51 @@ public class monnetPeru extends baseClass{
 	  }
 	  
 	//String cardHolder, String cardNumber, String expiry, String cvc
-  @Test(dataProvider ="cardData",dataProviderClass = DataProviders.class) 
-  public void purchase(String ExpectedStatus,String cardHolder, String cardNumber, String expiry, String cvc,String PSP) throws Exception {
+  @Test(dataProvider ="MonnetPeru",dataProviderClass = DataProvidersEndToEndFlow.class) 
+  public void purchase(Map<String, String> data) throws Exception {
       WebDriver driver=baseClass.getDriver();
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
+	    String ExpectedStatus =data.get("ExpectedOutcome");
+	    String cardHolder=data.get("CardholderName");
+	    String cardNumber    = data.get("CardNumber");
+        String expiry   = data.get("Expiry");
+        String cvv      = data.get("CVV");
+        String PSP      =data.get("PSP");
+	    String paymentMethod = data.getOrDefault("PaymentMethod", "");
+	    String currency = data.getOrDefault("Currency", "");
+	    String minAmountStr = data.getOrDefault("MinAmount", "");
+	    String maxAmountStr = data.getOrDefault("MaxAmount", "");
+	    String defaultAmountStr = data.getOrDefault("DefaultAmount", "");
+	    
+	    double minAmount = testData_CreateRoll.parseAmount(minAmountStr, 0.0);
+	    double maxAmount = testData_CreateRoll.parseAmount(maxAmountStr, 0.0);
+	    double defaultAmount = testData_CreateRoll.parseAmount(defaultAmountStr, 5.6);
+	    
+	    String Merchant = data.getOrDefault("Merchant", "");
+	    String RouteToBankMid = data.getOrDefault("RouteToBankMid", "");
+	    String RouteToMidOrBank = data.getOrDefault("RouteToMidOrBank", "");
+		
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
-		String price = generateRandomTestData.generateRandomDoublePrice();
-		String currency =PropertyReader.getPropertyForPurchase("currency");
-		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
+		String price = generateRandomTestData.generateRandomDoublePrice(minAmount,maxAmount,defaultAmount);
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
-		String payu = PropertyReader.getPropertyForS2S("payu");
-
 		
+	    RouteManager.ensureRoute(
+		        getDriver(),
+		        Merchant,
+		        Merchant,
+		        paymentMethod,
+		        paymentMethod,
+		        currency,
+		        currency,
+		        PSP,
+		        RouteToBankMid,
+		        RouteToMidOrBank
+		    );
+
+
 		String country="IN";
 		String city = "Paris";
 		String stateCode="QLD";
@@ -118,22 +152,10 @@ public class monnetPeru extends baseClass{
 		tp.validatePurchaseId(purchaseId);
         // Payment
         driver.get(checkoutUrl);
-//        if(master.equalsIgnoreCase("master")){
-//        	mcp.clickONMaster();
-//        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
-//        }
-//        
-//        if(visa.equalsIgnoreCase("visa")) {
-//        	mcp.clickONVisa();
-//        	mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
-//        }
-        mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
+
+        mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvv);
         
         mcp.clickOnPay();
-        
-	    if(payu.equalsIgnoreCase("payu")) {
-	    	pay.payForPayu(currency,purchaseId,ExpectedStatus,paymentMethod);
-	    }
         
         Thread.sleep(4000);
 		 // Wait until parameter appears in URL

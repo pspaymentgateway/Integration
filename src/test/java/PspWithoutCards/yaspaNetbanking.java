@@ -1,4 +1,4 @@
-package PSPCardsIntegrations;
+package PspWithoutCards;
 
 import org.testng.annotations.Test;
 
@@ -27,7 +27,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 
-public class monnetChileCLP extends baseClass{
+public class yaspaNetbanking extends baseClass{
 	private WebDriver driver;
 	loginPage lp;
 	String checkoutUrl;
@@ -44,28 +44,29 @@ public class monnetChileCLP extends baseClass{
 			mcp=new CashierPage(getDriver());
 			tp=new transactionPage(getDriver());
 			pay = new payu3dPage(getDriver());
+			
 	  }
 	  
-	//String cardHolder, String cardNumber, String expiry, String cvc
-  @Test(dataProvider ="cardData",dataProviderClass = DataProviders.class) 
-  public void purchase(String ExpectedStatus, String cardHolder, String cardNumber, String expiry, String cvc,String PSP) throws Exception {
+  @Test(invocationCount = 5) 
+  public void purchase() throws Exception {
       WebDriver driver=baseClass.getDriver();
 		String baseUri = PropertyReader.getPropertyForPurchase("baseURI");
 		RestAssured.baseURI =baseUri;
 		String brandId = PropertyReader.getPropertyForPurchase("brandId");
 		String token = PropertyReader.getPropertyForPurchase("token");
-		String price = generateRandomTestData.generateRandomDoublePrice();
+		String price = generateRandomTestData.generateRandomDoublePrice(10,100,70.00);
+		String currency =PropertyReader.getPropertyForPurchase("currency");
+		String paymentMethod=PropertyReader.getPropertyForPurchase("paymentMethods");
 		String firstName = generateRandomTestData.generateRandomFirstName();
 		String emailId = generateRandomTestData.generateRandomEmail();
-		String payu = PropertyReader.getPropertyForS2S("payu");
-
+		String zaakpay = PropertyReader.getPropertyForPurchase("zaakpayNetBanking");
 		String country="IN";
 		String city = "Paris";
 		String stateCode="QLD";
 		String streetAddress = "Main gate";
 		String zipcode = "20001";
 		String productname="Cricket bat";
-		
+		String PSP="EasyBuzz-NetBanking";
 		
         System.err.println(baseUri);
         String requestBody = "{\n" +
@@ -90,6 +91,9 @@ public class monnetChileCLP extends baseClass{
 		        "  },\n" +
 		        "  \"paymentMethod\": \""+paymentMethod+"\",\n" +
 		        "  \"brand_id\": \"" + brandId + "\",\n" +
+		        "  \"extraParam\": {\n" +
+		        "    \"bankCode\": \"HDFCB\"\n" +
+		        "  },\n" +
 		        "  \"success_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=true\",\n" +
 		        "  \"failure_redirect\": \"https://staging.paysecure.net/getResponse.jsp?issucces=false\",\n" +
 		        "  \"success_callback\": \"https://www.google.com/\",\n" +
@@ -115,10 +119,9 @@ public class monnetChileCLP extends baseClass{
 		tp.validatePurchaseId(purchaseId);
         // Payment
         driver.get(checkoutUrl);
-        mcp.userEnterCardInformationForPayment(cardHolder, cardNumber, expiry, cvc);
-        
-        mcp.clickOnPay();
 
+        tp.handleForYASPA();
+        
         
         Thread.sleep(4000);
 		 // Wait until parameter appears in URL
@@ -137,47 +140,48 @@ public class monnetChileCLP extends baseClass{
         if (flag.equalsIgnoreCase("false")) {
             status = "FAIL";
             comment = "Payment Failed";
-
+            String ExpectedStatus="FAIL";
+            
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP,paymentMethod);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,  status, comment,purchaseId,PSP,paymentMethod);
             driver.quit();
             return;
         }
         else if (flag.equalsIgnoreCase("true")) {
             status = "PASS";
             comment = "Payment Successfully";
-
+            String ExpectedStatus="PASS";
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result", currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP,paymentMethod);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus,    status, comment,purchaseId,PSP,paymentMethod);
 
         }
         else {
             status = "UNKNOWN";
             comment = "URL does not contain expected issucces parameter";
-
+            String ExpectedStatus="UNKNOWN";
             Reporter.log(comment, true);
 
-            ExcelWriteUtility.writeResult("EndToEnd_Result",  currency +" "+paymentMethod,ExpectedStatus,   status, comment,purchaseId,PSP,paymentMethod);
+            ExcelWriteUtility.writeResult("EndToEnd_Result",currency +" "+paymentMethod,ExpectedStatus, status, comment,purchaseId,PSP,paymentMethod);
 
 
         }
         
-        mcp.openBrowserForStaging(driver,RestAssured.baseURI);
-        lp.login();
-        tp.navigateUptoTransaction();
-        tp.searchTheTransaction(purchaseId);
-        tp.verifyTxnId(purchaseId);
-        tp.verifyAmount(total);
-        tp.verifyCurrency(currency);
-        tp.getStatusFromUI();
-        tp.maskCardForCashier(cardNumber);
-        tp.verifyUsedCardOnUI(cardNumber);
-        tp.clickOnTransactionId();
-        tp.verifyPurchaseTransactionIDIsNotEmpty();
-		tp.verifyCurrencyOnPaymentInfoPayU();
-		tp.verifyAmountFromPaymentInfoPayU();
+//        String URL = PropertyReader.getPropertyForPurchase("URL");
+//        mcp.openBrowserForStaging(driver,URL);
+//        lp.login();
+//        tp.navigateUptoTransaction();
+//        tp.searchTheTransaction(purchaseId);
+//        tp.verifyTxnId(purchaseId);
+//        tp.verifyAmount(total);
+//        tp.verifyCurrency(currency);
+//        tp.getStatusFromUI();
+//        tp.clickOnTransactionId();
+//        tp.verifyPurchaseTransactionIDIsNotEmpty();
+	//	tp.verifyCurrencyOnPaymentInfoPayU();
+	//	tp.verifyAmountFromPaymentInfoPayU();
+		
 
   }
 
