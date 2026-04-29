@@ -47,6 +47,9 @@ public class easybuzzNetBanking extends baseClass{
 			
 	  }
 	  
+	  
+	  
+	  
   @Test() 
   public void purchase() throws Exception {
       WebDriver driver=baseClass.getDriver();
